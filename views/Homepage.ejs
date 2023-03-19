@@ -1,0 +1,461 @@
+<%- include ("./partials/header") %>
+
+<!-- component -->
+
+<body>
+  <!-- Homepage Carousel -->
+  <div
+    class="swiper mySwiper w-full relative h-[314px] md:h-[382px] lg:h-[540px] xl:h-[640px] 2xl:h-[738px]"
+  >
+    <div class="swiper-wrapper">
+      <div class="swiper-slide w-full">
+        <%- include('partials/carousel'); %>
+      </div>
+      <div class="swiper-slide w-full">
+        <%- include('partials/carousel2'); %>
+      </div>
+      <div class="swiper-slide w-full">
+        <%- include('partials/carousel'); %>
+      </div>
+      <div class="swiper-slide w-full">
+        <%- include('partials/carousel2'); %>
+      </div>
+    </div>
+    <div
+      class="swiper-pagination flex justify-end max-w-[1200px] bottom-6 absolute px-5 lg:px-10 lg:-translate-x-1/2"
+    ></div>
+  </div>
+
+  <!-- First Cards and Best Selling Bundles, Big Screen Ads -->
+  <div
+    class="max-w-[1200px] mx-auto lg:px-10 px-5 pl-5 md:pr-0 cardcss relative"
+  >
+    <div class="lg:my-[79px] my-[30px]">
+      <div
+        class="grid md:grid-cols-4 grid-cols-2 gap-x-[19.58px] gap-y-[20px] md:overflow-x-auto md:flex lg:grid"
+      >
+        <div
+          class="p-[4.96px] lg:p-[8.25px] md:p-[5.74px] justify-center rounded border-[1px] sm:flex-shrink-0 lg:w-full"
+        >
+          <img
+            src="../public/Images/homepage/box1.png"
+            class="h-[100.87px] md:h-[116.66px] lg:h-[167.99px] w-full"
+          />
+          <div
+            class="font-medium text-xs md:text-sm lg:text-lg text-center py-[12px] md:py-[17.85] lg:py-[16.52]"
+          >
+            GIH Well Pacakages
+          </div>
+        </div>
+        <div
+          class="p-[4.96px] lg:p-[8.25px] md:p-[5.74px] justify-center rounded border-[1px] sm:flex-shrink-0 lg:w-full"
+        >
+          <img
+            src="../public/Images/homepage/box1.png"
+            class="h-[100.87px] md:h-[116.66px] lg:h-[167.99px] w-full"
+          />
+          <div
+            class="font-medium text-xs md:text-sm lg:text-lg text-center py-[12px] md:py-[17.85] lg:py-[16.52]"
+          >
+            GIH Well Pacakages
+          </div>
+        </div>
+        <div
+          class="p-[4.96px] lg:p-[8.25px] md:p-[5.74px] justify-center rounded border-[1px] sm:flex-shrink-0 lg:w-full"
+        >
+          <img
+            src="../public/Images/homepage/box1.png"
+            class="h-[100.87px] md:h-[116.66px] lg:h-[167.99px] w-full"
+          />
+          <div
+            class="font-medium text-xs md:text-sm lg:text-lg text-center py-[12px] md:py-[17.85] lg:py-[16.52]"
+          >
+            GIH Well Pacakages
+          </div>
+        </div>
+        <div
+          class="p-[4.96px] lg:p-[8.25px] md:p-[5.74px] justify-center rounded border-[1px] sm:flex-shrink-0 lg:w-full"
+        >
+          <img
+            src="../public/Images/homepage/box1.png"
+            class="h-[100.87px] md:h-[116.66px] lg:h-[167.99px] w-full"
+          />
+          <div
+            class="font-medium text-xs md:text-sm lg:text-lg text-center py-[12px] md:py-[17.85] lg:py-[16.52]"
+          >
+            GIH Well Pacakages
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="justify-between flex items-center md:pr-5 lg:pr-0">
+      <div class="font-prox text-lg font-bold md:text-3xl">
+        Best Selling Bundles
+      </div>
+      <div class="font-poppins font-normal text-xs md:text-base">
+        View All >>
+      </div>
+    </div>
+
+    <div class="lg:mt-10 mt-7 md:pr-5 lg:pr-0">
+      <div
+        class="grid grid-cols-2 md:hidden gap-x-[19px] sm:gap-x-[23px] md:gap-x-[19px] gap-y-4"
+      >
+        <div class="swiper-slide"><%- include('partials/card'); %></div>
+        <div class="swiper-slide"><%- include('partials/card2'); %></div>
+        <div class="swiper-slide"><%- include('partials/card'); %></div>
+        <div class="swiper-slide"><%- include('partials/card2'); %></div>
+      </div>
+    </div>
+
+    <div
+      class="container swiper h-auto max-w-[1200px] hidden md:block relative px-5"
+    >
+      <div class="cards">
+        <div class="card-wrapper swiper-wrapper">
+          <div class="swiper-slide"><%- include('partials/card'); %></div>
+          <div class="swiper-slide"><%- include('partials/card'); %></div>
+          <div class="swiper-slide"><%- include('partials/card'); %></div>
+          <div class="swiper-slide"><%- include('partials/card'); %></div>
+          <div class="swiper-slide"><%- include('partials/card2'); %></div>
+          <div class="swiper-slide"><%- include('partials/card2'); %></div>
+          <div class="swiper-slide"><%- include('partials/card2'); %></div>
+          <div class="swiper-slide"><%- include('partials/card2'); %></div>
+          <div class="swiper-slide"><%- include('partials/card'); %></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="w-[100px] overflow-visible">
+          <div
+            class="swiper-button-next hidden lg:block w-auto h-auto right-0 z-50 max-w-none"
+          >
+            <img src="../public/Images/arr-next.svg" />
+          </div>
+          <div
+            class="swiper-button-prev hidden lg:block w-auto h-auto left-0 z-50"
+          >
+            <img src="../public/Images/arr-prev.svg" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:mt-[80px] mt-[30px]">
+      <div class="md:grid hidden md:grid-cols-2 md:gap-x-4 lg:gap-x-7 w-full">
+        <%- include ("./partials/adsmall") %> <%- include ("./partials/adsmall")
+        %>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1st Ads -->
+  <div class="Adswipe">
+    <div class="md:hidden block swiper mySwiper mt-7">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><%- include ("./partials/adsmall") %></div>
+        <div class="swiper-slide w-full">
+          <%- include ("./partials/adsmall") %>
+        </div>
+        <div class="swiper-slide w-full">
+          <%- include ("./partials/adsmall") %>
+        </div>
+      </div>
+      <div
+        class="swiper-pagination clickableClass flex justify-start absolute pl-[20px]"
+      ></div>
+    </div>
+  </div>
+
+  <!-- Featured Product -->
+  <div
+    class="max-w-[1200px] mx-auto px-5 lg:px-10 cardcss relative lg:mt-[80px] mt-7"
+  >
+    <div class="justify-between flex items-center">
+      <div class="font-prox text-lg font-bold md:text-3xl">
+        Featured Products
+      </div>
+      <div class="font-poppins font-normal text-xs md:text-base">
+        View All >>
+      </div>
+    </div>
+
+    <div class="lg:mt-10 mt-7">
+      <div
+        class="grid grid-cols-2 md:hidden gap-x-[19px] sm:gap-x-[23px] md:gap-x-[19px] gap-y-4"
+      >
+        <div class="swiper-slide"><%- include('partials/card'); %></div>
+        <div class="swiper-slide"><%- include('partials/card2'); %></div>
+        <div class="swiper-slide"><%- include('partials/card'); %></div>
+        <div class="swiper-slide"><%- include('partials/card2'); %></div>
+      </div>
+    </div>
+
+    <div
+      class="container swiper h-auto max-w-[1200px] hidden md:block relative px-5"
+    >
+      <div class="cards">
+        <div class="card-wrapper swiper-wrapper">
+          <div class="swiper-slide"><%- include('partials/card'); %></div>
+          <div class="swiper-slide"><%- include('partials/card'); %></div>
+          <div class="swiper-slide"><%- include('partials/card'); %></div>
+          <div class="swiper-slide"><%- include('partials/card'); %></div>
+          <div class="swiper-slide"><%- include('partials/card2'); %></div>
+          <div class="swiper-slide"><%- include('partials/card2'); %></div>
+          <div class="swiper-slide"><%- include('partials/card2'); %></div>
+          <div class="swiper-slide"><%- include('partials/card2'); %></div>
+          <div class="swiper-slide"><%- include('partials/card'); %></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="w-[100px] overflow-visible">
+          <div
+            class="swiper-button-next hidden lg:block w-auto h-auto right-0 z-50 max-w-none"
+          >
+            <img src="../public/Images/arr-next.svg" />
+          </div>
+          <div
+            class="swiper-button-prev hidden lg:block w-auto h-auto left-0 z-50"
+          >
+            <img src="../public/Images/arr-prev.svg" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ads and Offer -->
+  <div class="max-w-[1200px] lg:px-10 mx-auto hidden md:block">
+    <div class="lg:mt-[80px] mt-[30px]">
+      <div class="font-prox relative overflow-hidden">
+        <img src="../public/Images/homepage/Adbg.png" class="w-full" />
+        <div
+          class="absolute pl-[21px] lg:pl-[90px] md:pl-[60px] lg:top-[63px] md:top-[57px] top-[63px] z-50 uppercase"
+        >
+          <div class="font-[250] lg:text-[20px] md:text-[13px] text-[22px]">
+            Offer of the day
+          </div>
+          <div
+            class="font-[600] lg:text-[36px] md:text-[24px] text-[22px] lg:mt-[20px]"
+          >
+            Get Veg-subscription <br />
+            only on Rs.20000
+          </div>
+          <button
+            class="mt-[22px] md:mt-[32px] lg:mt-[47px] font-[600] lg:text-[14px] md:text-[8px] text-[9px] flex items-center justify-center lg:border-[1px] md:border-[0.6px] px-4 lg:px-[22px] md:h-[28px] lg:h-[42px] border-black md:rounded-[5.3px] lg:rounded-lg"
+          >
+            Get Started &nbsp;
+            <img
+              src="../public/Images/arrblack.svg"
+              class="w-[9px] h-[9px] lg:w-[13.4px] lg:h-[13.4px]"
+            />
+          </button>
+        </div>
+        <div class="absolute bottom-0 right-0 overflow-hidden h-full">
+          <img src="../public/Images/homepage/Adobj2.png" class="h-full" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block md:hidden mt-7"><%- include ("./partials/adsmall") %></div>
+
+  <!-- Just For You -->
+  <div
+    class="max-w-[1200px] mx-auto px-5 lg:px-10 cardcss relative lg:mt-[80px] mt-7"
+  >
+    <div class="justify-between flex items-center">
+      <div class="font-prox text-lg font-bold md:text-3xl">Just For You</div>
+      <div class="font-poppins font-normal text-xs md:text-base">
+        View All >>
+      </div>
+    </div>
+
+    <div class="lg:mt-10 mt-7">
+      <div
+        class="grid grid-cols-2 md:hidden gap-x-[19px] sm:gap-x-[23px] md:gap-x-[19px] gap-y-4"
+      >
+        <div class="swiper-slide"><%- include('partials/card'); %></div>
+        <div class="swiper-slide"><%- include('partials/card2'); %></div>
+        <div class="swiper-slide"><%- include('partials/card'); %></div>
+        <div class="swiper-slide"><%- include('partials/card2'); %></div>
+      </div>
+    </div>
+
+    <div
+      class="container swiper h-auto max-w-[1200px] hidden md:block relative px-5"
+    >
+      <div class="cards">
+        <div class="card-wrapper swiper-wrapper">
+          <div class="swiper-slide"><%- include('partials/card'); %></div>
+          <div class="swiper-slide"><%- include('partials/card'); %></div>
+          <div class="swiper-slide"><%- include('partials/card'); %></div>
+          <div class="swiper-slide"><%- include('partials/card'); %></div>
+          <div class="swiper-slide"><%- include('partials/card2'); %></div>
+          <div class="swiper-slide"><%- include('partials/card2'); %></div>
+          <div class="swiper-slide"><%- include('partials/card2'); %></div>
+          <div class="swiper-slide"><%- include('partials/card2'); %></div>
+          <div class="swiper-slide"><%- include('partials/card'); %></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="w-[100px] overflow-visible">
+          <div
+            class="swiper-button-next hidden lg:block w-auto h-auto right-0 z-50 max-w-none"
+          >
+            <img src="../public/Images/arr-next.svg" />
+          </div>
+          <div
+            class="swiper-button-prev hidden lg:block w-auto h-auto left-0 z-50"
+          >
+            <img src="../public/Images/arr-prev.svg" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ads and Offers -->
+  <div class="max-w-[1200px] lg:px-10 mx-auto hidden md:block">
+    <div class="lg:mt-[80px] mt-[30px]">
+      <div class="font-prox relative overflow-hidden">
+        <img src="../public/Images/homepage/Adbg.png" class="w-full" />
+        <div
+          class="absolute pl-[300px] lg:pl-[475px] md:pl-[400px] lg:top-[94px] md:top-[57px] top-[63px] z-50 uppercase"
+        >
+          <div class="font-[250] lg:text-[20px] md:text-[13px] text-[22px]">
+            Offer of the day
+          </div>
+          <div class="font-[600] lg:text-[36px] md:text-[24px] text-[22px]">
+            Get Veg-subscription <br />
+            only on Rs.20000
+          </div>
+          <button
+            class="mt-[22px] md:mt-[32px] lg:mt-[47px] font-[600] lg:text-[14px] md:text-[8px] text-[9px] flex items-center justify-center lg:border-[1px] md:border-[0.6px] px-4 lg:px-[22px] md:h-[28px] lg:h-[42px] border-black md:rounded-[5.3px] lg:rounded-lg"
+          >
+            Get Started &nbsp;
+            <img
+              src="../public/Images/arrblack.svg"
+              class="w-[9px] h-[9px] lg:w-[13.4px] lg:h-[13.4px]"
+            />
+          </button>
+        </div>
+        <div class="absolute top-0 -left-8 h-full overflow-hidden">
+          <img
+            src="../public/Images/homepage/Adobj2.png"
+            class="h-full rotate-180"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block md:hidden mt-7"><%- include ("./partials/adsmall") %></div>
+  <!-- Popular Pre-made Packages -->
+  <div
+    class="max-w-[1200px] mx-auto px-5 lg:px-10 cardcss relative lg:mt-[80px] mt-7"
+  >
+    <div class="justify-between flex items-center">
+      <div class="font-prox text-lg font-bold md:text-3xl">
+        Popular Pre-made Packages
+      </div>
+      <div class="font-poppins font-normal text-xs md:text-base">
+        View All >>
+      </div>
+    </div>
+
+    <div class="lg:mt-10 mt-7">
+      <div
+        class="grid grid-cols-2 md:hidden gap-x-[19px] sm:gap-x-[23px] md:gap-x-[19px] gap-y-4"
+      >
+        <div class="swiper-slide"><%- include('partials/card'); %></div>
+        <div class="swiper-slide"><%- include('partials/card2'); %></div>
+        <div class="swiper-slide"><%- include('partials/card'); %></div>
+        <div class="swiper-slide"><%- include('partials/card2'); %></div>
+      </div>
+    </div>
+
+    <div
+      class="container swiper h-auto max-w-[1200px] hidden md:block relative px-5"
+    >
+      <div class="cards">
+        <div class="card-wrapper swiper-wrapper">
+          <div class="swiper-slide"><%- include('partials/card'); %></div>
+          <div class="swiper-slide"><%- include('partials/card'); %></div>
+          <div class="swiper-slide"><%- include('partials/card'); %></div>
+          <div class="swiper-slide"><%- include('partials/card'); %></div>
+          <div class="swiper-slide"><%- include('partials/card2'); %></div>
+          <div class="swiper-slide"><%- include('partials/card2'); %></div>
+          <div class="swiper-slide"><%- include('partials/card2'); %></div>
+          <div class="swiper-slide"><%- include('partials/card2'); %></div>
+          <div class="swiper-slide"><%- include('partials/card'); %></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="w-[100px] overflow-visible">
+          <div
+            class="swiper-button-next hidden lg:block w-auto h-auto right-0 z-50 max-w-none"
+          >
+            <img src="../public/Images/arr-next.svg" />
+          </div>
+          <div
+            class="swiper-button-prev hidden lg:block w-auto h-auto left-0 z-50"
+          >
+            <img src="../public/Images/arr-prev.svg" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Final Ads -->
+  <div
+    class="lg:max-w-[1200px] lg:px-10 pt-[50px] md:pt-[80px] lg:pt-[180px] mx-auto"
+  >
+    <div class="">
+      <div class="font-prox relative">
+        <img src="../public/Images/homepage/Adbg2.jpg" class="w-full" />
+        <div
+          class="absolute lg:pl-[356px] md:pl-[250px] pl-[134px] lg:top-[50px] md:top-[39px] top-[10px] z-50 uppercase overflow-hidden"
+        >
+          <div class="font-[250] lg:text-[20px] md:text-[13px] text-[9px]">
+            COOK WITH HOUSEHOLD
+          </div>
+          <div class="font-[600] lg:text-[36px] md:text-[24px] text-[9px]">
+            Get amazing food recipe <br />
+            by the experts
+          </div>
+          <button
+            class="hidden md:flex mt-[17px] md:mt-[23px] lg:mt-[32px] font-[600] lg:text-[14px] md:text-[8px] text-[9px] items-center justify-center lg:border-[1px] md:border-[0.6px] px-4 lg:px-[22px] md:h-[28px] lg:h-[42px] border-black md:rounded-[5.3px] lg:rounded-lg"
+          >
+            Get Started &nbsp;
+            <img
+              src="../public/Images/arrblack.svg"
+              class="w-[9px] h-[9px] lg:w-[13.4px] lg:h-[13.4px]"
+            />
+          </button>
+          <a
+            ><div
+              class="font-[600] lg:text-[14px] md:text-[8px] text-[9px] underline pt-[9px] md:pt-[32px] lg:pt-[47px] md:hidden"
+            >
+              SHOP NOW
+            </div></a
+          >
+        </div>
+        <div
+          class="absolute bottom-0 lg:-top-[80px] -top-10 xl:-left-5 left-5 overflow-visible"
+        >
+          <img src="../public/Images/homepage/Thopde.png" class="h-full" />
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<!-- <link rel="stylesheet" href="../public/style.css" /> -->
+
+<%- include ("./partials/footer") %>

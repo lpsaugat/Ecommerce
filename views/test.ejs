@@ -1,0 +1,187 @@
+<%- include ("./partials/header") %>
+
+<html>
+  <!-- component -->
+  <head>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script>
+      var cont = 0;
+      function loopSlider() {
+        var xx = setInterval(function () {
+          switch (cont) {
+            case 0: {
+              $("#slider-3").fadeOut(400);
+              $("#slider-2").delay(400).fadeIn(400);
+              $("#sButton1").removeClass("bg-purple-800");
+              $("#sButton2").addClass("bg-purple-800");
+              cont = 1;
+
+              break;
+            }
+            case 1: {
+              $("#slider-2").fadeOut(400);
+              $("#slider-1").delay(400).fadeIn(400);
+              $("#sButton2").removeClass("bg-purple-800");
+              $("#sButton1").addClass("bg-purple-800");
+
+              cont = 0;
+
+              break;
+            }
+            case 3: {
+              $("#slider-1").fadeOut(400);
+              $("#slider-3").delay(400).fadeIn(400);
+              $("#sButton2").removeClass("bg-purple-800");
+              $("#sButton1").addClass("bg-purple-800");
+
+              cont = 0;
+
+              break;
+            }
+          }
+        }, 8000);
+      }
+
+      function reinitLoop(time) {
+        clearInterval(xx);
+        setTimeout(loopSlider(), time);
+      }
+
+      function sliderButton1() {
+        $("#slider-2").fadeOut(400);
+        $("#slider-3").fadeOut(400);
+        $("#slider-1").delay(400).fadeIn(400);
+
+        $("#sButton2").removeClass("bg-purple-800");
+        $("#sButton1").addClass("bg-purple-800");
+        reinitLoop(4000);
+        cont = 0;
+      }
+
+      function sliderButton2() {
+        $("#slider-1").fadeOut(400);
+        $("#slider-2").delay(400).fadeIn(400);
+        $("#sButton1").removeClass("bg-purple-800");
+        $("#sButton2").addClass("bg-purple-800");
+        reinitLoop(4000);
+        cont = 1;
+      }
+      function sliderButton3() {
+        $("#slider-1").fadeOut(400);
+        $("#slider-1").fadeOut(400);
+        $("#slider-3").delay(400).fadeIn(400);
+
+        $("#sButton1").removeClass("bg-purple-800");
+        $("#sButton2").addClass("bg-purple-800");
+        reinitLoop(4000);
+        cont = 1;
+      }
+
+      $(window).ready(function () {
+        $("#slider-2").hide();
+        $("#sButton1").addClass("bg-purple-800");
+
+        loopSlider();
+      });
+    </script>
+  </head>
+
+  <body>
+    <div class="sliderAx relative">
+      <div id="slider-1" class="mx-auto w-full">
+        <div
+          class="bg-cover bg-center text-white py-24 px-10 object-fill"
+          style="background-image: url(../public/Images/homepage/img1.svg)"
+        >
+          <div class="md:w-2/3">
+            <p class="font-normal text-xl uppercase text-[#FCFCFC]">
+              Happy Healthy Week
+            </p>
+            <p class="text-6xl font-semibold text-[#FCFCFC]">
+              Get Your Customized Subscription Package Today
+            </p>
+            <p class="text-2xl mb-10 leading-none text-[#FCFCFC]">
+              Save upto 30%
+            </p>
+            <button
+              href="#"
+              class="bg-[#3BAF3D] border-none text-[#FCFCFC] rounded-lg w-[135px] h-[36px]"
+            >
+              Shop Now
+            </button>
+          </div>
+        </div>
+        <!-- container -->
+        <br />
+      </div>
+
+      <div id="slider-2" class="mx-auto">
+        <div
+          class="bg-cover bg-top h-auto text-white py-24 object-fill pr-[15%] pl-[40%] gap-y-[30px]"
+          style="background-image: url(../public/Images/homepage/img2.svg)"
+        >
+          <p class="text-xl font-normal uppercase text-[#9ABF00]">
+            Fresh Deals
+          </p>
+          <p class="text-6xl font-semibold text-[#EC922D] pt-3 pb-8">
+            Get Fresh and Orangic Products With Just 1 Tap
+          </p>
+
+          <button
+            href="#"
+            class="bg-[#3BAF3D] border-none text-[#FCFCFC] rounded-lg w-[135px] h-[36px]"
+          >
+            Shop Now
+          </button>
+        </div>
+        <!-- container -->
+        <br />
+      </div>
+      <div id="slider-3" class="mx-auto w-full">
+        <div
+          class="bg-cover bg-center text-white py-24 px-10 object-fill"
+          style="background-image: url(../public/Images/homepage/img1.svg)"
+        >
+          <div class="md:w-2/3">
+            <p class="font-normal text-xl uppercase text-[#FCFCFC]">
+              Happy Healthy Week
+            </p>
+            <p class="text-6xl font-semibold text-[#FCFCFC]">
+              Get Your Customized Subscription Package Today
+            </p>
+            <p class="text-2xl mb-10 leading-none text-[#FCFCFC]">
+              Save upto 30%
+            </p>
+            <button
+              href="#"
+              class="bg-[#3BAF3D] border-none text-[#FCFCFC] rounded-lg w-[135px] h-[36px]"
+            >
+              Shop Now
+            </button>
+          </div>
+        </div>
+        <!-- container -->
+        <br />
+      </div>
+      <div
+        class="flex justify-between w-12 mx-auto absolute bottom-10 right-20"
+      >
+        <button
+          id="sButton1"
+          onclick="sliderButton1()"
+          class="bg-purple-400 rounded-full w-4 pb-2"
+        ></button>
+        <button
+          id="sButton2"
+          onclick="sliderButton2() "
+          class="bg-purple-400 rounded-full w-4 p-2"
+        ></button>
+      </div>
+    </div>
+  </body>
+  <div class="container mx-auto px-1">
+    <button class="bg-green rounded"></button>
+  </div>
+</html>
+
+<%- include ("./partials/footer") %>
