@@ -35,11 +35,10 @@ else{
     menu1.classList.remove("bg-black");
 
 
-
-
 }
 
 }
+
 
 function openMenu2(){
     menu.classList.remove('flex');
