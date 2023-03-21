@@ -32,7 +32,7 @@
   >
     <div class="lg:my-[79px] my-[30px]">
       <div
-        class="grid md:grid-cols-4 grid-cols-2 gap-x-[19.58px] gap-y-[20px] md:overflow-x-auto md:flex lg:grid"
+        class="grid md:grid-cols-4 grid-cols-2 gap-x-[19.58px] gap-y-[20px] md:overflow-x-auto md:flex lg:grid scrollbar"
       >
         <div
           class="p-[4.96px] lg:p-[8.25px] md:p-[5.74px] justify-center rounded border-[1px] sm:flex-shrink-0 lg:w-full"
@@ -88,19 +88,18 @@
         </div>
       </div>
     </div>
-
     <div class="justify-between flex items-center md:pr-5 lg:pr-0">
-      <div class="font-prox text-lg font-bold md:text-3xl">
+      <div class="font-prox text-lg font-bold lg:text-3xl text-[18px]">
         Best Selling Bundles
       </div>
-      <div class="font-poppins font-normal text-xs md:text-base">
-        View All >>
+      <div class="font-poppins font-normal text-xs md:text-base flex">
+        View All &nbsp;<img src="../public/Images/next.svg" />
       </div>
     </div>
 
     <div class="lg:mt-10 mt-7 md:pr-5 lg:pr-0">
       <div
-        class="grid grid-cols-2 md:hidden gap-x-[19px] sm:gap-x-[23px] md:gap-x-[19px] gap-y-4"
+        class="grid grid-cols-2 md:hidden gap-x-[19px] sm:gap-x-[23px] md:gap-x-[19px] gap-y-5"
       >
         <div class="swiper-slide"><%- include('partials/card'); %></div>
         <div class="swiper-slide"><%- include('partials/card2'); %></div>
@@ -110,7 +109,7 @@
     </div>
 
     <div
-      class="container swiper h-auto max-w-[1200px] hidden md:block relative px-5"
+      class="container swiper h-auto max-w-[1200px] hidden md:block relative lg:px-5 md:pr-5"
     >
       <div class="cards">
         <div class="card-wrapper swiper-wrapper">
@@ -143,7 +142,9 @@
     </div>
 
     <div class="lg:mt-[80px] mt-[30px]">
-      <div class="md:grid hidden md:grid-cols-2 md:gap-x-4 lg:gap-x-7 w-full">
+      <div
+        class="md:grid hidden md:grid-cols-2 md:gap-x-4 lg:gap-x-7 w-full md:pr-5 lg:pr-0"
+      >
         <%- include ("./partials/adsmall") %> <%- include ("./partials/adsmall")
         %>
       </div>
@@ -173,17 +174,17 @@
     class="max-w-[1200px] mx-auto px-5 lg:px-10 cardcss relative lg:mt-[80px] mt-7"
   >
     <div class="justify-between flex items-center">
-      <div class="font-prox text-lg font-bold md:text-3xl">
+      <div class="font-prox text-lg font-bold lg:text-3xl text-[18px]">
         Featured Products
       </div>
-      <div class="font-poppins font-normal text-xs md:text-base">
-        View All >>
+      <div class="font-poppins font-normal text-xs md:text-base flex">
+        View All &nbsp;<img src="../public/Images/next.svg" />
       </div>
     </div>
 
     <div class="lg:mt-10 mt-7">
       <div
-        class="grid grid-cols-2 md:hidden gap-x-[19px] sm:gap-x-[23px] md:gap-x-[19px] gap-y-4"
+        class="grid grid-cols-2 md:hidden gap-x-[19px] sm:gap-x-[23px] md:gap-x-[19px] gap-y-5"
       >
         <div class="swiper-slide"><%- include('partials/card'); %></div>
         <div class="swiper-slide"><%- include('partials/card2'); %></div>
@@ -267,15 +268,17 @@
     class="max-w-[1200px] mx-auto px-5 lg:px-10 cardcss relative lg:mt-[80px] mt-7"
   >
     <div class="justify-between flex items-center">
-      <div class="font-prox text-lg font-bold md:text-3xl">Just For You</div>
-      <div class="font-poppins font-normal text-xs md:text-base">
-        View All >>
+      <div class="font-prox text-lg font-bold lg:text-3xl text-[18px]">
+        Just For You
+      </div>
+      <div class="font-poppins font-normal text-xs md:text-base flex">
+        View All &nbsp;<img src="../public/Images/next.svg" />
       </div>
     </div>
 
     <div class="lg:mt-10 mt-7">
       <div
-        class="grid grid-cols-2 md:hidden gap-x-[19px] sm:gap-x-[23px] md:gap-x-[19px] gap-y-4"
+        class="grid grid-cols-2 md:hidden gap-x-[19px] sm:gap-x-[23px] md:gap-x-[19px] gap-y-5"
       >
         <div class="swiper-slide"><%- include('partials/card'); %></div>
         <div class="swiper-slide"><%- include('partials/card2'); %></div>
@@ -324,12 +327,14 @@
       <div class="font-prox relative overflow-hidden">
         <img src="../public/Images/homepage/Adbg.png" class="w-full" />
         <div
-          class="absolute pl-[300px] lg:pl-[475px] md:pl-[400px] lg:top-[94px] md:top-[57px] top-[63px] z-50 uppercase"
+          class="absolute pl-[300px] lg:pl-[475px] md:pl-[400px] lg:top-[63px] md:top-[57px] top-[63px] z-50 uppercase"
         >
           <div class="font-[250] lg:text-[20px] md:text-[13px] text-[22px]">
             Offer of the day
           </div>
-          <div class="font-[600] lg:text-[36px] md:text-[24px] text-[22px]">
+          <div
+            class="font-[600] lg:text-[36px] md:text-[24px] text-[22px] lg:mt-[20px]"
+          >
             Get Veg-subscription <br />
             only on Rs.20000
           </div>
@@ -359,17 +364,17 @@
     class="max-w-[1200px] mx-auto px-5 lg:px-10 cardcss relative lg:mt-[80px] mt-7"
   >
     <div class="justify-between flex items-center">
-      <div class="font-prox text-lg font-bold md:text-3xl">
+      <div class="font-prox text-lg font-bold lg:text-3xl text-[18px]">
         Popular Pre-made Packages
       </div>
-      <div class="font-poppins font-normal text-xs md:text-base">
-        View All >>
+      <div class="font-poppins font-normal text-xs md:text-base flex">
+        View All &nbsp;<img src="../public/Images/next.svg" />
       </div>
     </div>
 
     <div class="lg:mt-10 mt-7">
       <div
-        class="grid grid-cols-2 md:hidden gap-x-[19px] sm:gap-x-[23px] md:gap-x-[19px] gap-y-4"
+        class="grid grid-cols-2 md:hidden gap-x-[19px] sm:gap-x-[23px] md:gap-x-[19px] gap-y-5"
       >
         <div class="swiper-slide"><%- include('partials/card'); %></div>
         <div class="swiper-slide"><%- include('partials/card2'); %></div>
@@ -418,19 +423,29 @@
   >
     <div class="">
       <div class="font-prox relative">
-        <img src="../public/Images/homepage/Adbg2.jpg" class="w-full" />
+        <img
+          src="../public/Images/homepage/Adbg2.jpg"
+          class="w-full hidden lg:block"
+        />
+        <img
+          src="../public/Images/homepage/Adbg.png"
+          class="w-full md:h-[262px] lg:hidden h-[132px]"
+        />
+
         <div
-          class="absolute lg:pl-[356px] md:pl-[250px] pl-[134px] lg:top-[50px] md:top-[39px] top-[10px] z-50 uppercase overflow-hidden"
+          class="absolute lg:pl-[356px] md:pl-[250px] pl-[134px] lg:top-[50px] md:top-[39px] top-[20px] z-50 overflow-hidden"
         >
-          <div class="font-[250] lg:text-[20px] md:text-[13px] text-[9px]">
+          <div class="font-[250] lg:text-[20px] md:text-[13px] text-[14px]">
             COOK WITH HOUSEHOLD
           </div>
-          <div class="font-[600] lg:text-[36px] md:text-[24px] text-[9px]">
-            Get amazing food recipe <br />
+          <div
+            class="font-[600] lg:text-[36px] md:text-[35px] text-[18px] md:pt-[17px] font-prox lg:pt-[0px]"
+          >
+            Get amazing food recipe <br class="m-[0px]" />
             by the experts
           </div>
           <button
-            class="hidden md:flex mt-[17px] md:mt-[23px] lg:mt-[32px] font-[600] lg:text-[14px] md:text-[8px] text-[9px] items-center justify-center lg:border-[1px] md:border-[0.6px] px-4 lg:px-[22px] md:h-[28px] lg:h-[42px] border-black md:rounded-[5.3px] lg:rounded-lg"
+            class="hidden lg:flex mt-[17px] md:mt-[23px] lg:mt-[32px] font-[600] lg:text-[14px] md:text-[8px] text-[9px] items-center justify-center lg:border-[1px] md:border-[0.6px] px-4 lg:px-[22px] md:h-[28px] lg:h-[42px] border-black md:rounded-[5.3px] lg:rounded-lg"
           >
             Get Started &nbsp;
             <img
@@ -438,16 +453,23 @@
               class="w-[9px] h-[9px] lg:w-[13.4px] lg:h-[13.4px]"
             />
           </button>
-          <a
+          <a class="md:hidden"
             ><div
-              class="font-[600] lg:text-[14px] md:text-[8px] text-[9px] underline pt-[9px] md:pt-[32px] lg:pt-[47px] md:hidden"
+              class="font-[600] lg:text-[14px] md:text-[8px] text-[9px] underline pt-[9px] md:pt-[26px] lg:pt-[47px]"
             >
-              SHOP NOW
+              GET NOW
+            </div></a
+          >
+          <a class="md:block hidden lg:hidden"
+            ><div
+              class="font-[600] lg:text-[14px] md:text-[19px] text-[9px] underline-offset-4 pt-[9px] md:pt-[10px] lg:pt-[47px] md:block hidden lg:hidden underline"
+            >
+              GET NOW
             </div></a
           >
         </div>
         <div
-          class="absolute bottom-0 lg:-top-[80px] -top-10 xl:-left-5 left-5 overflow-visible"
+          class="absolute bottom-0 lg:-top-[80px] md:-top-10 -top-[25px] xl:-left-5 left-5 overflow-visible"
         >
           <img src="../public/Images/homepage/Thopde.png" class="h-full" />
         </div>

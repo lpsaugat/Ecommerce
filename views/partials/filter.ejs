@@ -1,0 +1,236 @@
+<div class="overflow-auto lg:overflow-visible">
+  <div class="font-semibold pt-[20px]">Price</div>
+  <div class="justify-between text-[10px] font-normal flex flex-row pt-[16px]">
+    <div>
+      <span class="opacity-50">From</span
+      ><span class="opacity-100">&nbsp;Rs.3000</span>
+    </div>
+    <div>
+      <span class="opacity-50">To</span
+      ><span class="opacity-100">&nbsp;Rs.30000</span>
+    </div>
+  </div>
+  <div class="pt-4">
+    <input type="range" min="0" max="100" value="40" class="w-full" />
+  </div>
+  <div class="justify-between flex pt-[20px] items-center">
+    <button
+      class="flex items-center justify-between w-full"
+      onclick="filterdropdown(1)"
+    >
+      <div class="font-semibold">Premium Subscription</div>
+
+      <img
+        src="../public/Images/accordion-active.svg "
+        class="w-[7px] h-[13px]"
+        id="accordionbutton1"
+      />
+    </button>
+  </div>
+  <div class="flex flex-col" id="dropdown1">
+    <div class="pt-[16px]">
+      <button
+        class="flex items-center active::bg-green-600"
+        onclick="checkf(1)"
+      >
+        <div class="w-[14px] h-[14px] border-[1px] rounded-[2px]">
+          <span
+            id="check1"
+            class="h-full w-full items-center"
+            style="display: none"
+            >&check;</span
+          >
+        </div>
+        &nbsp;&nbsp;
+        <div>Platinunm</div>
+      </button>
+    </div>
+    <div class="pt-[16px]">
+      <button
+        class="flex items-center active::bg-green-600"
+        onclick="checkf(2)"
+      >
+        <div class="w-[14px] h-[14px] border-[1px] rounded-[2px]">
+          <span
+            id="check2"
+            class="h-full w-full items-center"
+            style="display: none"
+            >&check;</span
+          >
+        </div>
+        &nbsp;&nbsp;
+        <div>Gold</div>
+      </button>
+    </div>
+    <div class="pt-[16px]">
+      <button
+        class="flex items-center active::bg-green-600"
+        onclick="checkf(3)"
+      >
+        <div class="w-[14px] h-[14px] border-[1px] rounded-[2px]">
+          <span
+            id="check3"
+            class="h-full w-full items-center"
+            style="display: none"
+            >&check;</span
+          >
+        </div>
+        &nbsp;&nbsp;
+        <div>Silver</div>
+      </button>
+    </div>
+  </div>
+  <div class="justify-between flex pt-[20px] items-center">
+    <button
+      class="flex items-center justify-between w-full"
+      onclick="filterdropdown(5)"
+    >
+      <div class="font-semibold">Rating</div>
+
+      <img
+        src="../public/Images/accordion-active.svg "
+        class="w-[7px] h-[13px]"
+        id="accordionbutton5"
+      />
+    </button>
+  </div>
+  <div id="dropdown5" class="pt-[16px] flex gap-x-1">
+    <img src="../public/Images/Vector.png" class="w-[17px] h-[17px]" />
+    <img src="../public/Images/Vector.png" class="w-[17px] h-[17px]" />
+    <img src="../public/Images/Vector.png" class="w-[17px] h-[17px]" />
+    <img src="../public/Images/Vector.png" class="w-[17px] h-[17px]" />
+    <img src="../public/Images/Vector.png" class="w-[17px] h-[17px]" />
+  </div>
+  <div class="justify-between flex pt-[20px] items-center">
+    <button
+      class="flex items-center justify-between w-full"
+      onclick="filterdropdown(2)"
+    >
+      <div class="font-semibold">Familiy Size</div>
+
+      <img
+        src="../public/Images/accordion-active.svg "
+        class="w-[7px] h-[13px]"
+        id="accordionbutton2"
+      />
+    </button>
+  </div>
+  <div class="flex flex-col" id="dropdown2"></div>
+  <div class="justify-between flex pt-[20px] items-center">
+    <button
+      class="flex items-center justify-between w-full"
+      onclick="filterdropdown(3)"
+    >
+      <div class="font-semibold">Product Categories</div>
+
+      <img
+        src="../public/Images/accordion-active.svg "
+        class="w-[7px] h-[13px]"
+        id="accordionbutton3"
+      />
+    </button>
+  </div>
+  <div class="flex flex-col" id="dropdown3">
+    <div class="pt-[16px]">
+      <button
+        class="flex items-center active::bg-green-600"
+        onclick="checkf(14)"
+      >
+        <div class="w-[14px] h-[14px] border-[1px] rounded-[2px]">
+          <span
+            id="check14"
+            class="h-full w-full items-center"
+            style="display: none"
+            >&check;</span
+          >
+        </div>
+        &nbsp;&nbsp;
+        <div>Non-Veg Subscription</div>
+      </button>
+    </div>
+    <div class="pt-[16px]">
+      <button
+        class="flex items-center active::bg-green-600"
+        onclick="checkf(15)"
+      >
+        <div class="w-[14px] h-[14px] border-[1px] rounded-[2px]">
+          <span
+            id="check15"
+            class="h-full w-full items-center"
+            style="display: none"
+            >&check;</span
+          >
+        </div>
+        &nbsp;&nbsp;
+        <div>Veg Subscription</div>
+      </button>
+    </div>
+  </div>
+  <div class="justify-between flex pt-[20px] items-center">
+    <button
+      class="flex items-center justify-between w-full"
+      onclick="filterdropdown(4)"
+    >
+      <div class="font-semibold">Services</div>
+
+      <img
+        src="../public/Images/accordion-active.svg "
+        class="w-[7px] h-[13px]"
+        id="accordionbutton4"
+      />
+    </button>
+  </div>
+  <div class="flex flex-col pb-[16px]" id="dropdown4">
+    <div class="pt-[16px]">
+      <button
+        class="flex items-center active::bg-green-600"
+        onclick="checkf(16)"
+      >
+        <div class="w-[14px] h-[14px] border-[1px] rounded-[2px]">
+          <span
+            id="check16"
+            class="h-full w-full items-center"
+            style="display: none"
+            >&check;</span
+          >
+        </div>
+        &nbsp;&nbsp;
+        <div>Cash</div>
+      </button>
+    </div>
+    <div class="pt-[16px]">
+      <button
+        class="flex items-center active::bg-green-600"
+        onclick="checkf(17)"
+      >
+        <div class="w-[14px] h-[14px] border-[1px] rounded-[2px]">
+          <span
+            id="check17"
+            class="h-full w-full items-center"
+            style="display: none"
+            >&check;</span
+          >
+        </div>
+        &nbsp;&nbsp;
+        <div>Free Shipping</div>
+      </button>
+    </div>
+    <div class="pt-[16px]">
+      <button
+        class="flex items-center active::bg-green-600"
+        onclick="checkf(18)"
+      >
+        <div class="w-[14px] h-[14px] border-[1px] rounded-[2px]">
+          <span
+            id="check18"
+            class="h-full w-full items-center"
+            style="display: none"
+            >&check;</span
+          >
+        </div>
+        &nbsp;&nbsp;
+        <div>Both</div>
+      </button>
+    </div>
+  </div>
+</div>

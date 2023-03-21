@@ -22,12 +22,18 @@
 
   <body>
     <div class="max-w-[1200px] mx-auto lg:px-10 px-5">
-      <div class="mx-auto justify-between flex flex-row items-center py-8">
+      <div
+        class="mx-auto justify-between flex flex-row items-center md:pb-[30px] pt-[30px] pb-[20px]"
+      >
         <div class="lg:block hidden">
           <a href="/"><img src="../../public/Images/logo.svg" /></a>
         </div>
         <div class="lg:hidden">
-          <a href="/"><img src="../../public/Images/logo_mobile.svg" /></a>
+          <a href="/"
+            ><img
+              src="../../public/Images/logo_mobile.svg"
+              class="md:w-[85.6px] md:h-[85px]"
+          /></a>
         </div>
         <div class="lg:block hidden">
           <ul
@@ -66,7 +72,7 @@
           </ul>
         </div>
         <div class="lg:hidden block">
-          <main id="main" class="p-5">
+          <main id="main" class="py-5 pr-0">
             <span
               onclick="openMenu()"
               class="text-3xl font-semibold cursor-pointer"
@@ -102,7 +108,7 @@
           <a href="#">My Cart</a>
         </div>
         <div
-          class="flex flex-row px-5 justify-center space-x-5 border-gray-100 border-t-2 pt-5 text-xs font-medium"
+          class="flex flex-row px-5 justify-between space-x-5 border-gray-100 border-t-2 pt-5 text-xs font-medium"
         >
           <button
             class="bg-[#3BAF3D] border-none text-[#FCFCFC] rounded-lg w-[113px] h-[32px]"
@@ -116,6 +122,38 @@
           </button>
         </div>
       </asdie>
+    </div>
+    <div
+      id="filterbg"
+      class="bg-opacity-50 w-[100%] h-screen absolute -z-10"
+      onclick="filterbgb()"
+    ></div>
+    <div
+      id="filtersideid"
+      class="absolute right-0 navheight w-[276px] md:w-[363px] bg-white font-medium justify-between -z-10 border-t-0"
+    >
+      <div
+        id="filtersidebarid"
+        class="hidden flex-col justify-between duration-700 w-full"
+      >
+        <div class="px-[20px] pt-[20px]">
+          <div class="justify-between flex">
+            <div class="text-xs font-medium">Filters</div>
+            <button class="" onclick="filtersidebarf()">
+              <img src="../public/Images/Cross.svg" />
+            </button>
+          </div>
+          <%- include ("./filter") %>
+        </div>
+        <div class="flex lg:hidden h-[44px] text-[#FFFFFF]">
+          <button class="bg-gradient-to-r from-[#3baf3d] to-[#5DC234] w-1/2">
+            Reset
+          </button>
+          <button class="bg-gradient-to-r from-[#3baf3d] to-[#5DC234] w-1/2">
+            Done
+          </button>
+        </div>
+      </div>
     </div>
   </body>
 </html>

@@ -15,6 +15,15 @@
   height: calc(100% - 134px);
 }
 
+#filtersideid{
+  height: calc(100% - 118px);
+}
+
+
+::-webkit-scrollbar{
+  display: none;
+}
+
 .swiper-pagination-bullet {
   background: transparent;
   width: 12px;
@@ -81,4 +90,14 @@
   .swiper-pagination-bullets.swiper-pagination-horizontal {
     left: 50%;
   }
+  .bg-subscription{
+    z-index: 500;
+    background-color: linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0.2));
+
+  }
+}
+
+.bg-subscription{
+  background-image: linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0.2));
+
 }

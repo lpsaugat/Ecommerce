@@ -35,6 +35,8 @@ else{
     menu1.classList.remove("bg-black");
 
 
+
+
 }
 
 }
