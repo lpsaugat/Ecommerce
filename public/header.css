@@ -11,12 +11,9 @@
   color: #182b3c;
 }
 
-.navheight {
-  height: calc(100% - 134px);
-}
 
 #filtersideid{
-  height: calc(100% - 118px);
+  min-height: calc(100% - 118px);
 }
 
 
