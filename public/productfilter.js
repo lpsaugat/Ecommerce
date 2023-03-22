@@ -29,6 +29,8 @@
         document.body.style.overflow='hidden';
         filterside.style.overflow='scroll';
         filtersidebar.classList.add('flex');
+        filtersidebar.style.overflow='scroll';
+
 
         filterside.classList.remove("-z-10");
         filterside.classList.add("z-50");

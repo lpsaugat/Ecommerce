@@ -21,137 +21,141 @@
   </head>
 
   <body>
-    <div class="max-w-[1200px] mx-auto lg:px-10 px-5">
-      <div
-        class="mx-auto justify-between flex flex-row items-center md:pb-[30px] pt-[30px] pb-[20px]"
-      >
-        <div class="lg:block hidden">
-          <a href="/"><img src="../../public/Images/logo.svg" /></a>
-        </div>
-        <div class="lg:hidden">
-          <a href="/"
-            ><img
-              src="../../public/Images/logo_mobile.svg"
-              class="md:w-[85.6px] md:h-[85px]"
-          /></a>
-        </div>
-        <div class="lg:block hidden">
-          <ul
-            class="justify-content-center nav-font bg-primary flex flex-row gap-[30px] text-sm font-medium"
-          >
-            <li class="nav-item">
-              <a href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="aboutus">About Us</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="subscription">Subscription Basket</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="products">Shop</a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="lg:block hidden">
-          <ul class="list-none flex flex-row gap-[30px]">
-            <li>
-              <a href=""><img src="../../public/Images/search.svg" /></a>
-            </li>
-            <li>
-              <a href=""
-                ><img
-                  src="../../public/Images/user.svg"
-                  style="width: 24px; height: 20px"
-              /></a>
-            </li>
-            <li>
-              <a href=""><img src="../../public/Images/cart.svg" /> </a>
-            </li>
-          </ul>
-        </div>
-        <div class="lg:hidden block">
-          <main id="main" class="py-5 pr-0">
-            <span
-              onclick="openMenu()"
-              class="text-3xl font-semibold cursor-pointer"
+    <div class="">
+      <div class="max-w-[1200px] mx-auto lg:px-10 px-5">
+        <div
+          class="mx-auto justify-between flex flex-row items-center md:pb-[30px] pt-[30px] pb-[20px]"
+        >
+          <div class="lg:block hidden">
+            <a href="/"><img src="../../public/Images/logo.svg" /></a>
+          </div>
+          <div class="lg:hidden">
+            <a href="/"
               ><img
-                id="navbutton"
-                src="../../public/Images/Navbutton.svg"
-                class=""
-            /></span>
-          </main>
+                src="../../public/Images/logo_mobile.svg"
+                class="md:w-[85.6px] md:h-[85px]"
+            /></a>
+          </div>
+          <div class="lg:block hidden">
+            <ul
+              class="justify-content-center nav-font bg-primary flex flex-row gap-[30px] text-sm font-medium"
+            >
+              <li class="nav-item">
+                <a href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="aboutus">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="subscription">Subscription Basket</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="products">Shop</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="lg:block hidden">
+            <ul class="list-none flex flex-row gap-[30px]">
+              <li>
+                <a href=""><img src="../../public/Images/search.svg" /></a>
+              </li>
+              <li>
+                <a href=""
+                  ><img
+                    src="../../public/Images/user.svg"
+                    style="width: 24px; height: 20px"
+                /></a>
+              </li>
+              <li>
+                <a href=""><img src="../../public/Images/cart.svg" /> </a>
+              </li>
+            </ul>
+          </div>
+          <div class="lg:hidden block">
+            <main id="main" class="py-5 pr-0">
+              <span
+                onclick="openMenu()"
+                class="text-3xl font-semibold cursor-pointer"
+                ><img
+                  id="navbutton"
+                  src="../../public/Images/Navbutton.svg"
+                  class=""
+              /></span>
+            </main>
+          </div>
         </div>
       </div>
-    </div>
-    <div
-      id="menu1"
-      class="bg-opacity-50 w-[100%] h-full absolute -z-10"
-      onclick="openMenu2()"
-    ></div>
-
-    <div
-      id="nav"
-      class="absolute right-0 h-screen overflow-hidden w-[276px] md:w-[363px] font-medium justify-between -z-10 border-t-0"
-    >
-      <asdie
-        id="menu"
-        class="hidden flex-col navheight relative duration-700 w-full overflow-scroll justify-between bg-white"
-      >
-        <div class="flex flex-col px-5 py-4 text-sm gap-y-9">
-          <a href="#">Home</a>
-          <a href="aboutus">About Us</a>
-          <a href="subscription">Subscription Package</a>
-          <a href="products">Shop</a>
-          <a href="#">My Profile</a>
-          <a href="#">My Cart</a>
-        </div>
-        <div
-          class="flex flex-row px-5 justify-between space-x-5 border-gray-100 border-t-2 pt-5 text-xs font-medium"
-        >
-          <button
-            class="bg-[#3BAF3D] border-none text-[#FCFCFC] rounded-lg w-[113px] h-[32px]"
-          >
-            Shop Now
-          </button>
-          <button
-            class="text-[#3BAF3D] border-[#3BAF3D] border-solid border-[1px] rounded-lg w-[113px] h-[32px]"
-          >
-            Shop Now
-          </button>
-        </div>
-      </asdie>
-    </div>
-    <div
-      id="filterbg"
-      class="bg-opacity-50 w-[100%] h-screen absolute -z-10"
-      onclick="filterbgb()"
-    ></div>
-    <div
-      id="filtersideid"
-      class="absolute right-0 navheight w-[276px] md:w-[363px] bg-white font-medium justify-between -z-10 border-t-0"
-    >
       <div
-        id="filtersidebarid"
-        class="hidden flex-col justify-between duration-700 w-full"
+        id="menu1"
+        class="bg-opacity-50 w-[100%] h-screen absolute -z-10"
+        onclick="openMenu2()"
+      ></div>
+
+      <div
+        id="nav"
+        class="absolute right-0 h-full bg-white w-[276px] md:w-[363px] font-medium justify-between -z-10 border-t-0"
       >
-        <div class="px-[20px] pt-[20px]">
-          <div class="justify-between flex">
-            <div class="text-xs font-medium">Filters</div>
-            <button class="" onclick="filtersidebarf()">
-              <img src="../public/Images/Cross.svg" />
+        <asdie
+          id="menu"
+          class="hidden flex-col relative duration-700 w-full overflow-scroll justify-between"
+        >
+          <div class="flex flex-col px-5 py-4 text-sm gap-y-9">
+            <a href="#">Home</a>
+            <a href="aboutus">About Us</a>
+            <a href="subscription">Subscription Package</a>
+            <a href="products">Shop</a>
+            <a href="#">My Profile</a>
+            <a href="#">My Cart</a>
+          </div>
+          <div
+            class="flex flex-row px-5 fixed justify-between space-x-5 w-[276px] md:w-[363px] border-gray-100 bottom-5 border-t-2 pt-5 text-xs font-medium"
+          >
+            <button
+              class="bg-[#3BAF3D] border-none text-[#FCFCFC] rounded-lg w-[113px] h-[32px]"
+            >
+              Shop Now
+            </button>
+            <button
+              class="text-[#3BAF3D] border-[#3BAF3D] border-solid border-[1px] rounded-lg w-[113px] h-[32px]"
+            >
+              Shop Now
             </button>
           </div>
-          <%- include ("./filter") %>
-        </div>
-        <div class="flex lg:hidden h-[44px] text-[#FFFFFF]">
-          <button class="bg-gradient-to-r from-[#3baf3d] to-[#5DC234] w-1/2">
-            Reset
-          </button>
-          <button class="bg-gradient-to-r from-[#3baf3d] to-[#5DC234] w-1/2">
-            Done
-          </button>
+        </asdie>
+      </div>
+      <div
+        id="filterbg"
+        class="bg-opacity-50 w-[100%] h-[1000px] absolute -z-10"
+        onclick="filterbgb()"
+      ></div>
+      <div
+        id="filtersideid"
+        class="absolute right-0 w-[276px] h-screen md:w-[363px] bg-white font-medium justify-between -z-10 border-t-0"
+      >
+        <div
+          id="filtersidebarid"
+          class="hidden flex-col justify-between duration-700 w-full"
+        >
+          <div class="px-[20px] pt-[20px] overflow-auto pb-[150px]">
+            <div class="justify-between flex">
+              <div class="text-xs font-medium">Filters</div>
+              <button class="" onclick="filtersidebarf()">
+                <img src="../public/Images/Cross.svg" />
+              </button>
+            </div>
+            <%- include ("./filter") %>
+          </div>
+          <div
+            class="flex lg:hidden h-[44px] fixed w-[276px] md:w-[376px] text-[#FFFFFF] bottom-0"
+          >
+            <button class="bg-gradient-to-r from-[#3baf3d] to-[#5DC234] w-1/2">
+              Reset
+            </button>
+            <button class="bg-gradient-to-r from-[#3baf3d] to-[#5DC234] w-1/2">
+              Done
+            </button>
+          </div>
         </div>
       </div>
     </div>
