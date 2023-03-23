@@ -15,6 +15,7 @@ function openMenu() {
     if (menu.classList.contains('hidden')){
     menu.classList.remove('hidden');
     menu.classList.add('flex');
+    menu.style.overflow='scroll';
     document.body.style.overflow='hidden';
     navbutton.style.transform='rotate(90deg)';
     nav.classList.remove("-z-10");

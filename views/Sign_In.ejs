@@ -1,0 +1,77 @@
+<%- include ("./partials/header") %>
+
+<div class="max-w-1200 mx-auto lg:pt-[80px] px-5">
+  <div class="font-medium text-center lg:text-[36px] text-[18px]">Sign In</div>
+  <div
+    class="lg:max-w-[600px] md:max-w-[490px] mx-auto lg:mt-[30px] md:mt-[28px] mt-[24px]"
+  >
+    <div>
+      <label for="Email" class="text-[12px] md:text-[14px] font-medium"
+        >Email *</label
+      >
+      <input
+        type="email"
+        class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
+        id="Email"
+      />
+    </div>
+    <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
+      <label for="password" class="text-[12px] md:text-[14px] font-medium"
+        >Password *</label
+      >
+      <input
+        type="password"
+        class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
+        id="password"
+      />
+    </div>
+    <div class="mt-[20px] lg:mt-[16px]">
+      <a class="font-normal text-[12px] lg:text-[14px] underline text-[#2B2E33]"
+        >Forgot your password?</a
+      >
+    </div>
+    <div class="mt-[20px] lg:mt-[24px]">
+      <input
+        type="submit"
+        value="Sign In"
+        class="h-[32px] md:h-[36px] lg:h-[42px] bg-gradient-to-r from-[#3baf3d] to-[#5DC234] w-full text-xs md:text-sm text-white my-auto font-medium rounded-[8px]"
+      />
+    </div>
+    <div class="mt-[20px] lg:mt-[24px] text-center">
+      <span
+        class="font-normal text-[12px] lg:text-[14px] underline-none text-[#2B2E33]"
+        >Don't have an account?&nbsp;<a class="underline" href="sign_up"
+          >Sign Up</a
+        ></span
+      >
+    </div>
+    <div class="mt-[20px] lg:mt-[24px] font-semibold text-[14px] text-center">
+      OR
+    </div>
+    <div class="mt-[20px] lg:mt-[24px]">
+      <button
+        class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] font-medium text-[12px] md:text-[14px] justify-center font-Lato flex items-center"
+      >
+        <div class="justify-center flex">
+          <img
+            src="../public/Images/Sign/google.svg"
+            class="w-[18px] lg:w-[20px]"
+          />&nbsp; Sign up with Google
+        </div>
+      </button>
+    </div>
+    <div class="mt-[20px] lg:mt-[24px]">
+      <button
+        class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] font-medium justify-center text-[12px] md:text-[14px] font-Lato flex items-center"
+      >
+        <div class="justify-center flex pl-5">
+          <img
+            src="../public/Images/Sign/facebook.svg"
+            class="w-[18px] lg:w-[20px]"
+          />&nbsp; Sign up with Facebook
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<%- include ("./partials/footer") %>

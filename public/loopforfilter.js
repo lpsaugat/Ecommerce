@@ -1,4 +1,4 @@
-const checkboxid = document.getElementById('dropdown2');
+const checkboxid = document.getElementsByClassName('dropdown2');
 
 let htmlString = "";
 
@@ -15,8 +15,8 @@ for(let i = 1; i<11; i++){
     >
       <div class="w-[14px] h-[14px] border-[1px] rounded-[2px]">
         <span
-          id="check${i+3}"
-          class="h-full w-full items-center"
+          id=""
+          class="h-full w-full items-center check${i+3}"
           style="display: none"
           >&check;</span
         >
@@ -27,4 +27,6 @@ for(let i = 1; i<11; i++){
   </div>`
 }
 
-checkboxid.innerHTML = htmlString;
+checkboxid[0].innerHTML = htmlString;
+checkboxid[1].innerHTML = htmlString;
+

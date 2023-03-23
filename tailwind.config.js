@@ -10,6 +10,7 @@ module.exports = {
         'font': ['Montserrat', ...defaultTheme.fontFamily.sans],
         'prox': ['Proxima Nova'],
         'poppins': ['Poppins'],
+        'lato': ['Lato'],
       },
     },
   },

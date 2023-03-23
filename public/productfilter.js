@@ -3,7 +3,8 @@
   var filtersidebar = document.getElementById('filtersidebarid');
   var filterside = document.getElementById('filtersideid');
   var filterback = document.getElementById('filterbg');
-
+  var look = document.getElementsByClassName('checking');
+  var family = document.getElementsByClassName('familyclass');
   var check = [];
 
   var accordionbuttonx = [];
@@ -12,14 +13,16 @@
 
 
   for(let i = 1; i<22; i++){
-    check[i] = document.getElementById("check"+i);
-    accordionbuttonx[i] = document.getElementById("accordionbutton"+i);
-    dropdown[i] = document.getElementById("dropdown"+i);
+    check[i] = document.getElementsByClassName("check"+i);
+    accordionbuttonx[i] = document.getElementsByClassName("accordionbutton"+i);
+    dropdown[i] = document.getElementsByClassName("dropdown"+i);
   }
 
 
-  function checkf(d){
-    hideandshow(check[d]);
+  function checkf(i){
+    hideandshow(check[i][0]);
+    hideandshow(check[i][1]);
+
   }
   
 
@@ -29,7 +32,6 @@
         document.body.style.overflow='hidden';
         filterside.style.overflow='scroll';
         filtersidebar.classList.add('flex');
-        filtersidebar.style.overflow='scroll';
 
 
         filterside.classList.remove("-z-10");
@@ -73,8 +75,12 @@ function filterbgb(){
 
 
   function filterdropdown(d) {
-    hideandshow(dropdown[d]);
-    rotate(accordionbuttonx[d]);
+    hideandshow(dropdown[d][0]);
+    hideandshow(dropdown[d][1]);
+
+    rotate(accordionbuttonx[d][0]);
+    rotate(accordionbuttonx[d][1]);
+
   }
 
 
