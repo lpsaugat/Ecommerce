@@ -1,13 +1,8 @@
 <%- include ("./partials/header") %>
 
 <div class="pl-[19px]"></div>
-<div class="px-5 lg:px-10 max-w-[1200px] mx-auto pt-[20px] lg:pt-0">
-  <div class="justify-between lg:flex items-center hidden pt-[60px]">
-    <div class="font-prox text-lg font-bold lg:text-3xl text-[18px]">
-      Best Selling Bundles
-    </div>
-  </div>
-  <div class="bg-white flex flex-col justify-end pb-[30px] lg:pt-[30px]">
+<div class="px-5 lg:px-10 max-w-[1200px] mx-auto pt-[20px]">
+  <div class="bg-white flex flex-col justify-end pb-[30px]">
     <div class="flex items-center lg:justify-end justify-between">
       <div class="flex items-center">
         <div class="text-sm font-medium hidden lg:block">
@@ -97,77 +92,69 @@
     <div
       class="col-span-3 grid md:grid-cols-3 grid-cols-2 gap-x-[20px] md:gap-x-[23.3px] lg:gap-x-[30px] gap-y-[20px] md:gap-y-[30px]"
     >
-      <div><%- include ("./partials/card") %></div>
-      <div><%- include ("./partials/card") %></div>
-      <div><%- include ("./partials/card") %></div>
-      <div><%- include ("./partials/card") %></div>
-      <div><%- include ("./partials/card") %></div>
-      <div><%- include ("./partials/card") %></div>
-      <div><%- include ("./partials/card") %></div>
-      <div><%- include ("./partials/card") %></div>
-      <div class="hidden md:block"><%- include ("./partials/card") %></div>
+      <%- include ("./partials/Select") %>
     </div>
   </div>
-
-  <div
-    class="flex lg:justify-end justify-center gap-x-[9px] md:gap-x-[12px] lg:gap-x-[9px] pt-[20px] md:pt-[30px] lg:pt-[60px] font-normal"
-  >
-    <button
-      class="lg:w-[42px] lg:h-[42px] w-[36px] h-[36px] items-center flex justify-center border-[1px] rounded-[3px]"
+  <div>
+    <div
+      class="flex lg:justify-end justify-center gap-x-[9px] md:gap-x-[12px] lg:gap-x-[9px] pt-[20px] md:pt-[30px] lg:pt-[60px] font-normal"
     >
-      <img src="../public/Images/accordion-active.svg" class="-rotate-90" />
-    </button>
-    <button
-      class="lg:w-[42px] lg:h-[42px] w-[36px] h-[36px] items-center flex justify-center rounded-[3px] bg-[#00A6EF]"
-    >
-      1
-    </button>
-    <button
-      class="lg:w-[42px] lg:h-[42px] w-[36px] h-[36px] items-center flex justify-center border-[1px] rounded-[3px]"
-    >
-      2</button
-    ><button
-      class="lg:w-[42px] lg:h-[42px] w-[36px] h-[36px] items-center flex justify-center border-[1px] rounded-[3px]"
-    >
-      3</button
-    ><button
-      class="lg:w-[42px] lg:h-[42px] w-[36px] h-[36px] items-center flex justify-center border-[1px] rounded-[3px]"
-    >
-      4</button
-    ><button
-      class="lg:w-[42px] lg:h-[42px] hidden md:flex w-[36px] h-[36px] items-center justify-center border-[1px] rounded-[3px]"
-    >
-      5
-    </button>
-    <button
-      class="lg:w-[42px] lg:h-[42px] hidden md:flex w-[36px] h-[36px] items-center justify-center border-[1px] rounded-[3px]"
-    >
-      6</button
-    ><button
-      class="lg:w-[42px] lg:h-[42px] w-[36px] h-[36px] items-center hidden md:flex justify-center border-[1px] rounded-[3px]"
-    >
-      7
-    </button>
-    <button class="w-[23px] h-[42px] items-center flex justify-center">
-      <img src="../public/Images/page.png" />
-    </button>
-    <button
-      class="lg:w-[42px] lg:h-[42px] w-[36px] h-[36px] items-center flex justify-center border-[1px] rounded-[3px]"
-    >
-      50
-    </button>
-    <button
-      class="lg:w-[42px] lg:h-[42px] w-[36px] h-[36px] items-center flex justify-center border-[1px] rounded-[3px]"
-    >
-      <img src="../public/Images/accordion-active.svg" class="rotate-90" />
-    </button>
-    <div class="h-[42px] items-center text-center hidden md:flex">Go To</div>
-    <input
-      type="number"
-      class="lg:w-[72px] md:w-[96px] md:h-[36px] border-[1px] rounded-[3px] items-center justify-center lg:h-[42px] md:flex hidden"
-    />
+      <button
+        class="lg:w-[42px] lg:h-[42px] w-[36px] h-[36px] items-center flex justify-center border-[1px] rounded-[3px]"
+      >
+        <img src="../public/Images/accordion-active.svg" class="-rotate-90" />
+      </button>
+      <button
+        class="lg:w-[42px] lg:h-[42px] w-[36px] h-[36px] items-center flex justify-center rounded-[3px] bg-[#00A6EF]"
+      >
+        1
+      </button>
+      <button
+        class="lg:w-[42px] lg:h-[42px] w-[36px] h-[36px] items-center flex justify-center border-[1px] rounded-[3px]"
+      >
+        2</button
+      ><button
+        class="lg:w-[42px] lg:h-[42px] w-[36px] h-[36px] items-center flex justify-center border-[1px] rounded-[3px]"
+      >
+        3</button
+      ><button
+        class="lg:w-[42px] lg:h-[42px] w-[36px] h-[36px] items-center flex justify-center border-[1px] rounded-[3px]"
+      >
+        4</button
+      ><button
+        class="lg:w-[42px] lg:h-[42px] hidden md:flex w-[36px] h-[36px] items-center justify-center border-[1px] rounded-[3px]"
+      >
+        5
+      </button>
+      <button
+        class="lg:w-[42px] lg:h-[42px] hidden md:flex w-[36px] h-[36px] items-center justify-center border-[1px] rounded-[3px]"
+      >
+        6</button
+      ><button
+        class="lg:w-[42px] lg:h-[42px] w-[36px] h-[36px] items-center hidden md:flex justify-center border-[1px] rounded-[3px]"
+      >
+        7
+      </button>
+      <button class="w-[23px] h-[42px] items-center flex justify-center">
+        <img src="../public/Images/page.png" />
+      </button>
+      <button
+        class="lg:w-[42px] lg:h-[42px] w-[36px] h-[36px] items-center flex justify-center border-[1px] rounded-[3px]"
+      >
+        50
+      </button>
+      <button
+        class="lg:w-[42px] lg:h-[42px] w-[36px] h-[36px] items-center flex justify-center border-[1px] rounded-[3px]"
+      >
+        <img src="../public/Images/accordion-active.svg" class="rotate-90" />
+      </button>
+      <div class="h-[42px] items-center text-center hidden md:flex">Go To</div>
+      <input
+        type="number"
+        class="lg:w-[72px] md:w-[96px] md:h-[36px] border-[1px] rounded-[3px] items-center justify-center lg:h-[42px] md:flex hidden"
+      />
+    </div>
   </div>
 </div>
-
 <script src="../public/loopforfilter.js"></script>
 <%- include ("./partials/footer") %>

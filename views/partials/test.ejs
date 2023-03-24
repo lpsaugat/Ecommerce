@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="../public/range.css" />
+
+<div class="range">
+  <div
+    class="range-price justify-between text-[10px] w-full font-normal flex flex-row overflow-hidden"
+  >
+    <div class="flex items-center">
+      <label for="min"
+        ><div>
+          <span class="opacity-50">From</span
+          ><span class="opacity-100">&nbsp;Rs.</span>
+        </div></label
+      >
+      <input type="number" name="min" value="300" />
+    </div>
+    <div class="flex items-center">
+      <label for="max"
+        ><div>
+          <span class="opacity-50">To</span
+          ><span class="opacity-100">&nbsp;Rs.</span>
+        </div></label
+      >
+      <input type="number" name="max" value="700" />
+    </div>
+  </div>
+
+  <div class="range-slider items-center">
+    <span class="range-selected"></span>
+  </div>
+  <div class="range-input">
+    <input type="range" class="min" min="0" max="1000" value="300" step="10" />
+    <input type="range" class="max" min="0" max="1000" value="700" step="10" />
+  </div>
+</div>
+
+<script src="../../public/range.js"></script>

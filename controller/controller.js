@@ -48,9 +48,19 @@ controller.signup = (req, res) => {
     
 };
 
+controller.familypackages = (req, res) => {
+    res.render("familypackages")
+    
+};
+
 controller.package = (req, res) => {
     res.render("Package")
 };
+
+controller.test = (req,res) => 
+{
+    res.render("test")
+}
 
 
 module.exports = controller;
