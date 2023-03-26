@@ -21,7 +21,7 @@ for(let i = 1; i<11; i++){
           >&check;</span
         >
       </div>
-      &nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;
       <div>Family of ${i}</div>
     </button>
   </div>`
