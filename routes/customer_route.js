@@ -13,6 +13,10 @@ router.get('/Sign_In', customerController.signin)
 router.post('/Sign_Up', customerController.signup)
 router.get('/package', customerController.package)
 router.get('/familypackages', customerController.familypackages)
+router.get('/singlepackage', customerController.singlepackage)
+router.get('/cart', customerController.cart)
+
+
 router.get('/test', customerController.test)
 
 

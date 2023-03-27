@@ -1,0 +1,30 @@
+<% for (var i =1; i <=6; i=i+1 ) { %>
+<div
+  class="border-[0.5px] lg:border-0 pb-[15px] md:pb-[17.95px] lg:pb-[25px] lg:border-b-[1px] lg:rounded-none rounded-[5px] mt-[20px] lg:mt-0 pl-[14px] lg:pl-[40px] pt-[16px] lg:pt-[30px] lg:pr-[40px] pr-[20px] shadow-[0px_0px_2px_rgba(0,0,0,0.25)] lg:shadow-none"
+>
+  <div class="justify-between flex flex-col">
+    <div class="flex w-full">
+      <div class="rounded-full overflow-hidden h-[41px] w-[41px]">
+        <img src="../public/Images/AboutUs/1.svg" />
+      </div>
+      <div class="pl-[14px] lg:pl-[16px] w-full">
+        <div class="font-semibold text-sm flex justify-between w-full">
+          <div>Name LName</div>
+          <div>30/12/2022</div>
+        </div>
+        <div class="pt-[4px] flex gap-x-[3.4px]"><%- include ("./star") %></div>
+      </div>
+    </div>
+    <div class="pt-[11px] lg:pt-[16px]">
+      I love the product. It's amazing and will buy more from Household.
+    </div>
+    <div class="flex pt-[9px] lg:pt-[25px] gap-x-[10px] items-center">
+      <div class="w-[16.88px] h-[17.1px] lg:w-[17.77px] lg:h-[18px]">
+        <img src="../public/Images/Like.svg" />
+      </div>
+      <div class="text-[#A5A5A5]">0</div>
+    </div>
+  </div>
+</div>
+
+<% } %>

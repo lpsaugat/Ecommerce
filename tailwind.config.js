@@ -11,6 +11,8 @@ module.exports = {
         'prox': ['Proxima Nova'],
         'poppins': ['Poppins'],
         'lato': ['Lato'],
+        'roboto': ['Roboto'],
+
       },
     },
   },

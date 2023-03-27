@@ -62,5 +62,16 @@ controller.test = (req,res) =>
     res.render("test")
 }
 
+controller.singlepackage = (req,res) => 
+{
+    res.render("singlepackage")
+}
+
+controller.cart = (req,res) => 
+{
+    res.render("cart")
+}
+
+
 
 module.exports = controller;
