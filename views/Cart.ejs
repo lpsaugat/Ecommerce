@@ -1,5 +1,70 @@
 <%- include ("./partials/header") %>
 
-<div class="">sdfsd</div>
+<div class="px-5 lg:px-10 max-w-[1200px] mx-auto pt-[20px] lg:pt-[55px]">
+  <div class="text-[10px] md:text-sm lg:text-sm font-medium">
+    My Cart / &nbsp;<span class="opacity-50">Billing Deitals / Payments</span>
+  </div>
+  <div
+    class="flex justify-between pt-[28px] md:-pt-[29px] lg:pt-[55px] font-medium text-center"
+  >
+    <div class="text-lg md:text-[18px] lg:text-[24px]">My Cart</div>
+    <div class="text-xs md:text-base lg:hidden">Delete</div>
+  </div>
+  <div class="mt-[27px] md:mt-[29px] lg:mt-[23px]">
+    <%- include ("./partials/cartitems") %>
+  </div>
+  <div class="hidden lg:block">
+    <div class="border-b-[1px] pt-[30px]"></div>
+    <div class="pt-[30px] text-[18px] font-medium">Subtotal</div>
+    <div class="justify-between flex">
+      <div class="pt-[16px]">Taxes and shipping calculated at checkout</div>
+      <div class="text-[24px] font-medium">Rs.45000</div>
+    </div>
+    <button
+      class="w-full h-[42px] mt-[30px] rounded-[8px] text-[14px] items-center flex justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
+    >
+      Check out&nbsp;<img
+        src="../public/Images/arrow.svg"
+        class="w-[13.41px] h-[13.41px]"
+      />
+    </button>
+    <div class="pt-[32px] font-medium text-[#00a6ef] flex justify-center">
+      Continue Shopping &nbsp;
+      <img src="../public/Images/accordion-blue.svg" />
+    </div>
+  </div>
+</div>
 
-<div class="hidden lg:flex"><%- include ("./partials/footer") %></div>
+<div
+  class="h-[149px] w-full fixed bottom-0 bg-white px-5 pt-5 border-t-[1px] block lg:hidden"
+>
+  <div class="font-medium md:text-base">Subtotal</div>
+  <div class="justify-between flex">
+    <div
+      class="pt-[10px] opacity-80 max-w-[161px] md:max-w-none text-[10px] md:text-xs"
+    >
+      Taxes and shipping calculated at checkout
+    </div>
+    <div class="font-medium md:font-[16px]">Rs.45000</div>
+  </div>
+  <div class="justify-between flex pt-[16px] gap-x-[10px]">
+    <div
+      class="font-medium text-[#00a6ef] flex text-[10px] md:text-[12px] items-center"
+    >
+      <button class="flex items-center">
+        <img
+          src="../public/Images/accordion-blue.svg"
+          class="rotate-180 w-[4px] h-[7px]"
+        />&nbsp; Continue Shopping
+      </button>
+    </div>
+    <button
+      class="md:w-[122px] w-[113px] h-[32px] rounded-[8px] text-[12px] items-center flex justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
+    >
+      Checkout &nbsp;
+      <img src="../public/Images/arrow.svg" class="w-[12.3px] h-[12.3px]" />
+    </button>
+  </div>
+</div>
+
+<div class="hidden lg:block"><%- include ("./partials/footer") %></div>

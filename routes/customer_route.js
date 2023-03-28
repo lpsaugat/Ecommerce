@@ -15,6 +15,10 @@ router.get('/package', customerController.package)
 router.get('/familypackages', customerController.familypackages)
 router.get('/singlepackage', customerController.singlepackage)
 router.get('/cart', customerController.cart)
+router.get('/Billing', customerController.billing)
+router.get('/payments', customerController.payments)
+router.get('/singleproduct', customerController.singleproduct)
+
 
 
 router.get('/test', customerController.test)

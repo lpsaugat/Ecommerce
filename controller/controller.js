@@ -67,10 +67,26 @@ controller.singlepackage = (req,res) =>
     res.render("singlepackage")
 }
 
+controller.singleproduct = (req,res) => 
+{
+    res.render("singleproduct")
+}
+
 controller.cart = (req,res) => 
 {
     res.render("cart")
 }
+
+controller.billing = (req,res) => 
+{
+    res.render("billing")
+}
+
+controller.payments = (req,res) => 
+{
+    res.render("payments")
+}
+
 
 
 

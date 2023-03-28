@@ -1,0 +1,196 @@
+<%- include ("./partials/header") %>
+<div
+  class="px-5 lg:px-10 max-w-[1200px] mx-auto pt-[20px] md:mx-0 lg:mx-auto lg:pt-[55px] flex flex-col md:justify-start lg:justify-center lg:max-w-[1200px]"
+>
+  <div class="text-[10px] md:text-sm lg:text-sm font-medium">
+    <span class="opacity-50"> My Cart / Billing Deitals /</span>
+    &nbsp;Payments
+  </div>
+  <div
+    class="flex justify-between pt-[28px] md:-pt-[29px] lg:pt-[55px] font-medium text-center"
+  >
+    <div class="text-lg md:text-[18px] lg:text-[24px]">Billing Details</div>
+  </div>
+  <div class="lg:grid grid-cols-12 lg:mt-[24px] md:mt-[32px] gap-x-[16px]">
+    <div class="md:border-[1px] md:rounded-[5px] md:px-[30px] col-span-8">
+      <div class="flex flex-col justify-center relative">
+        <div
+          class="text-[12px] md:text-[14px] lg:text-[15px] font-medium text-center pt-[30px] md:pt-[28px] lg:pt-[30px]"
+        >
+          Choose Your Payment Options
+        </div>
+        <div class="pt-[26px] gap-x-[10px] md:gap-x-[17px] flex -mx-5 md:px-5">
+          <div class="w-[119px] border-[0.5px] rounded-[5px]">
+            <div class="h-[51px] w-full items-center flex justify-center">
+              <img src="../public/Images/Billing/card.png" />
+            </div>
+            <div
+              class="border-t-[0.5px] h-[23px] justify-center items-center flex text-[10px]"
+            >
+              Debit / Credit Card
+            </div>
+          </div>
+          <div class="w-[119px] border-[0.5px] rounded-[5px]">
+            <div
+              class="h-[51px] w-full items-center flex justify-center overflow-hidden"
+            >
+              <img src="../public/Images/Billing/e-sewa.png" />
+            </div>
+            <div
+              class="border-t-[0.5px] h-[23px] justify-center items-center flex text-[10px]"
+            >
+              Esewa
+            </div>
+          </div>
+          <div class="w-[119px] border-[0.5px] rounded-[5px]">
+            <div
+              class="h-[51px] w-full items-center flex justify-center overflow-hidden"
+            >
+              <img src="../public/Images/Billing/Khalti.png" />
+            </div>
+            <div
+              class="border-t-[0.5px] h-[23px] justify-center items-center flex text-[10px]"
+            >
+              Khalti
+            </div>
+          </div>
+          <div class="w-[119px] border-[0.5px] rounded-[5px]">
+            <div
+              class="h-[51px] w-full items-center flex justify-center overflow-hidden"
+            >
+              <img src="../public/Images/Billing/card.png" />
+            </div>
+            <div
+              class="border-t-[0.5px] h-[23px] justify-center items-center flex text-[10px]"
+            >
+              Cash On Delivery
+            </div>
+          </div>
+        </div>
+        <div
+          class="text-[12px] md:text-[14px] lg:text-[15px] font-medium text-center pt-[30px] md:pt-[28px] lg:pt-[30px]"
+        >
+          Card Details
+        </div>
+      </div>
+      <div class="font-medium pt-[3px] md:pt-[6px] text-[12px] md:text-[14px]">
+        <div class="md:pt-[24px] pt-[21px] lg:pt-[20px]">Card Number</div>
+        <input
+          class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px]"
+          type="number"
+        />
+        <div class="md:pt-[24px] pt-[21px] lg:pt-[20px]">Card Name</div>
+        <input
+          class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px]"
+          type="text"
+        />
+
+        <div class="gap-x-[9px] md:gap-x-[10px] grid grid-cols-2">
+          <div>
+            <div class="md:pt-[24px] pt-[21px] lg:pt-[20px]">Phone</div>
+            <input
+              class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px]"
+              type="Phone"
+            />
+          </div>
+          <div>
+            <div class="md:pt-[24px] pt-[21px] lg:pt-[20px]">Email</div>
+            <input
+              class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px]"
+              type="Email"
+            />
+          </div>
+        </div>
+        <button
+          class="w-full lg:h-[42px] md:h-[36px] h-[32px] mt-[20px] mb-[30px] flex rounded-[8px] text-[12px] lg:text-[14px] items-center justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
+        >
+          Proceed &nbsp;
+          <img src="../public/Images/arrow.svg" class="w-[12.3px] h-[12.3px]" />
+        </button>
+      </div>
+    </div>
+    <div
+      class="hidden lg:block border-[1px] bg-[#f9f9f9] rounded-[5px] p-[30px] font-lato col-span-4"
+    >
+      <div class="justify-between flex">
+        <div class="font-medium">Subtotal</div>
+        <div class="font-semibold text-[15px] font-lato">Rs.45000</div>
+      </div>
+      <div class="justify-between flex pt-[16px]">
+        <div class="font-medium">Shipping</div>
+        <div class="font-semibold text-[15px] font-lato">Rs.200</div>
+      </div>
+      <div class="justify-between flex pt-[16px]">
+        <div class="font-medium">Tax</div>
+        <div class="font-semibold text-[15px] font-lato">Rs.100</div>
+      </div>
+      <div class="border-t-[1px] mt-[24px]"></div>
+      <div class="justify-between flex pt-[24px]">
+        <div class="font-medium">Total</div>
+        <div class="font-semibold text-[15px]">
+          Rs.<span class="text-[20px] font-lato">&nbsp;45,300</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="px-5 lg:px-10 max-w-[1200px] mx-auto md:mx-0 lg:mx-auto pt-[0px] flex flex-col md:justify-start lg:justify-center md:max-w-[530px] lg:max-w-[1200px]"
+>
+  <div
+    class="flex justify-between pt-[28px] md:pt-[40px] lg:pt-[40px] font-medium text-center"
+  >
+    <div class="text-lg md:text-[18px] lg:text-[24px]">Order Summary</div>
+  </div>
+  <div class="mt-[27px] md:mt-[40px]">
+    <div class="grid lg:grid-cols-2 gap-x-[30px]">
+      <%- include ("./partials/Billingitems") %>
+    </div>
+  </div>
+</div>
+<div class="mb-[210px] md:mb-[300px] lg:mb-0"></div>
+
+<div
+  class="h-[200px] md:h-[249px] w-full fixed bottom-0 bg-white px-5 pt-[19px] md:pt-[16px] border-t-[1px] block lg:hidden"
+>
+  <div class="justify-between flex">
+    <div class="font-medium md:text-[14px] text-[12px]">Subtotal</div>
+    <div class="font-medium md:text-[14px] text-[12px]">Rs.45000</div>
+  </div>
+  <div class="justify-between flex pt-[8px] md:pt-[16px]">
+    <div class="font-medium md:text-[14px] text-[12px]">Shipping</div>
+    <div class="font-medium md:text-[14px] text-[12px]">Rs.200</div>
+  </div>
+  <div class="justify-between flex pt-[8px] md:pt-[16px]">
+    <div class="font-medium md:text-[14px] text-[12px]">Taxt</div>
+    <div class="font-medium md:text-[14px] text-[12px]">Rs.100</div>
+  </div>
+  <div class="border-t-[1px] mt-[15px] md:mt-[16px] pt-[11px] md:pt-[22px]">
+    <div class="justify-between flex pt-[8px] md:pt-[16px]">
+      <div class="font-medium md:text-[14px] text-[12px]">Taxt</div>
+      <div class="font-medium md:text-[14px] text-[12px]">Rs.100</div>
+    </div>
+  </div>
+
+  <div class="justify-between flex pt-[10px] md:pt-[17px] gap-x-[10px]">
+    <div
+      class="font-medium text-[#00a6ef] flex text-[10px] md:text-[12px] items-center"
+    >
+      <button class="flex items-center">
+        <img
+          src="../public/Images/accordion-blue.svg"
+          class="rotate-180 w-[4px] h-[7px]"
+        />&nbsp; Continue Shopping
+      </button>
+    </div>
+    <button
+      class="w-[122px] h-[32px] rounded-[8px] text-[12px] items-center flex justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
+    >
+      Checkout &nbsp;
+      <img src="../public/Images/arrow.svg" class="w-[12.3px] h-[12.3px]" />
+    </button>
+  </div>
+</div>
+
+<div class="hidden lg:block"><%- include ("./partials/footer") %></div>

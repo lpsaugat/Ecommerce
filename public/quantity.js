@@ -8,7 +8,7 @@ function increase(d) {
 }    
 
 function decrease(d) {
-    if(quantitybox[d].value >= 1){
+    if(quantitybox[d].value >= 2){
         quantitybox[d].value--;
 
 
