@@ -17,6 +17,11 @@ router.get('/singlepackage', customerController.singlepackage)
 router.get('/cart', customerController.cart)
 router.get('/Billing', customerController.billing)
 router.get('/payments', customerController.payments)
+router.get('/success', customerController.success)
+router.get('/orderconfirmation', customerController.orderconfirmation)
+router.get('/vendor', customerController.vendor)
+
+
 router.get('/singleproduct', customerController.singleproduct)
 
 

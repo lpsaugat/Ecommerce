@@ -3,7 +3,10 @@
   class="px-5 lg:px-10 max-w-[1200px] mx-auto pt-[20px] md:mx-0 lg:mx-auto lg:pt-[55px] flex flex-col md:justify-start lg:justify-center lg:max-w-[1200px]"
 >
   <div class="text-[10px] md:text-sm lg:text-sm font-medium">
-    <span class="opacity-50"> My Cart / Billing Deitals /</span>
+    <span class="opacity-50">
+      <a href="Cart"> My Cart /</a
+      ><a href="Billing"> Billing Deitals /</a></span
+    >
     &nbsp;Payments
   </div>
   <div
@@ -13,57 +16,61 @@
   </div>
   <div class="lg:grid grid-cols-12 lg:mt-[24px] md:mt-[32px] gap-x-[16px]">
     <div class="md:border-[1px] md:rounded-[5px] md:px-[30px] col-span-8">
-      <div class="flex flex-col justify-center relative">
+      <div class="flex flex-col justify-center relative overflow-hidden">
         <div
           class="text-[12px] md:text-[14px] lg:text-[15px] font-medium text-center pt-[30px] md:pt-[28px] lg:pt-[30px]"
         >
           Choose Your Payment Options
         </div>
-        <div class="pt-[26px] gap-x-[10px] md:gap-x-[17px] flex -mx-5 md:px-5">
-          <div class="w-[119px] border-[0.5px] rounded-[5px]">
-            <div class="h-[51px] w-full items-center flex justify-center">
-              <img src="../public/Images/Billing/card.png" />
+        <div class="w-full bg-red-400">
+          <div
+            class="pt-[26px] gap-x-[10px] md:gap-x-[17px] md:justify-center flex md:px-5 md:mx-auto overflow-x-auto w-full"
+          >
+            <div class="w-[119px] flex-shrink-0 border-[0.5px] rounded-[5px]">
+              <div class="h-[51px] w-full items-center flex justify-center">
+                <img src="../public/Images/Billing/card.png" />
+              </div>
+              <div
+                class="border-t-[0.5px] h-[23px] justify-center items-center flex text-[10px]"
+              >
+                Debit / Credit Card
+              </div>
             </div>
-            <div
-              class="border-t-[0.5px] h-[23px] justify-center items-center flex text-[10px]"
-            >
-              Debit / Credit Card
+            <div class="w-[119px] flex-shrink-0 border-[0.5px] rounded-[5px]">
+              <div
+                class="h-[51px] w-full items-center flex justify-center overflow-hidden"
+              >
+                <img src="../public/Images/Billing/e-sewa.png" />
+              </div>
+              <div
+                class="border-t-[0.5px] h-[23px] justify-center items-center flex text-[10px]"
+              >
+                Esewa
+              </div>
             </div>
-          </div>
-          <div class="w-[119px] border-[0.5px] rounded-[5px]">
-            <div
-              class="h-[51px] w-full items-center flex justify-center overflow-hidden"
-            >
-              <img src="../public/Images/Billing/e-sewa.png" />
+            <div class="w-[119px] flex-shrink-0 border-[0.5px] rounded-[5px]">
+              <div
+                class="h-[51px] w-full items-center flex justify-center overflow-hidden"
+              >
+                <img src="../public/Images/Billing/Khalti.png" />
+              </div>
+              <div
+                class="border-t-[0.5px] h-[23px] justify-center items-center flex text-[10px]"
+              >
+                Khalti
+              </div>
             </div>
-            <div
-              class="border-t-[0.5px] h-[23px] justify-center items-center flex text-[10px]"
-            >
-              Esewa
-            </div>
-          </div>
-          <div class="w-[119px] border-[0.5px] rounded-[5px]">
-            <div
-              class="h-[51px] w-full items-center flex justify-center overflow-hidden"
-            >
-              <img src="../public/Images/Billing/Khalti.png" />
-            </div>
-            <div
-              class="border-t-[0.5px] h-[23px] justify-center items-center flex text-[10px]"
-            >
-              Khalti
-            </div>
-          </div>
-          <div class="w-[119px] border-[0.5px] rounded-[5px]">
-            <div
-              class="h-[51px] w-full items-center flex justify-center overflow-hidden"
-            >
-              <img src="../public/Images/Billing/card.png" />
-            </div>
-            <div
-              class="border-t-[0.5px] h-[23px] justify-center items-center flex text-[10px]"
-            >
-              Cash On Delivery
+            <div class="w-[119px] flex-shrink-0 border-[0.5px] rounded-[5px]">
+              <div
+                class="h-[51px] w-full items-center flex justify-center overflow-hidden"
+              >
+                <img src="../public/Images/Billing/card.png" />
+              </div>
+              <div
+                class="border-t-[0.5px] h-[23px] justify-center items-center flex text-[10px]"
+              >
+                Cash On Delivery
+              </div>
             </div>
           </div>
         </div>
@@ -103,6 +110,7 @@
         </div>
         <button
           class="w-full lg:h-[42px] md:h-[36px] h-[32px] mt-[20px] mb-[30px] flex rounded-[8px] text-[12px] lg:text-[14px] items-center justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
+          onclick="location.href = 'Success'"
         >
           Proceed &nbsp;
           <img src="../public/Images/arrow.svg" class="w-[12.3px] h-[12.3px]" />
@@ -193,4 +201,21 @@
   </div>
 </div>
 
-<div class="hidden lg:block"><%- include ("./partials/footer") %></div>
+<div class="hidden lg:block">
+  <div
+    class="mx-auto flex flex-col justify-center text-center my-6 gap-y-4 font-prox text-xs lg:text-base border-t-[1px] pt-[24px]"
+  >
+    <div class="flex justify-center flex-col md:flex-row">
+      Copyright © 2022 Household
+      <span class="hidden md:block"> &nbsp;|</span> &nbsp;
+      <div>All Rights Reserved.</div>
+    </div>
+    <div>
+      Developed By
+      <a href="https://www.prabidhilabs.com/" class="text-[#8D251F]"
+        >Prabidhi Labs</a
+      >
+    </div>
+  </div>
+</div>
+<div class="hidden"><%- include ("./partials/footer") %></div>

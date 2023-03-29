@@ -1,69 +1,123 @@
-<div class="hidden"><%- include ("./partials/header") %></div>
-
-<div class="grid place-items-center fixed w-full h-screen top-0 bottom-0 z-50">
-  <a href="javascript:popupf();">
-    <div
-      class="z-40 top-0 left-0 absolute bg-black bg-opacity-10 h-full w-full"
-    ></div
-  ></a>
+<%- include ("./partials/header") %>
+<div class="px-5 lg:px-10 max-w-[1200px] mx-auto lg:pt-[60px]">
+  <!-- Single Product -->
   <div
-    class="rounded-[5px] shadow-[0px_2px_2px_rgba(0,0,0,0.25)] border-[1px] flex justify-center p-[30px] items-center absolute bg-white z-50"
+    class="grid lg:grid-cols-[105px_minmax(500px,_1fr)_105px] lg:gap-x-[30px] gap-y-[27px]"
   >
-    <div
-      class="rounded-[3px] border-[1px] w-[460px] h-[378px] items-center flex justify-center"
-    >
-      <img src="../public/Images/homepage/PopupImage.png" class="h-full" />
+    <!-- Product Image -->
+    <div class="gap-y-[20px] hidden lg:grid lg:col-span-1">
+      <div class="border-[1.5px] rounded-[5px] py-[17px] px-[10]"></div>
+      <div class="border-[1.5px] rounded-[5px] py-[17px] px-[10]"></div>
+      <div class="border-[1.5px] rounded-[5px] py-[17px] px-[10]"></div>
     </div>
-    <div class="pl-[27px]">
-      <div class="pl-[15px]">
-        <div class="text-[24px] font-medium">Dinner Package</div>
-        <div class="pt-[24px] text-[18px] max-w-[344px]">
-          Dinner Package is a healthy package is a healthy package and is full
-          of nutritions.
+    <div
+      class="lg:rounded-[5px] relative rounded-[3px] shadow-[0_0px_4px_rgba(0,0,0,0.25)] h-[237.4px] md:h-[335px] lg:min-h-[450px] lg:h-auto col-span-2 items-center justify-center flex"
+    >
+      <img
+        src="../public/Images/singlepackage/package.png"
+        class="lg:h-auto md:h-[294px] h-[226.32px] absolute"
+      />
+      <div
+        class="top-[14px] right-[14px] md:top-[16px] lg:top-[20px] lg:right-[20px] absolute"
+      >
+        <button>
+          <img
+            src="../public/Images/Zoom.svg"
+            class="w-[18px] lg:w-[15.75px]"
+          />
+        </button>
+      </div>
+    </div>
+    <!-- Writing of Product -->
+    <div class="lg:col-span-3 w-full">
+      <div class="font-medium text-[18px] lg:text-[24px]">
+        Kellogg-s Chocos (250g)
+      </div>
+      <div class="justify-left flex items-center font-normal text-xs pt-[16px]">
+        <div class="flex gap-x-[4px]">
+          <%-include ("./partials/star") %>&nbsp;
         </div>
-        <div class="text-[#32aa00] text-base flex items-center pt-[24px]">
-          Rs.<span class="text-lg font-bold text-[#32aa00]"
-            >&nbsp;20,000.00</span
-          >
-        </div>
-        <div class="flex items-center left-0 w-auto gap-x-[24px] pt-[24px]">
-          <div class="text-[16px]">Quantity</div>
-          <div class="flex items-center font-roboto">
-            <button onclick="decrease(0)" class="h-[10px]">
-              <img src="../../public/Images/substract.svg" />
-            </button>
-            &nbsp; &nbsp;
-
-            <input
-              type="text"
-              name="quantity"
-              value="1"
-              maxlength="2"
-              max="10"
-              size="1"
-              class="text-center items-center text-[14px] quantity w-[22.4px] h-[22.4px] lg:w-[42px] lg:h-[42px] lg:border-[1px] border-[0.6px] rounded-[3px]"
-            />
-            &nbsp; &nbsp;
-
-            <button onclick="increase(0)" class="w-[10px]">
-              <img src="../../public/Images/add.svg" />
-            </button>
-          </div>
-        </div>
-        <div class="flex gap-x-[20px] pt-[40px]">
-          <button
-            class="w-[200px] h-[42px] rounded-[8px] items-center flex justify-center border-[1px] border-[#3baf3d] text-[#3baf3d] font-medium"
-          >
-            Add to Cart
-          </button>
-          <button
-            class="w-[200px] h-[42px] rounded-[8px] items-center flex justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
-          >
-            Buy Now &nbsp; <img src="../public/Images/arrow.svg" />
-          </button>
+        <div class="font-medium text-sm">4 reviews</div>
+      </div>
+      <div class="pt-4 hidden lg:block font-medium text-sm">
+        Categories: Family, Rice, Pulse, Oil
+      </div>
+      <div class="pt-4 hidden lg:block font-medium text-sm">
+        Avalability: In Stock
+      </div>
+      <div class="pt-4 font-semibold text-base">Rs. 35000.00</div>
+      <div class="pt-4 text-xs md:text-sm lg:max-w-[348px] text-justify">
+        Platinum package provides you with healthy nutritions and make your life
+        healtier and happier. We have been working hard with the local &
+        regional farms to provide you with the freshest produce available.<br /><br />
+        You can be guaranteed each item has been picked at its height of
+        healtiness!
+        <br /><br />
+        <div>
+          <ol class="list-disc ml-4">
+            <li>Healthy</li>
+            <li>Beneficial</li>
+            <li>High Nutritions</li>
+            <li>Excellent</li>
+          </ol>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Related Products -->
+  <div
+    class="justify-between flex items-center md:pr-5 lg:pr-0 lg:pt-[60px] md:pt-[40px] pt-[29px]"
+  >
+    <div class="font-prox text-lg font-bold lg:text-3xl text-[18px]">
+      Related Products
+    </div>
+    <div class="font-poppins font-normal text-xs md:text-base lg:flex hidden">
+      View All &nbsp;<img src="../public/Images/next.svg" />
+    </div>
+  </div>
+  <div
+    class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-x-[30px] md:gap-x-[22.39px] gap-x-[19px] pt-[18px] md:pt-[30px] lg:pt-[41px] gap-y-[20px] md:gap-y-[23.79px]"
+  >
+    <div><%- include ("./partials/card") %></div>
+    <div><%- include ("./partials/card2") %></div>
+    <div><%- include ("./partials/card3") %></div>
+    <div><%- include ("./partials/card4") %></div>
+
+    <div class="lg:hidden"><%- include ("./partials/card2") %></div>
+    <div class="lg:hidden"><%- include ("./partials/card2") %></div>
+    <div class="lg:hidden"><%- include ("./partials/card2") %></div>
+    <div class="lg:hidden"><%- include ("./partials/card2") %></div>
+    <div class="lg:hidden hidden md:grid">
+      <%- include ("./partials/card2") %>
+    </div>
+  </div>
 </div>
-<div class="hidden"><%- include ("./partials/footer") %></div>
+<div
+  class="h-[149px] w-full fixed bottom-0 bg-white px-5 pt-5 border-t-[1px] block lg:hidden"
+>
+  <div class="font-medium md:text-base">Bundle Price</div>
+  <div class="justify-between flex">
+    <div
+      class="pt-[10px] opacity-80 max-w-[161px] md:max-w-none text-[10px] md:text-xs"
+    >
+      Taxes and shipping calculated at checkout
+    </div>
+    <div class="font-medium md:font-[16px]">Rs.45000</div>
+  </div>
+  <div class="justify-end flex pt-[16px] gap-x-[10px]">
+    <button
+      class="md:w-[122px] w-[113px] h-[32px] rounded-[8px] text-[12px] items-center flex justify-center border-[1px] border-[#3baf3d] text-[#3baf3d] font-medium"
+    >
+      Add to Cart
+    </button>
+    <button
+      class="md:w-[122px] w-[113px] h-[32px] rounded-[8px] text-[12px] items-center flex justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
+    >
+      Buy Now
+    </button>
+  </div>
+</div>
+
+<%- include ("./partials/footer") %>
+<div class="h-[149px]"></div>

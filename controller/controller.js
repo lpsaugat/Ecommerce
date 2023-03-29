@@ -87,6 +87,23 @@ controller.payments = (req,res) =>
     res.render("payments")
 }
 
+controller.success = (req,res) => 
+{
+    res.render("success")
+}
+
+controller.orderconfirmation = (req,res) => 
+{
+    res.render("orderconfirmation")
+}
+
+controller.vendor = (req,res) => 
+{
+    res.render("vendor")
+}
+
+
+
 
 
 

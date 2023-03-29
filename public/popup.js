@@ -21,23 +21,12 @@ function popupf(){
 
 
 function addedtocart(element){
-
-
-
         hideandshow(element.querySelector('.added'));
 
-   
-    
+     
 }
 
-// function addedtocart(){
-//     hideandshow(addtocart[1]);
-// }
- 
-// counter.forEach(x => {
-//     document.body.style.backgroundColor = "red";
-//     x.addEventListener("click", () =>{
-//         hideandshow(addtocart[x])
-//     })}
-// );
-
+function cardshadow(element){
+    var card = element.querySelector.('payment');
+    card.style.shadow= "";
+}

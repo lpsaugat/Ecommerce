@@ -1,0 +1,77 @@
+<%- include ("./partials/header") %>
+
+<div class="max-w-1200 mx-auto lg:pt-[80px] px-5">
+  <div class="font-medium text-center lg:text-[36px] text-[18px]">Sign Up</div>
+  <div
+    class="lg:max-w-[600px] md:max-w-[490px] mx-auto lg:mt-[30px] md:mt-[28px] mt-[24px]"
+  >
+    <div>
+      <label for="Name" class="text-[12px] md:text-[14px] font-medium"
+        >Full Name *</label
+      >
+      <input
+        type="text"
+        class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
+        id="Name"
+      />
+    </div>
+
+    <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
+      <label for="Family" class="text-[12px] md:text-[14px] font-medium"
+        >Family Size *</label
+      >
+      <input
+        type="number"
+        class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
+        id="Family"
+      />
+    </div>
+    <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
+      <label for="Email" class="text-[12px] md:text-[14px] font-medium"
+        >Email *</label
+      >
+      <input
+        type="email"
+        class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
+        id="Email"
+      />
+    </div>
+    <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
+      <label for="password" class="text-[12px] md:text-[14px] font-medium"
+        >Password *</label
+      >
+      <input
+        type="password"
+        class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
+        id="password"
+      />
+    </div>
+    <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
+      <label for="confirm" class="text-[12px] md:text-[14px] font-medium"
+        >Confirm Password *</label
+      >
+      <input
+        type="password"
+        class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
+        id="confirm"
+      />
+    </div>
+
+    <div class="mt-[20px] lg:mt-[24px]">
+      <input
+        type="submit"
+        value="Sign Up"
+        class="h-[32px] md:h-[36px] lg:h-[42px] bg-gradient-to-r from-[#3baf3d] to-[#5DC234] w-full text-xs md:text-sm text-white my-auto font-medium rounded-[8px]"
+      />
+    </div>
+    <div class="mt-[20px] lg:mt-[24px] text-center">
+      <span
+        class="font-normal text-[12px] lg:text-[14px] underline-none text-[#2B2E33]"
+        >ALready have an account?&nbsp;<a class="underline" href="Sign_In"
+          >Sign In</a
+        ></span
+      >
+    </div>
+  </div>
+</div>
+<%- include ("./partials/footer") %>

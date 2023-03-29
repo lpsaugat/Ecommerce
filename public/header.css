@@ -5,6 +5,11 @@
   src: url("../public/Fonts/Montserrat.ttf");
 }
 
+@font-face {
+  font-family: "lato";
+  src: url("../public/Fonts/Lato-Regular.ttf");
+}
+
 * {
   font-family: "Montserrat";
   font-style: normal;
@@ -102,4 +107,12 @@
 
 li::marker {
   font-size: 0.5rem;
+}
+
+.deliverylist li::marker{
+  font-size: 1rem;
+}
+
+.orderconfirmation *{
+font-family: "lato";
 }

@@ -2,7 +2,11 @@
 
 <div class="px-5 lg:px-10 max-w-[1200px] mx-auto pt-[20px] lg:pt-[55px]">
   <div class="text-[10px] md:text-sm lg:text-sm font-medium">
-    My Cart / &nbsp;<span class="opacity-50">Billing Deitals / Payments</span>
+    My Cart / &nbsp;<span class="opacity-50"
+      ><a href="Billing">Billing Detials </a> /<a href="Payments">
+        Payments
+      </a></span
+    >
   </div>
   <div
     class="flex justify-between pt-[28px] md:-pt-[29px] lg:pt-[55px] font-medium text-center"
@@ -22,16 +26,19 @@
     </div>
     <button
       class="w-full h-[42px] mt-[30px] rounded-[8px] text-[14px] items-center flex justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
+      onclick="location.href = 'Billing'"
     >
       Check out&nbsp;<img
         src="../public/Images/arrow.svg"
         class="w-[13.41px] h-[13.41px]"
       />
     </button>
-    <div class="pt-[32px] font-medium text-[#00a6ef] flex justify-center">
-      Continue Shopping &nbsp;
-      <img src="../public/Images/accordion-blue.svg" />
-    </div>
+    <a href="products">
+      <div class="pt-[32px] font-medium text-[#00a6ef] flex justify-center">
+        Continue Shopping &nbsp;
+        <img src="../public/Images/accordion-blue.svg" />
+      </div>
+    </a>
   </div>
 </div>
 
@@ -51,7 +58,7 @@
     <div
       class="font-medium text-[#00a6ef] flex text-[10px] md:text-[12px] items-center"
     >
-      <button class="flex items-center">
+      <button class="flex items-center" onclick="location.href = 'products'">
         <img
           src="../public/Images/accordion-blue.svg"
           class="rotate-180 w-[4px] h-[7px]"
@@ -60,6 +67,7 @@
     </div>
     <button
       class="md:w-[122px] w-[113px] h-[32px] rounded-[8px] text-[12px] items-center flex justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
+      onclick="location.href = 'Billing'"
     >
       Checkout &nbsp;
       <img src="../public/Images/arrow.svg" class="w-[12.3px] h-[12.3px]" />
