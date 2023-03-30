@@ -1,11 +1,11 @@
-<div class="grid place-items-center fixed w-full h-screen top-0 bottom-0 z-50">
+<div class="grid place-items-center fixed w-full h-screen top-0 bottom-0 z-40">
   <a href="javascript:popupf();">
     <div
       class="z-40 top-0 left-0 absolute bg-black bg-opacity-10 h-full w-full"
     ></div
   ></a>
   <div
-    class="rounded-[5px] shadow-[0px_2px_2px_rgba(0,0,0,0.25)] border-[1px] flex justify-center p-[30px] items-center absolute bg-white z-50"
+    class="rounded-[5px] shadow-[0px_2px_2px_rgba(0,0,0,0.25)] border-[1px] flex justify-center p-[30px] items-center absolute bg-white z-40"
   >
     <div
       class="rounded-[3px] border-[1px] w-[460px] h-[378px] items-center flex justify-center"
@@ -51,11 +51,19 @@
         <div class="flex gap-x-[20px] pt-[40px]">
           <button
             class="w-[200px] h-[42px] rounded-[8px] items-center flex justify-center border-[1px] border-[#3baf3d] text-[#3baf3d] font-medium"
+            onclick="addedtocart(this)"
           >
-            Add to Cart
+            <div class="my-auto text-[#3baf3d] flex">
+              Add
+              <div class="text-[#3baf3d] added" style="display: none">
+                ed&nbsp;
+              </div>
+              to Cart
+            </div>
           </button>
           <button
             class="w-[200px] h-[42px] rounded-[8px] items-center flex justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
+            onclick="location.href= 'cart'"
           >
             Buy Now &nbsp; <img src="../public/Images/arrow.svg" />
           </button>

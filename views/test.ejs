@@ -1,19 +1,22 @@
-<link rel="stylesheet" href="../public/range.css" />
-
-<div class="range">
-  <div class="range-slider">
-    <span class="range-selected"></span>
+<head>
+  <meta charset="UTF8" />
+  <title>Title</title>
+  <script
+    src="https://unpkg.com/js-image-zoom@0.4.1/js-image-zoom.js"
+    type="application/javascript"
+  ></script>
+</head>
+<body>
+  <div id="img-container" style="width: 400px">
+    <img src="../public/Images/singlepackage/package.png" />
   </div>
-  <div class="range-input">
-    <input type="range" class="min" min="0" max="1000" value="300" step="10" />
-    <input type="range" class="max" min="0" max="1000" value="700" step="10" />
-  </div>
-  <div class="range-price">
-    <label for="min">Min</label>
-    <input type="number" name="min" value="300" />
-    <label for="max">Max</label>
-    <input type="number" name="max" value="700" />
-  </div>
-</div>
-
-<script src="../public/range.js"></script>
+</body>
+<script>
+  var options = {
+    width: 300,
+    zoomWidth: 200,
+    zoomHeight: 100,
+    offset: { vertical: 0, horizontal: 10 },
+  };
+  new ImageZoom(document.getElementById("img-container"), options);
+</script>

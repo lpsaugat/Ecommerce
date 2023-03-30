@@ -40,19 +40,24 @@
   height: 12px;
 }
 
-.cardcss .swiper-button-next {
-  /* background-image: url('../public/Images/arr-next.svg'); */
-}
+
 
 .cardcss .swiper-button-next::after {
   content: none;
 }
 
-.cardcss .swiper-button-prev {
-  /* background-image: url('../public/Images/arr-prev.svg'); */
-}
+
 
 .cardcss .swiper-button-prev::after {
+  content: none;
+}
+
+.cardcss .swiper-button-next1::after {
+  content: none;
+}
+
+
+.cardcss .swiper-button-prev1::after {
   content: none;
 }
 

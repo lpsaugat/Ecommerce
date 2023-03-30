@@ -10,7 +10,7 @@
         src="../public/Images/singlepackage/package.png"
         class="lg:h-auto md:h-[294px] h-[226.32px] absolute"
       />
-      <div
+      <!-- <div
         class="top-[14px] right-[14px] md:top-[16px] lg:top-[20px] lg:right-[20px] absolute"
       >
         <button>
@@ -19,7 +19,7 @@
             class="w-[18px] lg:w-[15.75px]"
           />
         </button>
-      </div>
+      </div> -->
     </div>
     <!-- Writing of Product -->
     <div class="lg:col-span-2 w-full">
@@ -125,11 +125,17 @@
   <div class="lg:flex justify-end hidden gap-x-[15px] pt-[30px]">
     <button
       class="w-[200px] h-[42px] rounded-[8px] items-center flex justify-center border-[1px] border-[#3baf3d] text-[#3baf3d] font-medium"
+      onclick="addedtocart(this)"
     >
-      Add to Cart
+      <div class="my-auto text-[#3baf3d] flex">
+        Add
+        <div class="text-[#3baf3d] added" style="display: none">ed&nbsp;</div>
+        to Cart
+      </div>
     </button>
     <button
       class="w-[200px] h-[42px] rounded-[8px] items-center flex justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
+      onclick="location.href='cart'"
     >
       Buy Now &nbsp; <img src="../public/Images/arrow.svg" />
     </button>
@@ -492,7 +498,9 @@
       Related Products
     </div>
     <div class="font-poppins font-normal text-xs md:text-base lg:flex hidden">
-      View All &nbsp;<img src="../public/Images/next.svg" />
+      <a href="products" class="flex items-center">
+        View All &nbsp;<img src="../public/Images/next.svg"
+      /></a>
     </div>
   </div>
   <div
@@ -527,16 +535,34 @@
   <div class="justify-end flex pt-[16px] gap-x-[10px]">
     <button
       class="md:w-[122px] w-[113px] h-[32px] rounded-[8px] text-[12px] items-center flex justify-center border-[1px] border-[#3baf3d] text-[#3baf3d] font-medium"
+      onclick="addedtocart(this)"
     >
-      Add to Cart
+      <div class="my-auto text-[#3baf3d] flex">
+        Add
+        <div class="text-[#3baf3d] added" style="display: none">ed&nbsp;</div>
+        to Cart
+      </div>
     </button>
     <button
       class="md:w-[122px] w-[113px] h-[32px] rounded-[8px] text-[12px] items-center flex justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
+      onclick="location.href='cart'"
     >
       Buy Now
     </button>
   </div>
 </div>
+<script>
+  var options = {
+    zoomWidth: 200,
+    zoomHeight: 100,
+    bgColor: "red",
+    opacity: 0.1,
+    offset: { vertical: 0, horizontal: 5 },
+    scale: 2.5,
+    // position: "absolute",
+  };
 
+  new ImageZoom(document.getElementById("img-container"), options);
+</script>
 <%- include ("./partials/footer") %>
 <div class="h-[149px]"></div>

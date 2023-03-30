@@ -26,7 +26,7 @@ function addedtocart(element){
      
 }
 
-function cardshadow(element){
-    var card = element.querySelector.('payment');
-    card.style.shadow= "";
-}
+// function cardshadow(element){
+//     var card = element.querySelector.('payment');
+//     card.style.shadow= "";
+// }

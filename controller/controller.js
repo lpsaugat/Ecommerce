@@ -42,11 +42,11 @@ controller.signin = (req, res) => {
     res.render("Sign_In")
 };
 
-
 controller.signup = (req, res) => {
     res.render("Sign_Up")
-    
 };
+
+
 
 controller.familypackages = (req, res) => {
     res.render("familypackages")

@@ -3,7 +3,10 @@ const mysql = require('mysql')
 myConnection = require('express-myconnection');
 path = require('path')
 morgan = require('morgan');
-const mongo = require('mongodb')
+const mongo = require('mongodb');
+const { JSDOM } = require( "jsdom" );
+const { window } = new JSDOM( "" );
+const $ = require( "jquery" );
 
 
 app = express()

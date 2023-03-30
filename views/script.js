@@ -1,39 +1,61 @@
-let rangeMin = 100;
-const range = document.querySelector(".range-selected");
-const rangeInput = document.querySelectorAll(".range-input input");
-const rangePrice = document.querySelectorAll(".range-price input");
-
-rangeInput.forEach((input) => {
-    input.addEventListener("input", (e) => {
-      let minRange = parseInt(rangeInput[0].value);
-      let maxRange = parseInt(rangeInput[1].value);
-      if (maxRange - minRange < rangeMin) {     
-        if (e.target.className === "min") {
-          rangeInput[0].value = maxRange - rangeMin;        
-        } else {
-          rangeInput[1].value = minRange + rangeMin;        
+;(function(){
+  function roundToPlace(num, place) {
+      return Math.round(num*Math.pow(10, place))/Math.pow(10, place);
+  }
+    
+  $('.js-loupe').each(function() {
+    var $this = $(this);
+    var $image = $('.js-loupe-image', $this);
+    var imgBigUrl = $image.attr('data-image-full');
+    var $loupe = $('.js-loupe-element', $this).css('background-image', 'url('+imgBigUrl+')');
+    var loupeSize = [$loupe.width(), $loupe.height()];
+    var bigImgSize = [0,0];
+    var zoomLvl = 1;
+    var bigImg = document.createElement('img');
+    bigImg.onload = function(){
+      bigImgSize = [bigImg.width, bigImg.height]
+    }
+    bigImg.src = imgBigUrl;
+    
+    $this.on('mousemove', function(e) {
+      var positionRatio = [
+        Math.round(e.offsetX/$image.width() * 1000) / 1000,
+        Math.round(e.offsetY/$image.height() * 1000) / 1000
+      ];
+      
+      var offset = [
+        (loupeSize[0] * positionRatio[0]) - (loupeSize[0] / 2),
+        (loupeSize[1] * positionRatio[1]) - (loupeSize[1] / 2),
+      ]
+      
+      var positionPercent = [
+        'calc('+positionRatio[0]*100+'% - '+offset[0]+'px)',
+        'calc('+positionRatio[1]*100+'% - '+offset[1]+'px)'
+      ];
+      
+      $loupe.css({
+        'background-position':  positionPercent.join(' '),
+        'top': e.offsetY,
+        'left': e.offsetX
+      })
+    });
+    
+    $this.on('mousewheel DOMMouseScroll', function(event){
+      event.preventDefault();
+      if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
+        if(zoomLvl < 1.5) {
+          zoomLvl += 0.1;
+          $loupe.css('background-size', bigImgSize[0]*zoomLvl+'px '+bigImgSize[1]*zoomLvl+'px');
         }
-      } else {
-        rangePrice[0].value = minRange;
-        rangePrice[1].value = maxRange;
-        range.style.left = (minRange / rangeInput[0].max) * 100 + "%";
-        range.style.right = 100 - (maxRange / rangeInput[1].max) * 100 + "%";
+      }
+      else {
+          if(zoomLvl > 0.5) {
+            zoomLvl -= 0.1;
+            $loupe.css('background-size', bigImgSize[0]*zoomLvl+'px '+bigImgSize[1]*zoomLvl+'px');
+        }
       }
     });
-  });
-
-  rangePrice.forEach((input) => {
-    input.addEventListener("input", (e) => {
-      let minPrice = rangePrice[0].value;
-      let maxPrice = rangePrice[1].value;
-      if (maxPrice - minPrice >= rangeMin && maxPrice <= rangeInput[1].max) {
-        if (e.target.className === "min") {
-          rangeInput[0].value = minPrice;
-          range.style.left = (minPrice / rangeInput[0].max) * 100 + "%";
-        } else {
-          rangeInput[1].value = maxPrice;
-          range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
-        }
-      }
-    });
-  });
+  });  
+    
+  }());
+  
