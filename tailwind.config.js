@@ -14,6 +14,9 @@ module.exports = {
         'roboto': ['Roboto'],
 
       },
+      borderColor:{
+        DEFAULT: '#c4c4c4',
+      },
     },
   },
   plugins: [],

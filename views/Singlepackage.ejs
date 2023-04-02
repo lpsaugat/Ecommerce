@@ -4,11 +4,13 @@
   <div class="grid lg:grid-cols-5 lg:gap-x-[30px] gap-y-[27px]">
     <!-- Product Image -->
     <div
-      class="lg:rounded-[5px] relative rounded-[3px] shadow-[0_0px_4px_rgba(0,0,0,0.25)] h-[237.4px] md:h-[335px] lg:min-h-[450px] lg:h-auto col-span-3 items-center justify-center flex"
+      class="lg:rounded-[5px] relative overflow-hidden rounded-[3px] shadow-[0_0px_4px_rgba(0,0,0,0.25)] h-[237.4px] md:h-[335px] lg:min-h-[450px] lg:h-auto col-span-3 items-center justify-center flex"
     >
       <img
         src="../public/Images/singlepackage/package.png"
-        class="lg:h-auto md:h-[294px] h-[226.32px] absolute"
+        class="lg:h-auto md:h-[294px] h-[226.32px] absolute magnified"
+        onmouseover="magnify(this)"
+        onmouseout="magnifyout(this)"
       />
       <!-- <div
         class="top-[14px] right-[14px] md:top-[16px] lg:top-[20px] lg:right-[20px] absolute"
@@ -563,6 +565,13 @@
   };
 
   new ImageZoom(document.getElementById("img-container"), options);
+
+  function magnify(element) {
+    element.style.scale = 2.5;
+  }
+  function magnifyout(element) {
+    element.style.scale = 1;
+  }
 </script>
 <%- include ("./partials/footer") %>
 <div class="h-[149px]"></div>
