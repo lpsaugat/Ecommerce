@@ -11,6 +11,7 @@ router.get('/subscription', customerController.subscription)
 router.get('/products', customerController.products)
 router.get('/Sign_In', customerController.signin)
 router.get('/Sign_Up', customerController.signup)
+router.post('/Sign_Up', customerController.signup)
 
 router.get('/package', customerController.package)
 router.get('/familypackages', customerController.familypackages)

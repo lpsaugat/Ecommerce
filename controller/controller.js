@@ -43,7 +43,9 @@ controller.signin = (req, res) => {
 };
 
 controller.signup = (req, res) => {
+
     res.render("Sign_Up")
+    
 };
 
 

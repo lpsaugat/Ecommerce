@@ -17,6 +17,10 @@
   
 }
 
+.cartdropdown .dropdown{
+ align-items: center;
+ display:flex;
+}
 
 
 #filtersideid{

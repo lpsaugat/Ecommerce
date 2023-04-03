@@ -14,7 +14,7 @@
       />
     </div>
     <div
-      class="pl-[10px] md:pl-[10px] flex flex-col lg:font-medium text-ellipsis truncate lg:flex-row w-full lg:grid grid-cols-12 lg:items-center"
+      class="pl-[10px] md:pl-[10px] flex flex-col lg:font-medium text-ellipsis truncate lg:overflow-visible lg:flex-row w-full lg:grid grid-cols-12 lg:items-center"
     >
       <div
         class="text-[12px] md:text-sm lg:text-[16px] col-span-5 lg:pl-[40px]"
@@ -57,17 +57,33 @@
           </div>
         </div>
         <div
-          class="hidden lg:flex w-[123px] h-[53px] border-[1px] rounded-[3px] pt-[4px] pl-[8px] flex-col z-50 gird"
+          class="hidden lg:flex w-[123px] relative h-[49px] overflow-visible border-[1px] rounded-[3px] flex-col gird"
         >
-          <div class="grid">
-            <label class="opacity-50 font-medium flex">Quantity</label>
-
-            <select class="w-full text-center z-30">
-              <option value="volvo">1</option>
-              <option value="saab">2</option>
-              <option value="fiat" selected>3</option>
-              <option value="audi">4</option>
-            </select>
+          <div class="dropdown relative">
+            <button
+              onclick="myFunction(<%i%>)"
+              class="dropbtn text-black z-50 opacity-50 text-left pl-[8px]"
+            >
+              Quantity
+            </button>
+            <text class="text-center flex justify-start w-full pl-[32px]"
+              >1</text
+            >
+            <div
+              id="myDropdown<%i%>"
+              class="dropdown-content myDropdown z-40 bg-white pl-[19px]"
+            >
+              <a> 1</a>
+              <a> 2</a>
+              <a> 3</a>
+            </div>
+          </div>
+          <div class="hidden myDropdown dropdown-content"></div>
+          <div class="absolute bottom-[20px] right-[2px]">
+            <img
+              src="../../public/Images/accordion-active.svg"
+              class="rotate-180"
+            />
           </div>
         </div>
       </div>

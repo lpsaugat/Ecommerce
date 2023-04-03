@@ -8,13 +8,13 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-mongo
+mongo 
 .connect(process.env.MONGO_URL)
 .then(()=>console.log("DBconnection Successful") ).catch((err)=>{
     console.log(err);
 });
 
-app = express()
+app = express() 
 
 
 
