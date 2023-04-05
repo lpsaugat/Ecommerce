@@ -1,8 +1,11 @@
 <%- include ("./partials/header") %>
+<link rel="stylesheet" href="../public/zoom.css" />
+
 <div class="px-5 lg:px-10 max-w-[1200px] mx-auto lg:pt-[60px]">
   <!-- Single Product -->
   <div class="grid lg:grid-cols-9 lg:gap-x-[30px] gap-y-[27px]">
     <!-- Product Image -->
+
     <div class="gap-y-[20px] hidden lg:block space-y-[20px]">
       <div
         class="border-[1.5px] border-[#182B3C] rounded-[5px] py-[17px] px-[10] flex justify-center items-center h-[105px] w-[105px]"
@@ -20,13 +23,17 @@
         <img src="../public/Images/SingleProduct/3.png" />
       </div>
     </div>
+
     <div
-      class="lg:rounded-[5px] lg:h-auto relative rounded-[3px] border-[1px] h-[237.4px] md:h-[335px] lg:min-h-[450px] col-span-5 items-center justify-center flex"
+      id="image-container"
+      class="image-container lg:rounded-[5px] lg:h-auto relative rounded-[3px] border-[1px] h-[237.4px] md:h-[335px] lg:min-h-[450px] col-span-5 items-center justify-center flex"
     >
       <img
         src="../public/Images/SingleProduct/product.png"
         class="lg:h-auto md:h-[294px] h-[226.32px] absolute"
+        id="product-image"
       />
+
       <div
         class="top-[14px] right-[14px] md:top-[16px] lg:top-[20px] lg:right-[20px] absolute"
       >
@@ -37,6 +44,8 @@
           />
         </button>
       </div>
+      <div id="mouse-overlay"></div>
+      <div id="overlay"></div>
     </div>
     <!-- Writing of Product -->
     <div class="lg:col-span-3 w-full">
@@ -163,7 +172,7 @@
           <div
             class="font-semibold text-[12px] lg:text-[16px] pt-[18px] lg:pt-[39px] flex items-center"
           >
-            <img src="../public/Images/Single Product/Delivery.svg" /> &nbsp;
+            <img src="../public/Images/SingleProduct/Delivery.svg" /> &nbsp;
             Delivery Info
           </div>
           <div class="pt-4 text-xs md:text-sm lg:max-w-[348px] text-justify">
@@ -181,7 +190,7 @@
           <div
             class="font-semibold text-[12px] lg:text-[16px] pt-[18px] lg:pt-[39px] flex items-center"
           >
-            <img src="../public/Images/Single Product/Return.svg" /> &nbsp;
+            <img src="../public/Images/SingleProduct/Return.svg" /> &nbsp;
             Returns
           </div>
           <div class="pt-4 text-xs md:text-sm lg:max-w-[348px] text-justify">
@@ -660,7 +669,7 @@
           <div
             class="font-semibold text-[12px] lg:text-[16px] pt-[18px] flex items-center"
           >
-            <img src="../public/Images/Single Product/Delivery.svg" /> &nbsp;
+            <img src="../public/Images/SingleProduct/Delivery.svg" /> &nbsp;
             Delivery Info
           </div>
           <div class="pt-4 text-xs md:text-sm text-justify">
@@ -678,7 +687,7 @@
           <div
             class="font-semibold text-[12px] lg:text-[16px] pt-[18px] lg:pt-[39px] flex items-center"
           >
-            <img src="../public/Images/Single Product/Return.svg" /> &nbsp;
+            <img src="../public/Images/SingleProduct/Return.svg" /> &nbsp;
             Returns
           </div>
           <div class="pt-4 text-xs md:text-sm text-justify">
@@ -944,6 +953,8 @@
     </button>
   </div>
 </div>
+
+<script src="../public/zoom.js"></script>
 
 <%- include ("./partials/footer") %>
 <div class="h-[149px] lg:h-0"></div>

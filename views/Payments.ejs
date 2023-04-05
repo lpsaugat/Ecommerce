@@ -26,51 +26,73 @@
           <div
             class="pt-[26px] gap-x-[10px] md:gap-x-[17px] md:justify-center flex md:px-5 md:mx-auto overflow-x-auto w-full"
           >
-            <div class="w-[119px] flex-shrink-0 border-[0.5px] rounded-[5px]">
-              <div class="h-[51px] w-full items-center flex justify-center">
-                <img src="../public/Images/Billing/card.png" />
-              </div>
-              <div
-                class="border-t-[0.5px] h-[23px] justify-center items-center flex text-[10px]"
+            <div>
+              <button
+                class="w-[119px] flex-shrink-0 border-[0.5px] rounded-[5px] p_shadow"
+                onclick="cardshadow()"
               >
-                Debit / Credit Card
-              </div>
+                <div
+                  class="h-[51px] w-full items-center flex justify-center overflow-hidden"
+                >
+                  <img src="../public/Images/Billing/card.png" />
+                </div>
+                <div
+                  class="border-t-[0.5px] h-[23px] justify-center items-center flex text-[10px]"
+                >
+                  Credit/ Debit Card
+                </div>
+              </button>
             </div>
-            <div class="w-[119px] flex-shrink-0 border-[0.5px] rounded-[5px]">
-              <div
-                class="h-[51px] w-full items-center flex justify-center overflow-hidden"
+            <div>
+              <button
+                class="w-[119px] flex-shrink-0 border-[0.5px] rounded-[5px] p_shadow"
+                onclick="cardshadow()"
               >
-                <img src="../public/Images/Billing/e-sewa.png" />
-              </div>
-              <div
-                class="border-t-[0.5px] h-[23px] justify-center items-center flex text-[10px]"
-              >
-                Esewa
-              </div>
+                <div
+                  class="h-[51px] w-full items-center flex justify-center overflow-hidden"
+                >
+                  <img src="../public/Images/Billing/e-sewa.png" />
+                </div>
+                <div
+                  class="border-t-[0.5px] h-[23px] justify-center items-center flex text-[10px]"
+                >
+                  E-sewa
+                </div>
+              </button>
             </div>
-            <div class="w-[119px] flex-shrink-0 border-[0.5px] rounded-[5px]">
-              <div
-                class="h-[51px] w-full items-center flex justify-center overflow-hidden"
+            <div>
+              <button
+                class="w-[119px] flex-shrink-0 border-[0.5px] rounded-[5px] p_shadow"
+                onclick="cardshadow(this)"
               >
-                <img src="../public/Images/Billing/Khalti.png" />
-              </div>
-              <div
-                class="border-t-[0.5px] h-[23px] justify-center items-center flex text-[10px]"
-              >
-                Khalti
-              </div>
+                <div
+                  class="h-[51px] w-full items-center flex justify-center overflow-hidden"
+                >
+                  <img src="../public/Images/Billing/Khalti.png" />
+                </div>
+                <div
+                  class="border-t-[0.5px] h-[23px] justify-center items-center flex text-[10px]"
+                >
+                  Khalti
+                </div>
+              </button>
             </div>
-            <div class="w-[119px] flex-shrink-0 border-[0.5px] rounded-[5px]">
-              <div
-                class="h-[51px] w-full items-center flex justify-center overflow-hidden"
+            <div>
+              <button
+                class="w-[119px] flex-shrink-0 border-[0.5px] rounded-[5px] p_shadow"
+                onclick="cardshadow()"
               >
-                <img src="../public/Images/Billing/card.png" />
-              </div>
-              <div
-                class="border-t-[0.5px] h-[23px] justify-center items-center flex text-[10px]"
-              >
-                Cash On Delivery
-              </div>
+                <div
+                  class="h-[51px] w-full items-center flex justify-center overflow-hidden"
+                >
+                  <img src="../public/Images/Billing/card.png" />
+                </div>
+                <div
+                  class="border-t-[0.5px] h-[23px] justify-center items-center flex text-[10px]"
+                >
+                  Cash on Delivery
+                </div>
+              </button>
             </div>
           </div>
         </div>
@@ -80,7 +102,11 @@
           Card Details
         </div>
       </div>
-      <div class="font-medium pt-[3px] md:pt-[6px] text-[12px] md:text-[14px]">
+      <form
+        class="font-medium pt-[3px] md:pt-[6px] text-[12px] md:text-[14px]"
+        action="Success"
+        id="Paymentform"
+      >
         <div class="md:pt-[24px] pt-[21px] lg:pt-[20px]">Card Number</div>
         <input
           class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px]"
@@ -98,6 +124,7 @@
             <input
               class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px]"
               type="Phone"
+              required
             />
           </div>
           <div>
@@ -105,17 +132,18 @@
             <input
               class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px]"
               type="Email"
+              required
             />
           </div>
         </div>
         <button
           class="w-full lg:h-[42px] md:h-[36px] h-[32px] mt-[20px] mb-[30px] flex rounded-[8px] text-[12px] lg:text-[14px] items-center justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
-          onclick="location.href = 'Success'"
+          type="submit"
         >
           Proceed &nbsp;
           <img src="../public/Images/arrow.svg" class="w-[12.3px] h-[12.3px]" />
         </button>
-      </div>
+      </form>
     </div>
     <div
       class="hidden lg:block border-[1px] bg-[#f9f9f9] rounded-[5px] p-[30px] font-lato col-span-4"

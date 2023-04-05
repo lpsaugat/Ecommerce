@@ -15,16 +15,22 @@
   </div>
   <div class="lg:grid grid-cols-12 lg:mt-[24px] gap-x-[16px]">
     <div class="lg:border-[1px] lg:rounded-[5px] lg:px-[30px] col-span-8">
-      <div class="font-medium pt-[3px] md:pt-[6px] text-[12px] md:text-[14px]">
+      <form
+        class="font-medium pt-[3px] md:pt-[6px] text-[12px] md:text-[14px]"
+        id="Billform"
+        action="Payments"
+      >
         <div class="md:pt-[24px] pt-[21px] lg:pt-[20px]">Name</div>
         <input
           class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px]"
           type="text"
+          required
         />
         <div class="md:pt-[24px] pt-[21px] lg:pt-[20px]">Country</div>
         <input
           class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px]"
           type="text"
+          required
         />
         <div class="md:pt-[24px] pt-[21px] lg:pt-[20px]">Street Address</div>
         <input
@@ -40,6 +46,7 @@
         <input
           class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px]"
           type="Phone"
+          required
         />
         <div class="md:pt-[24px] pt-[21px] lg:pt-[20px]">Email</div>
         <input
@@ -48,12 +55,12 @@
         />
         <button
           class="w-full h-[42px] mt-[20px] mb-[30px] hidden lg:flex rounded-[8px] text-[14px] items-center justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
-          onclick="location.href = 'Payments'"
+          type="submit"
         >
           Proceed &nbsp;
           <img src="../public/Images/arrow.svg" class="w-[12.3px] h-[12.3px]" />
         </button>
-      </div>
+      </form>
     </div>
     <div
       class="hidden lg:block border-[1px] bg-[#f9f9f9] rounded-[5px] p-[30px] font-lato col-span-4"
@@ -132,7 +139,8 @@
     </div>
     <button
       class="w-[122px] h-[32px] rounded-[8px] text-[12px] items-center flex justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
-      onclick="location.href = 'Payments'"
+      form="Billform"
+      type="submit"
     >
       Checkout &nbsp;
       <img src="../public/Images/arrow.svg" class="w-[12.3px] h-[12.3px]" />

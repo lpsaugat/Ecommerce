@@ -1,22 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Product Image Zoom</title>
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="../public/test.css" />
-  </head>
-  <body>
-    <div class="image-container" id="image-container">
-      <img
-        src="../public/Images/SingleProduct/product.png"
-        id="product-image"
-        alt="shoe"
-      />
-    </div>
-    <div id="mouse-overlay"></div>
-    <div id="overlay"></div>
-    <!-- Script -->
-    <script src="../public/test.js"></script>
-  </body>
-</html>
+<div class="hidden"><%- include ("./partials/header") %></div>
+<div>
+  <button onclick="rating(0, this)" class="ratingbutton">
+    <img src="../public/Images/Vector.png" class="w-[14.5px] h-[14.5px] star" />
+    <img
+      src="../public/Images/Star-shade.svg"
+      class="w-[14.5px] h-[14.5px] star-shade"
+      style="display: none"
+    />
+  </button>
+  <button onclick="rating(1, this)" class="ratingbutton">
+    <img src="../public/Images/Vector.png" class="w-[14.5px] h-[14.5px] star" />
+    <img
+      src="../public/Images/Star-shade.svg"
+      class="w-[14.5px] h-[14.5px] star-shade"
+      style="display: none"
+    />
+  </button>
+  <button onclick="rating(2, this)" class="ratingbutton">
+    <img src="../public/Images/Vector.png" class="w-[14.5px] h-[14.5px] star" />
+    <img
+      src="../public/Images/Star-shade.svg"
+      class="w-[14.5px] h-[14.5px] star-shade"
+      style="display: none"
+    />
+  </button>
+  <button onclick="rating(3, this)" class="ratingbutton">
+    <img src="../public/Images/Vector.png" class="w-[14.5px] h-[14.5px] star" />
+    <img
+      src="../public/Images/Star-shade.svg"
+      class="w-[14.5px] h-[14.5px] star-shade"
+      style="display: none"
+    />
+  </button>
+  <button onclick="rating(4, this)" class="ratingbutton">
+    <img src="../public/Images/Vector.png" class="w-[14.5px] h-[14.5px] star" />
+    <img
+      src="../public/Images/Star-shade.svg"
+      class="w-[14.5px] h-[14.5px] star-shade"
+      style="display: none"
+    />
+  </button>
+</div>
+<div>
+  <button onclick="rating(0, this)" class="ratingbutton">
+    <img src="../public/Images/Vector.png" class="w-[14.5px] h-[14.5px] star" />
+    <img
+      src="../public/Images/Star-shade.svg"
+      class="w-[14.5px] h-[14.5px] star-shade"
+      style="display: none"
+    />
+  </button>
+  <button onclick="rating(1, this)" class="ratingbutton">
+    <img src="../public/Images/Vector.png" class="w-[14.5px] h-[14.5px] star" />
+    <img
+      src="../public/Images/Star-shade.svg"
+      class="w-[14.5px] h-[14.5px] star-shade"
+      style="display: none"
+    />
+  </button>
+  <button onclick="rating(2, this)" class="ratingbutton">
+    <img src="../public/Images/Vector.png" class="w-[14.5px] h-[14.5px] star" />
+    <img
+      src="../public/Images/Star-shade.svg"
+      class="w-[14.5px] h-[14.5px] star-shade"
+      style="display: none"
+    />
+  </button>
+  <button onclick="rating(3, this)" class="ratingbutton">
+    <img src="../public/Images/Vector.png" class="w-[14.5px] h-[14.5px] star" />
+    <img
+      src="../public/Images/Star-shade.svg"
+      class="w-[14.5px] h-[14.5px] star-shade"
+      style="display: none"
+    />
+  </button>
+  <button onclick="rating(4, this)" class="ratingbutton">
+    <img src="../public/Images/Vector.png" class="w-[14.5px] h-[14.5px] star" />
+    <img
+      src="../public/Images/Star-shade.svg"
+      class="w-[14.5px] h-[14.5px] star-shade"
+      style="display: none"
+    />
+  </button>
+</div>
+<div class="hidden"><%- include ("./partials/footer") %></div>

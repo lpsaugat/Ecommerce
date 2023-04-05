@@ -2,11 +2,11 @@
 toggle between hiding and showing the dropdown content */
 
 
-var dropdownclass = document.querySelectorAll("myDropdown");
+var dropdownclass = document.querySelectorAll(".myDropdown");
 
 function myFunction(element) {
     // dropdownclass[element].;
-    document.getElementById("myDropdown"+element).classList.toggle('show');
+    dropdownclass[element].classList.toggle('show');
 }
   
   // Close the dropdown menu if the user clicks outside of it
