@@ -127,3 +127,7 @@ li::marker {
 .orderconfirmation *{
 font-family: "lato";
 }
+
+.subscription-height{
+   max-height: calc(100vh - 103px);
+}

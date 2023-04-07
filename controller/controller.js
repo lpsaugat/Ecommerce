@@ -48,6 +48,11 @@ controller.signup = (req, res) => {
     
 };
 
+controller.dashboard = (req, res) => {
+
+    res.render("dashboard")
+    
+};
 
 
 controller.familypackages = (req, res) => {

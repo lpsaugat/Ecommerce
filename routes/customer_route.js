@@ -25,6 +25,8 @@ router.get('/vendor', customerController.vendor)
 
 
 router.get('/singleproduct', customerController.singleproduct)
+router.get('/dashboard', customerController.dashboard)
+
 
 
 

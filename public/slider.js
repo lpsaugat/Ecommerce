@@ -100,4 +100,13 @@ function footer1(){
     
 // }
 
+function search(){
+    var searchbutton = document.getElementById('searchbutton');
+    var searchheader = document.getElementById('searchheader');
 
+    searchbutton.style.display = 'none';
+    searchheader.style.display = 'block';
+
+
+
+}

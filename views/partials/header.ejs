@@ -24,12 +24,12 @@
   </head>
 
   <body class="">
-    <div class="lg:shadow-[0_2px_2px_rgba(0,0,0,0.25)] bg-blue-600">
+    <div class="lg:shadow-[0_2px_2px_rgba(0,0,0,0.25)] relative">
       <div
-        class="lg:fixed min-w-full h-[103px] justify-center block lg:z-50 items-center bg-green-700"
+        class="fixed min-w-full h-[103px] justify-center block z-50 items-center lg:shadow-[0_2px_2px_rgba(0,0,0,0.25)] bg-white"
       >
         <div
-          class="mx-auto max-w-[1200px] px-5 lg:px-10 justify-between w-auto flex flex-row items-center lg:z-50 h-[103px] md:pb-[30px] pt-[30px] pb-[20px] bg-yellow-400"
+          class="mx-auto max-w-[1200px] px-5 lg:px-10 justify-between w-auto flex flex-row items-center lg:z-50 h-[103px] md:pb-[30px] pt-[30px] pb-[20px]"
         >
           <div class="lg:block hidden">
             <a href="/"><img src="../../public/Images/logo.svg" /></a>
@@ -63,7 +63,16 @@
           <div class="lg:block hidden">
             <ul class="list-none flex flex-row gap-[30px]">
               <li>
-                <a href=""><img src="../../public/Images/search.svg" /></a>
+                <a href="javascript:search()" id="searchbutton"
+                  ><img src="../../public/Images/search.svg" />
+                </a>
+                <input
+                  class="w-[200px] border-[1px] rounded-[5px] h-[24px] pl-5"
+                  type="text"
+                  id="searchheader"
+                  placeholder="Search"
+                  style="display: none"
+                />
               </li>
               <li>
                 <a href="Sign_In"
@@ -93,13 +102,13 @@
       </div>
       <div
         id="menu1"
-        class="bg-opacity-50 w-[100%] h-screen absolute -z-10"
+        class="bg-opacity-50 w-[100%] h-screen fixed -z-10"
         onclick="openMenu2()"
       ></div>
 
       <div
         id="nav"
-        class="absolute right-0 h-full bg-white overflow-scroll w-[276px] md:w-[363px] font-medium justify-between -z-10 border-t-0"
+        class="fixed right-0 top-[103px] h-full bg-white overflow-scroll w-[276px] md:w-[363px] font-medium justify-between -z-10 border-t-0"
       >
         <asdie
           id="menu"
@@ -133,7 +142,7 @@
       </div>
       <div
         id="filterbg"
-        class="bg-opacity-50 w-[100%] h-[1000px] absolute -z-10"
+        class="bg-opacity-50 w-[100%] top-[103px] fixed h-[1000px] -z-10"
         onclick="filterbgb()"
       ></div>
       <div
@@ -142,7 +151,7 @@
       >
         <div
           id="filtersidebarid"
-          class="hidden flex-col justify-between duration-700 w-full"
+          class="hidden flex-col absolute top-[103px] justify-between duration-700 w-full"
         >
           <div class="px-[20px] pt-[20px] overflow-auto pb-[150px]">
             <div class="justify-between flex">
@@ -166,6 +175,9 @@
         </div>
       </div>
     </div>
-    <div class="lg:h-[103px]"></div>
+    <div class="h-[103px]"></div>
   </body>
+  <div class="flex">
+    <div id="logout" style="display: none"><%- include ("./logout") %></div>
+  </div>
 </html>

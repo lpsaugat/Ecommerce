@@ -1,9 +1,8 @@
-<div class="hidden"><%- include ("./partials/header") %></div>
 <div
-  class="h-screen bg-black bg-opacity-50 items-center justify-center w-full relative flex"
+  class="h-screen z-50 bg-black fixed bg-opacity-50 items-center justify-center w-full flex"
 >
   <div
-    class="w-full md:w-[377px] lg:w-[457px] h-[144px] lg:h-[171px] border-[1px] absolute bg-white pl-[20px] pt-[19px] rounded-[5px]"
+    class="w-full md:w-[377px] lg:w-[457px] h-[144px] lg:h-[171px] border-[1px] absolute bg-white pl-[20px] pt-[19px] pb-[20px] rounded-[5px]"
   >
     <div class="font-semibold text-[20px]">Logout?</div>
     <div class="pt-[14px] lg:pt-[19px] lg:text-base text-xs">
@@ -19,10 +18,10 @@
       </button>
       <button
         class="rounded-[8px] w-[92px] md:w-[99px] lg:w-[110px] h-[32px] md:h-[36px] lg:h-[42px] items-center flex justify-center border-[1px] border-[#3BAF3D] font-500 lg:text-sm text-xs text-[#3BAF3D]"
+        onclick="cancelf()"
       >
         Cancel
       </button>
     </div>
   </div>
 </div>
-<div class="hidden"><%- include ("./partials/footer") %></div>

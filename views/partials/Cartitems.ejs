@@ -60,24 +60,23 @@
           class="hidden lg:flex w-[123px] relative h-[49px] overflow-visible border-[1px] rounded-[3px] flex-col gird"
         >
           <div class="dropdown relative">
-            <button
-              onclick="myFunction(<%=i%>)"
-              class="dropbtn text-black z-50 text-left pl-[8px]"
-            >
-              <text class="opacity-50"> Quantity</text>
-              <div class="absolute bottom-[20px] right-[2px]">
-                <img
-                  src="../../public/Images/accordion-active.svg"
-                  class="rotate-180 opacity-100"
-                />
+            <a href="javascript:myFunction(<%=i%>)">
+              <div class="dropbtn text-black text-left pl-[8px]">
+                <div class="opacity-50">Quantity</div>
+                <div class="absolute bottom-[20px] right-[2px]">
+                  <img
+                    src="../../public/Images/accordion-active.svg"
+                    class="rotate-180 opacity-100"
+                  />
+                </div>
               </div>
-            </button>
+            </a>
             <text class="text-center flex justify-start w-full pl-[32px]"
               >1</text
             >
             <div
               id="myDropdown<%= i%>"
-              class="dropdown-content myDropdown z-40 bg-white pl-[19px]"
+              class="dropdown-content myDropdown z-40 bg-white"
             >
               <a> 1</a>
               <a> 2</a>
