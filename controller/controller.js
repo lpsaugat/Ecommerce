@@ -54,6 +54,12 @@ controller.dashboard = (req, res) => {
     
 };
 
+controller.mobilepassword = (req, res) => {
+
+    res.render("mobilepassword")
+    
+};
+
 
 controller.familypackages = (req, res) => {
     res.render("familypackages")

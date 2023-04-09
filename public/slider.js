@@ -22,7 +22,7 @@ function openMenu() {
     menu1.classList.remove("-z-10");
     menu1.classList.add("bg-black");
 
-    menu1.classList.add("z-50");
+    menu1.classList.add("z-40");
     nav.classList.add('z-50');
 }
 else{
@@ -51,7 +51,7 @@ function openMenu2(){
     menu1.classList.remove('bg-black');
     document.body.style.overflow='auto';
     navbutton.style.transform='rotate(180deg)';
-    menu1.classList.remove("z-50");
+    menu1.classList.remove("z-40");
     nav.classList.remove('z-50');
     nav.classList.add("-z-10");
     menu1.classList.add("-z-10");

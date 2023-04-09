@@ -12,7 +12,7 @@
     class="flex justify-between pt-[28px] md:-pt-[29px] lg:pt-[55px] font-medium text-center"
   >
     <div class="text-lg md:text-[18px] lg:text-[24px]">My Cart</div>
-    <div class="text-xs md:text-base lg:hidden">Delete</div>
+    <a class="text-xs md:text-base lg:hidden" onclick="deletef()">Delete</a>
   </div>
   <div class="mt-[27px] md:mt-[29px] lg:mt-[23px]">
     <%- include ("./partials/cartitems") %>
@@ -74,5 +74,5 @@
     </button>
   </div>
 </div>
-
+<br />
 <div class="hidden lg:block"><%- include ("./partials/footer") %></div>

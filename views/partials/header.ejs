@@ -119,12 +119,30 @@
             <a href="aboutus">About Us</a>
             <a href="subscription">Subscription Package</a>
             <a href="products">Shop</a>
-            <a href="sign_in" class="justify-between flex">
-             <div> My Profile</div>
-             <div class=></div>
-            </a>
-            <a href="sign_in" class="pl-[4px]">My Profile</a>
-
+            <a href="dashboard" class="hidden md:block">My Profile</a>
+            <div class="md:hidden">
+              <a
+                href="javascript:mobmenudisplay()"
+                class="justify-between flex md:hidden items-center"
+              >
+                <div>My Profile</div>
+                <div>
+                  <img
+                    src="../../public/Images/accordion-active.svg"
+                    style="transform: rotate(180deg)"
+                    id="mobmenuaccordion"
+                  />
+                </div>
+              </a>
+              <div style="display: none" id="mob-menu" class="md:hidden">
+                <div class="flex flex-col">
+                  <a href="dashboard" class="pl-[4px] pt-[20px]">My Details</a>
+                  <a href="mobilepassword" class="pl-[4px] pt-[20px]"
+                    >Password</a
+                  >
+                </div>
+              </div>
+            </div>
             <a href="cart">My Cart</a>
           </div>
           <div
