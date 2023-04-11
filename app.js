@@ -1,59 +1,56 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
 const express = require('express')
 const mysql = require('mysql')
 myConnection = require('express-myconnection');
 path = require('path')
 morgan = require('morgan');
-const mongo = require('mongoose');
-const dotenv = require('dotenv');
+const mongoose = require('mongoose');
 const fs = require('fs');
- 
-dotenv.config();
 
-mongo 
-.connect(process.env.MONGO_URL)
-.then(()=>console.log("DBconnection Successful") ).catch((err)=>{
-    console.log(err);
-});
 
-app = express() 
+
+const app = express() 
+app.use(express.json())
+
+
+
+
+
 
 
 
 const customer_route = require('./routes/customer_route');
-const { resourceUsage } = require('process');
+ const { resourceUsage } = require('process');
 
-// app.use(morgan('dev'));
-// app.use(myConnection(mysql, {
-//     host: 'localhost',
-//     user: 'root',
-//     password: '',
-//     port: 3306,
-//     database: 'household'
-// },'single'));
-// // app.use(express.urlencoded({extended: false}));
+ 
 
 app.use('/public', express.static('public'));
 
 app.use('/', customer_route);
 
-// app.use(morgan('dev'));
-// app.use(myConnection(mysql, {
-//     host: 'localhost',
-//     user: 'root',
-//     password: '',
-//     port: 3306,
-//     database: 'household'
-// },'single'));
-// app.use(express.urlencoded({extended: false}));
 
-
-app.set('port', process.env.PORT || 3000,);
+// app.set('port', process.env.PORT || 3000,);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 
+mongoose 
+.connect(process.env.MONGO_URL)
+.then(()=>console.log("DBconnection Successful") ).catch((err)=>{
+    console.log(err);
+});
 
+app.listen(process.env.PORT, () => console.log(`The server is running on port ${process.env.PORT}`))
 
-app.listen(app.get('port')
+// mongoose.connection.once('open', () => {
+//     app.listen(app.get('port')
 // , '192.168.101.14' 
-);
+// );
+// })
+
+
+
+
+

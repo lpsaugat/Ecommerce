@@ -23,15 +23,15 @@ function openMenu() {
     menu1.classList.add("bg-black");
 
     menu1.classList.add("z-40");
-    nav.classList.add('z-50');
+    nav.classList.add('z-40');
 }
 else{
     menu.classList.remove('flex');
     menu.classList.add('hidden');
     document.body.style.overflow='auto';
     navbutton.style.transform='rotate(180deg)';
-    menu1.classList.remove("z-50");
-    nav.classList.remove('z-50');
+    menu1.classList.remove("z-40");
+    nav.classList.remove('z-40');
     nav.classList.add("-z-10");
     menu1.classList.add("-z-10");
 
@@ -52,7 +52,7 @@ function openMenu2(){
     document.body.style.overflow='auto';
     navbutton.style.transform='rotate(180deg)';
     menu1.classList.remove("z-40");
-    nav.classList.remove('z-50');
+    nav.classList.remove('z-40');
     nav.classList.add("-z-10");
     menu1.classList.add("-z-10");
 

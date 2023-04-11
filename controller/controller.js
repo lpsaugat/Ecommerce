@@ -1,4 +1,5 @@
 const connection = require("express-myconnection");
+const User = require("../models/User")
 
 const path = require('path')
 
@@ -115,9 +116,23 @@ controller.vendor = (req,res) =>
     res.render("vendor")
 }
 
+controller.createUser = async (req, res) => {
+    // const email  = req.body.email;
+    // const findUser = await User.findOne(email);
+    // if(!findUser){
+    //     //Create New User
+    console.log("hi")
+        const newUser = await User.create({...req.body});
+        console.log(newUser)
+        res.json(newUser)
+    // }
+    // else{
+    //     //User Already Exists
+    //     res.json({
+    //         msg: "User already exists",
+    //         success:false,
+    //     })
+    // }
+}
 
-
-
-
-
-module.exports = controller;
+ module.exports = controller;

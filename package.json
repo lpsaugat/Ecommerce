@@ -9,7 +9,7 @@
     "js-image-zoom": "^0.7.0",
     "jsdom": "^21.1.1",
     "mongodb": "^5.1.0",
-    "mongoose": "^7.0.0",
+    "mongoose": "^7.0.3",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "path": "^0.12.7",

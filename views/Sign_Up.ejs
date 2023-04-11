@@ -2,7 +2,8 @@
 
 <div class="max-w-1200 mx-auto lg:pt-[80px] px-5">
   <div class="font-medium text-center lg:text-[36px] text-[18px]">Sign Up</div>
-  <div
+  <form
+    method="post"
     class="lg:max-w-[600px] md:max-w-[490px] mx-auto lg:mt-[30px] md:mt-[28px] mt-[24px]"
   >
     <div>
@@ -13,13 +14,14 @@
         type="text"
         class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
         id="Name"
+        required
       />
     </div>
 
     <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
       <label for="Family" class="text-[12px] md:text-[14px] font-medium"
-        >Family Size *</label
-      >
+        >Family Size
+      </label>
       <input
         type="number"
         class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
@@ -34,6 +36,7 @@
         type="email"
         class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
         id="Email"
+        required
       />
     </div>
     <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
@@ -44,6 +47,7 @@
         type="password"
         class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
         id="password"
+        required
       />
     </div>
     <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
@@ -54,6 +58,7 @@
         type="password"
         class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
         id="confirm"
+        required
       />
     </div>
 
@@ -72,6 +77,6 @@
         ></span
       >
     </div>
-  </div>
+  </form>
 </div>
 <%- include ("./partials/footer") %>
