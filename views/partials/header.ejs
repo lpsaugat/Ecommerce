@@ -26,7 +26,7 @@
   <body class="">
     <div class="lg:shadow-[0_2px_2px_rgba(0,0,0,0.25)] relative">
       <div
-        class="fixed min-w-full h-[103px] justify-center block z-50 items-center lg:shadow-[0_2px_2px_rgba(0,0,0,0.25)] bg-white"
+        class="fixed min-w-full -[103px] justify-center block z-50 items-center lg:shadow-[0_2px_2px_rgba(0,0,0,0.25)] bg-white"
       >
         <div
           class="mx-auto max-w-[1200px] px-5 lg:px-10 justify-between w-auto flex flex-row items-center lg:z-50 h-[103px] md:pb-[30px] pt-[30px] pb-[20px]"
@@ -75,7 +75,7 @@
                 />
               </li>
               <li>
-                <a href="Sign_In"
+                <a href="dashboard"
                   ><img
                     src="../../public/Images/user.svg"
                     style="width: 24px; height: 20px"
@@ -165,24 +165,26 @@
       </div>
       <div
         id="filterbg"
-        class="bg-opacity-50 w-[100%] top-[103px] fixed h-[1000px] -z-10"
+        class="bg-opacity-50 w-[100%] top-0 absolute h-[1000px] -z-10"
         onclick="filterbgb()"
       ></div>
       <div
         id="filtersideid"
-        class="absolute right-0 w-[276px] h-screen md:w-[363px] bg-white font-medium justify-between -z-10 border-t-0"
+        class="fixed right-0 top-0 w-[276px] h-screen md:w-[363px] bg-white font-medium justify-between -z-10 border-t-0"
       >
         <div
           id="filtersidebarid"
-          class="hidden flex-col absolute top-[103px] justify-between duration-700 w-full"
+          class="hidden flex-col absolute top-0 justify-between duration-700 w-full"
         >
-          <div class="px-[20px] pt-[20px] overflow-auto pb-[150px]">
-            <div class="justify-between flex">
+          <div class="pt-[20px] border-b-[1px]">
+            <div class="justify-between flex px-[20px] pb-[15px]">
               <div class="text-xs font-medium">Filters</div>
               <button class="" onclick="filtersidebarf()">
                 <img src="../public/Images/Cross.svg" />
               </button>
             </div>
+          </div>
+          <div class="px-[20px] pb-[150px] overflow-auto">
             <%- include ("./filter") %>
           </div>
           <div

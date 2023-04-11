@@ -630,7 +630,7 @@
   </div>
   <div class="hidden lg:block mt-[60px]">
     <div
-      class="border-[1px] rounded-t-[5px] font-medium text-[16px] px-[40px] py-[25px] gap-x-[198px] flex underline-offset-8"
+      class="border-[1px] rounded-t-[5px] font-medium text-[16px] px-[40px] py-[25px] gap-x-[140px] xl:gap-x-[198px] flex underline-offset-8"
     >
       <div>
         <button
@@ -925,7 +925,8 @@
       </div>
     </div>
     <div
-      class="border-[0.5px] lg:mt-[38px] w-full pb-[15px] md:pb-[17.95px] lg:pb-[25px] lg:border-b-[1px] rounded-[5px] mt-[20px] pl-[14px] lg:pl-[23px] pt-[16px] lg:pt-[30px] lg:pr-[40px] pr-[20px] shadow-[0px_0px_2px_rgba(0,0,0,0.25)] lg:shadow-none"
+      class="singleproductcomment border-[0.5px] lg:mt-[38px] w-full pb-[15px] md:pb-[17.95px] lg:pb-[25px] lg:border-b-[1px] rounded-[5px] mt-[20px] pl-[14px] lg:pl-[23px] pt-[16px] lg:pt-[30px] lg:pr-[40px] pr-[20px] shadow-[0px_0px_2px_rgba(0,0,0,0.25)] lg:shadow-none"
+      style="display: none"
     >
       <div class="flex w-full">
         <div class="flex">
@@ -934,9 +935,71 @@
           </div>
         </div>
         <div class="lg:pl-[27px] pl-[16px] w-full">
+          <div class="font-semibold text-sm flex w-full items-center flex">
+            <div>Your Rating:</div>
+            <div id="" class="flex gap-x-1 pl-2 lg:pl-4 items-center">
+              <div class="flex items-center gap-x-1">
+                <button onclick="rating(0, this)" class="ratingbutton">
+                  <img
+                    src="../public/Images/Star.svg"
+                    class="w-[19.5px] h-[19.5px] star"
+                  />
+                  <img
+                    src="../public/Images/Star-shade.svg"
+                    class="w-[19.5px] h-[19.5px] star-shade"
+                    style="display: none"
+                  />
+                </button>
+                <button onclick="rating(1, this)" class="ratingbutton">
+                  <img
+                    src="../public/Images/Star.svg"
+                    class="w-[19.5px] h-[19.5px] star"
+                  />
+                  <img
+                    src="../public/Images/Star-shade.svg"
+                    class="w-[19.5px] h-[19.5px] star-shade"
+                    style="display: none"
+                  />
+                </button>
+                <button onclick="rating(2, this)" class="ratingbutton">
+                  <img
+                    src="../public/Images/Star.svg"
+                    class="w-[19.5px] h-[19.5px] star"
+                  />
+                  <img
+                    src="../public/Images/Star-shade.svg"
+                    class="w-[19.5px] h-[19.5px] star-shade"
+                    style="display: none"
+                  />
+                </button>
+                <button onclick="rating(3, this)" class="ratingbutton">
+                  <img
+                    src="../public/Images/Star.svg"
+                    class="w-[19.5px] h-[19.5px] star"
+                  />
+                  <img
+                    src="../public/Images/Star-shade.svg"
+                    class="w-[19.5px] h-[19.5px] star-shade"
+                    style="display: none"
+                  />
+                </button>
+                <button onclick="rating(4, this)" class="ratingbutton">
+                  <img
+                    src="../public/Images/Star.svg"
+                    class="w-[19.5px] h-[19.5px] star"
+                  />
+                  <img
+                    src="../public/Images/Star-shade.svg"
+                    class="w-[19.5px] h-[19.5px] star-shade"
+                    style="display: none"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
           <textarea
             type="text"
-            class="w-[100%] h-[122px] border-[1px] rounded-[5px] pl-[16px] lg:pl-[20px] pt-[11px]"
+            class="w-[100%] h-[122px] border-[1px] rounded-[5px] pl-[16px] lg:pl-[20px] pt-[11px] lg:mt-[19px] mt-2"
             rows="5"
             placeholder="Type to Comment"
           ></textarea>

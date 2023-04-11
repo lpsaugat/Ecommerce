@@ -42,7 +42,10 @@ mongoose
     console.log(err);
 });
 
-app.listen(process.env.PORT, () => console.log(`The server is running on port ${process.env.PORT}`))
+const ip = require('ip');
+
+
+app.listen(3000, ip.address(), () => console.log(`The server is running on port ${process.env.PORT}`))
 
 // mongoose.connection.once('open', () => {
 //     app.listen(app.get('port')

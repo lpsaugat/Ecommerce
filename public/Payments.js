@@ -8,8 +8,10 @@ function cardshadow(){
 
     }
     shadow.forEach(function(button) {
+ 
         button.addEventListener('click', function() {
+ 
           button.style.boxShadow = '0px 2px 4px rgba(0, 0, 0, 0.25)';
-        });
       });
+    });
 }

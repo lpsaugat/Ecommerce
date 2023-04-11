@@ -10,4 +10,11 @@ function detailshow(element){
     }
     details[element].style.display = 'block';
     underline[element].style.textDecoration = 'underline';
+
+    if (element === 3){
+        document.getElementsByClassName('singleproductcomment')[0].style.display = 'block';
+    }
+    else {
+        document.getElementsByClassName('singleproductcomment')[0].style.display = 'none';
+    }
 }

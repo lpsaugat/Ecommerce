@@ -35,9 +35,9 @@
 
 
         filterside.classList.remove("-z-10");
-        filterside.classList.add("z-40");
+        filterside.classList.add("z-50");
         filterback.classList.remove("-z-10");
-        filterback.classList.add("z-40");
+        filterback.classList.add("z-50");
         filterback.classList.add("bg-black");
 
   }
@@ -47,9 +47,9 @@
     document.body.style.overflow='visible';
 
     filterside.classList.add("-z-10");
-    filterside.classList.remove("z-40");
+    filterside.classList.remove("z-50");
     filterback.classList.add("-z-10");
-    filterback.classList.remove("z-40");
+    filterback.classList.remove("z-50");
     filterback.classList.remove("bg-black");
 
 }
@@ -62,9 +62,9 @@ function filterbgb(){
     document.body.style.overflow='visible';
 
     filterside.classList.add("-z-10");
-    filterside.classList.remove("z-40");
+    filterside.classList.remove("z-50");
     filterback.classList.add("-z-10");
-    filterback.classList.remove("z-40");
+    filterback.classList.remove("z-50");
     filterback.classList.remove("bg-black");
 }
 

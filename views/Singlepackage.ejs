@@ -4,7 +4,7 @@
   <div class="grid lg:grid-cols-5 lg:gap-x-[30px] gap-y-[27px]">
     <!-- Product Image -->
     <div
-      class="lg:rounded-[5px] relative overflow-hidden rounded-[3px] shadow-[0_0px_4px_rgba(0,0,0,0.25)] h-[237.4px] md:h-[335px] lg:min-h-[450px] lg:h-auto col-span-3 items-center justify-center flex"
+      class="lg:rounded-[5px] mt-[3px] relative overflow-hidden rounded-[3px] shadow-[0_0px_4px_rgba(0,0,0,0.25)] h-[237.4px] md:h-[335px] lg:min-h-[450px] lg:h-auto col-span-3 items-center justify-center flex"
     >
       <img
         src="../public/Images/singlepackage/package.png"
@@ -12,7 +12,7 @@
         onmouseover="magnify(this)"
         onmouseout="magnifyout(this)"
       />
-      <!-- <div
+      <div
         class="top-[14px] right-[14px] md:top-[16px] lg:top-[20px] lg:right-[20px] absolute"
       >
         <button>
@@ -21,7 +21,7 @@
             class="w-[18px] lg:w-[15.75px]"
           />
         </button>
-      </div> -->
+      </div>
     </div>
     <!-- Writing of Product -->
     <div class="lg:col-span-2 w-full">
@@ -445,7 +445,7 @@
     </div>
     <%- include ("./partials/comments") %>
     <div
-      class="border-[0.5px] lg:border-0 pb-[15px] md:pb-[17.95px] lg:pb-[25px] lg:border-b-[1px] lg:rounded-none rounded-[5px] mt-[20px] lg:mt-0 pl-[14px] lg:pl-[40px] pt-[16px] lg:pt-[30px] lg:pr-[40px] pr-[20px] shadow-[0px_0px_2px_rgba(0,0,0,0.25)] lg:shadow-none"
+      class="border-[0.5px] lg:border-0 pb-[15px] md:pb-[17.95px] lg:pb-[25px] lg:rounded-none rounded-[5px] mt-[20px] lg:mt-0 pl-[14px] lg:pl-[40px] pt-[16px] lg:pt-[30px] lg:pr-[40px] pr-[20px] shadow-[0px_0px_2px_rgba(0,0,0,0.25)] lg:shadow-none"
     >
       <div class="justify-between flex flex-col">
         <div class="flex w-full">
@@ -473,7 +473,7 @@
         </div>
       </div>
       <div
-        class="bg-[#f2f2f2] pb-[15px] md:pb-[17.95px] lg:pb-[25px] lg:border-b-[1px] lg:rounded-none rounded-[5px] mt-[20px] lg:mt-5 pl-[14px] lg:pl-[40px] pt-[16px] lg:pt-[30px] lg:pr-[40px] pr-[20px]"
+        class="bg-[#f2f2f2] pb-[15px] md:pb-[17.95px] lg:pb-[25px] lg:rounded-none rounded-[5px] mt-[20px] lg:mt-5 pl-[14px] lg:pl-[40px] pt-[16px] lg:pt-[30px] lg:pr-[40px] pr-[20px]"
       >
         <div class="justify-between flex flex-col">
           <div class="flex w-full">
@@ -502,9 +502,71 @@
         </div>
       </div>
       <div class="lg:pl-[27px] pl-[16px] w-full">
+        <div class="font-semibold text-sm flex w-full items-center flex">
+          <div>Your Rating:</div>
+          <div id="" class="flex gap-x-1 pl-2 lg:pl-4 items-center">
+            <div class="flex items-center gap-x-1">
+              <button onclick="rating(0, this)" class="ratingbutton">
+                <img
+                  src="../public/Images/Vector.png"
+                  class="w-[19.5px] h-[19.5px] star"
+                />
+                <img
+                  src="../public/Images/Star-shade.svg"
+                  class="w-[19.5px] h-[19.5px] star-shade"
+                  style="display: none"
+                />
+              </button>
+              <button onclick="rating(1, this)" class="ratingbutton">
+                <img
+                  src="../public/Images/Vector.png"
+                  class="w-[19.5px] h-[19.5px] star"
+                />
+                <img
+                  src="../public/Images/Star-shade.svg"
+                  class="w-[19.5px] h-[19.5px] star-shade"
+                  style="display: none"
+                />
+              </button>
+              <button onclick="rating(2, this)" class="ratingbutton">
+                <img
+                  src="../public/Images/Vector.png"
+                  class="w-[19.5px] h-[19.5px] star"
+                />
+                <img
+                  src="../public/Images/Star-shade.svg"
+                  class="w-[19.5px] h-[19.5px] star-shade"
+                  style="display: none"
+                />
+              </button>
+              <button onclick="rating(3, this)" class="ratingbutton">
+                <img
+                  src="../public/Images/Vector.png"
+                  class="w-[19.5px] h-[19.5px] star"
+                />
+                <img
+                  src="../public/Images/Star-shade.svg"
+                  class="w-[19.5px] h-[19.5px] star-shade"
+                  style="display: none"
+                />
+              </button>
+              <button onclick="rating(4, this)" class="ratingbutton">
+                <img
+                  src="../public/Images/Vector.png"
+                  class="w-[19.5px] h-[19.5px] star"
+                />
+                <img
+                  src="../public/Images/Star-shade.svg"
+                  class="w-[19.5px] h-[19.5px] star-shade"
+                  style="display: none"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
         <textarea
           type="text"
-          class="w-[100%] h-[122px] border-[1px] rounded-[5px] pl-[16px] lg:pl-[20px] pt-[11px]"
+          class="w-[100%] h-[122px] border-[1px] rounded-[5px] pl-[16px] lg:pl-[20px] pt-[11px] lg:mt-[19px] mt-2"
           rows="5"
           placeholder="Type to Comment"
         ></textarea>
