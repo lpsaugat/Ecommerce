@@ -120,7 +120,7 @@ controller.createUser = async (req, res) => {
     // const email  = req.body.email;
     // const findUser = await User.findOne(email);
     // if(!findUser){
-    //     //Create New User
+        //Create New User
     console.log("hi")
         const newUser = await User.create({...req.body});
         console.log(newUser)
