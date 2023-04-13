@@ -2,17 +2,20 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const express = require('express')
-const mysql = require('mysql')
-myConnection = require('express-myconnection');
+ myConnection = require('express-myconnection');
 path = require('path')
 morgan = require('morgan');
 const mongoose = require('mongoose');
 const fs = require('fs');
+const bodyParser = require('body-parser');
+
 
 
 
 const app = express() 
 app.use(express.json())
+app.use(bodyParser.json());
+
 
 
 

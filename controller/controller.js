@@ -1,6 +1,7 @@
 const connection = require("express-myconnection");
 const User = require("../models/User")
 
+
 const path = require('path')
 
 const controller = {};
@@ -98,7 +99,7 @@ controller.billing = (req,res) =>
 
 controller.payments = (req,res) => 
 {
-    res.render("payments")
+        res.render("payments")
 }
 
 controller.success = (req,res) => 
@@ -117,22 +118,51 @@ controller.vendor = (req,res) =>
 }
 
 controller.createUser = async (req, res) => {
-    // const email  = req.body.email;
-    // const findUser = await User.findOne(email);
-    // if(!findUser){
-        //Create New User
+    const email  = req.body.email;
+    const findUser = await User.findOne({email});
+    if(!findUser){
+        // Create New User
     console.log("hi")
+    console.log(req.body)
         const newUser = await User.create({...req.body});
         console.log(newUser)
         res.json(newUser)
-    // }
-    // else{
-    //     //User Already Exists
-    //     res.json({
-    //         msg: "User already exists",
-    //         success:false,
-    //     })
-    // }
+    }
+    else{
+        //User Already Exists
+        res.json({
+            msg: "User already exists",
+            success:false,
+        })
+     }
 }
+
+// controller.checkUser = async (req, res) => {
+//     const { email, password } = req.body; // get the email and password from the request body
+//     const user = await User.findOne({ email });
+
+//     try {
+//       // query the database for the user with the specified email address
+//       const user = await User.findOne({ email });
+  
+//       if (!user) {
+//         // if no user is found, return an error response
+//         return res.status(401).send({ message: 'Invalid email or password' });
+//       }
+  
+//       // check if the password matches
+//       if (!await user.checkPassword(password)) {
+//         // if the password doesn't match, return an error response
+//         return res.status(401).send({ message: 'Invalid email or password' });
+//       }
+  
+//       // if the email and password are valid, return a success response
+//       return res.status(200).send({ message: 'Sign-in successful', user });
+//       console.log("logged in")
+  
+//     } catch (error) {
+//       // if there's an error while querying the database, return an error response
+//       return res.status(500).send({ message: 'Internal server error' });
+//     }}
 
  module.exports = controller;

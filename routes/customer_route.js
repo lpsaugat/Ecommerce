@@ -9,7 +9,11 @@ router.post('/add', customerController.add)
 router.get('/slider', customerController.slider)
 router.get('/subscription', customerController.subscription)
 router.get('/products', customerController.products)
+
+
 router.get('/Sign_In', customerController.signin)
+// router.post('/Sign_In', customerController.checkUser)
+
 
 
 

@@ -3,7 +3,9 @@
 <div class="max-w-1200 mx-auto lg:pt-[80px] px-5">
   <div class="font-medium text-center lg:text-[36px] text-[18px]">Sign Up</div>
   <form
-    method="post"
+    id="signup-form"
+    method="POST"
+    action="sign_up"
     class="lg:max-w-[600px] md:max-w-[490px] mx-auto lg:mt-[30px] md:mt-[28px] mt-[24px]"
   >
     <div>
@@ -46,13 +48,31 @@
       <label for="password" class="text-[12px] md:text-[14px] font-medium"
         >Password *</label
       >
-      <input
-        type="password"
-        class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
-        id="password"
-        name="password"
-        required
-      />
+      <div class="flex justify-between">
+        <input
+          type="password"
+          class="passwordtoggle w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
+          id="password"
+          name="password"
+          required
+        />
+        <button type="button">
+          <img
+            src="../public/images/eye-password-show.svg"
+            class="h-[28px] w-[28px] pt-[12px] passshow"
+            style="display: none"
+            onclick="passwordhide(0)"
+          />
+        </button>
+        <button type="button">
+          <img
+            src="../public/images/eye-password-hide.svg"
+            class="h-[28px] w-[28px] pt-[12px] passhide"
+            style="display: block"
+            onclick="passwordshow(0)"
+          />
+        </button>
+      </div>
     </div>
     <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
       <label
@@ -60,13 +80,31 @@
         class="text-[12px] md:text-[14px] font-medium"
         >Confirm Password *</label
       >
-      <input
-        type="password"
-        class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
-        id="Confirmpassword"
-        name="Confirmpassword"
-        required
-      />
+      <div class="flex">
+        <input
+          type="password"
+          class="passwordtoggle w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
+          id="Confirmpassword"
+          name="Confirmpassword"
+          required
+        />
+        <button type="button">
+          <img
+            src="../public/images/eye-password-show.svg"
+            class="h-[28px] w-[28px] pt-[12px] passshow"
+            style="display: none"
+            onclick="passwordhide(1)"
+          />
+        </button>
+        <button type="button">
+          <img
+            src="../public/images/eye-password-hide.svg"
+            class="h-[28px] w-[28px] pt-[12px] passhide"
+            style="display: block"
+            onclick="passwordshow(1)"
+          />
+        </button>
+      </div>
     </div>
 
     <div class="mt-[20px] lg:mt-[24px]">
