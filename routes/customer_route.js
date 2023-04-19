@@ -1,4 +1,6 @@
 const router = require("express").Router();
+const CryptoJS = require("crypto-js");
+const User = require("../models/User");
 
 const customerController = require("../controller/controller");
 const { verifyToken, verifyTokenAndAuthorization } = require("./verifyToken");
@@ -13,21 +15,29 @@ router.get("/products", customerController.products);
 
 router.get("/Sign_In", customerController.signin);
 router.post("/Sign_In", customerController.checkUser);
-// router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
-//   if (req.body.password) {
-//     req.body.password = CryptoJS.AES.encrypt(
-//       req.body.password,
-//       process.env.PASS_SECRET
-//     );
-//   }
-//   try {
-//     const updatedUser = await User.findbyIdAndUpdate(req.params.id, {
-//       $set: req.body,
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+router.put("/dashboard/:id", verifyTokenAndAuthorization, async (req, res) => {
+  if (req.body.password) {
+    req.body.password = CryptoJS.AES.encrypt(
+      req.body.password,
+      process.env.PASS_SECRET
+    );
+  }
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    console.log("sdfsd");
+
+    res.status(200).json(updatedUser);
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+});
 
 router.get("/Sign_Up", customerController.signup);
 router.post("/Sign_Up", customerController.createUser);

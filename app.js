@@ -17,6 +17,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 const customer_route = require("./routes/customer_route");
+const user = require("./routes/user");
 const { resourceUsage } = require("process");
 
 app.use("/public", express.static("public"));

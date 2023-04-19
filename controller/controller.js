@@ -143,6 +143,7 @@ controller.checkUser = async (req, res) => {
   try {
     // query the database for the user with the specified email address
     const user = await User.findOne({ email });
+
     console.log("user here");
     const hashedpassword = CryptoJS.AES.decrypt(
       user.password,
@@ -172,7 +173,9 @@ controller.checkUser = async (req, res) => {
     console.log(accessToken);
     res.cookie(accessToken);
 
-    res.status(200).json({ message: "Sign-in successful" });
+    // user = { password, ...others };
+    const { password, ...others } = user._doc;
+    res.status(200).json({ ...others, accessToken });
   } catch (error) {
     // if there's an error while querying the database, return an error response
     console.log(error);
