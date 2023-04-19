@@ -1,31 +1,28 @@
 const mongoose = require("mongoose"); // Erase if already required
 
 // Declare the Schema of the Mongo model
-var userSchema = new mongoose.Schema({
-  name: {
+var Carousel = new mongoose.Schema({
+  Name: {
     type: String,
     required: true,
   },
-  Familysize: {
+  Firstheading: {
     type: String,
     required: false,
   },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-
-  password: {
+  Heading: {
     type: String,
     required: true,
   },
-
-  isAdmin: {
-    type: Boolean,
-    default: false,
+  Offer: {
+    type: String,
+    required: false,
+  },
+  Image: {
+    data: Buffer,
+    contentType: String,
   },
 });
 
 //Export the model
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("Carousel", Carousel);
