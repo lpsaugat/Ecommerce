@@ -1,9 +1,14 @@
 const router = require("express").Router();
 const CryptoJS = require("crypto-js");
 const User = require("../models/User");
+const jwt = require("jsonwebtoken");
 
 const customerController = require("../controller/controller");
-const { verifyToken, verifyTokenAndAuthorization } = require("./verifyToken");
+const {
+  verifyToken,
+  verifyTokenAndAuthorization,
+  verifyTokenAndAdmin,
+} = require("./verifyToken");
 
 router.get("/", customerController.home);
 router.get("/AboutUs", customerController.aboutus);
@@ -15,6 +20,12 @@ router.get("/products", customerController.products);
 
 router.get("/Sign_In", customerController.signin);
 router.post("/Sign_In", customerController.checkUser);
+
+router.get("/Sign_Up", customerController.signup);
+router.post("/Sign_Up", customerController.createUser);
+
+// Update User
+
 router.put("/dashboard/:id", verifyTokenAndAuthorization, async (req, res) => {
   if (req.body.password) {
     req.body.password = CryptoJS.AES.encrypt(
@@ -30,7 +41,6 @@ router.put("/dashboard/:id", verifyTokenAndAuthorization, async (req, res) => {
       },
       { new: true }
     );
-    console.log("sdfsd");
 
     res.status(200).json(updatedUser);
   } catch (err) {
@@ -39,8 +49,32 @@ router.put("/dashboard/:id", verifyTokenAndAuthorization, async (req, res) => {
   }
 });
 
-router.get("/Sign_Up", customerController.signup);
-router.post("/Sign_Up", customerController.createUser);
+// Get All Users
+router.get("/admindashboard/:id", verifyTokenAndAdmin, async (req, res) => {
+  try {
+    const user = await User.find();
+    // const { password, ...others } = user._doc;
+    res.status(200).json(user);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+router.delete("/admindashboard/:id", verifyTokenAndAdmin, async (req, res) => {
+  try {
+    const deletedUser = await User.findOneAndDelete(req.body.username);
+    if (!deletedUser) {
+      // Return a 404 response if the user is not found
+      return res.status(404).json({ message: "User not found" });
+    } else {
+      return res.status(200).json({ message: "User deleted" });
+    }
+  } catch (err) {
+    console.log("err");
+    res.status(500).json(err);
+  }
+});
 
 router.get("/package", customerController.package);
 router.get("/familypackages", customerController.familypackages);

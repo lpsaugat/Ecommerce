@@ -18,11 +18,13 @@ app.use(bodyParser.json());
 
 const customer_route = require("./routes/customer_route");
 const user = require("./routes/user");
+
 const { resourceUsage } = require("process");
 
 app.use("/public", express.static("public"));
 
 app.use("/", customer_route);
+// app.use("/", user);
 
 // app.set('port', process.env.PORT || 3000,);
 app.set("views", path.join(__dirname, "views"));
