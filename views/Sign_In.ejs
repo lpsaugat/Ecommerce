@@ -2,8 +2,10 @@
 
 <div class="max-w-1200 mx-auto lg:pt-[80px] px-5">
   <div class="font-medium text-center lg:text-[36px] text-[18px]">Sign In</div>
-  <div
+  <form
     class="lg:max-w-[600px] md:max-w-[490px] mx-auto lg:mt-[30px] md:mt-[28px] mt-[24px]"
+    id="signin-form"
+    method="POST"
   >
     <div>
       <label for="Email" class="text-[12px] md:text-[14px] font-medium"
@@ -11,6 +13,7 @@
       >
       <input
         type="email"
+        name="email"
         class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
         id="Email"
         required
@@ -22,6 +25,7 @@
       >
       <input
         type="password"
+        name="password"
         class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
         id="password"
         required
@@ -74,6 +78,6 @@
         </div>
       </button>
     </div>
-  </div>
+  </form>
 </div>
 <%- include ("./partials/footer") %>

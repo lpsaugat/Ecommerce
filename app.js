@@ -40,6 +40,8 @@ app.listen(3000, ip.address(), () =>
   console.log(`The server is running on port ${process.env.PORT}`)
 );
 
+// app.listen(3000);
+
 // mongoose.connection.once('open', () => {
 //     app.listen(app.get('port')
 // , '192.168.101.14'
