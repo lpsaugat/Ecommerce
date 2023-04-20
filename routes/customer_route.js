@@ -127,4 +127,25 @@ router.put(
   customerController.carouselupdate
 );
 
+//Products
+router.post(
+  "/admindashboard/products",
+  verifyTokenAndAdmin,
+  upload.single("Image"),
+
+  customerController.productdetails
+);
+router.put(
+  "/admindashboard/products/:id",
+  verifyTokenAndAdmin,
+  upload.single("Image"),
+
+  customerController.productupdate
+);
+router.delete(
+  "/admindashboard/products/:id",
+  verifyTokenAndAdmin,
+  customerController.productdelete
+);
+
 module.exports = router;

@@ -1,6 +1,8 @@
 const connection = require("express-myconnection");
 const User = require("../models/User");
 const Carousel = require("../models/Carousel");
+const Product = require("../models/Products");
+
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const path = require("path");
@@ -220,10 +222,6 @@ controller.carouselwriting = async (req, res) => {
   }
 };
 
-controller.test = (req, res) => {
-  res.render("test");
-};
-
 //Carousel Writings Update and Change
 controller.carouselupdate = async (req, res) => {
   const filter = { Name: req.body.Name };
@@ -245,4 +243,63 @@ controller.carouselupdate = async (req, res) => {
   }
 };
 
+//Product details
+controller.productdetails = async (req, res) => {
+  try {
+    const newProduct = await Product.create({
+      Name: req.body.Name,
+      Description: req.body.Description,
+      Price: req.body.Price,
+      Quantity: req.body.Quantity,
+      Priceper: req.body.Priceper,
+
+      Image: req.file.path,
+    });
+    res.json(newProduct);
+  } catch (err) {
+    console.log(err);
+    res.json(err);
+  }
+};
+
+//Product Details Update and Change
+controller.productupdate = async (req, res) => {
+  const filter = req.params.id;
+  console.log(filter);
+  const update = { ...req.body, Image: req.file.path };
+  try {
+    const updatedProduct = await Product.findOneAndUpdate(
+      filter,
+      update,
+
+      { new: true }
+    );
+    console.log(updatedProduct);
+
+    res.status(200).json(updatedProduct);
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+};
+
+//Delete a Product
+
+controller.productdelete = async (req, res) => {
+  try {
+    const deletedProduct = await User.findOneAndDelete(req.params.id);
+    if (!deletedProduct) {
+      // Return a 404 response if the product is not found
+      return res.status(404).json({ message: "Product not found" });
+    } else {
+      return res.status(200).json({ message: "Product deleted" });
+    }
+  } catch (err) {
+    console.log("err");
+    res.status(500).json(err);
+  }
+};
+controller.test = (req, res) => {
+  res.render("test");
+};
 module.exports = controller;
