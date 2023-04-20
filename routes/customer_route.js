@@ -61,6 +61,7 @@ router.get("/admindashboard/:id", verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
+//Delete a specific user from Username
 router.delete("/admindashboard/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
     const deletedUser = await User.findOneAndDelete(req.body.username);
@@ -91,5 +92,9 @@ router.get("/dashboard", customerController.dashboard);
 router.get("/mobilepassword", customerController.mobilepassword);
 
 router.get("/test", customerController.test);
+
+//Homepage Carousel changes
+router.post("/admindashboard/carousel", customerController.carouselwriting);
+router.put("/admindashboard/carousel", customerController.carouselupdate);
 
 module.exports = router;

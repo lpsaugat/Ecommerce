@@ -1,5 +1,6 @@
 const connection = require("express-myconnection");
 const User = require("../models/User");
+const Carousel = require("../models/Carousel");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 
@@ -7,8 +8,15 @@ const path = require("path");
 
 const controller = {};
 
-controller.home = (req, res) => {
-  res.render("Homepage");
+controller.home = async (req, res) => {
+  try {
+    const data = await Carousel.find();
+    console.log(data);
+    res.render("Homepage", { data });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Internal server Error" });
+  }
 };
 
 controller.aboutus = (req, res) => {
@@ -69,10 +77,6 @@ controller.package = (req, res) => {
   res.render("Package");
 };
 
-controller.test = (req, res) => {
-  res.render("test");
-};
-
 controller.singlepackage = (req, res) => {
   res.render("singlepackage");
 };
@@ -105,6 +109,7 @@ controller.vendor = (req, res) => {
   res.render("vendor");
 };
 
+//SignUp from User
 controller.createUser = async (req, res) => {
   const email = req.body.email;
   const findUser = await User.findOne({ email });
@@ -131,6 +136,7 @@ controller.createUser = async (req, res) => {
   }
 };
 
+//SignIn from User
 controller.checkUser = async (req, res) => {
   // get the email and password from the request body
   const email = req.body.email;
@@ -180,6 +186,47 @@ controller.checkUser = async (req, res) => {
     // if there's an error while querying the database, return an error response
     console.log(error);
     // return res.status(500).send({ error });
+  }
+};
+
+//Writing in Carousel
+controller.carouselwriting = async (req, res) => {
+  try {
+    console.log("df");
+    const newCarousel = await Carousel.create({
+      Name: req.body.Name,
+      Heading: req.body.Heading,
+      Offer: req.body.Offer,
+    });
+    res.json(newCarousel);
+  } catch (err) {
+    console.log(err);
+    res.json(err);
+  }
+};
+
+controller.test = (req, res) => {
+  res.render("test");
+};
+
+//Carousel Writings Update and Change
+controller.carouselupdate = async (req, res) => {
+  const filter = { Name: req.body.Name };
+  console.log(filter);
+  const update = { $set: req.body };
+  try {
+    const updatedCarousel = await Carousel.findOneAndUpdate(
+      filter,
+      update,
+
+      { new: true }
+    );
+    console.log(updatedCarousel);
+
+    res.status(200).json(updatedCarousel);
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
   }
 };
 

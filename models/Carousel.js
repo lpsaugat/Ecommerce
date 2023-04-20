@@ -18,10 +18,6 @@ var Carousel = new mongoose.Schema({
     type: String,
     required: false,
   },
-  Image: {
-    data: Buffer,
-    contentType: String,
-  },
 });
 
 //Export the model
