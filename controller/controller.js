@@ -3,8 +3,23 @@ const User = require("../models/User");
 const Carousel = require("../models/Carousel");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
-
 const path = require("path");
+const multer = require("multer");
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "public/Images/uploadedfiles/");
+  },
+  filename: function (req, file, cb) {
+    cb(
+      null,
+      file.fieldname +
+        "-" +
+        Date.now() +
+        "." +
+        file.originalname.split(".").pop()
+    );
+  },
+});
 
 const controller = {};
 
@@ -192,11 +207,11 @@ controller.checkUser = async (req, res) => {
 //Writing in Carousel
 controller.carouselwriting = async (req, res) => {
   try {
-    console.log("df");
     const newCarousel = await Carousel.create({
       Name: req.body.Name,
       Heading: req.body.Heading,
       Offer: req.body.Offer,
+      BackgroundImage: req.file.path,
     });
     res.json(newCarousel);
   } catch (err) {
@@ -213,7 +228,7 @@ controller.test = (req, res) => {
 controller.carouselupdate = async (req, res) => {
   const filter = { Name: req.body.Name };
   console.log(filter);
-  const update = { $set: req.body };
+  const update = { ...req.body, BackgroundImage: req.file.path };
   try {
     const updatedCarousel = await Carousel.findOneAndUpdate(
       filter,

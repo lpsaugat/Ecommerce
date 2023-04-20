@@ -2,6 +2,24 @@ const router = require("express").Router();
 const CryptoJS = require("crypto-js");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
+const multer = require("multer");
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "public/Images/uploadedfiles/");
+  },
+  filename: function (req, file, cb) {
+    cb(
+      null,
+      file.originalname +
+        "-" +
+        Date.now() +
+        "." +
+        file.originalname.split(".").pop()
+    );
+  },
+});
+
+const upload = multer({ storage: storage });
 
 const customerController = require("../controller/controller");
 const {
@@ -94,7 +112,19 @@ router.get("/mobilepassword", customerController.mobilepassword);
 router.get("/test", customerController.test);
 
 //Homepage Carousel changes
-router.post("/admindashboard/carousel", customerController.carouselwriting);
-router.put("/admindashboard/carousel", customerController.carouselupdate);
+router.post(
+  "/admindashboard/carousel",
+  verifyTokenAndAdmin,
+  upload.single("BackgroundImage"),
+
+  customerController.carouselwriting
+);
+router.put(
+  "/admindashboard/carousel",
+  verifyTokenAndAdmin,
+  upload.single("BackgroundImage"),
+
+  customerController.carouselupdate
+);
 
 module.exports = router;
