@@ -317,30 +317,39 @@ controller.productdelete = async (req, res) => {
 
 //Get all Product
 controller.productview = async (req, res) => {
-  if (User.user_type == "admin" || User.user_type == "super-admin") {
-    const products = await Product.find({})
+  const user = await User.findOne({ _id: req.params.id });
+  console.log(user);
+  if (user.user_type === "super-admin") {
+    console.log("sd1f");
+
+    const products = await Product.find()
       .sort("-createdAt")
       .populate("createdBy");
-  } else if (User.user_type == "vendor") {
+    res.send(products);
+  } else if (user.user_type === "vendor") {
     const products = await Product.find({
       user_type: "vendor",
-      createdBy: req.user.id,
+      createdBy: req.user.id1,
     });
+    res.send(products);
   }
 };
 
 //Get a specific product
 controller.productviewone = async (req, res) => {
-  if (User.user_type == "admin" || User.user_type == "super-admin") {
-    const products = await Product.findOne({ _id: req.params.id })
+  const user = await User.findOne({ user: req.params.id1 });
+  console.log(user);
+  if (user.user_type == "admin" || user.user_type == "super-admin") {
+    const products = await Product.findOne({ _id: req.params.id2 })
       .sort("-createdAt")
       .populate("createdBy");
-  } else if (User.user_type == "vendor") {
+    res.send(products);
+  } else if (user.user_type == "vendor") {
     const products = await Product.findOne({
-      user_type: "vendor",
-      createdBy: req.user.id,
-      _id: req.params.id,
+      createdBy: req.user.id1,
+      _id: req.params.id1,
     });
+    res.send(products);
   }
 };
 

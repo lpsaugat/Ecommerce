@@ -127,36 +127,45 @@ router.put(
   customerController.carouselupdate
 );
 
-//Products
+//Products Add
 router.post(
-  "/admindashboard/products",
-  verifyTokenAndAdmin,
+  "/dashboard/products",
+  verifyTokenAndAuthorization,
   upload.single("Image"),
 
   customerController.productdetails
 );
+
+//Update a product
 router.put(
-  "/admindashboard/products/:id",
-  verifyTokenAndAdmin,
+  "/dashboard/products/:id",
+  verifyTokenAndAuthorization,
   upload.single("Image"),
 
   customerController.productupdate
 );
+
+//Delete a product
 router.delete(
-  "/admindashboard/products/:id",
-  verifyTokenAndAdmin,
+  "/dashboard/products/:id",
+  verifyTokenAndAuthorization,
   customerController.productdelete
 );
+
+//Get all products
 router.get(
-  "/admindashboard/products/",
+  "/dashboard/products/:id",
   verifyTokenAndAdmin,
   customerController.productview
 );
+
+//Get a single product
 router.get(
-  "/admindashboard/products/:id",
-  verifyTokenAndAdmin,
+  "/dashboard/products/:id1/:id2",
+  verifyTokenAndAuthorization,
   customerController.productviewone
 );
+
 router.post("/logout", customerController.logout);
 
 module.exports = router;
