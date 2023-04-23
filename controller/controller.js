@@ -161,11 +161,8 @@ controller.checkUser = async (req, res) => {
   // get the email and password from the request body
   const email = req.body.email;
   const password = req.body.password;
-  console.log(email);
 
   const user = await User.findOne({ email });
-  console.log(user);
-  console.log(password);
   try {
     // query the database for the user with the specified email address
     const user = await User.findOne({ email });
@@ -315,6 +312,35 @@ controller.productdelete = async (req, res) => {
   } catch (err) {
     console.log("err");
     res.status(500).json(err);
+  }
+};
+
+//Get all Product
+controller.productview = async (req, res) => {
+  if (User.user_type == "admin" || User.user_type == "super-admin") {
+    const products = await Product.find({})
+      .sort("-createdAt")
+      .populate("createdBy");
+  } else if (User.user_type == "vendor") {
+    const products = await Product.find({
+      user_type: "vendor",
+      createdBy: req.user.id,
+    });
+  }
+};
+
+//Get a specific product
+controller.productviewone = async (req, res) => {
+  if (User.user_type == "admin" || User.user_type == "super-admin") {
+    const products = await Product.findOne({ _id: req.params.id })
+      .sort("-createdAt")
+      .populate("createdBy");
+  } else if (User.user_type == "vendor") {
+    const products = await Product.findOne({
+      user_type: "vendor",
+      createdBy: req.user.id,
+      _id: req.params.id,
+    });
   }
 };
 

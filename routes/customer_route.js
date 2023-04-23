@@ -147,7 +147,16 @@ router.delete(
   verifyTokenAndAdmin,
   customerController.productdelete
 );
-
+router.get(
+  "/admindashboard/products/",
+  verifyTokenAndAdmin,
+  customerController.productview
+);
+router.get(
+  "/admindashboard/products/:id",
+  verifyTokenAndAdmin,
+  customerController.productviewone
+);
 router.post("/logout", customerController.logout);
 
 module.exports = router;
