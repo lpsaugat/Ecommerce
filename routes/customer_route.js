@@ -148,4 +148,6 @@ router.delete(
   customerController.productdelete
 );
 
+router.post("/logout", customerController.logout);
+
 module.exports = router;

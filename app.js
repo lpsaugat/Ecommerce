@@ -8,6 +8,7 @@ morgan = require("morgan");
 const mongoose = require("mongoose");
 const fs = require("fs");
 const bodyParser = require("body-parser");
+const cookieparser = require("cookie-parser");
 
 // const bcrypt = require('bcrypt');
 // const salt = bcrypt.genSaltSync(10);
@@ -20,6 +21,7 @@ const customer_route = require("./routes/customer_route");
 const user = require("./routes/user");
 
 const { resourceUsage } = require("process");
+app.use(cookieparser());
 
 app.use("/public", express.static("public"));
 

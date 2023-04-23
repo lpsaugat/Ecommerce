@@ -209,6 +209,14 @@ controller.checkUser = async (req, res) => {
   }
 };
 
+//Logout
+controller.logout = async (req, res, next) => {
+  for (const cookieName in req.cookies) {
+    res.cookie(cookieName, "", { expires: new Date(0) });
+  }
+  res.redirect("/");
+};
+
 //Writing in Carousel
 controller.carouselwriting = async (req, res) => {
   try {
@@ -270,7 +278,7 @@ controller.productdetails = async (req, res) => {
 controller.productupdate = async (req, res) => {
   const filter = req.params.id;
   console.log(filter);
-  const update = { ...req.body };
+  const update = { ...req.body, Image: req.file.path };
   try {
     const getproduct = await Product.findOne({ _id: filter });
     if (!getproduct) {
