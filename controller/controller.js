@@ -2,11 +2,12 @@ const connection = require("express-myconnection");
 const User = require("../models/User");
 const Carousel = require("../models/Carousel");
 const Product = require("../models/Products");
-
+const express = require("express");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const path = require("path");
 const multer = require("multer");
+const app = express();
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "public/Images/uploadedfiles/");
@@ -28,8 +29,10 @@ const controller = {};
 controller.home = async (req, res) => {
   try {
     const data = await Carousel.find();
+    const productdata = await Product.find();
+
     console.log(data);
-    res.render("Homepage", { data });
+    res.render("Homepage", { data, productdata });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Internal server Error" });
@@ -188,7 +191,7 @@ controller.checkUser = async (req, res) => {
     const accessToken = jwt.sign(
       {
         id: user._id,
-        isAdmin: user.isAdmin,
+        user_type: user.user_type,
       },
       process.env.JWT_SECRET,
       { expiresIn: "3d" }
@@ -254,6 +257,7 @@ controller.productdetails = async (req, res) => {
       Priceper: req.body.Priceper,
 
       Image: req.file.path,
+      createdBy: req.user.id,
     });
     res.json(newProduct);
   } catch (err) {
@@ -266,13 +270,19 @@ controller.productdetails = async (req, res) => {
 controller.productupdate = async (req, res) => {
   const filter = req.params.id;
   console.log(filter);
-  const update = { ...req.body, Image: req.file.path };
+  const update = { ...req.body };
   try {
+    const getproduct = await Product.findOne({ _id: filter });
+    if (!getproduct) {
+      return res
+        .status(404)
+        .json({ message: `No product found with id ${filter}` });
+    }
     const updatedProduct = await Product.findOneAndUpdate(
       filter,
       update,
 
-      { new: true }
+      { new: true, runValidators: true }
     );
     console.log(updatedProduct);
 
@@ -287,7 +297,7 @@ controller.productupdate = async (req, res) => {
 
 controller.productdelete = async (req, res) => {
   try {
-    const deletedProduct = await User.findOneAndDelete(req.params.id);
+    const deletedProduct = await Product.findOneAndDelete(req.params.id);
     if (!deletedProduct) {
       // Return a 404 response if the product is not found
       return res.status(404).json({ message: "Product not found" });
@@ -299,6 +309,7 @@ controller.productdelete = async (req, res) => {
     res.status(500).json(err);
   }
 };
+
 controller.test = (req, res) => {
   res.render("test");
 };

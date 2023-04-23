@@ -5,25 +5,25 @@
       onmouseover="popupf()"
     >
       <img
-        src="../public/Images/homepage/Cardimg.png"
+        src="<%= productdata[0].Image %>"
         class="lg:pt-[17px] md:pt-[12px] pt-[10px] mx-auto md:h-[150px] lg:h-[196px] h-[113px]"
       />
 
       <div
         class="pl-[9px] md:pl-[11.71px] lg:pl-[13.74px] pt-[9px] md:pt-[11px] lg:pt-[17px]"
       >
-        <p class="font-medium text-xs md:text-base lg:text-lg">
-          Cocal Cola (1ltr)
+        <p class="font-medium text-xs md:text-base lg:text-lg truncate">
+          <%= productdata[0].Name %>
         </p>
         <p
           class="font-normal text-[10px] md:text-sm lg:text-xs text-[#182B3C] opacity-[0.36] lg:pt-[3px]"
         >
-          Rs.100/ltr
+          Rs.<%= productdata[0].Priceper %>
         </p>
         <p class="font-normal text-[10px] md:text-sm lg:text-xs text-[#32AA00]">
           Rs.<span
             class="font-bold text-xs md:text-base lg:text-lg text-[#32AA00]"
-            >100</span
+            ><%= productdata[0].Price %></span
           >
         </p>
         <p
