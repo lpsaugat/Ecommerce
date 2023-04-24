@@ -2,11 +2,14 @@ const connection = require("express-myconnection");
 const User = require("../models/User");
 const Carousel = require("../models/Carousel");
 const Product = require("../models/Products");
+const Order = require("../models/Order");
+
 const express = require("express");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const path = require("path");
 const multer = require("multer");
+const Products = require("../models/Products");
 const app = express();
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -261,7 +264,6 @@ controller.productdetails = async (req, res) => {
       Price: req.body.Price,
       Quantity: req.body.Quantity,
       Priceper: req.body.Priceper,
-
       Image: req.file.path,
       createdBy: req.user.id,
     });
@@ -357,7 +359,6 @@ controller.productview = async (req, res) => {
 
 //Get a specific product
 controller.productviewone = async (req, res) => {
-  const user = await User.findOne({ _id: req.user.id });
   console.log(user);
   if (user.user_type === "admin" || user.user_type === "super-admin") {
     const product = await Product.findOne({ _id: req.params.id })
@@ -376,6 +377,75 @@ controller.productviewone = async (req, res) => {
       res.send(`No product found with id: ${req.params.id}`);
     }
     res.send(product);
+  }
+};
+
+//Customer Order
+controller.order = async (req, res) => {
+  const product = await Products.findOne({ ProductID: req.body.product });
+  try {
+    const newOrder = await Order.create({
+      User: req.user.id,
+      ProductID: req.product.id,
+      Price: req.product.Price,
+      Vendor: req.product.createdBy,
+    });
+    res.json(newOrder);
+  } catch (err) {
+    console.log(err);
+    res.json(err);
+  }
+};
+
+//Get all orders from either Vendor or the order from customer.
+//Admin to view all products
+controller.orderview = async (req, res) => {
+  console.log(user);
+  if (user.user_type === "super-admin" || user.user_type === "admin") {
+    console.log("sd1f");
+    const orders = await Order.find().sort("-createdAt").populate("createdBy");
+    res.send(orders);
+  } else if (user.user_type === "vendor") {
+    const orders = await Order.find({
+      createdBy: req.user.id,
+    });
+    res.send(orders);
+  } else if (user.user_type === "customer") {
+    const orders = await Order.find({
+      User: req.user.id,
+    });
+    res.send(orders);
+  }
+};
+
+//Remove/ Delete an order
+controller.orderdelete = async (req, res) => {
+  const roles = ["super-admin", "admin"];
+  const filter = req.params.id;
+  console.log(filter);
+  const update = { ...req.body };
+  try {
+    const getorder = await order.findOne({ _id: filter });
+    if (!getorder) {
+      return res
+        .status(404)
+        .json({ message: `No order found with id ${filter}` });
+    }
+    if (
+      roles.includes(req.user.user_type) ||
+      getorder.createdBy.toString() === req.user.id ||
+      getorder.User.toString() === req.user.id
+    ) {
+      const deletedorder = await order.findOneAndDelete(filter);
+      console.log(deletedorder);
+
+      res.status(200).json(deletedorder);
+    } else {
+      res.status(403).json(`User is not allowed to delete the order`);
+    }
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
   }
 };
 
