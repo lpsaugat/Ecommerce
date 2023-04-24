@@ -140,6 +140,7 @@ controller.createUser = async (req, res) => {
     const newUser = await User.create({
       name: req.body.name,
       email: req.body.email,
+      user_type: req.body.user_type,
       password: CryptoJS.AES.encrypt(
         req.body.password,
         process.env.PASS_SECRET
@@ -298,7 +299,57 @@ controller.productupdate = async (req, res) => {
   }
 };
 
-//Delete a Product
+//Update a product from vendor
+controller.productupdatevendor = async (req, res) => {
+  const filter = req.params.id2;
+  console.log(filter);
+  const update = { ...req.body, Image: req.file.path };
+  try {
+    const getproduct = await Product.findOne({
+      _id: filter,
+      createdBy: req.params.id1,
+    });
+    if (!getproduct) {
+      return res
+        .status(404)
+        .json({ message: `No product found with id ${filter}` });
+    }
+    const updatedProduct = await Product.findOneAndUpdate(
+      filter,
+      update,
+
+      { new: true, runValidators: true }
+    );
+    console.log(updatedProduct);
+
+    res.status(200).json(updatedProduct);
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+};
+
+//Delete a Product from vendor
+
+controller.productdeletevendor = async (req, res) => {
+  try {
+    const deletedProduct = await Product.findOneAndDelete({
+      _id: req.params.id2,
+      createdBy: req.params.id1,
+    });
+    if (!deletedProduct) {
+      // Return a 404 response if the product is not found
+      return res.status(404).json({ message: "Product not found" });
+    } else {
+      return res.status(200).json({ message: "Product deleted" });
+    }
+  } catch (err) {
+    console.log("err");
+    res.status(500).json(err);
+  }
+};
+
+//Delete a product
 
 controller.productdelete = async (req, res) => {
   try {
@@ -328,8 +379,7 @@ controller.productview = async (req, res) => {
     res.send(products);
   } else if (user.user_type === "vendor") {
     const products = await Product.find({
-      user_type: "vendor",
-      createdBy: req.user.id1,
+      createdBy: req.user.id,
     });
     res.send(products);
   }
@@ -337,17 +387,17 @@ controller.productview = async (req, res) => {
 
 //Get a specific product
 controller.productviewone = async (req, res) => {
-  const user = await User.findOne({ user: req.params.id1 });
+  const user = await User.findOne({ _id: req.params.id1 });
   console.log(user);
-  if (user.user_type == "admin" || user.user_type == "super-admin") {
+  if (user.user_type === "admin" || user.user_type === "super-admin") {
     const products = await Product.findOne({ _id: req.params.id2 })
       .sort("-createdAt")
       .populate("createdBy");
     res.send(products);
-  } else if (user.user_type == "vendor") {
+  } else if (user.user_type === "vendor") {
     const products = await Product.findOne({
-      createdBy: req.user.id1,
-      _id: req.params.id1,
+      createdBy: req.params.id1,
+      _id: req.params.id2,
     });
     res.send(products);
   }
