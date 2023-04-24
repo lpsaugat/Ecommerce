@@ -16,9 +16,9 @@ const verifyToken = (req, res, next) => {
 };
 
 const verifyTokenAndAuthorization = (req, res, next) => {
+  console.log(req.user);
   verifyToken(req, res, () => {
     if (
-      req.user.id === req.params.id ||
       req.user.user_type === "vendor" ||
       req.user.user_type === "super-admin"
     ) {

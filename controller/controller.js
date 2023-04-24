@@ -29,7 +29,7 @@ const controller = {};
 controller.home = async (req, res) => {
   try {
     const data = await Carousel.find();
-    const productdata = await Product.find();
+    const productdata = await Product.find({ status: true }).sort("-createdAt");
 
     console.log(data);
     res.render("Homepage", { data, productdata });
@@ -274,9 +274,9 @@ controller.productdetails = async (req, res) => {
 
 //Product Details Update and Change
 controller.productupdate = async (req, res) => {
+  const roles = ["super-admin", "admin"];
   const filter = req.params.id;
   console.log(filter);
-  const update = { ...req.body, Image: req.file.path };
   try {
     const getproduct = await Product.findOne({ _id: filter });
     if (!getproduct) {
@@ -284,93 +284,63 @@ controller.productupdate = async (req, res) => {
         .status(404)
         .json({ message: `No product found with id ${filter}` });
     }
-    const updatedProduct = await Product.findOneAndUpdate(
-      filter,
-      update,
+    if (
+      roles.includes(req.user.user_type) ||
+      getproduct.createdBy.toString() === req.user.id
+    ) {
+      const updatedProduct = await Product.findOneAndUpdate(
+        filter,
+        update,
 
-      { new: true, runValidators: true }
-    );
-    console.log(updatedProduct);
+        { new: true, runValidators: true }
+      );
+      console.log(updatedProduct);
 
-    res.status(200).json(updatedProduct);
+      res.status(200).json(updatedProduct);
+    } else {
+      res.status(403).json(`User is not allowed to update the product`);
+    }
   } catch (err) {
     res.status(500).json(err);
     console.log(err);
   }
 };
 
-//Update a product from vendor
-controller.productupdatevendor = async (req, res) => {
-  const filter = req.params.id2;
+//Delete a product
+controller.productdelete = async (req, res) => {
+  const roles = ["super-admin", "admin"];
+  const filter = req.params.id;
   console.log(filter);
-  const update = { ...req.body, Image: req.file.path };
+  const update = { ...req.body };
   try {
-    const getproduct = await Product.findOne({
-      _id: filter,
-      createdBy: req.params.id1,
-    });
+    const getproduct = await Product.findOne({ _id: filter });
     if (!getproduct) {
       return res
         .status(404)
         .json({ message: `No product found with id ${filter}` });
     }
-    const updatedProduct = await Product.findOneAndUpdate(
-      filter,
-      update,
+    if (
+      roles.includes(req.user.user_type) ||
+      getproduct.createdBy.toString() === req.user.id
+    ) {
+      const deletedProduct = await Product.findOneAndDelete(filter);
+      console.log(deletedProduct);
 
-      { new: true, runValidators: true }
-    );
-    console.log(updatedProduct);
-
-    res.status(200).json(updatedProduct);
+      res.status(200).json(deletedProduct);
+    } else {
+      res.status(403).json(`User is not allowed to delete the product`);
+    }
   } catch (err) {
     res.status(500).json(err);
     console.log(err);
   }
 };
 
-//Delete a Product from vendor
-
-controller.productdeletevendor = async (req, res) => {
-  try {
-    const deletedProduct = await Product.findOneAndDelete({
-      _id: req.params.id2,
-      createdBy: req.params.id1,
-    });
-    if (!deletedProduct) {
-      // Return a 404 response if the product is not found
-      return res.status(404).json({ message: "Product not found" });
-    } else {
-      return res.status(200).json({ message: "Product deleted" });
-    }
-  } catch (err) {
-    console.log("err");
-    res.status(500).json(err);
-  }
-};
-
-//Delete a product
-
-controller.productdelete = async (req, res) => {
-  try {
-    const deletedProduct = await Product.findOneAndDelete(req.params.id);
-    if (!deletedProduct) {
-      // Return a 404 response if the product is not found
-      return res.status(404).json({ message: "Product not found" });
-    } else {
-      return res.status(200).json({ message: "Product deleted" });
-    }
-  } catch (err) {
-    console.log("err");
-    res.status(500).json(err);
-  }
-};
-
 //Get all Product
 controller.productview = async (req, res) => {
-  const user = await User.findOne({ _id: req.params.id });
+  const user = await User.findOne({ _id: req.user.id });
   console.log(user);
-  if (user.user_type === "super-admin") {
+  if (user.user_type === "super-admin" || user.user_type === "admin") {
     console.log("sd1f");
 
     const products = await Product.find()
@@ -387,19 +357,25 @@ controller.productview = async (req, res) => {
 
 //Get a specific product
 controller.productviewone = async (req, res) => {
-  const user = await User.findOne({ _id: req.params.id1 });
+  const user = await User.findOne({ _id: req.user.id });
   console.log(user);
   if (user.user_type === "admin" || user.user_type === "super-admin") {
-    const products = await Product.findOne({ _id: req.params.id2 })
+    const product = await Product.findOne({ _id: req.params.id })
       .sort("-createdAt")
       .populate("createdBy");
-    res.send(products);
+    if (!product) {
+      res.send(`No product found with id: ${req.params.id}`);
+    }
+    res.send(product);
   } else if (user.user_type === "vendor") {
-    const products = await Product.findOne({
-      createdBy: req.params.id1,
-      _id: req.params.id2,
+    const product = await Product.findOne({
+      createdBy: req.user.id,
+      _id: req.params.id,
     });
-    res.send(products);
+    if (!product) {
+      res.send(`No product found with id: ${req.params.id}`);
+    }
+    res.send(product);
   }
 };
 

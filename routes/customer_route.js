@@ -129,7 +129,7 @@ router.put(
 
 //Products Add
 router.post(
-  "/dashboard/products/:id",
+  "/dashboard/products",
   verifyTokenAndAuthorization,
   upload.single("Image"),
 
@@ -145,39 +145,39 @@ router.put(
   customerController.productupdate
 );
 
-//Update a product from Vendor
-router.put(
-  "/dashboard/products/:id1/:id2",
-  verifyTokenAndAuthorization,
-  upload.single("Image"),
+// //Update a product from Vendor
+// router.put(
+//   "/dashboard/products/:id",
+//   verifyTokenAndAuthorization,
+//   upload.single("Image"),
 
-  customerController.productupdatevendor
-);
+//   customerController.productupdatevendor
+// );
 
 //Delete a product
 router.delete(
   "/dashboard/products/:id",
-  verifyTokenAndAuthorization,
+  verifyTokenAndAdmin,
   customerController.productdelete
 );
 
-//Delete a product from vendor
-router.delete(
-  "/dashboard/products/:id1/:id2",
-  verifyTokenAndAuthorization,
-  customerController.productdeletevendor
-);
+// //Delete a product from vendor
+// router.delete(
+//   "/dashboard/products/:id1/:id2",
+//   verifyTokenAndAuthorization,
+//   customerController.productdeletevendor
+// );
 
 //Get all products
 router.get(
-  "/dashboard/products/:id",
+  "/dashboard/products",
   verifyTokenAndAuthorization,
   customerController.productview
 );
 
 //Get a single product
 router.get(
-  "/dashboard/products/:id1/:id2",
+  "/dashboard/products/:id",
   verifyTokenAndAuthorization,
   customerController.productviewone
 );
