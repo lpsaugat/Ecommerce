@@ -127,6 +127,22 @@ router.put(
   customerController.carouselupdate
 );
 
+//Subscription Package Changes
+router.post(
+  "/admindashboard/subscription",
+  verifyTokenAndAdmin,
+  upload.single("BackgroundImage"),
+
+  customerController.SubscriptionWriting
+);
+router.put(
+  "/admindashboard/subscription",
+  verifyTokenAndAdmin,
+  upload.single("BackgroundImage"),
+
+  customerController.SubscriptionUpdate
+);
+
 //Products Add
 router.post(
   "/dashboard/products",

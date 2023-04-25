@@ -3,6 +3,7 @@ const User = require("../models/User");
 const Carousel = require("../models/Carousel");
 const Product = require("../models/Products");
 const Order = require("../models/Order");
+const Subscription = require("../models/Subscription");
 
 const express = require("express");
 const CryptoJS = require("crypto-js");
@@ -30,13 +31,23 @@ const storage = multer.diskStorage({
 
 const controller = {};
 
+//Fetch all of the data from models
+async function getData() {
+  try {
+    const productdata = await Product.find();
+    const carouseldata = await Carousel.find();
+    const subscriptiondata = await Subscription.find();
+    return { productdata, carouseldata, subscriptiondata };
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 controller.home = async (req, res) => {
   try {
-    const data = await Carousel.find();
-    const productdata = await Product.find({ status: true }).sort("-createdAt");
-
-    console.log(data);
-    res.render("Homepage", { data, productdata });
+    // const productdata = await Product.find({ status: true }).sort("-createdAt");
+    const { productdata, carouseldata } = await getData();
+    res.render("Homepage", { productdata, carouseldata });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Internal server Error" });
@@ -51,12 +62,25 @@ controller.slider = (req, res) => {
   res.render("slider");
 };
 
-controller.subscription = (req, res) => {
-  res.render("subscription");
+controller.subscription = async (req, res) => {
+  try {
+    const data = await getData();
+    const subscriptiondata = data.subscriptiondata;
+    res.render("subscription", { subscriptiondata });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Internal server Error" });
+  }
 };
 
-controller.products = (req, res) => {
-  res.render("products");
+controller.products = async (req, res) => {
+  try {
+    const { productdata, carouseldata } = await getData();
+    res.render("products", { productdata });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Internal server Error" });
+  }
 };
 
 controller.add = (req, res) => {
@@ -250,6 +274,42 @@ controller.carouselupdate = async (req, res) => {
     console.log(updatedCarousel);
 
     res.status(200).json(updatedCarousel);
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+};
+
+//Writing in Subscription
+controller.SubscriptionWriting = async (req, res) => {
+  try {
+    const newSubscription = await Subscription.create({
+      Name: req.body.Name,
+      Heading: req.body.Heading,
+      BackgroundImage: req.file.path,
+    });
+    res.json(newSubscription);
+  } catch (err) {
+    console.log(err);
+    res.json(err);
+  }
+};
+
+//Subscription Writings Update and Change
+controller.SubscriptionUpdate = async (req, res) => {
+  const filter = { Name: req.body.Name };
+  console.log(filter);
+  const update = { ...req.body, BackgroundImage: req.file.path };
+  try {
+    const updatedSubscription = await Subscription.findOneAndUpdate(
+      filter,
+      update,
+
+      { new: true }
+    );
+    console.log(updatedSubscription);
+
+    res.status(200).json(updatedSubscription);
   } catch (err) {
     res.status(500).json(err);
     console.log(err);
