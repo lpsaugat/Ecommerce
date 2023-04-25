@@ -15,9 +15,9 @@ var Order = new mongoose.Schema(
       ref: "Product",
     },
     Price: {
-      type: mongoose.Types.ObjectId,
-      ref: "Product",
+      type: Number,
     },
+    quantity: Number,
   },
   { timestamps: true }
 );

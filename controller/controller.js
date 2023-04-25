@@ -10,6 +10,7 @@ const jwt = require("jsonwebtoken");
 const path = require("path");
 const multer = require("multer");
 const Products = require("../models/Products");
+const { post } = require("jquery");
 const app = express();
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -340,16 +341,12 @@ controller.productdelete = async (req, res) => {
 
 //Get all Product
 controller.productview = async (req, res) => {
-  const user = await User.findOne({ _id: req.user.id });
-  console.log(user);
-  if (user.user_type === "super-admin" || user.user_type === "admin") {
-    console.log("sd1f");
-
+  if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
     const products = await Product.find()
       .sort("-createdAt")
       .populate("createdBy");
     res.send(products);
-  } else if (user.user_type === "vendor") {
+  } else if (req.user.user_type === "vendor") {
     const products = await Product.find({
       createdBy: req.user.id,
     });
@@ -359,8 +356,7 @@ controller.productview = async (req, res) => {
 
 //Get a specific product
 controller.productviewone = async (req, res) => {
-  console.log(user);
-  if (user.user_type === "admin" || user.user_type === "super-admin") {
+  if (req.user.user_type === "admin" || req.user.user_type === "super-admin") {
     const product = await Product.findOne({ _id: req.params.id })
       .sort("-createdAt")
       .populate("createdBy");
@@ -368,7 +364,7 @@ controller.productviewone = async (req, res) => {
       res.send(`No product found with id: ${req.params.id}`);
     }
     res.send(product);
-  } else if (user.user_type === "vendor") {
+  } else if (req.user.user_type === "vendor") {
     const product = await Product.findOne({
       createdBy: req.user.id,
       _id: req.params.id,
@@ -382,14 +378,21 @@ controller.productviewone = async (req, res) => {
 
 //Customer Order
 controller.order = async (req, res) => {
-  const product = await Products.findOne({ ProductID: req.body.product });
+  const { productID, quantity, price } = req.body;
+  console.log(req.body.productID);
+  const product = await Products.findOne({ _id: productID });
   try {
     const newOrder = await Order.create({
       User: req.user.id,
-      ProductID: req.product.id,
-      Price: req.product.Price,
-      Vendor: req.product.createdBy,
+      ProductID: product.id,
+      Price: price,
+      Vendor: product.createdBy,
+      quantity: quantity,
     });
+    if (newOrder) {
+      product.Quantity = product.Quantity - newOrder.quantity;
+      await product.save();
+    }
     res.json(newOrder);
   } catch (err) {
     console.log(err);
@@ -397,22 +400,81 @@ controller.order = async (req, res) => {
   }
 };
 
+controller.orderupdate = async (req, res) => {
+  const roles = ["super-admin", "admin"];
+  const filter = req.params.id;
+  console.log(filter);
+  try {
+    const getorder = await Order.findOne({ _id: filter });
+    if (!getorder) {
+      return res
+        .status(404)
+        .json({ message: `No Order found with id ${filter}` });
+    }
+    if (
+      roles.includes(req.user.user_type) ||
+      getorder.createdBy.toString() === req.user.id ||
+      getorder.User.toString() === req.user.id
+    ) {
+      const updatedOrder = await Order.findOneAndUpdate(
+        filter,
+        update,
+
+        { new: true, runValidators: true }
+      );
+      console.log(updatedOrder);
+
+      res.status(200).json(updatedOrder);
+    } else {
+      res.status(403).json(`User is not allowed to update the Order`);
+    }
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+};
+
 //Get all orders from either Vendor or the order from customer.
 //Admin to view all products
 controller.orderview = async (req, res) => {
-  console.log(user);
-  if (user.user_type === "super-admin" || user.user_type === "admin") {
+  if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
     console.log("sd1f");
-    const orders = await Order.find().sort("-createdAt").populate("createdBy");
-    res.send(orders);
-  } else if (user.user_type === "vendor") {
+    const orders = await Order.find()
+      .sort("-createdAt")
+      .populate({ path: "User", select: "name user_type email" })
+      .populate("ProductID");
+    res.json({ count: orders.length, orders });
+  } else if (req.user.user_type === "vendor") {
     const orders = await Order.find({
       createdBy: req.user.id,
     });
     res.send(orders);
-  } else if (user.user_type === "customer") {
+  } else if (req.user.user_type === "customer") {
     const orders = await Order.find({
       User: req.user.id,
+    });
+    res.send(orders);
+  }
+};
+
+//Get all orders for a single product
+controller.orderviewproduct = async (req, res) => {
+  if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
+    console.log("sd1f");
+    const orders = await Order.find({ productID: req.params.id })
+      .sort("-createdAt")
+      .populate("createdBy");
+    res.send(orders);
+  } else if (req.user.user_type === "vendor") {
+    const orders = await Order.find({
+      createdBy: req.user.id,
+      productID: req.params.id,
+    });
+    res.send(orders);
+  } else if (req.user.user_type === "customer") {
+    const orders = await Order.find({
+      User: req.user.id,
+      productID: req.params.id,
     });
     res.send(orders);
   }
@@ -425,7 +487,7 @@ controller.orderdelete = async (req, res) => {
   console.log(filter);
   const update = { ...req.body };
   try {
-    const getorder = await order.findOne({ _id: filter });
+    const getorder = await Order.findOne({ _id: filter });
     if (!getorder) {
       return res
         .status(404)
@@ -436,7 +498,7 @@ controller.orderdelete = async (req, res) => {
       getorder.createdBy.toString() === req.user.id ||
       getorder.User.toString() === req.user.id
     ) {
-      const deletedorder = await order.findOneAndDelete(filter);
+      const deletedorder = await Order.findOneAndDelete(filter);
       console.log(deletedorder);
 
       res.status(200).json(deletedorder);

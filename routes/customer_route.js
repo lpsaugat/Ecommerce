@@ -145,28 +145,12 @@ router.put(
   customerController.productupdate
 );
 
-// //Update a product from Vendor
-// router.put(
-//   "/dashboard/products/:id",
-//   verifyTokenAndAuthorization,
-//   upload.single("Image"),
-
-//   customerController.productupdatevendor
-// );
-
 //Delete a product
 router.delete(
   "/dashboard/products/:id",
   verifyTokenAndAdmin,
   customerController.productdelete
 );
-
-// //Delete a product from vendor
-// router.delete(
-//   "/dashboard/products/:id1/:id2",
-//   verifyTokenAndAuthorization,
-//   customerController.productdeletevendor
-// );
 
 //Get all products
 router.get(
@@ -180,6 +164,29 @@ router.get(
   "/dashboard/products/:id",
   verifyTokenAndAuthorization,
   customerController.productviewone
+);
+
+//Customer Order
+router.post("/", verifyToken, customerController.order);
+
+//Customer Order view
+router.get("/dashboard/orders", verifyToken, customerController.orderview);
+
+//Order view of a single product
+router.get(
+  "/dashboard/orders/:id",
+  verifyToken,
+  customerController.orderviewproduct
+);
+
+//Customer Order update
+router.get("/dashboard/orders", verifyToken, customerController.orderupdate);
+
+//Customer Order delete
+router.delete(
+  "/dashboard/orders/:id",
+  verifyToken,
+  customerController.orderdelete
 );
 
 router.post("/logout", customerController.logout);
