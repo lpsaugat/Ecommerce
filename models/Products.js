@@ -40,6 +40,10 @@ var Product = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "User",
     },
+    Category: {
+      type: String,
+      required: false,
+    },
   },
   { timestamps: true }
 );

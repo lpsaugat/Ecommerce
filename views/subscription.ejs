@@ -12,13 +12,13 @@
       class="absolute bg-subscription justify-start flex font-semibold pb-[30px] pl-[20px] w-full pt-[27px] md:pl-[42px] md:pb-[34px] md:pt-[33px] bottom-0 text text-[22px] md:text-[24px] text-white lg:hidden"
       onclick="location.href ='singlepackage'"
     >
-      Veg Subscription
+      <%= subscriptiondata[0].Heading %>
     </button>
     <div
       class="hidden lg:flex absolute h-auto bottom-0 flex-col items-center pb-[56px] text-center w-full font-semibold text-[36px] text-white bg-gradient-to-t from-black group-hover:pb-[65%] transition-all duration-500"
     >
       <div class="pb-[56px] group-hover:pb-0 text-white pt-[50px]">
-        Veg Subscription
+        <%= subscriptiondata[0].Heading %>
       </div>
       <button
         class="w-[316px] h-[42px] bg-[#00A6EF] items-center justify-center text-[14px] font-medium rounded-[8px] mt-[30px] hidden group-hover:flex transition transform"
@@ -30,20 +30,20 @@
   </div>
   <div class="h-[378px] md:h-[429px] lg:h-full w-full relative group">
     <img
-      src="../public/Images/Subscription/Non.png"
+      src="<%= subscriptiondata[1].BackgroundImage %>"
       class="h-[378px] md:h-[429px] lg:h-full w-full object-cover lg:opacity-85 group-hover:lg:opacity-50"
     />
     <button
       class="absolute bg-subscription justify-start flex font-semibold pb-[30px] pl-[20px] w-full pt-[27px] md:pl-[42px] md:pb-[34px] md:pt-[33px] bottom-0 text text-[22px] md:text-[24px] text-white lg:hidden"
       onclick="location.href ='singlepackage'"
     >
-      Non-Veg Subscription
+      <%= subscriptiondata[1].Heading %>
     </button>
     <div
       class="hidden lg:flex absolute h-auto bottom-0 flex-col items-center pb-[56px] text-center w-full font-semibold text-[36px] text-white bg-gradient-to-t from-black group-hover:pb-[65%] transition-all duration-500"
     >
       <div class="pb-[56px] group-hover:pb-0 text-white pt-[50px]">
-        Non-Veg Subscription
+        <%= subscriptiondata[1].Heading %>
       </div>
       <button
         class="w-[316px] h-[42px] bg-[#00A6EF] items-center justify-center text-[14px] font-medium rounded-[8px] mt-[30px] hidden group-hover:flex transition transform"
@@ -57,20 +57,20 @@
     class="h-[378px] md:h-[429px] lg:h-full w-full relative group transition transform"
   >
     <img
-      src="../public/Images/Subscription/Create.png"
+      src="<%= subscriptiondata[2].BackgroundImage %>"
       class="h-[378px] md:h-[429px] lg:h-full w-full object-cover lg:opacity-85 group-hover:lg:opacity-50"
     />
     <button
       class="absolute bg-subscription justify-start flex font-semibold pb-[30px] pl-[20px] w-full pt-[27px] md:pl-[42px] md:pb-[34px] md:pt-[33px] bottom-0 text text-[22px] md:text-[24px] text-white lg:hidden"
       onclick="location.href ='singlepackage'"
     >
-      Create Your Own Basket
+      <%= subscriptiondata[2].Heading %>
     </button>
     <div
       class="hidden lg:flex absolute h-auto bottom-0 flex-col items-center pb-[56px] text-center w-full font-semibold text-[36px] text-white bg-gradient-to-t from-black group-hover:pb-[65%] transition-all duration-500"
     >
       <div class="pb-[56px] group-hover:pb-0 text-white pt-[50px]">
-        Create Your Own Basket
+        <%= subscriptiondata[2].Heading %>
       </div>
       <button
         class="w-[316px] h-[42px] bg-[#00A6EF] items-center justify-center text-[14px] font-medium rounded-[8px] mt-[30px] hidden group-hover:flex transition transform"

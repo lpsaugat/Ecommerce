@@ -37,7 +37,9 @@ async function getData() {
     const productdata = await Product.find();
     const carouseldata = await Carousel.find();
     const subscriptiondata = await Subscription.find();
-    return { productdata, carouseldata, subscriptiondata };
+    const orderdata = await Order.find();
+
+    return { productdata, carouseldata, subscriptiondata, orderdata };
   } catch (err) {
     console.log(err);
   }
@@ -75,7 +77,8 @@ controller.subscription = async (req, res) => {
 
 controller.products = async (req, res) => {
   try {
-    const { productdata, carouseldata } = await getData();
+    const data = await getData();
+    const productdata = data.productdata;
     res.render("products", { productdata });
   } catch (err) {
     console.log(err);
@@ -129,12 +132,16 @@ controller.singlepackage = (req, res) => {
   res.render("singlepackage");
 };
 
-controller.singleproduct = (req, res) => {
-  res.render("singleproduct");
+controller.singleproduct = async (req, res) => {
+  const data = await getData();
+  const productdata = data.productdata;
+  res.render("singleproduct", { productdata });
 };
 
-controller.cart = (req, res) => {
-  res.render("cart");
+controller.cart = async (req, res) => {
+  const data = await getData();
+  const orderdata = data.orderdata;
+  res.render("cart", { orderdata });
 };
 
 controller.billing = (req, res) => {
@@ -443,10 +450,13 @@ controller.order = async (req, res) => {
   const product = await Products.findOne({ _id: productID });
   try {
     const newOrder = await Order.create({
-      User: req.user.id,
-      ProductID: product.id,
-      Price: price,
-      Vendor: product.createdBy,
+      user: req.user.id,
+      productID: product.id,
+      price: price,
+      vendor: product.createdBy,
+      name: product.Name,
+      priceper: product.Priceper,
+      image: product.Image,
       quantity: quantity,
     });
     if (newOrder) {
