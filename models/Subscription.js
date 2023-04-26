@@ -1,18 +1,18 @@
 const mongoose = require("mongoose"); // Erase if already required
 
 // Declare the Schema of the Mongo model
-var Subscription = new mongoose.Schema(
+const Subscription = new mongoose.Schema(
   {
-    Name: {
+    name: {
       type: String,
     },
 
-    Heading: {
+    heading: {
       type: String,
       required: true,
     },
 
-    BackgroundImage: {
+    backgroundImage: {
       type: String,
       required: false,
     },

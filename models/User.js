@@ -1,13 +1,13 @@
 const mongoose = require("mongoose"); // Erase if already required
 
 // Declare the Schema of the Mongo model
-var userSchema = new mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
       required: true,
     },
-    Familysize: {
+    familySize: {
       type: String,
       required: false,
     },
@@ -28,6 +28,7 @@ var userSchema = new mongoose.Schema(
         values: ["super-admin", "admin", "vendor", "customer"],
         message: "{VALUE} is not supported",
       },
+      default: "customer",
     },
   },
   { timestamps: true }

@@ -20,7 +20,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const customer_route = require("./routes/customer_route");
-const user = require("./routes/user");
+const userRoute = require("./routes/userRoute");
+const productRoute = require("./routes/productRoute");
+const adminRoute = require("./routes/adminRoute");
 
 const { resourceUsage } = require("process");
 app.use(cookieparser());
@@ -28,7 +30,9 @@ app.use(cookieparser());
 app.use("/public", express.static("public"));
 
 app.use("/", customer_route);
-// app.use("/", user);
+// app.use("/", userRoute);
+// app.use("/", productRoute);
+// app.use("/", adminRoute);
 
 // app.set('port', process.env.PORT || 3000,);
 app.set("views", path.join(__dirname, "views"));

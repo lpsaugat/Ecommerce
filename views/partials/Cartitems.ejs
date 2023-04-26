@@ -32,7 +32,9 @@
         <div
           class="text-[12px] col-span-3 w-auto md:text-[16px] lg:pt-0 font-medium pt-[14px] md:pt-[17px] justify-between items-center grid-cols-2 flex"
         >
-          <div class="lg:hidden"><%= orderdata[i].price %></div>
+          <div class="lg:hidden">
+            Rs. <%= orderdata[i].price * orderdata[i].quantity %>
+          </div>
           <div
             class="justify-end md:hidden font-roboto flex items-center left-0 w-auto"
           >
@@ -45,7 +47,7 @@
               <input
                 type="text"
                 name="quantity"
-                value="1"
+                value="<%= orderdata[i].quantity %>"
                 maxlength="2"
                 max="10"
                 size="1"
@@ -88,7 +90,9 @@
             <div class="hidden myDropdown dropdown-content"></div>
           </div>
         </div>
-        <div class="hidden lg:block col-span-2">Rs.4500</div>
+        <div class="hidden lg:block col-span-2">
+          Rs. <%= orderdata[i].price * orderdata[i].quantity %>
+        </div>
 
         <button
           class="hidden rounded-full w-[22px] h-[22px] bg-[#D3D3D2] items-center lg:flex justify-center"

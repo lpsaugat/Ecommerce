@@ -4,34 +4,34 @@ const mongoose = require("mongoose"); // Erase if already required
 // Declare the Schema of the Mongo model
 var Product = new mongoose.Schema(
   {
-    Name: {
+    name: {
       type: String,
       required: true,
     },
-    Description: {
+    description: {
       type: String,
       required: false,
     },
-    Price: {
+    price: {
       type: Number,
       required: true,
     },
-    Priceper: {
+    priceper: {
       type: String,
       required: false,
       default: "",
     },
 
-    Quantity: {
+    quantity: {
       type: Number,
       required: true,
       default: 1,
     },
-    Image: {
+    image: {
       type: String,
       required: true,
     },
-    Status: {
+    status: {
       type: Boolean,
       default: true,
     },
@@ -40,7 +40,7 @@ var Product = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "User",
     },
-    Category: {
+    category: {
       type: String,
       required: false,
     },

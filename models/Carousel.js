@@ -1,25 +1,25 @@
 const mongoose = require("mongoose"); // Erase if already required
 
 // Declare the Schema of the Mongo model
-var Carousel = new mongoose.Schema(
+const Carousel = new mongoose.Schema(
   {
-    Name: {
+    name: {
       type: String,
       required: true,
     },
-    Firstheading: {
+    firstheading: {
       type: String,
       required: false,
     },
-    Heading: {
+    heading: {
       type: String,
       required: true,
     },
-    Offer: {
+    offer: {
       type: String,
       required: false,
     },
-    BackgroundImage: {
+    backgroundImage: {
       type: String,
       required: false,
     },
