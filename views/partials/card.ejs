@@ -1,11 +1,11 @@
 <div class="relative">
-  <a href="singleproduct">
+  <a href="/product/:<% 0 %>">
     <div
       class="rounded-[7.4px] sm:rounded-[9.6px] md:rounded-[12px] z-50 rounded-b-none sm:rounded-b-none md:rounded-b-none border-b-0 border-[1px] pb-[14px] md:pb-[17.57px] lg:pb-[24px] pt-[20px] lg:pt-[7px]"
-      onmouseover="popupf()"
+      onmouseover="popupf() "
     >
       <img
-        src="<%= productdata[0].Image %>"
+        src="<%= productdata[0].image %>"
         class="lg:pt-[17px] md:pt-[12px] pt-[10px] mx-auto md:h-[150px] lg:h-[196px] h-[113px]"
       />
 
@@ -13,17 +13,17 @@
         class="pl-[9px] md:pl-[11.71px] lg:pl-[13.74px] pt-[9px] md:pt-[11px] lg:pt-[17px]"
       >
         <p class="font-medium text-xs md:text-base lg:text-lg truncate">
-          <%= productdata[0].Name %>
+          <%= productdata[0].name %>
         </p>
         <p
           class="font-normal text-[10px] md:text-sm lg:text-xs text-[#182B3C] opacity-[0.36] lg:pt-[3px]"
         >
-          Rs.<%= productdata[0].Priceper %>
+          Rs.<%= productdata[0].priceper %>
         </p>
         <p class="font-normal text-[10px] md:text-sm lg:text-xs text-[#32AA00]">
           Rs.<span
             class="font-bold text-xs md:text-base lg:text-lg text-[#32AA00]"
-            ><%= productdata[0].Price %></span
+            ><%= productdata[0].price %></span
           >
         </p>
         <p

@@ -42,6 +42,7 @@ controller.productdetails = async (req, res) => {
       priceper: req.body.priceper,
       image: req.file.path,
       createdBy: req.user.id,
+      productcategory: req.body.category,
     });
     res.json(newProduct);
   } catch (err) {
@@ -148,18 +149,6 @@ controller.productviewone = async (req, res) => {
       res.send(`No product found with id: ${req.params.id}`);
     }
     res.send(product);
-  }
-};
-
-controller.category = async (req, res) => {
-  try {
-    const newCategory = await Product.create({
-      name: req.body.name,
-    });
-    res.json(newCategory);
-  } catch (err) {
-    console.log(err);
-    res.json(err);
   }
 };
 
@@ -270,7 +259,7 @@ controller.orderviewproduct = async (req, res) => {
   }
 };
 
-//Remove/ Delete an order
+//Remove/ Delete and order
 controller.orderdelete = async (req, res) => {
   const roles = ["super-admin", "admin"];
   const filter = req.params.id;
