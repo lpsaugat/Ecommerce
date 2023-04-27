@@ -45,11 +45,11 @@ router.get("/orderconfirmation", customerController.orderconfirmation);
 router.get("/vendor", customerController.vendor);
 
 router.get("/singleproduct", customerController.singleproduct);
+router.get("/product/:id", customerController.singleproductview);
+
 router.get("/dashboard", customerController.dashboard);
 router.get("/mobilepassword", customerController.mobilepassword);
 
 router.get("/test", customerController.test);
-
-router.get("/logout", customerController.logout);
 
 module.exports = router;

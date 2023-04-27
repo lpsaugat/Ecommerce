@@ -30,9 +30,9 @@ app.use(cookieparser());
 app.use("/public", express.static("public"));
 
 app.use("/", customer_route);
-// app.use("/", userRoute);
-// app.use("/", productRoute);
-// app.use("/", adminRoute);
+app.use("/", userRoute);
+app.use("/", productRoute);
+app.use("/", adminRoute);
 
 // app.set('port', process.env.PORT || 3000,);
 app.set("views", path.join(__dirname, "views"));

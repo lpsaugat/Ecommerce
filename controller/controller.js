@@ -104,14 +104,6 @@ controller.add_product = (req, res) => {
   res.render("Add_product");
 };
 
-controller.signin = (req, res) => {
-  res.render("Sign_In");
-};
-
-controller.signup = (req, res) => {
-  res.render("Sign_Up");
-};
-
 controller.dashboard = (req, res) => {
   res.render("dashboard");
 };
@@ -136,6 +128,14 @@ controller.singleproduct = async (req, res) => {
   const data = await getData();
   const productdata = data.productdata;
   res.render("singleproduct", { productdata });
+};
+
+controller.singleproductview = async (req, res) => {
+  console.log("dfs");
+  const data = await getData();
+  const productdata = data.productdata;
+  const singleproduct = await Product.findOne({ _id: req.params.id });
+  res.render(`singleproduct`, { singleproduct, productdata });
 };
 
 controller.cart = async (req, res) => {
@@ -167,4 +167,5 @@ controller.vendor = (req, res) => {
 controller.test = (req, res) => {
   res.render("test");
 };
+
 module.exports = controller;

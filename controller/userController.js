@@ -31,6 +31,14 @@ const storage = multer.diskStorage({
 
 const controller = {};
 
+controller.signin = (req, res) => {
+  res.render("Sign_In");
+};
+
+controller.signup = (req, res) => {
+  res.render("Sign_Up");
+};
+
 //SignUp from User
 controller.createUser = async (req, res) => {
   const email = req.body.email;
@@ -70,12 +78,10 @@ controller.checkUser = async (req, res) => {
     // query the database for the user with the specified email address
     const user = await User.findOne({ email });
 
-    console.log("user here");
     const hashedpassword = CryptoJS.AES.decrypt(
       user.password,
       process.env.PASS_SECRET
     ).toString(CryptoJS.enc.Utf8);
-    console.log(hashedpassword);
     if (!user) {
       // if no user is found, return an error response
       return res.status(401).send({ message: "Invalidd email or password" });
@@ -96,8 +102,7 @@ controller.checkUser = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "3d" }
     );
-    console.log(accessToken);
-    res.cookie(accessToken);
+    res.cookie("Token", { value: accessToken });
 
     // user = { password, ...others };
     const { password, ...others } = user._doc;

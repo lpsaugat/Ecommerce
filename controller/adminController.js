@@ -2,6 +2,8 @@ const connection = require("express-myconnection");
 const User = require("../models/User");
 const Carousel = require("../models/Carousel");
 const Product = require("../models/Products");
+const Category = require("../models/Categories");
+
 const Order = require("../models/Order");
 const Subscription = require("../models/Subscription");
 
@@ -104,76 +106,15 @@ controller.SubscriptionUpdate = async (req, res) => {
   }
 };
 
-//Writing in Carousel
-controller.carouselwriting = async (req, res) => {
+controller.category = async (req, res) => {
   try {
-    const newCarousel = await Carousel.create({
+    const newCategory = await Category.create({
       name: req.body.name,
-      heading: req.body.heading,
-      offer: req.body.offer,
-      backgroundImage: req.file.path,
     });
-    res.json(newCarousel);
+    res.json(newCategory);
   } catch (err) {
     console.log(err);
     res.json(err);
-  }
-};
-
-//Carousel Writings Update and Change
-controller.carouselupdate = async (req, res) => {
-  const filter = { name: req.body.name };
-  console.log(filter);
-  const update = { ...req.body, backgroundImage: req.file.path };
-  try {
-    const updatedCarousel = await Carousel.findOneAndUpdate(
-      filter,
-      update,
-
-      { new: true }
-    );
-    console.log(updatedCarousel);
-
-    res.status(200).json(updatedCarousel);
-  } catch (err) {
-    res.status(500).json(err);
-    console.log(err);
-  }
-};
-
-//Writing in Subscription
-controller.SubscriptionWriting = async (req, res) => {
-  try {
-    const newSubscription = await Subscription.create({
-      name: req.body.name,
-      heading: req.body.heading,
-      backgroundImage: req.file.path,
-    });
-    res.json(newSubscription);
-  } catch (err) {
-    console.log(err);
-    res.json(err);
-  }
-};
-
-//Subscription Writings Update and Change
-controller.SubscriptionUpdate = async (req, res) => {
-  const filter = { name: req.body.name };
-  console.log(filter);
-  const update = { ...req.body, backgroundImage: req.file.path };
-  try {
-    const updatedSubscription = await Subscription.findOneAndUpdate(
-      filter,
-      update,
-
-      { new: true }
-    );
-    console.log(updatedSubscription);
-
-    res.status(200).json(updatedSubscription);
-  } catch (err) {
-    res.status(500).json(err);
-    console.log(err);
   }
 };
 

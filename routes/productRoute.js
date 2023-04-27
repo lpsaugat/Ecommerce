@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-const productController = require("../controller/controller");
+const productController = require("../controller/productcontroller");
 
 const {
   verifyToken,
@@ -31,7 +31,7 @@ const {
 router.post(
   "/dashboard/products",
   verifyTokenAndAuthorization,
-  upload.single("Image"),
+  upload.single("image"),
 
   productController.productdetails
 );
