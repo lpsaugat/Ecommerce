@@ -64,7 +64,9 @@
       <div class="pt-4 hidden lg:block font-medium text-sm">
         Avalability: In Stock
       </div>
-      <div class="pt-4 font-semibold text-base">Rs. 35000.00</div>
+      <div class="pt-4 font-semibold text-base">
+        Rs. <%= singleproduct.price %>
+      </div>
       <div class="pt-4 text-xs md:text-sm lg:max-w-[348px] text-justify">
         Platinum package provides you with healthy nutritions and make your life
         healtier and happier. We have been working hard with the local &
@@ -1054,7 +1056,7 @@
     >
       Taxes and shipping calculated at checkout
     </div>
-    <div class="font-medium md:font-[16px]">Rs.45000</div>
+    <div class="font-medium md:font-[16px]">Rs.<%= singleproduct.price %></div>
   </div>
   <div class="justify-end flex pt-[16px] gap-x-[10px]">
     <button

@@ -131,7 +131,6 @@ controller.singleproduct = async (req, res) => {
 };
 
 controller.singleproductview = async (req, res) => {
-  console.log("dfs");
   const data = await getData();
   const productdata = data.productdata;
   const singleproduct = await Product.findOne({ _id: req.params.id });
@@ -140,8 +139,19 @@ controller.singleproductview = async (req, res) => {
 
 controller.cart = async (req, res) => {
   const data = await getData();
-  const orderdata = data.orderdata;
-  res.render("cart", { orderdata });
+  var orderdata = {};
+  if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
+    orderdata = data.orderdata;
+  } else if (req.user.user_type === "vendor") {
+    orderdata = await Order.find({ vendor: req.user.id });
+  } else if (req.user.user_type === "customer") {
+    orderdata = await Order.find({ user: req.user.id });
+  }
+  var subtotal = 0;
+  orderdata.forEach((i) => {
+    subtotal = subtotal + i.price; // Calculate total price
+  });
+  res.render("cart", { orderdata, subtotal });
 };
 
 controller.billing = (req, res) => {
