@@ -67,7 +67,7 @@ router.get(
 );
 
 //Customer Order
-router.post("/", verifyToken, productController.order);
+router.post("/products", verifyToken, productController.order);
 
 //Customer Order view
 router.get("/dashboard/orders", verifyToken, productController.orderview);

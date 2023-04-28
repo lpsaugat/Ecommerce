@@ -158,16 +158,29 @@ controller.order = async (req, res) => {
   console.log(req.body.productID);
   const product = await Products.findOne({ _id: productID });
   try {
-    const newOrder = await Order.create({
-      user: req.user.id,
-      productID: product.id,
-      price: price,
-      vendor: product.createdBy,
-      name: product.name,
-      priceper: product.priceper,
-      image: product.image,
-      quantity: quantity,
-    });
+    var newOrder = await Order.findOneAndUpdate(
+      {
+        user: req.user.id,
+        productID: productID,
+      },
+      { $inc: { quantity: 1 } },
+      { new: true, runValidators: true }
+    );
+    console.log(newOrder);
+    if (newOrder) {
+    } else {
+      newOrder = await Order.create({
+        user: req.user.id,
+        productID: product.id,
+        price: price,
+        vendor: product.createdBy,
+        name: product.name,
+        priceper: product.priceper,
+        image: product.image,
+        quantity: quantity,
+      });
+    }
+
     if (newOrder) {
       product.quantity = product.quantity - newOrder.quantity;
       await product.save();

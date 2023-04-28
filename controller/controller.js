@@ -149,7 +149,7 @@ controller.cart = async (req, res) => {
   }
   var subtotal = 0;
   orderdata.forEach((i) => {
-    subtotal = subtotal + i.price; // Calculate total price
+    subtotal = subtotal + i.price * i.quantity; // Calculate total price
   });
   res.render("cart", { orderdata, subtotal });
 };
