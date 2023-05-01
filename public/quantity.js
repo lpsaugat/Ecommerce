@@ -2,7 +2,6 @@ var quantitybox = document.getElementsByClassName("quantity");
 var quantitybox2 = document.getElementsByClassName("quantity2");
 
 function increase(d) {
-  var a = 1;
   quantitybox[d].value++;
   quantitybox2[d].value++;
 }

@@ -42,7 +42,7 @@ controller.productdetails = async (req, res) => {
       priceper: req.body.priceper,
       image: req.file.path,
       createdBy: req.user.id,
-      productcategory: req.body.category,
+      category: req.body.category,
     });
     res.json(newProduct);
   } catch (err) {

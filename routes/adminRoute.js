@@ -60,6 +60,23 @@ router.put(
   adminController.SubscriptionUpdate
 );
 
+//Ads
+router.post(
+  "/admindashboard/Ads",
+  verifyTokenAndAdmin,
+  upload.single("BackgroundImage"),
+
+  adminController.AdWriting
+);
+
+router.put(
+  "/admindashboard/Ads",
+  verifyTokenAndAdmin,
+  upload.single("BackgroundImage"),
+
+  adminController.AdUpdate
+);
+
 //Create a category
 router.post(
   "/admindashboard/category",

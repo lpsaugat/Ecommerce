@@ -3,6 +3,8 @@ const User = require("../models/User");
 const Carousel = require("../models/Carousel");
 const Product = require("../models/Products");
 const Category = require("../models/Categories");
+const Ad = require("../models/Ad");
+const Banner = require("../models/Banner");
 
 const Order = require("../models/Order");
 const Subscription = require("../models/Subscription");
@@ -115,6 +117,78 @@ controller.category = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.json(err);
+  }
+};
+
+//Writing in Ad
+controller.AdWriting = async (req, res) => {
+  try {
+    const newAd = await Ad.create({
+      name: req.body.name,
+      heading: req.body.heading,
+      backgroundImage: req.file.path,
+    });
+    res.json(newAd);
+  } catch (err) {
+    console.log(err);
+    res.json(err);
+  }
+};
+
+//Ad Writings Update and Change
+controller.AdUpdate = async (req, res) => {
+  const filter = { name: req.body.name };
+  console.log(filter);
+  const update = { ...req.body, backgroundImage: req.file.path };
+  try {
+    const updatedAd = await Ad.findOneAndUpdate(
+      filter,
+      update,
+
+      { new: true }
+    );
+    console.log(updatedAd);
+
+    res.status(200).json(updatedAd);
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+};
+
+//Writing in Banner
+controller.BannerWriting = async (req, res) => {
+  try {
+    const newBanner = await Banner.create({
+      name: req.body.name,
+      heading: req.body.heading,
+      backgroundImage: req.file.path,
+    });
+    res.json(newBanner);
+  } catch (err) {
+    console.log(err);
+    res.json(err);
+  }
+};
+
+//Banner Writings Update and Change
+controller.BannerUpdate = async (req, res) => {
+  const filter = { name: req.body.name };
+  console.log(filter);
+  const update = { ...req.body, backgroundImage: req.file.path };
+  try {
+    const updatedBanner = await Banner.findOneAndUpdate(
+      filter,
+      update,
+
+      { new: true }
+    );
+    console.log(updatedBanner);
+
+    res.status(200).json(updatedBanner);
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
   }
 };
 

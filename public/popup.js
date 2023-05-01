@@ -20,11 +20,7 @@ function popupf(element) {
   }
 }
 
-// var counter = document.querySelectorAll('counterforadd');
-
-// var addtocart = document.getElementsByClassName('added');
-
-// function cardshadow(element){
-//     var card = element.querySelector.('payment');
-//     card.style.shadow= "";
-// }
+var productnumber = 0;
+function setpopupnumber(element) {
+  productnumber = element;
+}

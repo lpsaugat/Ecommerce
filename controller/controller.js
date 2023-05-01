@@ -48,7 +48,7 @@ async function getData() {
 controller.home = async (req, res) => {
   try {
     // const productdata = await Product.find({ status: true }).sort("-createdAt");
-    const { productdata, carouseldata } = await getData();
+    const { productdata, carouseldata, ...otherdata } = await getData();
     res.render("Homepage", { productdata, carouseldata });
   } catch (err) {
     console.log(err);
@@ -76,7 +76,13 @@ controller.subscription = async (req, res) => {
 };
 
 controller.products = async (req, res) => {
+  const page = Number(req.query.page) || 1;
+  // const limit = Number(req.query.limit) || 20;
+  const limit = Number(req.query.limit) || 12;
+  const skip = (page - 1) * limit;
   try {
+    const count = await Product.countDocuments();
+    const totalPages = Math.ceil(count / limit);
     const data = await getData();
     const productdata = data.productdata;
     res.render("products", { productdata });
@@ -104,8 +110,13 @@ controller.add_product = (req, res) => {
   res.render("Add_product");
 };
 
-controller.dashboard = (req, res) => {
-  res.render("dashboard");
+controller.dashboard = async (req, res) => {
+  const data = await getData();
+  const userdata = data.userdata;
+  const productdata = data.productdata;
+  const orderdata = data.orderdata;
+
+  res.render("dashboard", { productdata, userdata, orderdata });
 };
 
 controller.mobilepassword = (req, res) => {
@@ -178,4 +189,30 @@ controller.test = (req, res) => {
   res.render("test");
 };
 
+controller.getAllProducts = async (req, res) => {
+  const data = await getData();
+  const productdata = data.productdata;
+
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 12;
+  const skip = (page - 1) * limit;
+  const count = await Product.countDocuments();
+
+  const totalPages = Math.ceil(count / limit);
+
+  const products = await Product.find()
+    .sort("-createdAt")
+    .skip(skip)
+    .limit(limit);
+
+  const dataPagination = {
+    count,
+    totalPages,
+    page,
+    prev: page === 1 ? 1 : page - 1,
+    next: page === totalPages ? totalPages : page + 1,
+    products,
+  };
+  res.json("products", { dataPagination, productdata });
+};
 module.exports = controller;
