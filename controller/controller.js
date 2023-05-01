@@ -194,7 +194,7 @@ controller.getAllProducts = async (req, res) => {
   const productdata = data.productdata;
 
   const page = Number(req.query.page) || 1;
-  const limit = Number(req.query.limit) || 12;
+  const limit = Number(req.query.limit) || 9;
   const skip = (page - 1) * limit;
   const count = await Product.countDocuments();
 
@@ -213,6 +213,7 @@ controller.getAllProducts = async (req, res) => {
     next: page === totalPages ? totalPages : page + 1,
     products,
   };
-  res.json("products", { dataPagination, productdata });
+  console.log(dataPagination);
+  res.render("products", { dataPagination, productdata });
 };
 module.exports = controller;

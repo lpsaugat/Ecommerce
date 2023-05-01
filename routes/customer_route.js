@@ -32,7 +32,7 @@ router.get("/add_product", customerController.add_product);
 router.post("/add", customerController.add);
 router.get("/slider", customerController.slider);
 router.get("/subscription", customerController.subscription);
-router.get("/products", customerController.products);
+router.get("/products", customerController.getAllProducts);
 
 router.get("/package", customerController.package);
 router.get("/familypackages", customerController.familypackages);
