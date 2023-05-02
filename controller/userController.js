@@ -13,6 +13,8 @@ const multer = require("multer");
 const Products = require("../models/Products");
 const { post } = require("jquery");
 const app = express();
+const nodemailer = require("nodemailer");
+const randomstring = require("randomstring");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "public/Images/uploadedfiles/");
@@ -108,6 +110,65 @@ controller.checkUser = async (req, res) => {
     // if there's an error while querying the database, return an error response
     console.log(error);
     // return res.status(500).send({ error });
+  }
+};
+
+//Forget Password
+
+controller.forgetPassword = async (req, res) => {
+  try {
+    email = req.body.email;
+
+    const user = User.findOne({ email: email });
+    if (user) {
+      const token = randomstring.generate;
+      await User.updateOne({ email: email }, { $set: { token: token } });
+      SendResetmail(user.name, user.email, token);
+
+      res
+        .status(200)
+        .send({ success: true, message: "Please check your email" });
+    } else {
+      res
+        .status(400)
+        .send({ success: true, message: "This email does not exist" });
+    }
+  } catch (error) {
+    res.status(400).send({ success: false, message: error.message });
+  }
+};
+
+const SendResetmail = async (name, email, token, res) => {
+  try {
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 500,
+      secure: false,
+      requireTLS: true,
+      auth: {
+        user: process.env.sendEmail,
+        password: process.env.sendPassword,
+      },
+    });
+    const mailOptions = {
+      from: config.emailUser,
+      to: email,
+      subject: "For Reset Password",
+      html:
+        `<p> Hello,` +
+        name +
+        `,Please copy the link and reset your password <a href="http://192.168.1.88:3000/reset-password?token=` +
+        token`"> and reset your password</a>`,
+    };
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Mail has been sent", info.response);
+      }
+    });
+  } catch (error) {
+    res.status(400).send({ success: false, message: error.message });
   }
 };
 

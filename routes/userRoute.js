@@ -68,6 +68,8 @@ router.delete("/admindashboard/:id", verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
+router.get("/forget-password", userController.forgetPassword);
+
 router.get("/logout", userController.logout);
 
 module.exports = router;
