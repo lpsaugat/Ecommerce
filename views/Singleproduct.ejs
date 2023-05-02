@@ -29,7 +29,7 @@
       class="image-container lg:rounded-[5px] lg:h-auto relative rounded-[3px] border-[1px] h-[237.4px] md:h-[335px] lg:min-h-[450px] col-span-5 items-center justify-center flex"
     >
       <img
-        src="../public/Images/SingleProduct/product.png"
+        src="<%= singleproduct.image%>"
         class="lg:h-auto md:h-[294px] h-[226.32px] absolute"
         id="product-image"
       />
@@ -59,18 +59,18 @@
         <div class="font-medium text-sm">4 reviews</div>
       </div>
       <div class="pt-4 hidden lg:block font-medium text-sm">
-        Categories: Family, Rice, Pulse, Oil
+        Categories: <% singleproduct.category.forEach((value) => { %> <%= value
+        %>, <% }); %>
       </div>
       <div class="pt-4 hidden lg:block font-medium text-sm">
-        Avalability: In Stock
+        Avalability: <% if(singleproduct.quantity<=0) { %> Out of Stock, <%
+        }else{ %> In Stock <%}; %>
       </div>
       <div class="pt-4 font-semibold text-base">
         Rs. <%= singleproduct.price %>
       </div>
       <div class="pt-4 text-xs md:text-sm lg:max-w-[348px] text-justify">
-        Platinum package provides you with healthy nutritions and make your life
-        healtier and happier. We have been working hard with the local &
-        regional farms to provide you with the freshest produce available.
+        <%= singleproduct.description %>
         <br /><br />
         <div>
           <ol class="list-disc ml-4">

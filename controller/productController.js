@@ -13,6 +13,7 @@ const multer = require("multer");
 const Products = require("../models/Products");
 const { post } = require("jquery");
 const app = express();
+const fileupload = require("express-fileupload");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "public/Images/uploadedfiles/");
@@ -29,10 +30,14 @@ const storage = multer.diskStorage({
   },
 });
 
+const cloudinary = require("cloudinary").v2;
+
 const controller = {};
 
 //Product details
 controller.productdetails = async (req, res) => {
+  // const result = await cloudinary.uploader.fileupload(req.file.path);
+
   try {
     const newProduct = await Product.create({
       name: req.body.name,

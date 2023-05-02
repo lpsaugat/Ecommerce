@@ -44,6 +44,10 @@ var Product = new mongoose.Schema(
       type: [String],
       required: false,
     },
+    subscriptionType: {
+      type: [String],
+      enum: ["Gold", "Platinum", "Silver"],
+    },
   },
   { timestamps: true }
 );

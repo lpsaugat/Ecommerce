@@ -81,9 +81,3 @@ function rotate(element) {
     element.style.transform = "rotate(180deg)";
   }
 }
-
-var pageButtons = document.querySelectorAll(".pageButton");
-
-pageButtons.forEach(function (pageButton) {
-  pageButton.addEventListener("click");
-});

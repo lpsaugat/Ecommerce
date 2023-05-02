@@ -6,6 +6,12 @@ const userSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
+      validate: {
+        validator: function (value) {
+          return /^[a-zA-Z]+$/.test(value);
+        },
+        message: "Name must contain only letters",
+      },
     },
     familySize: {
       type: String,

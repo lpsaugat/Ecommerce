@@ -74,18 +74,15 @@ controller.checkUser = async (req, res) => {
   const password = req.body.password;
 
   const user = await User.findOne({ email });
+  if (!user) {
+    // if no user is found, return an error response
+    return res.status(401).send({ message: "Invalidd email or password" });
+  }
   try {
-    // query the database for the user with the specified email address
-    const user = await User.findOne({ email });
-
     const hashedpassword = CryptoJS.AES.decrypt(
       user.password,
       process.env.PASS_SECRET
     ).toString(CryptoJS.enc.Utf8);
-    if (!user) {
-      // if no user is found, return an error response
-      return res.status(401).send({ message: "Invalidd email or password" });
-    }
 
     // check if the password matches
     if (req.body.password !== hashedpassword) {

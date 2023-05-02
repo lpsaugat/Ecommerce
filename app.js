@@ -3,12 +3,21 @@ dotenv.config();
 
 const express = require("express");
 myConnection = require("express-myconnection");
+// const fileupload = require("express-fileupload");
 path = require("path");
 morgan = require("morgan");
 const mongoose = require("mongoose");
 const fs = require("fs");
 const bodyParser = require("body-parser");
 const cookieparser = require("cookie-parser");
+
+const cloudinary = require("cloudinary").v2;
+
+cloudinary.config({
+  cloud_name: "dv0poigfl",
+  api_key: "429572556739323",
+  api_secret: "GK4nxkk850713C1knFAiYO0abuk",
+});
 
 // const bcrypt = require('bcrypt');
 // const salt = bcrypt.genSaltSync(10);

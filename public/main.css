@@ -2375,6 +2375,10 @@ video {
   padding-top: 19px;
 }
 
+.pt-\[1ipx\] {
+  padding-top: 1ipx;
+}
+
 .pt-\[20px\] {
   padding-top: 20px;
 }
@@ -3031,6 +3035,10 @@ video {
 
   .md\:h-\[150px\] {
     height: 150px;
+  }
+
+  .md\:h-\[15ipx\] {
+    height: 15ipx;
   }
 
   .md\:h-\[18\.83px\] {
