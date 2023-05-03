@@ -12,6 +12,9 @@ var Product = new mongoose.Schema(
       type: String,
       required: false,
     },
+    longDescription: {
+      type: String,
+    },
     price: {
       type: Number,
       required: true,
@@ -28,7 +31,7 @@ var Product = new mongoose.Schema(
       default: 1,
     },
     image: {
-      type: String,
+      type: [String],
       required: true,
     },
     status: {

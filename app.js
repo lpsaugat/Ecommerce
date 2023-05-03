@@ -3,7 +3,7 @@ dotenv.config();
 
 const express = require("express");
 myConnection = require("express-myconnection");
-// const fileupload = require("express-fileupload");
+const fileUpload = require("express-fileupload");
 path = require("path");
 morgan = require("morgan");
 const mongoose = require("mongoose");
@@ -24,6 +24,7 @@ cloudinary.config({
 
 const app = express();
 app.use(express.json());
+app.use(fileUpload({ useTempFiles: true, createParentPath: true }));
 app.use(express.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());

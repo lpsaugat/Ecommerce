@@ -29,7 +29,7 @@ const verifyToken = (req, res, next) => {
 };
 
 const verifyTokenAndAuthorization = (req, res, next) => {
-  console.log(req.user);
+  // console.log(req.user);
   verifyToken(req, res, () => {
     if (
       req.user.user_type === "vendor" ||
