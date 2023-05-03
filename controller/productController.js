@@ -14,21 +14,7 @@ const multer = require("multer");
 const Products = require("../models/Products");
 const { post } = require("jquery");
 const app = express();
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, "public/Images/uploadedfiles/");
-//   },
-//   filename: function (req, file, cb) {
-//     cb(
-//       null,
-//       file.fieldname +
-//         "-" +
-//         Date.now() +
-//         "." +
-//         file.originalname.split(".").pop()
-//     );
-//   },
-// });
+const imageUploader = require("./imageUploader");
 
 const cloudinary = require("cloudinary").v2;
 
@@ -36,44 +22,12 @@ const controller = {};
 
 //Product details
 controller.productdetails = async (req, res) => {
+  const folder = "products";
   const file = req.files.image;
   let images = [];
-  const maxSize = 1024 * 300;
-  try {
-    if (file.length > 0) {
-      for (i = 0; i < file.length; i++) {
-        if (!file[i].mimetype.startsWith("image")) {
-          return res.json("Please Upload Image Only");
-        }
-        if (file[i].size > maxSize) {
-          return res.json("Please Upload Image of size less than 10Mb");
-        }
-        const result = await cloudinary.uploader.upload(file[i].tempFilePath, {
-          use_filename: true,
-          folder: "uploads/images/products",
-        });
-        const sendImageToDB = result.secure_url.split("/").pop();
-        images.push(sendImageToDB);
-        fs.unlinkSync(file[i].tempFilePath);
-      }
-    } else {
-      if (!file.mimetype.startsWith("image")) {
-        return res.json("Please Upload Image Only");
-      }
-      if (file.size > maxSize) {
-        return res.json("Please Upload Image of size less than 10Mb");
-      }
-      const result = await cloudinary.uploader.upload(file.tempFilePath, {
-        use_filename: true,
-        folder: "uploads/images/products",
-      });
-      const sendImageToDB = result.secure_url.split("/").pop();
-      images.push(sendImageToDB);
-      fs.unlinkSync(file.tempFilePath);
-    }
-  } catch (error) {
-    res.send(error);
-  }
+
+  images = await imageUploader(file, folder);
+  console.log(images);
 
   try {
     const newProduct = await Product.create({
