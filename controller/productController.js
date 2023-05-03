@@ -27,7 +27,6 @@ controller.productdetails = async (req, res) => {
   let images = [];
 
   images = await imageUploader(file, folder);
-  console.log(images);
 
   try {
     const newProduct = await Product.create({
@@ -50,6 +49,21 @@ controller.productdetails = async (req, res) => {
 //Product Details Update and Change
 controller.productupdate = async (req, res) => {
   const roles = ["super-admin", "admin"];
+  const folder = "products";
+  let update = {};
+  let images = [];
+  const file = req.files.image;
+  try {
+    if (file) {
+      images = await imageUploader(file, folder);
+      update = { ...req.body, image: images };
+    } else {
+      update = req.body;
+    }
+  } catch (err) {
+    res.json("Something went wrong");
+  }
+
   const filter = req.params.id;
   console.log(filter);
   try {

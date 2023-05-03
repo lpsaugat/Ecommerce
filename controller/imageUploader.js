@@ -37,7 +37,7 @@ imageUploader = async (file, folder, req, res) => {
       fs.unlinkSync(file.tempFilePath);
     }
   } catch (error) {
-    res.send(error);
+    return res.json(error);
   }
   return images;
 };

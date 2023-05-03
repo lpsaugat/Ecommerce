@@ -44,9 +44,17 @@ controller.signup = (req, res) => {
 //SignUp from User
 controller.createUser = async (req, res) => {
   const email = req.body.email;
+
   const findUser = await User.findOne({ email });
   if (!findUser) {
     // Create New User
+    const user_type = req.body.user_type;
+    if (["admin", "super-admin"].includes(user_type)) {
+      return res.json({
+        msg: "Something went wrong",
+        success: false,
+      });
+    }
     console.log("hi");
     console.log(req.body);
     const newUser = await User.create({
