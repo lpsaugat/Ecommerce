@@ -1,7 +1,7 @@
 const fs = require("fs");
 const cloudinary = require("cloudinary").v2;
 
-imageUploader = async (file, folder, req, res) => {
+imageUploader = async (req, res, file, folder) => {
   let images = [];
   const maxSize = 1024 * 1024 * 10;
   try {

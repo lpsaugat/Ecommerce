@@ -26,7 +26,7 @@ controller.productdetails = async (req, res) => {
   const file = req.files.image;
   let images = [];
 
-  images = await imageUploader(file, folder);
+  images = await imageUploader(req, res, file, folder);
 
   try {
     const newProduct = await Product.create({
@@ -55,7 +55,7 @@ controller.productupdate = async (req, res) => {
   const file = req.files.image;
   try {
     if (file) {
-      images = await imageUploader(file, folder);
+      images = await imageUploader(res, file, folder);
       update = { ...req.body, image: images };
     } else {
       update = req.body;

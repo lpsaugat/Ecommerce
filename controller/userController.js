@@ -131,7 +131,7 @@ controller.forgetPassword = async (req, res) => {
     if (user) {
       const token = randomstring.generate;
       await User.updateOne({ email: email }, { $set: { token: token } });
-      SendResetmail(user.name, user.email, token);
+      SendResetmail(req, res, user.name, user.email, token);
 
       res
         .status(200)
@@ -146,11 +146,11 @@ controller.forgetPassword = async (req, res) => {
   }
 };
 
-const SendResetmail = async (name, email, token, res) => {
+const SendResetmail = async (req, res, name, email, token) => {
   try {
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
-      port: 500,
+      port: 3000,
       secure: false,
       requireTLS: true,
       auth: {
@@ -159,7 +159,7 @@ const SendResetmail = async (name, email, token, res) => {
       },
     });
     const mailOptions = {
-      from: config.emailUser,
+      from: process.env.sendEmail,
       to: email,
       subject: "For Reset Password",
       html:
@@ -176,7 +176,7 @@ const SendResetmail = async (name, email, token, res) => {
       }
     });
   } catch (error) {
-    res.status(400).send({ success: false, message: error.message });
+    return res.send({ success: false, message: error.message });
   }
 };
 
