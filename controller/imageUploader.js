@@ -23,10 +23,12 @@ imageUploader = async (req, res, file, folder) => {
       }
     } else {
       if (!file.mimetype.startsWith("image")) {
-        return res.json("Please Upload Image Only");
+        res.send("Please Upload Image Only");
+        req.end();
       }
       if (file.size > maxSize) {
-        return res.json("Please Upload Image of size less than 10Mb");
+        res.json("Please Upload Image of size less than 10Mb");
+        process.exit(1);
       }
       const result = await cloudinary.uploader.upload(file.tempFilePath, {
         use_filename: true,

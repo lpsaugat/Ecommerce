@@ -15,6 +15,10 @@ const { post } = require("jquery");
 const app = express();
 const nodemailer = require("nodemailer");
 const randomstring = require("randomstring");
+const sgMail = require("@sendgrid/mail");
+const dotenv = require("dotenv");
+dotenv.config();
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "public/Images/uploadedfiles/");
@@ -50,8 +54,8 @@ controller.createUser = async (req, res) => {
     // Create New User
     const user_type = req.body.user_type;
     if (["admin", "super-admin"].includes(user_type)) {
-      return res.json({
-        msg: "Something went wrong",
+      return res.status(403).json({
+        msg: "Unauthorized",
         success: false,
       });
     }
@@ -67,10 +71,10 @@ controller.createUser = async (req, res) => {
       ),
     });
     console.log(newUser);
-    res.json(newUser);
+    res.status(201).json(newUser);
   } else {
     //User Already Exists
-    res.json({
+    res.status(400).json({
       msg: "User already exists",
       success: false,
     });
@@ -86,8 +90,14 @@ controller.checkUser = async (req, res) => {
   const user = await User.findOne({ email });
   if (!user) {
     // if no user is found, return an error response
-    return res.status(401).send({ message: "Invalidd email or password" });
+    return res.status(404).send({ message: "Invalid email or password" });
   }
+  // if (user.status === false) {
+  //   // if no user is found, return an error response
+  //   return res
+  //     .status(403)
+  //     .send({ message: "Unauthorized, please contact admin" });
+  // }
   try {
     const hashedpassword = CryptoJS.AES.decrypt(
       user.password,
@@ -97,7 +107,7 @@ controller.checkUser = async (req, res) => {
     // check if the password matches
     if (req.body.password !== hashedpassword) {
       // if the password doesn't match, return an error response
-      return res.status(401).send({ message: "Invalid email or password" });
+      return res.status(400).send({ message: "Invalid email or password" });
     }
 
     // if the email and password are valid, return a success response
@@ -129,10 +139,22 @@ controller.forgetPassword = async (req, res) => {
 
     const user = User.findOne({ email: email });
     if (user) {
-      const token = randomstring.generate;
+      const token = randomstring.generate();
+      console.log(token);
       await User.updateOne({ email: email }, { $set: { token: token } });
-      SendResetmail(req, res, user.name, user.email, token);
-
+      const msg = {
+        to: "lpsaugat@gmail.com",
+        from: "infoprabidhilabs@gmail.com",
+        subject: "Hello from SendGrid!",
+        html: `<p> Hello,
+          ${user.name}
+          ,Please copy the link and reset your password <a href="http://192.168.1.88:3000/reset-password?token=
+          ${token}"> and reset your password</a>`,
+      };
+      sgMail
+        .send(msg)
+        .then(() => console.log("Email sent"))
+        .catch((error) => console.error(error));
       res
         .status(200)
         .send({ success: true, message: "Please check your email" });
@@ -146,39 +168,42 @@ controller.forgetPassword = async (req, res) => {
   }
 };
 
-const SendResetmail = async (req, res, name, email, token) => {
-  try {
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 3000,
-      secure: false,
-      requireTLS: true,
-      auth: {
-        user: process.env.sendEmail,
-        password: process.env.sendPassword,
-      },
-    });
-    const mailOptions = {
-      from: process.env.sendEmail,
-      to: email,
-      subject: "For Reset Password",
-      html:
-        `<p> Hello,` +
-        name +
-        `,Please copy the link and reset your password <a href="http://192.168.1.88:3000/reset-password?token=` +
-        token`"> and reset your password</a>`,
-    };
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log("Mail has been sent", info.response);
-      }
-    });
-  } catch (error) {
-    return res.send({ success: false, message: error.message });
-  }
-};
+// const SendResetmail = async (req, res, name, email, token) => {
+//   try {
+//     const transporter = nodemailer.createTransport({
+//       host: "smtp.ethereal.email",
+//       port: 587,
+//       secure: false,
+//       requireTLS: true,
+//       auth: {
+//         user: "kristopher.rippin@ethereal.email",
+//         pass: "hJDjQWmrHSBNhZAzYJ",
+//       },
+//       socketTimeout: 50000, // Increase timeout value
+//       connectionTimeout: 50000, // Increase timeout value
+//     });
+//     const mailOptions = {
+//       from: "kristopher.rippin@ethereal.email",
+//       to: "lpsaugat@gmail.com",
+//       subject: "For Reset Password",
+//       html:
+//         `<p> Hello,` +
+//         name +
+//         `,Please copy the link and reset your password <a href="http://192.168.1.88:3000/reset-password?token=` +
+//         token`"> and reset your password</a>`,
+//       // text: "sdfsd",
+//     };
+//     transporter.sendMail(mailOptions, function (error, info) {
+//       if (error) {
+//         console.log(error);
+//       } else {
+//         console.log("Mail has been sent", info.response);
+//       }
+//     });
+//   } catch (error) {
+//     return res.send({ success: false, message: error.message });
+//   }
+// };
 
 //Logout
 controller.logout = async (req, res, next) => {

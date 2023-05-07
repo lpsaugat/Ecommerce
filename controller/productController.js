@@ -26,8 +26,11 @@ controller.productdetails = async (req, res) => {
   const file = req.files.image;
   let images = [];
 
-  images = await imageUploader(req, res, file, folder);
-
+  try {
+    images = await imageUploader(req, res, file, folder);
+  } catch (error) {
+    throw new Error();
+  }
   try {
     const newProduct = await Product.create({
       name: req.body.name,
@@ -52,20 +55,21 @@ controller.productupdate = async (req, res) => {
   const folder = "products";
   let update = {};
   let images = [];
-  const file = req.files.image;
   try {
-    if (file) {
-      images = await imageUploader(res, file, folder);
+    if (req.files.image) {
+      console.log("images");
+
+      images = await imageUploader(res, req.files.image, folder);
       update = { ...req.body, image: images };
     } else {
       update = req.body;
     }
   } catch (err) {
-    res.json("Something went wrong");
+    res.send("Something went wrong");
   }
 
   const filter = req.params.id;
-  console.log(filter);
+  console.log(filter, "sfsd");
   try {
     const getproduct = await Product.findOne({ _id: filter });
     if (!getproduct) {
