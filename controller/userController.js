@@ -168,6 +168,25 @@ controller.forgetPassword = async (req, res) => {
   }
 };
 
+controller.resetPassword = async (req, res) => {
+  const token = req.query.token;
+  console.log(token);
+  console.log(req.body.email);
+  const user = await User.findOne({ email: req.body.email });
+  console.log(user.token);
+  if (user.token === token) {
+    await User.findOneAndUpdate(
+      { email: req.body.email },
+      {
+        password: CryptoJS.AES.encrypt(
+          req.body.password,
+          process.env.PASS_SECRET
+        ),
+      },
+      { new: true, runValidators: true }
+    );
+  }
+};
 // const SendResetmail = async (req, res, name, email, token) => {
 //   try {
 //     const transporter = nodemailer.createTransport({
