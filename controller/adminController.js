@@ -233,31 +233,32 @@ controller.siteSettingsUpdate = async (req, res) => {
   const folder = "settings";
   let update = {};
   let logos = [];
+
   try {
-    if (req.files.logo) {
+    try {
+      const logoFile = req.files.logo;
+      logos = await imageUploader(req.files.logo, folder);
       console.log("logos");
 
-      logos = await imageUploader(res, req.files.logo, folder);
       update = { ...req.body, logo: logos };
-    } else {
+    } catch (err) {
+      console.log("dfsd");
       update = req.body;
     }
   } catch (err) {
-    res.send("Something went wrong");
+    return console.log(err);
   }
 
-  const filter = req.params.id;
-  console.log(filter);
   try {
-    const settings = await siteSettings.findOne({ _id: filter });
+    const settings = await siteSettings.findOne({ metaTitle: "Household" });
     if (!settings) {
       return res
         .status(404)
-        .json({ message: `No SiteSettings found with id ${filter}` });
+        .json({ message: `No SiteSettings found for "Household"` });
     }
     if (roles.includes(req.user.user_type)) {
       const updatedSiteSettings = await siteSettings.findOneAndUpdate(
-        filter,
+        { metaTitle: "Household" },
         update,
 
         { new: true, runValidators: true }
@@ -267,6 +268,46 @@ controller.siteSettingsUpdate = async (req, res) => {
       res.status(200).json(updatedSiteSettings);
     } else {
       res.status(403).json(`User is not allowed to update the SiteSettings`);
+    }
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+};
+
+//Show site data
+controller.siteSettingsView = async (req, res) => {
+  if (req.user.user_type === "admin" || req.user.user_type === "super-admin") {
+    const siteSettings = await siteSettings.findOne({ metaTitle: "Household" });
+
+    if (!siteSettings) {
+      res.send(`No siteSettings found with for Household`);
+    }
+    res.send(siteSettings);
+  }
+};
+
+//Delete Site data
+controller.siteSettingsDelete = async (req, res) => {
+  const roles = ["super-admin", "admin"];
+  try {
+    const getSiteSettings = await siteSettings.findOne({
+      metaTitle: "Household",
+    });
+    if (!getSiteSettings) {
+      return res
+        .status(404)
+        .json({ message: `No siteSettings found for ${metaTitle}` });
+    }
+    if (roles.includes(req.user.user_type)) {
+      const deletedsiteSettings = await siteSettings.findOneAndDelete({
+        metaTitle: "Household",
+      });
+      console.log(deletedsiteSettings);
+
+      res.status(200).json(deletedsiteSettings);
+    } else {
+      res.status(403).json(`User is not allowed to delete the siteSettings`);
     }
   } catch (err) {
     res.status(500).json(err);

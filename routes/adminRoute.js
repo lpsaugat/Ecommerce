@@ -91,4 +91,18 @@ router.post(
   adminController.siteSettings
 );
 
+//Site setting update
+router.put(
+  "/admindashboard/sitesettings",
+  verifyTokenAndAdmin,
+  adminController.siteSettingsUpdate
+);
+
+//get all site data
+router.get(
+  "/admindashboard/sitesettings",
+  verifyTokenAndAdmin,
+  adminController.siteSettingsView
+);
+
 module.exports = router;

@@ -4,7 +4,7 @@ const Carousel = require("../models/Carousel");
 const Product = require("../models/Products");
 const Order = require("../models/Order");
 const Subscription = require("../models/Subscription");
-
+const siteSettings = require("../models/siteSettings");
 const express = require("express");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
@@ -13,21 +13,6 @@ const multer = require("multer");
 const Products = require("../models/Products");
 const { post } = require("jquery");
 const app = express();
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "public/Images/uploadedfiles/");
-  },
-  filename: function (req, file, cb) {
-    cb(
-      null,
-      file.fieldname +
-        "-" +
-        Date.now() +
-        "." +
-        file.originalname.split(".").pop()
-    );
-  },
-});
 
 const controller = {};
 
@@ -38,8 +23,9 @@ async function getData() {
     const carouseldata = await Carousel.find();
     const subscriptiondata = await Subscription.find();
     const orderdata = await Order.find();
+    const sitedata = await siteSettings.find();
 
-    return { productdata, carouseldata, subscriptiondata, orderdata };
+    return { productdata, carouseldata, subscriptiondata, orderdata, sitedata };
   } catch (err) {
     console.log(err);
   }
@@ -48,8 +34,9 @@ async function getData() {
 controller.home = async (req, res) => {
   try {
     // const productdata = await Product.find({ status: true }).sort("-createdAt");
-    const { productdata, carouseldata, ...otherdata } = await getData();
-    res.render("Homepage", { productdata, carouseldata });
+    const { productdata, carouseldata, sitedata, ...otherdata } =
+      await getData();
+    res.render("Homepage", { productdata, carouseldata, sitedata });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Internal server Error" });
