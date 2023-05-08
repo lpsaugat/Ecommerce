@@ -168,10 +168,10 @@ controller.forgetPassword = async (req, res) => {
   }
 };
 
+//Reset password after forgot password
 controller.resetPassword = async (req, res) => {
   const token = req.query.token;
-  console.log(token);
-  console.log(req.body.email);
+
   const user = await User.findOne({ email: req.body.email });
   console.log(user.token);
   if (user.token === token) {
@@ -181,48 +181,13 @@ controller.resetPassword = async (req, res) => {
         password: CryptoJS.AES.encrypt(
           req.body.password,
           process.env.PASS_SECRET
-        ),
+        ).toString(),
       },
       { new: true, runValidators: true }
     );
+    res.status(200).json("Your password has been changed");
   }
 };
-// const SendResetmail = async (req, res, name, email, token) => {
-//   try {
-//     const transporter = nodemailer.createTransport({
-//       host: "smtp.ethereal.email",
-//       port: 587,
-//       secure: false,
-//       requireTLS: true,
-//       auth: {
-//         user: "kristopher.rippin@ethereal.email",
-//         pass: "hJDjQWmrHSBNhZAzYJ",
-//       },
-//       socketTimeout: 50000, // Increase timeout value
-//       connectionTimeout: 50000, // Increase timeout value
-//     });
-//     const mailOptions = {
-//       from: "kristopher.rippin@ethereal.email",
-//       to: "lpsaugat@gmail.com",
-//       subject: "For Reset Password",
-//       html:
-//         `<p> Hello,` +
-//         name +
-//         `,Please copy the link and reset your password <a href="http://192.168.1.88:3000/reset-password?token=` +
-//         token`"> and reset your password</a>`,
-//       // text: "sdfsd",
-//     };
-//     transporter.sendMail(mailOptions, function (error, info) {
-//       if (error) {
-//         console.log(error);
-//       } else {
-//         console.log("Mail has been sent", info.response);
-//       }
-//     });
-//   } catch (error) {
-//     return res.send({ success: false, message: error.message });
-//   }
-// };
 
 //Logout
 controller.logout = async (req, res, next) => {
