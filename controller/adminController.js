@@ -192,4 +192,5 @@ controller.BannerUpdate = async (req, res) => {
   }
 };
 
+controller.siteSettings = async (req, res) => {};
 module.exports = controller;

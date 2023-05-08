@@ -84,4 +84,11 @@ router.post(
   adminController.category
 );
 
+//Site settings
+router.post(
+  "/admindashboard/sitesettings",
+  verifyTokenAndAdmin,
+  adminController.siteSettings
+);
+
 module.exports = router;
