@@ -145,7 +145,7 @@ controller.forgetPassword = async (req, res) => {
       const msg = {
         to: "lpsaugat@gmail.com",
         from: "infoprabidhilabs@gmail.com",
-        subject: "Hello from SendGrid!",
+        subject: "Household, password change",
         html: `<p> Hello,
           ${user.name}
           ,Please copy the link and reset your password <a href="http://192.168.1.88:3000/reset-password?token=
@@ -186,6 +186,58 @@ controller.resetPassword = async (req, res) => {
       { new: true, runValidators: true }
     );
     res.status(200).json("Your password has been changed");
+  }
+};
+
+controller.verifyEmail = async (req, res) => {
+  try {
+    email = req.body.email;
+
+    const user = User.findOne({ email: email });
+    if (user) {
+      const token = randomstring.generate();
+      console.log(token);
+      await User.updateOne({ email: email }, { $set: { Verifytoken: token } });
+      const msg = {
+        to: "saugat0paudel0@gmail.com",
+        from: "infoprabidhilabs@gmail.com",
+        subject: "Verify email for your account",
+        html: `<p> Hello,
+          ${user.name}
+          ,Please copy the link and verify your email <a href="http://192.168.1.88:3000/verify-email?token=
+          ${token}&email=${email}"> Verify your account </a>`,
+      };
+      sgMail
+        .send(msg)
+        .then(() => console.log("Email sent"))
+        .catch((error) => console.error(error));
+      res
+        .status(200)
+        .send({ success: true, message: "Please check your email" });
+    } else {
+      res
+        .status(400)
+        .send({ success: true, message: "This email does not exist" });
+    }
+  } catch (error) {
+    res.status(400).send({ success: false, message: error.message });
+  }
+};
+
+controller.verifiedEmail = async (req, res) => {
+  const token = req.query.token;
+  const email = req.query.email;
+  const user = await User.findOne({ email: email });
+  console.log(user.Verifytoken);
+  if (user.Verifytoken === token) {
+    await User.findOneAndUpdate(
+      { email: email },
+      {
+        status: true,
+      },
+      { new: true, runValidators: true }
+    );
+    res.status(200).json("You are verified, you can now use your account");
   }
 };
 

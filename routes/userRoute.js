@@ -70,9 +70,11 @@ router.delete("/admindashboard/:id", verifyTokenAndAdmin, async (req, res) => {
 
 router.post("/forget-password", userController.forgetPassword);
 
-router.get("/reset-password");
-
 router.post("/reset-password", userController.resetPassword);
+
+router.post("/verify-email", userController.verifyEmail);
+
+router.get("/verify-email", userController.verifiedEmail);
 
 router.get("/logout", userController.logout);
 
