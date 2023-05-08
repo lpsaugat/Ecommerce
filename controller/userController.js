@@ -92,12 +92,11 @@ controller.checkUser = async (req, res) => {
     // if no user is found, return an error response
     return res.status(404).send({ message: "Invalid email or password" });
   }
-  // if (user.status === false) {
-  //   // if no user is found, return an error response
-  //   return res
-  //     .status(403)
-  //     .send({ message: "Unauthorized, please contact admin" });
-  // }
+  if (user.status === false) {
+    return res
+      .status(403)
+      .send({ message: "Unauthorized, please contact admin" });
+  }
   try {
     const hashedpassword = CryptoJS.AES.decrypt(
       user.password,
