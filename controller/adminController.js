@@ -5,9 +5,12 @@ const Product = require("../models/Products");
 const Category = require("../models/Categories");
 const Ad = require("../models/Ad");
 const Banner = require("../models/Banner");
+const siteSettings = require("../models/siteSettings");
 
 const Order = require("../models/Order");
 const Subscription = require("../models/Subscription");
+
+const imageUploader = require("./imageUploader");
 
 const express = require("express");
 const CryptoJS = require("crypto-js");
@@ -192,5 +195,83 @@ controller.BannerUpdate = async (req, res) => {
   }
 };
 
-controller.siteSettings = async (req, res) => {};
+//Site Settings such as logo, description, social links etc.
+controller.siteSettings = async (req, res) => {
+  const folder = "settings";
+  const file = req.files.logo;
+  let logos = [];
+
+  try {
+    logos = await imageUploader(req, res, file, folder);
+  } catch (error) {
+    process.exit();
+  }
+  try {
+    const settings = await siteSettings.create({
+      logo: logos,
+      metaTitle: req.body.metaTitle,
+      metaDescription: req.body.metaDescription,
+      copyrightText: req.body.copyrightText,
+      siteDescription: req.body.siteDescription,
+      facebook: req.body.facebook,
+      instagram: req.body.instagram,
+      linkedIn: req.body.linkedIn,
+      address: req.body.address,
+      telephone: req.body.telephone,
+      email: req.body.email,
+    });
+    res.json(settings);
+  } catch (err) {
+    console.log(err);
+    res.json(err);
+  }
+};
+
+//Site settings Update and Change
+controller.siteSettingsUpdate = async (req, res) => {
+  const roles = ["super-admin", "admin"];
+  const folder = "settings";
+  let update = {};
+  let logos = [];
+  try {
+    if (req.files.logo) {
+      console.log("logos");
+
+      logos = await imageUploader(res, req.files.logo, folder);
+      update = { ...req.body, logo: logos };
+    } else {
+      update = req.body;
+    }
+  } catch (err) {
+    res.send("Something went wrong");
+  }
+
+  const filter = req.params.id;
+  console.log(filter);
+  try {
+    const settings = await siteSettings.findOne({ _id: filter });
+    if (!settings) {
+      return res
+        .status(404)
+        .json({ message: `No SiteSettings found with id ${filter}` });
+    }
+    if (roles.includes(req.user.user_type)) {
+      const updatedSiteSettings = await siteSettings.findOneAndUpdate(
+        filter,
+        update,
+
+        { new: true, runValidators: true }
+      );
+      console.log(updatedSiteSettings);
+
+      res.status(200).json(updatedSiteSettings);
+    } else {
+      res.status(403).json(`User is not allowed to update the SiteSettings`);
+    }
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+};
+
 module.exports = controller;

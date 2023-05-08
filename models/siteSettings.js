@@ -1,37 +1,38 @@
 const mongoose = require("mongoose");
 
-const Category = new mongoose.Schema({
+const siteSettings = new mongoose.Schema({
   logo: {
-    type: String,
-    unique: true,
+    type: [String],
   },
   metaTitle: {
     type: String,
-    unique: true,
   },
   MetaDescription: {
     type: String,
-    unique: true,
   },
   copyrightText: {
     type: String,
-    unique: true,
   },
   siteDescription: {
     type: String,
-    unique: true,
+  },
+  facebook: {
+    type: String,
+  },
+  instagram: {
+    type: String,
+  },
+  linkedIn: {
+    type: String,
   },
   address: {
     type: String,
-    unique: true,
   },
   telephone: {
     type: String,
-    unique: true,
   },
   email: {
     type: String,
-    unique: true,
   },
 });
-module.exports = mongoose.model("Category", Category);
+module.exports = mongoose.model("siteSettings", siteSettings);
