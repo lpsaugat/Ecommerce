@@ -1,9 +1,13 @@
 const mongoose = require("mongoose");
+const { stringify } = require("postcss");
 
 const aboutUs = new mongoose.Schema({
-  name: {
+  title: {
     type: String,
     unique: true,
+  },
+  name: {
+    type: String,
   },
   heading: {
     type: String,
@@ -21,7 +25,7 @@ const aboutUs = new mongoose.Schema({
     type: [String],
   },
   statisticsNumber: {
-    type: [String],
+    type: [Number],
   },
   mission: {
     type: [String],

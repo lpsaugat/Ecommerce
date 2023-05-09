@@ -387,9 +387,9 @@ controller.siteSettingsDelete = async (req, res) => {
 controller.aboutUsData = async (req, res) => {
   const folder = "AboutUs";
   const file = req.files.image;
-  const missonFile = req.files.missonImage;
+  const missionFile = req.files.missionImage;
   let image = [];
-  let missonImage = [];
+  let missionImage = [];
 
   try {
     image = await imageUploader(req, res, file, folder);
@@ -397,12 +397,12 @@ controller.aboutUsData = async (req, res) => {
     process.exit();
   }
   try {
-    missonImage = await imageUploader(req, res, missonFile, folder);
+    missionImage = await imageUploader(req, res, missionFile, folder);
   } catch (error) {
     process.exit();
   }
   try {
-    const AboutUs = await AboutUs.create({
+    const About = await AboutUs.create({
       name: req.body.name,
       heading: req.body.heading,
       writing: req.body.writing,
@@ -411,9 +411,9 @@ controller.aboutUsData = async (req, res) => {
       misson: req.body.misson,
       vison: req.body.vison,
       image: image,
-      missonImage: missonImage,
+      missionImage: missionImage,
     });
-    res.json(settings);
+    res.json(About);
   } catch (err) {
     console.log(err);
     res.json(err);
@@ -421,6 +421,57 @@ controller.aboutUsData = async (req, res) => {
 };
 
 //About Us data Update
-controller.aboutUsDataUpdate = async (req, res) => {};
+controller.aboutUsDataUpdate = async (req, res) => {
+  const roles = ["super-admin", "admin"];
+  const folder = "AboutUs";
+  const file = req.files.image;
+  const missonFile = req.files.missonFile;
+
+  let update = {};
+  let image = [];
+  let missonImage = [];
+
+  try {
+    try {
+      if (file) {
+        image = await imageUploader(req, res, file, folder);
+      }
+      if (missonFile) {
+        missonImage = await imageUploader(req, res, missonFile, folder);
+      }
+
+      update = { ...req.body, image: image, missonImage: missonImage };
+    } catch (err) {
+      update = req.body;
+    }
+  } catch (err) {
+    return console.log(err);
+  }
+
+  try {
+    const settings = await siteSettings.findOne({ title: "AboutUs" });
+    if (!settings) {
+      return res
+        .status(404)
+        .json({ message: `No AboutUs found for "Household"` });
+    }
+    if (roles.includes(req.user.user_type)) {
+      const updatedSiteSettings = await siteSettings.findOneAndUpdate(
+        { metaTitle: "Household" },
+        update,
+
+        { new: true, runValidators: true }
+      );
+      console.log(updatedSiteSettings);
+
+      res.status(200).json(updatedSiteSettings);
+    } else {
+      res.status(403).json(`User is not allowed to update AboutUs`);
+    }
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+};
 
 module.exports = controller;
