@@ -6,6 +6,7 @@ const Category = require("../models/Categories");
 const Ad = require("../models/Ad");
 const Banner = require("../models/Banner");
 const siteSettings = require("../models/siteSettings");
+const AboutUs = require("../models/AboutUs");
 
 const Order = require("../models/Order");
 const Subscription = require("../models/Subscription");
@@ -381,5 +382,45 @@ controller.siteSettingsDelete = async (req, res) => {
     console.log(err);
   }
 };
+
+//About Us data
+controller.aboutUsData = async (req, res) => {
+  const folder = "AboutUs";
+  const file = req.files.image;
+  const missonFile = req.files.missonImage;
+  let image = [];
+  let missonImage = [];
+
+  try {
+    image = await imageUploader(req, res, file, folder);
+  } catch (error) {
+    process.exit();
+  }
+  try {
+    missonImage = await imageUploader(req, res, missonFile, folder);
+  } catch (error) {
+    process.exit();
+  }
+  try {
+    const AboutUs = await AboutUs.create({
+      name: req.body.name,
+      heading: req.body.heading,
+      writing: req.body.writing,
+      statistics: req.body.statistics,
+      statisticsNumber: req.body.statisticsNumber,
+      misson: req.body.misson,
+      vison: req.body.vison,
+      image: image,
+      missonImage: missonImage,
+    });
+    res.json(settings);
+  } catch (err) {
+    console.log(err);
+    res.json(err);
+  }
+};
+
+//About Us data Update
+controller.aboutUsDataUpdate = async (req, res) => {};
 
 module.exports = controller;

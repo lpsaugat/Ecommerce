@@ -103,4 +103,17 @@ router.get(
   adminController.siteSettingsView
 );
 
+//About Us settings and data
+router.post(
+  "/admindashboard/aboutus",
+  verifyTokenAndAdmin,
+  adminController.aboutUsData
+);
+
+//About Us data updates
+router.put(
+  "/admindashboard/aboutus",
+  verifyTokenAndAdmin,
+  adminController.aboutUsDataUpdate
+);
 module.exports = router;
