@@ -57,10 +57,10 @@ controller.carouselWriting = async (req, res) => {
       offer: req.body.offer,
       backgroundImage: backgroundImage,
     });
-    res.json(newCarousel);
+    res.status(200).json(newCarousel);
   } catch (err) {
     console.log(err);
-    res.json(err);
+    res.status(200).json(err);
   }
 };
 
@@ -68,15 +68,13 @@ controller.carouselWriting = async (req, res) => {
 controller.carouselUpdate = async (req, res) => {
   const filter = { name: req.body.name };
   const folder = "carousel";
+  const file = req.files.backgroundImage;
   let backgroundImage = [];
   let update = {};
   try {
     try {
-      const BackgroundImage = req.files.backgroundImage;
-      backgroundImage = await imageUploader(req.files.backgroundImage, folder);
-      console.log("BackgroundImages");
-
-      update = { ...req.body, backgroundImage: backgroundImage };
+      backgroundImage = await imageUploader(req, res, file, folder);
+      update = { backgroundImage: backgroundImage, ...req.body };
     } catch (err) {
       update = req.body;
     }
@@ -149,11 +147,20 @@ controller.category = async (req, res) => {
 
 //Writing in Ad
 controller.AdWriting = async (req, res) => {
+  const folder = "Ad";
+  const file = req.files.backgroundImage;
+  let backgroundImage = [];
+
+  try {
+    backgroundImage = await imageUploader(req, res, file, folder);
+  } catch (error) {
+    process.exit();
+  }
   try {
     const newAd = await Ad.create({
       name: req.body.name,
       heading: req.body.heading,
-      backgroundImage: req.file.path,
+      backgroundImage: backgroundImage,
     });
     res.json(newAd);
   } catch (err) {
@@ -166,7 +173,20 @@ controller.AdWriting = async (req, res) => {
 controller.AdUpdate = async (req, res) => {
   const filter = { name: req.body.name };
   console.log(filter);
-  const update = { ...req.body, backgroundImage: req.file.path };
+  const folder = "Ad";
+  const file = req.files.image;
+  let image = [];
+  let update = {};
+  try {
+    try {
+      image = await imageUploader(req, res, file, folder);
+      update = { image: image, ...req.body };
+    } catch (err) {
+      update = req.body;
+    }
+  } catch (err) {
+    return console.log(err);
+  }
   try {
     const updatedAd = await Ad.findOneAndUpdate(
       filter,
@@ -255,13 +275,14 @@ controller.siteSettings = async (req, res) => {
 controller.siteSettingsUpdate = async (req, res) => {
   const roles = ["super-admin", "admin"];
   const folder = "settings";
+  const file = req.files.logo;
+
   let update = {};
   let logos = [];
 
   try {
     try {
-      const logoFile = req.files.logo;
-      logos = await imageUploader(req.files.logo, folder);
+      logos = await imageUploader(req, res, file, folder);
       console.log("logos");
 
       update = { ...req.body, logo: logos };

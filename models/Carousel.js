@@ -20,7 +20,7 @@ const Carousel = new mongoose.Schema(
       required: false,
     },
     backgroundImage: {
-      type: String,
+      type: [String],
       required: false,
     },
   },

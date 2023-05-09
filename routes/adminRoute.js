@@ -31,14 +31,12 @@ const {
 router.post(
   "/admindashboard/carousel",
   verifyTokenAndAdmin,
-  upload.single("BackgroundImage"),
 
   adminController.carouselWriting
 );
 router.put(
   "/admindashboard/carousel",
   verifyTokenAndAdmin,
-  upload.single("BackgroundImage"),
 
   adminController.carouselUpdate
 );
