@@ -148,11 +148,11 @@ controller.category = async (req, res) => {
 //Writing in Ad
 controller.AdWriting = async (req, res) => {
   const folder = "Ad";
-  const file = req.files.backgroundImage;
-  let backgroundImage = [];
+  const file = req.files.image;
+  let image = [];
 
   try {
-    backgroundImage = await imageUploader(req, res, file, folder);
+    image = await imageUploader(req, res, file, folder);
   } catch (error) {
     process.exit();
   }
@@ -160,7 +160,7 @@ controller.AdWriting = async (req, res) => {
     const newAd = await Ad.create({
       name: req.body.name,
       heading: req.body.heading,
-      backgroundImage: backgroundImage,
+      image: image,
     });
     res.json(newAd);
   } catch (err) {
@@ -205,11 +205,20 @@ controller.AdUpdate = async (req, res) => {
 
 //Writing in Banner
 controller.BannerWriting = async (req, res) => {
+  const folder = "Banner";
+  const file = req.files.image;
+  let image = [];
+
+  try {
+    image = await imageUploader(req, res, file, folder);
+  } catch (error) {
+    process.exit();
+  }
   try {
     const newBanner = await Banner.create({
       name: req.body.name,
       heading: req.body.heading,
-      backgroundImage: req.file.path,
+      image: image,
     });
     res.json(newBanner);
   } catch (err) {
@@ -222,7 +231,20 @@ controller.BannerWriting = async (req, res) => {
 controller.BannerUpdate = async (req, res) => {
   const filter = { name: req.body.name };
   console.log(filter);
-  const update = { ...req.body, backgroundImage: req.file.path };
+  const folder = "Banner";
+  const file = req.files.image;
+  let image = [];
+  let update = {};
+  try {
+    try {
+      image = await imageUploader(req, res, file, folder);
+      update = { image: image, ...req.body };
+    } catch (err) {
+      update = req.body;
+    }
+  } catch (err) {
+    return console.log(err);
+  }
   try {
     const updatedBanner = await Banner.findOneAndUpdate(
       filter,
