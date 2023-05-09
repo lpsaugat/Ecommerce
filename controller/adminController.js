@@ -403,6 +403,7 @@ controller.aboutUsData = async (req, res) => {
   }
   try {
     const About = await AboutUs.create({
+      title: req.body.title,
       name: req.body.name,
       heading: req.body.heading,
       writing: req.body.writing,
@@ -424,23 +425,23 @@ controller.aboutUsData = async (req, res) => {
 controller.aboutUsDataUpdate = async (req, res) => {
   const roles = ["super-admin", "admin"];
   const folder = "AboutUs";
-  const file = req.files.image;
-  const missonFile = req.files.missonFile;
 
   let update = {};
   let image = [];
-  let missonImage = [];
+  let missionImage = [];
 
   try {
     try {
-      if (file) {
+      if (req.files.image) {
+        const file = req.files.image;
         image = await imageUploader(req, res, file, folder);
       }
-      if (missonFile) {
-        missonImage = await imageUploader(req, res, missonFile, folder);
-      }
+      if (req.files.missionImage) {
+        const missionFile = req.files.missionImage;
 
-      update = { ...req.body, image: image, missonImage: missonImage };
+        missionImage = await imageUploader(req, res, missionFile, folder);
+      }
+      update = { image: image, missionImage: missionImage, ...req.body };
     } catch (err) {
       update = req.body;
     }
@@ -449,22 +450,22 @@ controller.aboutUsDataUpdate = async (req, res) => {
   }
 
   try {
-    const settings = await siteSettings.findOne({ title: "AboutUs" });
-    if (!settings) {
+    const About = await AboutUs.findOne({ title: "AboutUs" });
+    if (!About) {
       return res
         .status(404)
-        .json({ message: `No AboutUs found for "Household"` });
+        .json({ message: `No AboutUs found for Household` });
     }
     if (roles.includes(req.user.user_type)) {
-      const updatedSiteSettings = await siteSettings.findOneAndUpdate(
-        { metaTitle: "Household" },
+      const updatedAboutUs = await AboutUs.findOneAndUpdate(
+        { title: "AboutUs" },
         update,
 
         { new: true, runValidators: true }
       );
-      console.log(updatedSiteSettings);
+      console.log(About);
 
-      res.status(200).json(updatedSiteSettings);
+      res.status(200).json(About);
     } else {
       res.status(403).json(`User is not allowed to update AboutUs`);
     }
