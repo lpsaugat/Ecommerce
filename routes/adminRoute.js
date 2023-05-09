@@ -33,14 +33,14 @@ router.post(
   verifyTokenAndAdmin,
   upload.single("BackgroundImage"),
 
-  adminController.carouselwriting
+  adminController.carouselWriting
 );
 router.put(
   "/admindashboard/carousel",
   verifyTokenAndAdmin,
   upload.single("BackgroundImage"),
 
-  adminController.carouselupdate
+  adminController.carouselUpdate
 );
 
 //Subscription Package Changes

@@ -39,13 +39,23 @@ const storage = multer.diskStorage({
 const controller = {};
 
 //Writing in Carousel
-controller.carouselwriting = async (req, res) => {
+controller.carouselWriting = async (req, res) => {
+  const folder = "carousel";
+  const file = req.files.backgroundImage;
+  let backgroundImage = [];
+
+  try {
+    backgroundImage = await imageUploader(req, res, file, folder);
+  } catch (error) {
+    process.exit();
+  }
   try {
     const newCarousel = await Carousel.create({
       name: req.body.name,
       heading: req.body.heading,
+      firstheading: req.body.firstheading,
       offer: req.body.offer,
-      backgroundImage: req.file.path,
+      backgroundImage: backgroundImage,
     });
     res.json(newCarousel);
   } catch (err) {
@@ -55,10 +65,24 @@ controller.carouselwriting = async (req, res) => {
 };
 
 //Carousel Writings Update and Change
-controller.carouselupdate = async (req, res) => {
+controller.carouselUpdate = async (req, res) => {
   const filter = { name: req.body.name };
-  console.log(filter);
-  const update = { ...req.body, backgroundImage: req.file.path };
+  const folder = "carousel";
+  let backgroundImage = [];
+  let update = {};
+  try {
+    try {
+      const BackgroundImage = req.files.backgroundImage;
+      backgroundImage = await imageUploader(req.files.backgroundImage, folder);
+      console.log("BackgroundImages");
+
+      update = { ...req.body, backgroundImage: backgroundImage };
+    } catch (err) {
+      update = req.body;
+    }
+  } catch (err) {
+    return console.log(err);
+  }
   try {
     const updatedCarousel = await Carousel.findOneAndUpdate(
       filter,
