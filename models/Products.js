@@ -51,6 +51,10 @@ var Product = new mongoose.Schema(
       type: [String],
       enum: ["Gold", "Platinum", "Silver"],
     },
+    fieldFilter: {
+      type: [String],
+      enum: ["Best", "Featured", "ForYou", "Popular"],
+    },
   },
   { timestamps: true }
 );

@@ -29,7 +29,7 @@ controller.productdetails = async (req, res) => {
   try {
     images = await imageUploader(req, res, file, folder);
   } catch (error) {
-    throw new Error();
+    return;
   }
   try {
     const newProduct = await Product.create({
@@ -57,19 +57,16 @@ controller.productupdate = async (req, res) => {
   let images = [];
   try {
     if (req.files.image) {
-      console.log("images");
-
-      images = await imageUploader(res, req.files.image, folder);
+      images = await imageUploader(req, res, req.files.image, folder);
       update = { ...req.body, image: images };
     } else {
       update = req.body;
     }
   } catch (err) {
-    res.send("Something went wrong");
+    return;
   }
 
   const filter = req.params.id;
-  console.log(filter, "sfsd");
   try {
     const getproduct = await Product.findOne({ _id: filter });
     if (!getproduct) {
