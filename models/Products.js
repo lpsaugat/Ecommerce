@@ -44,7 +44,7 @@ var Product = new mongoose.Schema(
       ref: "User",
     },
     category: {
-      type: [String],
+      type: [mongoose.Types.ObjectId],
       required: false,
     },
     subscriptionType: {

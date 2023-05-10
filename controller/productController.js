@@ -78,6 +78,9 @@ controller.productupdate = async (req, res) => {
       roles.includes(req.user.user_type) ||
       getproduct.createdBy.toString() === req.user.id
     ) {
+      if (req.user.user_type === "vendor" && req.body.fieldFilter) {
+        return res.status(403).json("You are not authorized to do that");
+      }
       const updatedProduct = await Product.findOneAndUpdate(
         filter,
         update,
