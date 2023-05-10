@@ -19,6 +19,32 @@ const imageUploader = require("./imageUploader");
 const cloudinary = require("cloudinary").v2;
 
 //Package Details
-controller.packageDetails = async (req, res) => {};
+controller.packageDetails = async (req, res) => {
+  const folder = "packages";
+  const file = req.files.image;
+  let images = [];
+
+  try {
+    images = await imageUploader(req, res, file, folder);
+  } catch (error) {
+    return;
+  }
+  //   const product = await Product.find({ productID: req.body.productID });
+  try {
+    const newProduct = await Product.create({
+      name: req.body.name,
+      description: req.body.description,
+      price: req.body.price,
+      image: images,
+      products: req.body.productID,
+      createdBy: req.user.id,
+      category: req.body.category,
+    });
+    res.json(newProduct);
+  } catch (err) {
+    console.log(err);
+    res.json(err);
+  }
+};
 
 module.exports = controller;

@@ -6,7 +6,7 @@ const Packages = new mongoose.Schema(
       type: String,
       required: true,
     },
-    productID: {
+    products: {
       type: [mongoose.Types.ObjectId],
       ref: "Product",
     },
@@ -15,6 +15,7 @@ const Packages = new mongoose.Schema(
     },
     quantity: Number,
     image: [String],
+    description: String,
   },
   { timestamps: true }
 );
