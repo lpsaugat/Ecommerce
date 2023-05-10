@@ -1,5 +1,6 @@
 const { Timestamp } = require("mongodb");
 const mongoose = require("mongoose"); // Erase if already required
+const Categories = require("./Categories");
 
 // Declare the Schema of the Mongo model
 var Product = new mongoose.Schema(
@@ -46,6 +47,7 @@ var Product = new mongoose.Schema(
     category: {
       type: [mongoose.Types.ObjectId],
       required: false,
+      ref: "Categories",
     },
     subscriptionType: {
       type: [String],
