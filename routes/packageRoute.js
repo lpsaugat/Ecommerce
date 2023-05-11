@@ -22,4 +22,18 @@ router.put(
   packagesController.packageDetailsUpdate
 );
 
+//Packages Update
+router.delete(
+  "/dashboard/packages/:id",
+  verifyTokenAndAdmin,
+  packagesController.packageDelete
+);
+
+//Get all Packages
+router.get(
+  "/dashboard/packages/:id",
+  verifyTokenAndAdmin,
+  packagesController.packageView
+);
+
 module.exports = router;

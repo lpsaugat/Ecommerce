@@ -125,4 +125,32 @@ controller.packageDelete = async (req, res) => {
   }
 };
 
+//Get All Packages
+controller.packageView = async (req, res) => {
+  if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
+    const Packages = await Packages.find()
+      .sort("-createdAt")
+      .populate("createdBy");
+    res.send(Packages);
+  }
+  res.send(Packages);
+};
+
+//Get a Specific Package
+controller.packageViewOne = async (req, res) => {
+  if (req.user.user_type === "admin" || req.user.user_type === "super-admin") {
+    const product = await Product.findOne({ _id: req.params.id })
+      .sort("-createdAt")
+      .populate("createdBy");
+    if (!product) {
+      res.send(`No product found with id: ${req.params.id}`);
+    }
+    res.send(product);
+  }
+  if (!product) {
+    res.send(`No product found with id: ${req.params.id}`);
+  }
+  res.send(product);
+};
+
 module.exports = controller;
