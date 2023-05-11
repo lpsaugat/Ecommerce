@@ -14,4 +14,12 @@ router.post(
 
   packagesController.packageDetails
 );
+
+//Packages Update
+router.put(
+  "/dashboard/packages/:id",
+  verifyTokenAndAdmin,
+  packagesController.packageDetailsUpdate
+);
+
 module.exports = router;

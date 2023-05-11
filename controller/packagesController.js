@@ -52,7 +52,7 @@ controller.packageDetails = async (req, res) => {
 };
 
 //Package Details Update
-controller.packageDetails = async (req, res) => {
+controller.packageDetailsUpdate = async (req, res) => {
   const roles = ["super-admin", "admin"];
   const folder = "package";
   let update = {};
@@ -76,13 +76,7 @@ controller.packageDetails = async (req, res) => {
         .status(404)
         .json({ message: `No Package found with id ${filter}` });
     }
-    if (
-      roles.includes(req.user.user_type) ||
-      getPackage.createdBy.toString() === req.user.id
-    ) {
-      if (req.user.user_type === "vendor" && req.body.fieldFilter) {
-        return res.status(403).json("You are not authorized to do that");
-      }
+    if (roles.includes(req.user.user_type)) {
       const updatedPackage = await Packages.findOneAndUpdate(
         filter,
         update,
@@ -94,6 +88,36 @@ controller.packageDetails = async (req, res) => {
       res.status(200).json(updatedPackage);
     } else {
       res.status(403).json(`User is not allowed to update the Package`);
+    }
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+};
+
+//Delete a Package
+controller.packageDelete = async (req, res) => {
+  const roles = ["super-admin", "admin"];
+  const filter = req.params.id;
+  console.log(filter);
+  const update = { ...req.body };
+  try {
+    const getPackage = await Packages.findOne({ _id: filter });
+    if (!getPackage) {
+      return res
+        .status(404)
+        .json({ message: `No Package found with id ${filter}` });
+    }
+    if (
+      roles.includes(req.user.user_type) ||
+      getPackage.createdBy.toString() === req.user.id
+    ) {
+      const deletedPackage = await Packages.findOneAndDelete(filter);
+      console.log(deletedPackage);
+
+      res.status(200).json(deletedPackage);
+    } else {
+      res.status(403).json(`User is not allowed to delete the Package`);
     }
   } catch (err) {
     res.status(500).json(err);
