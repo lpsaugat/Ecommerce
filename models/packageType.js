@@ -17,7 +17,6 @@ const packageType = new mongoose.Schema(
       default: true,
     },
     offer: String,
-    discount: Number,
     subscriptionType: {
       type: [String],
     },
