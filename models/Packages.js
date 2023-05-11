@@ -20,6 +20,9 @@ const Packages = new mongoose.Schema(
       type: [String],
       enum: ["Best", "Featured", "ForYou", "Popular"],
     },
+    subscriptionType: {
+      type: [String],
+    },
   },
   { timestamps: true }
 );

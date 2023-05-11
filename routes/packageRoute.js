@@ -36,4 +36,32 @@ router.get(
   packagesController.packageView
 );
 
+//PackageType Add
+router.post(
+  "/dashboard/packageType",
+  verifyTokenAndAdmin,
+
+  packagesController.packageTypeDetails
+);
+
+//PackageType Update
+router.put(
+  "/dashboard/packageType/:id",
+  verifyTokenAndAdmin,
+  packagesController.packageTypeDetailsUpdate
+);
+
+//PackageType Update
+router.delete(
+  "/dashboard/packageType/:id",
+  verifyTokenAndAdmin,
+  packagesController.packageTypeDelete
+);
+
+//Get all PackageType
+router.get(
+  "/dashboard/packageType/:id",
+  verifyTokenAndAdmin,
+  packagesController.packageTypeView
+);
 module.exports = router;
