@@ -138,19 +138,20 @@ controller.packageView = async (req, res) => {
 
 //Get a Specific Package
 controller.packageViewOne = async (req, res) => {
+  const package = {};
   if (req.user.user_type === "admin" || req.user.user_type === "super-admin") {
-    const product = await Product.findOne({ _id: req.params.id })
+    package = await Packages.findOne({ _id: req.params.id })
       .sort("-createdAt")
       .populate("createdBy");
-    if (!product) {
-      res.send(`No product found with id: ${req.params.id}`);
+    if (!package) {
+      res.send(`No package found with id: ${req.params.id}`);
     }
-    res.send(product);
+    res.send(package);
   }
-  if (!product) {
-    res.send(`No product found with id: ${req.params.id}`);
+  if (!package) {
+    res.send(`No package found with id: ${req.params.id}`);
   }
-  res.send(product);
+  res.send(package);
 };
 
 module.exports = controller;
