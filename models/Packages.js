@@ -22,6 +22,10 @@ const Packages = new mongoose.Schema(
     },
     subscriptionType: {
       type: [String],
+      enum: ["Gold", "Silver", "Platinum"],
+    },
+    FamilySize: {
+      type: Number,
     },
   },
   { timestamps: true }

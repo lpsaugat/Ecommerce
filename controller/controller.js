@@ -11,6 +11,8 @@ const jwt = require("jsonwebtoken");
 const path = require("path");
 const multer = require("multer");
 const Products = require("../models/Products");
+const Package = require("../models/Packages");
+
 const { post } = require("jquery");
 const app = express();
 
@@ -110,8 +112,32 @@ controller.mobilepassword = (req, res) => {
   res.render("mobilepassword");
 };
 
-controller.familypackages = (req, res) => {
-  res.render("familypackages");
+controller.familypackages = async (req, res) => {
+  const data = await getData();
+  const packagedata = data.packagedata;
+
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 9;
+  const skip = (page - 1) * limit;
+  const count = await Package.countDocuments();
+
+  const totalPages = Math.ceil(count / limit);
+
+  const packages = await Package.find()
+    .sort("-createdAt")
+    .skip(skip)
+    .limit(limit);
+
+  const dataPagination = {
+    count,
+    totalPages,
+    page,
+    prev: page === 1 ? 1 : page - 1,
+    next: page === totalPages ? totalPages : page + 1,
+    packages,
+  };
+  console.log(dataPagination);
+  res.render("familypackages", { dataPagination, packagedata });
 };
 
 controller.package = (req, res) => {

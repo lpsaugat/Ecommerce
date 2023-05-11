@@ -157,7 +157,7 @@ controller.packageViewOne = async (req, res) => {
 
 //PackageType Details
 controller.packageTypeDetails = async (req, res) => {
-  const folder = "packageTypes";
+  const folder = "packageType";
   const file = req.files.image;
   let images = [];
 
