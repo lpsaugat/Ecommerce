@@ -16,9 +16,9 @@ const Packages = new mongoose.Schema(
     quantity: Number,
     image: [String],
     description: String,
-    homepageStatus: {
-      type: Boolean,
-      default: true,
+    fieldFilter: {
+      type: [String],
+      enum: ["Best", "Featured", "ForYou", "Popular"],
     },
   },
   { timestamps: true }

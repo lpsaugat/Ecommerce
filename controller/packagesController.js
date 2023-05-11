@@ -14,6 +14,7 @@ const path = require("path");
 const multer = require("multer");
 const Products = require("../models/Products");
 const Packages = require("../models/Packages");
+const packageType = require("../models/packageType");
 
 const { post } = require("jquery");
 const app = express();
