@@ -57,6 +57,10 @@ var Product = new mongoose.Schema(
       type: [String],
       enum: ["Best", "Featured", "ForYou", "Popular"],
     },
+    rating: {
+      type: Number,
+      default: null,
+    },
   },
   { timestamps: true }
 );

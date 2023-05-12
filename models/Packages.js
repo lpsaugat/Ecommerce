@@ -30,6 +30,10 @@ const Packages = new mongoose.Schema(
     FamilySize: {
       type: Number,
     },
+    rating: {
+      type: Number,
+      default: null,
+    },
   },
   { timestamps: true }
 );
