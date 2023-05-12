@@ -23,6 +23,10 @@ const Packages = new mongoose.Schema(
       type: [String],
       enum: ["Best", "Featured", "ForYou", "Popular"],
     },
+    category: {
+      type: [String],
+      ref: "Categories",
+    },
     subscriptionType: {
       type: [String],
       enum: ["Gold", "Silver", "Platinum"],
