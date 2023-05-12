@@ -310,7 +310,6 @@ controller.siteSettingsUpdate = async (req, res) => {
 
       update = { ...req.body, logo: logos };
     } catch (err) {
-      console.log("dfsd");
       update = req.body;
     }
   } catch (err) {

@@ -22,6 +22,8 @@ const controller = {};
 
 //Product details
 controller.productdetails = async (req, res) => {
+  console.log(req.body);
+
   const folder = "products";
   const file = req.files.image;
   let images = [];
@@ -33,14 +35,10 @@ controller.productdetails = async (req, res) => {
   }
   try {
     const newProduct = await Product.create({
-      name: req.body.name,
-      description: req.body.description,
-      price: req.body.price,
-      quantity: req.body.quantity,
-      priceper: req.body.priceper,
+      ...req.body,
+
       image: images,
       createdBy: req.user.id,
-      category: req.body.category,
     });
     res.json(newProduct);
   } catch (err) {

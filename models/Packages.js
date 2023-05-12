@@ -16,6 +16,9 @@ const Packages = new mongoose.Schema(
     quantity: Number,
     image: [String],
     description: String,
+    discount: Number,
+    offer: String,
+
     fieldFilter: {
       type: [String],
       enum: ["Best", "Featured", "ForYou", "Popular"],

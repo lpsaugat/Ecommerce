@@ -43,6 +43,8 @@ controller.packageDetails = async (req, res) => {
       price: req.body.price,
       image: images,
       products: req.body.productID,
+      discount: req.body.discount,
+      offer: req.body.offer,
       createdBy: req.user.id,
     });
     res.json(newPackages);
@@ -173,8 +175,10 @@ controller.packageTypeDetails = async (req, res) => {
       description: req.body.description,
       price: req.body.price,
       image: images,
-      products: req.body.productID,
+      packages: req.body.package,
       createdBy: req.user.id,
+      familySize: req.body.familySize,
+      offer: req.body.offer,
     });
     res.json(newPackageTypes);
   } catch (err) {

@@ -12,6 +12,7 @@ const path = require("path");
 const multer = require("multer");
 const Products = require("../models/Products");
 const Package = require("../models/Packages");
+const PackageType = require("../models/packageType");
 
 const { post } = require("jquery");
 const app = express();
@@ -26,8 +27,19 @@ async function getData() {
     const subscriptiondata = await Subscription.find();
     const orderdata = await Order.find();
     const sitedata = await siteSettings.find();
+    const packagedata = await Package.find();
+    const packageTypedata = await PackageType.find();
 
-    return { productdata, carouseldata, subscriptiondata, orderdata, sitedata };
+    return {
+      productdata,
+      carouseldata,
+      subscriptiondata,
+      orderdata,
+      sitedata,
+      packagedata,
+      packageTypedata,
+      aboutUsdata,
+    };
   } catch (err) {
     console.log(err);
   }
@@ -36,17 +48,31 @@ async function getData() {
 controller.home = async (req, res) => {
   try {
     // const productdata = await Product.find({ status: true }).sort("-createdAt");
-    const { productdata, carouseldata, sitedata, ...otherdata } =
-      await getData();
-    res.render("Homepage", { productdata, carouseldata, sitedata });
+    const {
+      productdata,
+      carouseldata,
+      sitedata,
+      packagedata,
+      packageTypedata,
+      ...otherdata
+    } = await getData();
+    res.render("Homepage", {
+      productdata,
+      carouseldata,
+      sitedata,
+      packagedata,
+      packageTypedata,
+      packagedata,
+    });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Internal server Error" });
   }
 };
 
-controller.aboutus = (req, res) => {
-  res.render("AboutUs");
+controller.aboutus = async (req, res) => {
+  const { sitedata, aboutUsdata, ...otherdata } = await getData();
+  res.render("AboutUs", { sitedata, aboutUsdata });
 };
 
 controller.slider = (req, res) => {
@@ -57,7 +83,9 @@ controller.subscription = async (req, res) => {
   try {
     const data = await getData();
     const subscriptiondata = data.subscriptiondata;
-    res.render("subscription", { subscriptiondata });
+    const sitedata = data.sitedata;
+
+    res.render("subscription", { sitedata, subscriptiondata });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Internal server Error" });
@@ -73,26 +101,13 @@ controller.products = async (req, res) => {
     const count = await Product.countDocuments();
     const totalPages = Math.ceil(count / limit);
     const data = await getData();
-    const productdata = data.productdata;
+    const productdata = data?.productdata;
+
     res.render("products", { productdata });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Internal server Error" });
   }
-};
-
-controller.add = (req, res) => {
-  const data = req.body;
-  req.getConnection((err, connection) => {
-    const query = connection.query(
-      "INSERT INTO products set ?",
-      data,
-      (err, products) => {
-        res.redirect("/Add_product");
-        console.log("added");
-      }
-    );
-  });
 };
 
 controller.add_product = (req, res) => {
@@ -108,8 +123,13 @@ controller.dashboard = async (req, res) => {
   res.render("dashboard", { productdata, userdata, orderdata });
 };
 
-controller.mobilepassword = (req, res) => {
-  res.render("mobilepassword");
+controller.mobilepassword = async (req, res) => {
+  const data = await getData();
+  const userdata = data.userdata;
+  const productdata = data.productdata;
+  const orderdata = data.orderdata;
+
+  res.render("mobilepassword", { productdata, userdata, orderdata });
 };
 
 controller.familypackages = async (req, res) => {
@@ -144,8 +164,11 @@ controller.package = (req, res) => {
   res.render("Package");
 };
 
-controller.singlepackage = (req, res) => {
-  res.render("singlepackage");
+controller.singlepackage = async (req, res) => {
+  const data = await getData();
+  const packagedata = data.packagedata;
+  const productdata = data.productdata;
+  res.render("singleproduct", { packagedata, productdata });
 };
 
 controller.singleproduct = async (req, res) => {
@@ -204,7 +227,7 @@ controller.test = (req, res) => {
 
 controller.getAllProducts = async (req, res) => {
   const data = await getData();
-  const productdata = data.productdata;
+  const productdata = await data.productdata;
 
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 9;
@@ -227,6 +250,48 @@ controller.getAllProducts = async (req, res) => {
     products,
   };
   console.log(dataPagination);
-  res.render("products", { dataPagination, productdata });
+  res.render("products", { dataPagination, products });
 };
+
+controller.filterProduct = async (req, res) => {
+  let query = {};
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 9;
+  const skip = (page - 1) * limit;
+  let price;
+  let subscriptionType;
+  // const price = { range1: 0, range2: 200 };
+  if (req.body.subscriptionType) {
+    subscriptionType = req.body.subscriptionType;
+    query.subscriptionType = { $in: subscriptionType };
+  }
+  if (req.body.price) {
+    price = req.body.price;
+    query.price = { $gte: price.range1, $lte: price.range2 };
+  }
+  console.log(query);
+  const count = await Product.countDocuments(query);
+
+  // const subscriptionType = req.body.subscriptionType;
+  const products = await Product.find(query)
+    .sort("-createdAt")
+    .skip(skip)
+    .limit(limit);
+  // res.json({ count: products.length, products });
+  // return { count: products.length, products };
+
+  const totalPages = Math.ceil(count / limit);
+
+  const dataPagination = {
+    count,
+    totalPages,
+    page,
+    prev: page === 1 ? 1 : page - 1,
+    next: page === totalPages ? totalPages : page + 1,
+    products,
+  };
+  console.log(dataPagination);
+  res.render("products", { dataPagination, products });
+};
+
 module.exports = controller;

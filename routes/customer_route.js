@@ -29,7 +29,6 @@ const {
 router.get("/", customerController.home);
 router.get("/AboutUs", customerController.aboutus);
 router.get("/add_product", customerController.add_product);
-router.post("/add", customerController.add);
 router.get("/slider", customerController.slider);
 router.get("/subscription", customerController.subscription);
 router.get("/products", customerController.getAllProducts);
@@ -53,5 +52,7 @@ router.get("/mobilepassword", customerController.mobilepassword);
 router.get("/test", customerController.test);
 
 router.get("/productstest", customerController.getAllProducts);
+
+router.post("/filterTest", customerController.filterProduct);
 
 module.exports = router;
