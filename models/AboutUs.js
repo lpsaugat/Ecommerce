@@ -26,10 +26,16 @@ const aboutUs = new mongoose.Schema({
   statisticsNumber: {
     type: [Number],
   },
+  missionTitle: {
+    type: [String],
+  },
   mission: {
     type: [String],
   },
-  vison: {
+  visionTitle: {
+    type: [String],
+  },
+  vision: {
     type: [String],
   },
 });

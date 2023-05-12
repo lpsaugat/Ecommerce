@@ -5,10 +5,10 @@ const Banner = new mongoose.Schema({
     type: String,
     unique: true,
   },
-  heading: {
+  title: {
     type: String,
   },
-  writing: {
+  text: {
     type: String,
   },
   image: {
@@ -16,3 +16,4 @@ const Banner = new mongoose.Schema({
   },
 });
 module.exports = mongoose.model("Banner", Banner);
+image;

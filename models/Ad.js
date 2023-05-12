@@ -5,10 +5,10 @@ const Ad = new mongoose.Schema({
     type: String,
     unique: true,
   },
-  heading: {
+  title: {
     type: String,
   },
-  writing: {
+  text: {
     type: String,
   },
   image: {

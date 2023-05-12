@@ -173,6 +173,7 @@ controller.filterPackage = async (req, res) => {
   let subscriptionType;
   let familySize;
   let category;
+  let rating;
   // const price = { range1: 0, range2: 200 };
   if (req.body.subscriptionType) {
     subscriptionType = req.body.subscriptionType;

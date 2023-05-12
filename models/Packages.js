@@ -13,6 +13,7 @@ const Packages = new mongoose.Schema(
     price: {
       type: Number,
     },
+    description: String,
     quantity: Number,
     image: [String],
     description: String,

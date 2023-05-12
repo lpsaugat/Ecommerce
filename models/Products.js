@@ -61,6 +61,10 @@ var Product = new mongoose.Schema(
       type: Number,
       default: null,
     },
+    services: {
+      type: String,
+      enum: ["cash", "card", "both"],
+    },
   },
   { timestamps: true }
 );
