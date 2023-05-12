@@ -51,8 +51,8 @@ router.get("/mobilepassword", customerController.mobilepassword);
 
 router.get("/test", customerController.test);
 
-router.get("/productstest", customerController.getAllProducts);
+router.get("/filterTest", customerController.getAllProducts);
 
-router.post("/filterTest", customerController.filterProduct);
+router.post("/products", customerController.filterProduct);
 
 module.exports = router;

@@ -13,6 +13,7 @@ const multer = require("multer");
 const Products = require("../models/Products");
 const Package = require("../models/Packages");
 const PackageType = require("../models/packageType");
+const AboutUs = require("../models/AboutUs");
 
 const { post } = require("jquery");
 const app = express();
@@ -29,6 +30,7 @@ async function getData() {
     const sitedata = await siteSettings.find();
     const packagedata = await Package.find();
     const packageTypedata = await PackageType.find();
+    const aboutUsdata = await AboutUs.find();
 
     return {
       productdata,
@@ -225,9 +227,10 @@ controller.test = (req, res) => {
   res.render("test");
 };
 
+//Products page and show all products
 controller.getAllProducts = async (req, res) => {
   const data = await getData();
-  const productdata = await data.productdata;
+  const productdata = data.productdata;
 
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 9;
@@ -253,6 +256,7 @@ controller.getAllProducts = async (req, res) => {
   res.render("products", { dataPagination, products });
 };
 
+//Products page with filters after query
 controller.filterProduct = async (req, res) => {
   let query = {};
   const page = Number(req.query.page) || 1;
@@ -260,6 +264,8 @@ controller.filterProduct = async (req, res) => {
   const skip = (page - 1) * limit;
   let price;
   let subscriptionType;
+  let familySize;
+  let category;
   // const price = { range1: 0, range2: 200 };
   if (req.body.subscriptionType) {
     subscriptionType = req.body.subscriptionType;
@@ -268,6 +274,18 @@ controller.filterProduct = async (req, res) => {
   if (req.body.price) {
     price = req.body.price;
     query.price = { $gte: price.range1, $lte: price.range2 };
+  }
+  if (req.body.familySize) {
+    familySize = req.body.familySize;
+    query.familySize = { $in: familySize };
+  }
+  if (req.body.category) {
+    category = req.body.category;
+    query.category = { $in: category };
+  }
+  if (req.body.rating) {
+    rating = req.body.rating;
+    query.rating = { $in: rating };
   }
   console.log(query);
   const count = await Product.countDocuments(query);
