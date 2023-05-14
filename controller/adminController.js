@@ -100,11 +100,21 @@ controller.carouselUpdate = async (req, res) => {
 
 //Writing in Subscription
 controller.SubscriptionWriting = async (req, res) => {
+  const folder = "Subscription";
+  const file = req.files.backgroundImage;
+  let backgroundImage = [];
+
+  try {
+    image = await imageUploader(req, res, file, folder);
+  } catch (error) {
+    process.exit();
+  }
   try {
     const newSubscription = await Subscription.create({
       name: req.body.name,
-      heading: req.body.heading,
-      backgroundImage: req.file.path,
+
+      subscriptionText: req.body.subscriptionText,
+      backgroundImage: backgroundImage,
     });
     res.json(newSubscription);
   } catch (err) {
@@ -115,9 +125,18 @@ controller.SubscriptionWriting = async (req, res) => {
 
 //Subscription Writings Update and Change
 controller.SubscriptionUpdate = async (req, res) => {
+  const folder = "Subscription";
+  const file = req.files.backgroundImage;
+  let backgroundImage = [];
+
+  try {
+    image = await imageUploader(req, res, file, folder);
+  } catch (error) {
+    process.exit();
+  }
   const filter = { name: req.body.name };
   console.log(filter);
-  const update = { ...req.body, backgroundImage: req.file.path };
+  const update = { ...req.body, backgroundImage: backgroundImage };
   try {
     const updatedSubscription = await Subscription.findOneAndUpdate(
       filter,

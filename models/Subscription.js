@@ -7,7 +7,7 @@ const Subscription = new mongoose.Schema(
       type: String,
     },
 
-    heading: {
+    subscriptionText: {
       type: String,
       required: true,
     },
