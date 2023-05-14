@@ -16,4 +16,3 @@ const Banner = new mongoose.Schema({
   },
 });
 module.exports = mongoose.model("Banner", Banner);
-image;

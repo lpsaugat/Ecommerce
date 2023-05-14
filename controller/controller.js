@@ -370,4 +370,24 @@ controller.filterProduct = async (req, res) => {
   res.render("products", { dataPagination, products });
 };
 
+controller.search = async (req, res) => {
+  const searchQuery = req.query.search;
+  try {
+    const productdata = await Product.find({
+      $text: {
+        $search: searchQuery,
+        $caseSensitive: false,
+        $diacriticSensitive: false,
+      },
+    });
+
+    res.json({
+      productdata,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Internal server Error" });
+  }
+};
+
 module.exports = controller;

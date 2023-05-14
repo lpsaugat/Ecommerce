@@ -27,6 +27,8 @@ const {
 } = require("./verifyToken");
 
 router.get("/", customerController.home);
+router.get("/search", customerController.search);
+
 router.get("/AboutUs", customerController.aboutus);
 router.get("/add_product", customerController.add_product);
 router.get("/slider", customerController.slider);
