@@ -1,4 +1,4 @@
-const controller = require("./controller/imageUploader");
-// const fs = require(fs);
+const controller = require("./controller/controller");
 
+describe();
 test("Test completed", () => {});

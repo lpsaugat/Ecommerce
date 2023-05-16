@@ -380,8 +380,7 @@ controller.search = async (req, res) => {
         $diacriticSensitive: false,
       },
     });
-
-    res.json({
+    res.render("products", {
       productdata,
     });
   } catch (err) {
