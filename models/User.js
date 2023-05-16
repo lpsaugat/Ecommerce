@@ -47,12 +47,12 @@ const userSchema = new mongoose.Schema(
     },
 
     user_type: {
-      type: String,
-      enum: {
-        values: ["super-admin", "admin", "vendor", "customer"],
-        message: "{VALUE} is not supported",
-      },
-      default: "customer",
+      type: mongoose.Types.ObjectId,
+      ref: "Role",
+    },
+    permission: {
+      type: mongoose.Types.ObjectId,
+      ref: "Permission",
     },
     token: {
       type: String,
