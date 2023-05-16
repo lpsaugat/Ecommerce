@@ -47,11 +47,11 @@ const userSchema = new mongoose.Schema(
     },
 
     user_type: {
-      type: mongoose.Types.ObjectId,
+      type: String,
       ref: "Role",
     },
     permission: {
-      type: mongoose.Types.ObjectId,
+      type: [String],
       ref: "Permission",
     },
     token: {
