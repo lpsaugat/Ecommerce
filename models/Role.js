@@ -8,6 +8,8 @@ const role = new mongoose.Schema(
     role: {
       type: String,
     },
+    permission: { type: mongoose.Types.ObjectId, ref: "Permission" },
+    status: Boolean,
   },
   { timestamps: true }
 );

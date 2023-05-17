@@ -10,18 +10,16 @@ const Order = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "Product",
     },
-
     vendor: {
       type: mongoose.Types.ObjectId,
-      ref: "Product",
+      ref: "User",
     },
     price: {
-      type: Number,
+      type: mongoose.Types.Decimal128,
     },
-    quantity: Number,
+    quantity: mongoose.Types.Decimal128,
     name: String,
-    image: String,
-    priceper: String,
+    status: Boolean,
   },
   { timestamps: true }
 );

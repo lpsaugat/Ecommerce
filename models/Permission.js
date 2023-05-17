@@ -8,6 +8,7 @@ const permission = new mongoose.Schema(
     permission: {
       type: String,
     },
+    status: Boolean,
   },
   { timestamps: true }
 );
