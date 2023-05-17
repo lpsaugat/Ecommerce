@@ -12,14 +12,12 @@ const packageType = new mongoose.Schema(
     },
     image: [String],
     description: String,
-    homepageStatus: {
-      type: Boolean,
-      default: true,
-    },
-    offer: String,
+
     subscriptionType: {
       type: [String],
     },
+    slug: String,
+    status: Boolean,
   },
   { timestamps: true }
 );

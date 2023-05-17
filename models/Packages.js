@@ -11,30 +11,23 @@ const Packages = new mongoose.Schema(
       ref: "Product",
     },
     price: {
-      type: Number,
+      type: mongoose.Types.Decimal128,
     },
     description: String,
-    quantity: Number,
+    quantity: mongoose.Types.Decimal128,
     image: [String],
-    description: String,
+    longDescription: String,
     discount: Number,
-    offer: String,
-
+    offer: { type: mongoose.Types.ObjectId },
     category: {
       type: [String],
       ref: "Categories",
     },
-    subscriptionType: {
-      type: [String],
-      enum: ["Gold", "Silver", "Platinum"],
-    },
     FamilySize: {
       type: Number,
     },
-    rating: {
-      type: Number,
-      default: null,
-    },
+    slug: String,
+    status: Boolean,
   },
   { timestamps: true }
 );

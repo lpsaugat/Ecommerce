@@ -1,6 +1,5 @@
 const { Timestamp } = require("mongodb");
 const mongoose = require("mongoose"); // Erase if already required
-const Categories = require("./Categories");
 
 // Declare the Schema of the Mongo model
 var Product = new mongoose.Schema(
@@ -17,27 +16,23 @@ var Product = new mongoose.Schema(
       type: String,
     },
     price: {
-      type: Number,
+      type: mongoose.Types.Decimal128,
       required: true,
     },
-    priceper: {
+    measure: {
       type: String,
       required: false,
       default: "",
     },
 
     quantity: {
-      type: Number,
+      type: mongoose.Types.Decimal128,
       required: true,
       default: 1,
     },
     image: {
       type: [String],
       required: true,
-    },
-    status: {
-      type: Boolean,
-      default: true,
     },
 
     createdBy: {
@@ -49,14 +44,13 @@ var Product = new mongoose.Schema(
       required: false,
       ref: "Categories",
     },
-    subscriptionType: {
-      type: [String],
-      enum: ["Gold", "Platinum", "Silver"],
-    },
 
-    services: {
+    slug: {
       type: String,
-      enum: ["cash", "card", "both"],
+    },
+    status: {
+      type: Boolean,
+      default: true,
     },
   },
   { timestamps: true }
