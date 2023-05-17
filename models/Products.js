@@ -54,10 +54,6 @@ var Product = new mongoose.Schema(
       enum: ["Gold", "Platinum", "Silver"],
     },
 
-    rating: {
-      type: Number,
-      default: null,
-    },
     services: {
       type: String,
       enum: ["cash", "card", "both"],
