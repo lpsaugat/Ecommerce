@@ -45,7 +45,7 @@ var Product = new mongoose.Schema(
       ref: "User",
     },
     category: {
-      type: [mongoose.Types.ObjectId],
+      type: [String],
       required: false,
       ref: "Categories",
     },
@@ -53,10 +53,7 @@ var Product = new mongoose.Schema(
       type: [String],
       enum: ["Gold", "Platinum", "Silver"],
     },
-    fieldFilter: {
-      type: [String],
-      enum: ["Best", "Featured", "ForYou", "Popular"],
-    },
+
     rating: {
       type: Number,
       default: null,

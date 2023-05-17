@@ -20,10 +20,6 @@ const Packages = new mongoose.Schema(
     discount: Number,
     offer: String,
 
-    fieldFilter: {
-      type: [String],
-      enum: ["Best", "Featured", "ForYou", "Popular"],
-    },
     category: {
       type: [String],
       ref: "Categories",
