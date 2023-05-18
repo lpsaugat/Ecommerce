@@ -19,7 +19,7 @@ const Order = new mongoose.Schema(
     },
     quantity: mongoose.Types.Decimal128,
     name: String,
-    status: Boolean,
+    status: { type: Boolean, default: true },
   },
   { timestamps: true }
 );

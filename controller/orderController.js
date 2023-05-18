@@ -5,6 +5,9 @@ const Carousel = require("../models/Carousel");
 const Product = require("../models/Products");
 const Order = require("../models/Order");
 const Cart = require("../models/Cart");
+const Shipping = require("../models/Shipping");
+
+const { Decimal128 } = require("mongodb");
 
 const Subscription = require("../models/Subscription");
 
@@ -174,9 +177,14 @@ controller.cart = async (req, res) => {
   try {
     const cart = await Cart.findOne({ user: req.user.id, status: true });
 
-    var order = await Order.find({ user: req.user.id, status: true });
+    var order = await Order.find({ user: req.user.id });
 
-    order = order.map((order) => order._id);
+    console.log(order);
+    var total = order.map((order) => order.price);
+    let totalPrice = 0;
+    total.forEach((total) => {
+      totalPrice = totalPrice + parseFloat(total);
+    });
     //Find if a cart already exists and use that to update, If there isn't one; Create.
     if (!cart) {
       const newCart = await Cart.create({
@@ -186,7 +194,7 @@ controller.cart = async (req, res) => {
     } else {
       const updatedCart = await Cart.findOneAndUpdate(
         { user: req.user.id },
-        { orders: order },
+        { orders: order, total: totalPrice },
         { new: true }
       );
       console.log(updatedCart);
@@ -209,19 +217,41 @@ controller.shipping = async (req, res) => {
       { $set: { status: false } }
     );
 
-    cart = cart.map((cart) => cart._id);
     //Find the cart and add the cart onto the shipping. If there isn't one; send error.
     if (!cart) {
       return res.json("There isn't any product in your cart");
     } else {
-      const newShipping = await Shipping.Create({
+      const newShipping = await Shipping.create({
         user: req.user.id,
-        cart: cart,
+        cart: cart.id,
         location: req.body.location,
         charge: 100,
         paymentMethod: req.body.paymentMethod,
+        deliveryStatus: "OrderFulfilled",
+        netTotal: 100 + parseFloat(cart.total),
       });
       console.log(newShipping);
+    }
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
+//Update Shipping when deliveryStatus changes
+controller.shippingUpdate = async (req, res) => {
+  try {
+    const shipping = await Shipping.findOne({ user: req.params.id });
+    if (!shipping) {
+      return res.json("Shipping wasn't found");
+    } else {
+      const updatedShipping = await Shipping.findOneAndUpdate(
+        { user: req.body.updateID },
+        {
+          deliveryStatus: req.body.deliveryStatus,
+        },
+        { new: true }
+      );
+      console.log(updatedShipping);
     }
   } catch (err) {
     console.log(err.message);

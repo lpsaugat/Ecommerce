@@ -36,4 +36,11 @@ router.delete(
 );
 
 router.post("/shipping", verifyToken, orderController.shipping);
+
+router.post(
+  "/shippingUpdate",
+  verifyTokenandAuthorization,
+  orderController.shippingUpdate
+);
+
 module.exports = router;

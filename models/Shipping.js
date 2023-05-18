@@ -15,8 +15,8 @@ const Shipping = new mongoose.Schema(
       ref: "PaymentMethod",
     },
     deliveryStatus: {
-      type: mongoose.Types.ObjectId,
-      ref: "DeliveryStatus",
+      type: String,
+      // ref: "DeliveryStatus",
     },
     charge: {
       type: mongoose.Types.Decimal128,
