@@ -172,10 +172,10 @@ controller.orderdelete = async (req, res, next) => {
 //Cart
 controller.cart = async (req, res) => {
   try {
-    const cart = await Cart.findOne({ user: req.user.id });
-    console.log("sdf");
+    const cart = await Cart.findOne({ user: req.user.id, status: true });
 
-    var order = await Order.find({ user: req.user.id });
+    var order = await Order.find({ user: req.user.id, status: true });
+
     order = order.map((order) => order._id);
     //Find if a cart already exists and use that to update, If there isn't one; Create.
     if (!cart) {
@@ -184,11 +184,44 @@ controller.cart = async (req, res) => {
         orders: order,
       });
     } else {
-      const updatedCart = await Order.findOneAndUpdate(
-        { _id: order.id },
-        { user: req.user.id, orders: order },
+      const updatedCart = await Cart.findOneAndUpdate(
+        { user: req.user.id },
+        { orders: order },
         { new: true }
       );
+      console.log(updatedCart);
+    }
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
+//Create Shipping of Cart when delivery is ready
+controller.shipping = async (req, res) => {
+  try {
+    const cart = await Cart.findOne({ user: req.user.id });
+    const order = await Order.updateMany(
+      { user: req.user.id },
+      { $set: { status: false } }
+    );
+    const cartUpdate = await Order.updateMany(
+      { user: req.user.id },
+      { $set: { status: false } }
+    );
+
+    cart = cart.map((cart) => cart._id);
+    //Find the cart and add the cart onto the shipping. If there isn't one; send error.
+    if (!cart) {
+      return res.json("There isn't any product in your cart");
+    } else {
+      const newShipping = await Shipping.Create({
+        user: req.user.id,
+        cart: cart,
+        location: req.body.location,
+        charge: 100,
+        paymentMethod: req.body.paymentMethod,
+      });
+      console.log(newShipping);
     }
   } catch (err) {
     console.log(err.message);
