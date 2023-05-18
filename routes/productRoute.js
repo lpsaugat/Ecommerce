@@ -65,27 +65,4 @@ router.get(
   productController.productviewone
 );
 
-//Customer Order
-router.post("/products", verifyToken, productController.order);
-
-//Customer Order view
-router.get("/dashboard/orders", verifyToken, productController.orderview);
-
-//Order view of a single product
-router.get(
-  "/dashboard/orders/:id",
-  verifyToken,
-  productController.orderviewproduct
-);
-
-//Customer Order update
-router.get("/dashboard/orders", verifyToken, productController.orderupdate);
-
-//Customer Order delete
-router.delete(
-  "/dashboard/orders/:id",
-  verifyToken,
-  productController.orderdelete
-);
-
 module.exports = router;
