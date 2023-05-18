@@ -34,6 +34,7 @@ const userRoute = require("./routes/userRoute");
 const productRoute = require("./routes/productRoute");
 const adminRoute = require("./routes/adminRoute");
 const packageRoute = require("./routes/packageRoute");
+const packageRoute = require("./routes/orderRoute");
 
 const { resourceUsage } = require("process");
 app.use(cookieparser());
@@ -45,6 +46,7 @@ app.use("/", userRoute);
 app.use("/", productRoute);
 app.use("/", adminRoute);
 app.use("/", packageRoute);
+app.use("/", orderRoute);
 
 // app.set('port', process.env.PORT || 3000,);
 app.set("views", path.join(__dirname, "views"));
