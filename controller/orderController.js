@@ -4,6 +4,8 @@ const User = require("../models/User");
 const Carousel = require("../models/Carousel");
 const Product = require("../models/Products");
 const Order = require("../models/Order");
+const Cart = require("../models/Cart");
+
 const Subscription = require("../models/Subscription");
 
 const express = require("express");
@@ -71,7 +73,7 @@ controller.orderupdate = async (req, res) => {
     if (
       roles.includes(req.user.user_type) ||
       getorder.createdBy.toString() === req.user.id ||
-      getorder.User.toString() === req.user.id
+      getorder.user.toString() === req.user.id
     ) {
       const updatedOrder = await Order.findOneAndUpdate(
         filter,
@@ -130,7 +132,7 @@ controller.orderviewproduct = async (req, res) => {
     res.send(orders);
   } else if (req.user.user_type === "customer") {
     const orders = await Order.find({
-      User: req.user.id,
+      user: req.user.id,
       productID: req.params.id,
     });
     res.send(orders);
@@ -153,7 +155,7 @@ controller.orderdelete = async (req, res) => {
     if (
       roles.includes(req.user.user_type) ||
       getorder.createdBy.toString() === req.user.id ||
-      getorder.User.toString() === req.user.id
+      getorder.user.toString() === req.user.id
     ) {
       const deletedorder = await Order.findOneAndDelete(filter);
       console.log(deletedorder);
@@ -168,4 +170,26 @@ controller.orderdelete = async (req, res) => {
   }
 };
 
+//Cart
+controller.cart = async (req, res) => {
+  try {
+    const cart = Cart.findOne({ user: req.user.id });
+    const order = Order.find({ user: req.user.id });
+    //Find if a cart already exists and use that to update, If there isn't one; Create.
+    if (!cart) {
+      const newCart = await Cart.create({
+        user: req.user.id,
+        orders: order.id,
+      });
+    } else {
+      const updatedCart = await Order.findOneAndUpdate(
+        { _id: orderId },
+        { user: req.user.id, orders: order.id },
+        { new: true }
+      );
+    }
+  } catch (err) {
+    console.log(err.message);
+  }
+};
 module.exports = controller;
