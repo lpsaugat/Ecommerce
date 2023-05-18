@@ -17,6 +17,7 @@ const offer = new mongoose.Schema(
     valid_to: {
       type: Date,
     },
+    image: String,
     code: {
       type: String,
     },

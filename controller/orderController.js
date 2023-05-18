@@ -23,7 +23,6 @@ const controller = {};
 //Customer Order
 controller.order = async (req, res) => {
   const { productID, quantity, price } = req.body;
-  console.log(req.body.productID);
   const product = await Products.findOne({ _id: productID });
   try {
     var newOrder = await Order.findOneAndUpdate(
@@ -40,11 +39,9 @@ controller.order = async (req, res) => {
       newOrder = await Order.create({
         user: req.user.id,
         productID: product.id,
-        price: price,
+        price: product.price,
         vendor: product.createdBy,
         name: product.name,
-        priceper: product.priceper,
-        image: product.image,
         quantity: quantity,
       });
     }

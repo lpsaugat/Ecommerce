@@ -3,6 +3,7 @@ const fs = require("fs");
 const User = require("../models/User");
 const Carousel = require("../models/Carousel");
 const Product = require("../models/Products");
+const Offer = require("../models/Offer");
 
 const Order = require("../models/Order");
 const Subscription = require("../models/Subscription");
@@ -38,13 +39,8 @@ controller.packageDetails = async (req, res) => {
   console.log(req.body);
   try {
     const newPackages = await Packages.create({
-      name: req.body.name,
-      description: req.body.description,
-      price: req.body.price,
+      ...req.body,
       image: images,
-      products: req.body.productID,
-      discount: req.body.discount,
-      offer: req.body.offer,
       createdBy: req.user.id,
     });
     res.json(newPackages);
@@ -171,14 +167,9 @@ controller.packageTypeDetails = async (req, res) => {
   console.log(req.body);
   try {
     const newPackageTypes = await PackageTypes.create({
-      name: req.body.name,
-      description: req.body.description,
-      price: req.body.price,
+      ...req.body,
       image: images,
-      packages: req.body.package,
       createdBy: req.user.id,
-      familySize: req.body.familySize,
-      offer: req.body.offer,
     });
     res.json(newPackageTypes);
   } catch (err) {
@@ -206,6 +197,7 @@ controller.packageTypeDetailsUpdate = async (req, res) => {
 
   const filter = req.params.id;
   try {
+    d;
     const getPackageType = await PackageTypes.findOne({ _id: filter });
     if (!getPackageType) {
       return res
@@ -288,6 +280,108 @@ controller.packageTypeViewOne = async (req, res) => {
     res.send(`No packageType found with id: ${req.params.id}`);
   }
   res.send(packageType);
+};
+
+//offer Details Update
+controller.offerDetailsUpdate = async (req, res) => {
+  const roles = ["super-admin", "admin"];
+  const folder = "offer";
+  let update = {};
+  let images = [];
+  try {
+    if (req.files.image) {
+      images = await imageUploader(req, res, req.files.image, folder);
+      update = { ...req.body, image: images };
+    } else {
+      update = req.body;
+    }
+  } catch (err) {
+    return;
+  }
+
+  const filter = req.params.id;
+  try {
+    d;
+    const getoffer = await Offer.findOne({ _id: filter });
+    if (!getoffer) {
+      return res
+        .status(404)
+        .json({ message: `No offer found with id ${filter}` });
+    }
+    if (roles.includes(req.user.user_type)) {
+      const updatedoffer = await offers.findOneAndUpdate(
+        filter,
+        update,
+
+        { new: true, runValidators: true }
+      );
+      console.log(updatedoffer);
+
+      res.status(200).json(updatedoffer);
+    } else {
+      res.status(403).json(`User is not allowed to update the offer`);
+    }
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+};
+
+//Delete an Offer
+controller.offerDelete = async (req, res) => {
+  const roles = ["super-admin", "admin"];
+  const filter = req.params.id;
+  console.log(filter);
+  const update = { ...req.body };
+  try {
+    const getoffer = await Offer.findOne({ _id: filter });
+    if (!getoffer) {
+      return res
+        .status(404)
+        .json({ message: `No offer found with id ${filter}` });
+    }
+    if (
+      roles.includes(req.user.user_type) ||
+      getoffer.createdBy.toString() === req.user.id
+    ) {
+      const deletedoffer = await offers.findOneAndDelete(filter);
+      console.log(deletedoffer);
+
+      res.status(200).json(deletedoffer);
+    } else {
+      res.status(403).json(`User is not allowed to delete the offer`);
+    }
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+};
+
+//Get All Offers
+controller.offerView = async (req, res) => {
+  if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
+    const offers = await Offer.find().sort("-createdAt").populate("createdBy");
+    res.send(offers);
+  }
+  res.send(offers);
+};
+
+//Get a Specific Offer
+controller.offerViewOne = async (req, res) => {
+  const offer = {};
+  if (req.user.user_type === "admin" || req.user.user_type === "super-admin") {
+    offer = await Offer.findOne({ _id: req.params.id })
+      .sort("-createdAt")
+      .populate("createdBy");
+    if (!offer) {
+      res.send(`No offer found with id: ${req.params.id}`);
+    }
+    res.send(offer);
+  }
+  if (!offer) {
+    res.send(`No offer found with id: ${req.params.id}`);
+  }
+  res.send(offer);
 };
 
 module.exports = controller;
