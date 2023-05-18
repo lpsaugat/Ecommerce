@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Cart = new mongoose.Schema(
   {
     orders: {
-      type: mongoose.Types.ObjectId,
+      type: [mongoose.Types.ObjectId],
       ref: "Order",
     },
     user: {
@@ -13,7 +13,7 @@ const Cart = new mongoose.Schema(
     total: {
       type: mongoose.Types.Decimal128,
     },
-    status: Boolean,
+    status: { type: Boolean, default: true },
   },
   { timestamps: true }
 );

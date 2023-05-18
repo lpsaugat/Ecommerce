@@ -23,7 +23,7 @@ const cloudinary = require("cloudinary").v2;
 const controller = {};
 
 //Customer Order
-controller.order = async (req, res) => {
+controller.order = async (req, res, next) => {
   const { productID, quantity, price } = req.body;
   const product = await Products.findOne({ _id: productID });
   try {
@@ -35,7 +35,6 @@ controller.order = async (req, res) => {
       { $inc: { quantity: 1 } },
       { new: true, runValidators: true }
     );
-    console.log(newOrder);
     if (newOrder) {
     } else {
       newOrder = await Order.create({
@@ -52,6 +51,7 @@ controller.order = async (req, res) => {
       product.quantity = product.quantity - newOrder.quantity;
       await product.save();
     }
+    next();
     res.json(newOrder);
   } catch (err) {
     console.log(err);
@@ -59,7 +59,7 @@ controller.order = async (req, res) => {
   }
 };
 
-controller.orderupdate = async (req, res) => {
+controller.orderupdate = async (req, res, next) => {
   const roles = ["super-admin", "admin"];
   const filter = req.params.id;
   console.log(filter);
@@ -81,8 +81,7 @@ controller.orderupdate = async (req, res) => {
 
         { new: true, runValidators: true }
       );
-      console.log(updatedOrder);
-
+      next();
       res.status(200).json(updatedOrder);
     } else {
       res.status(403).json(`User is not allowed to update the Order`);
@@ -140,7 +139,7 @@ controller.orderviewproduct = async (req, res) => {
 };
 
 //Remove/ Delete and order
-controller.orderdelete = async (req, res) => {
+controller.orderdelete = async (req, res, next) => {
   const roles = ["super-admin", "admin"];
   const filter = req.params.id;
   console.log(filter);
@@ -159,7 +158,7 @@ controller.orderdelete = async (req, res) => {
     ) {
       const deletedorder = await Order.findOneAndDelete(filter);
       console.log(deletedorder);
-
+      next();
       res.status(200).json(deletedorder);
     } else {
       res.status(403).json(`User is not allowed to delete the order`);
@@ -173,18 +172,21 @@ controller.orderdelete = async (req, res) => {
 //Cart
 controller.cart = async (req, res) => {
   try {
-    const cart = Cart.findOne({ user: req.user.id });
-    const order = Order.find({ user: req.user.id });
+    const cart = await Cart.findOne({ user: req.user.id });
+    console.log("sdf");
+
+    var order = await Order.find({ user: req.user.id });
+    order = order.map((order) => order._id);
     //Find if a cart already exists and use that to update, If there isn't one; Create.
     if (!cart) {
       const newCart = await Cart.create({
         user: req.user.id,
-        orders: order.id,
+        orders: order,
       });
     } else {
       const updatedCart = await Order.findOneAndUpdate(
-        { _id: orderId },
-        { user: req.user.id, orders: order.id },
+        { _id: order.id },
+        { user: req.user.id, orders: order },
         { new: true }
       );
     }

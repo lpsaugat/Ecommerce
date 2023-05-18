@@ -7,7 +7,7 @@ const {
 } = require("./verifyToken");
 
 //Customer Order
-router.post("/products", verifyToken, orderController.order);
+router.post("/order", verifyToken, orderController.order, orderController.cart);
 
 //Customer Order view
 router.get("/dashboard/orders", verifyToken, orderController.orderview);
@@ -20,12 +20,18 @@ router.get(
 );
 
 //Customer Order update
-router.get("/dashboard/orders", verifyToken, orderController.orderupdate);
+router.get(
+  "/dashboard/orders",
+  verifyToken,
+  orderController.orderupdate,
+  orderController.cart
+);
 
 //Customer Order delete
 router.delete(
   "/dashboard/orders/:id",
   verifyToken,
-  orderController.orderdelete
+  orderController.orderdelete,
+  orderController.cart
 );
 module.exports = router;
