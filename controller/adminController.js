@@ -493,4 +493,119 @@ controller.aboutUsDataUpdate = async (req, res) => {
   }
 };
 
+//Offer details
+controller.offer = async (req, res) => {
+  console.log(req.body);
+
+  const folder = "offers";
+  const file = req.files.image;
+  let images = [];
+
+  try {
+    images = await imageUploader(req, res, file, folder);
+  } catch (error) {
+    return;
+  }
+  try {
+    const newOffer = await Offer.create({
+      ...req.body,
+
+      image: images,
+      createdBy: req.user.id,
+    });
+    res.json(newOffer);
+  } catch (err) {
+    console.log(err);
+    res.json(err);
+  }
+};
+
+//Offer Details Update and Change
+controller.offerUpdate = async (req, res) => {
+  const roles = ["super-admin", "admin"];
+  const folder = "offers";
+  let update = {};
+  let images = [];
+  try {
+    if (req.files.image) {
+      images = await imageUploader(req, res, req.files.image, folder);
+      update = { ...req.body, image: images };
+    } else {
+      update = req.body;
+    }
+  } catch (err) {
+    return;
+  }
+
+  const filter = req.params.id;
+  try {
+    const getOffer = await Offer.findOne({ _id: filter });
+    if (!getOffer) {
+      return res
+        .status(404)
+        .json({ message: `No Offer found with id ${filter}` });
+    }
+    if (
+      roles.includes(req.user.user_type) ||
+      getOffer.createdBy.toString() === req.user.id
+    ) {
+      if (req.user.user_type === "vendor" && req.body.fieldFilter) {
+        return res.status(403).json("You are not authorized to do that");
+      }
+      const updatedOffer = await Offer.findOneAndUpdate(
+        filter,
+        update,
+
+        { new: true, runValidators: true }
+      );
+      console.log(updatedOffer);
+
+      res.status(200).json(updatedOffer);
+    } else {
+      res.status(403).json(`User is not allowed to update the Offer`);
+    }
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+};
+
+//Delete a Offer
+controller.offerDelete = async (req, res) => {
+  const roles = ["super-admin", "admin"];
+  const filter = req.params.id;
+  console.log(filter);
+  try {
+    const getOffer = await Offer.findOne({ _id: filter });
+    if (!getOffer) {
+      return res
+        .status(404)
+        .json({ message: `No Offer found with id ${filter}` });
+    }
+    if (
+      roles.includes(req.user.user_type) ||
+      getOffer.createdBy.toString() === req.user.id
+    ) {
+      const deletedOffer = await Offer.findOneAndDelete(filter);
+      console.log(deletedOffer);
+
+      res.status(200).json(deletedOffer);
+    } else {
+      res.status(403).json(`User is not allowed to delete the Offer`);
+    }
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+};
+
+//Get all Offer
+controller.offerView = async (req, res) => {
+  if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
+    const offers = await Offer.find().sort("-createdAt").populate("createdBy");
+    res.send(offers);
+  }
+  res.send(products);
+};
+
 module.exports = controller;

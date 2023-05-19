@@ -75,6 +75,27 @@ router.put(
   adminController.AdUpdate
 );
 
+//Add offers
+router.post(
+  "/admindashboard/offer",
+  verifyTokenAndAdmin,
+  adminController.offer
+);
+
+//Offer update
+router.patch(
+  "/admindashboard/offer",
+  verifyTokenAndAdmin,
+  adminController.offerUpdate
+);
+
+//Offer delete
+router.delete(
+  "/admindashboard/offer",
+  verifyTokenAndAdmin,
+  adminController.offerDelete
+);
+
 //Create a category
 router.post(
   "/admindashboard/category",

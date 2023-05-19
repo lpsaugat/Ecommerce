@@ -177,7 +177,7 @@ controller.cart = async (req, res) => {
   try {
     const cart = await Cart.findOne({ user: req.user.id, status: true });
 
-    var order = await Order.find({ user: req.user.id });
+    var order = await Order.find({ user: req.user.id, status: true });
 
     console.log(order);
     var total = order.map((order) => order.price);
@@ -207,7 +207,7 @@ controller.cart = async (req, res) => {
 //Create Shipping of Cart when delivery is ready
 controller.shipping = async (req, res) => {
   try {
-    const cart = await Cart.findOne({ user: req.user.id });
+    const cart = await Cart.findOne({ user: req.user.id, status: true });
     const order = await Order.updateMany(
       { user: req.user.id },
       { $set: { status: false } }

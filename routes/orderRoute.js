@@ -39,7 +39,7 @@ router.post("/shipping", verifyToken, orderController.shipping);
 
 router.post(
   "/shippingUpdate",
-  verifyTokenandAuthorization,
+  verifyTokenAndAuthorization,
   orderController.shippingUpdate
 );
 
