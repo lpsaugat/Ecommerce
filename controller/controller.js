@@ -372,17 +372,28 @@ controller.filterProduct = async (req, res) => {
 
 controller.search = async (req, res) => {
   const searchQuery = req.query.search;
+  const regex = new RegExp(searchQuery, "i");
+
   try {
     const productdata = await Product.find({
-      $text: {
-        $search: searchQuery,
-        $caseSensitive: false,
-        $diacriticSensitive: true,
-      },
+      $or: [
+        {
+          $text: {
+            $search: searchQuery,
+            $caseSensitive: false,
+            $diacriticSensitive: true,
+          },
+        },
+        {
+          description: { $regex: searchQuery },
+        },
+        {
+          name: { $regex: searchQuery },
+        },
+      ],
     });
-    res.render("products", {
-      productdata,
-    });
+    console.log(productdata);
+    res.json(productdata);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Internal server Error" });
