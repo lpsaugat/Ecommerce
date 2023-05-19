@@ -377,7 +377,7 @@ controller.search = async (req, res) => {
       $text: {
         $search: searchQuery,
         $caseSensitive: false,
-        $diacriticSensitive: false,
+        $diacriticSensitive: true,
       },
     });
     res.render("products", {
