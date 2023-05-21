@@ -43,4 +43,10 @@ router.post(
   orderController.shippingUpdate
 );
 
+router.get(
+  "/admindashboard/carts",
+  verifyTokenAndAdmin,
+  orderController.viewCart
+);
+
 module.exports = router;

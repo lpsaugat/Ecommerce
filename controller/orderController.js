@@ -152,7 +152,6 @@ controller.orderdelete = async (req, res, next) => {
   const roles = ["super-admin", "admin"];
   const filter = req.params.id;
   console.log(filter);
-  const update = { ...req.body };
   try {
     const getorder = await Order.findOne({ _id: filter });
 
@@ -171,9 +170,7 @@ controller.orderdelete = async (req, res, next) => {
         { $inc: { quantity: getorder.quantity } },
         { new: true, runValidators: true }
       );
-      console.log(productQuantity);
       const deletedorder = await Order.findOneAndDelete(filter);
-      console.log(deletedorder);
       next();
       res.status(200).json(deletedorder);
     } else {
@@ -271,5 +268,19 @@ controller.shippingUpdate = async (req, res) => {
   } catch (err) {
     console.log(err.message);
   }
+};
+
+//Admin view all carts
+controller.viewCart = async (req, res) => {
+  let carts;
+  if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
+    carts = await Cart.find().sort("-createdAt").populate("user");
+    res.json({ count: carts.length, carts });
+  } else if (req.user.user_type === "vendor") {
+    carts = await Cart.find({
+      createdBy: req.user.id,
+    });
+  }
+  res.send(carts);
 };
 module.exports = controller;
