@@ -29,12 +29,6 @@ const controller = {};
 controller.order = async (req, res, next) => {
   const { productID, quantity, price } = req.body;
   const product = await Products.findOne({ _id: productID });
-  const productQuantity = await Products.findOneAndUpdate(
-    { _id: productID },
-    { $dec: { quantity: quantity } },
-    { new: true, runValidators: true }
-  );
-
   try {
     var newOrder = await Order.findOneAndUpdate(
       {
@@ -44,6 +38,7 @@ controller.order = async (req, res, next) => {
       { $inc: { quantity: quantity } },
       { new: true, runValidators: true }
     );
+
     if (newOrder) {
     } else {
       newOrder = await Order.create({
@@ -160,11 +155,6 @@ controller.orderdelete = async (req, res, next) => {
   const update = { ...req.body };
   try {
     const getorder = await Order.findOne({ _id: filter });
-    const productQuantity = await Products.findOneAndUpdate(
-      { _id: productID },
-      { $inc: { quantity: quantity } },
-      { new: true, runValidators: true }
-    );
 
     if (!getorder) {
       return res
@@ -176,6 +166,12 @@ controller.orderdelete = async (req, res, next) => {
       getorder.createdBy.toString() === req.user.id ||
       getorder.user.toString() === req.user.id
     ) {
+      const productQuantity = await Products.findOneAndUpdate(
+        { _id: filter },
+        { $inc: { quantity: getorder.quantity } },
+        { new: true, runValidators: true }
+      );
+      console.log(productQuantity);
       const deletedorder = await Order.findOneAndDelete(filter);
       console.log(deletedorder);
       next();
@@ -194,13 +190,15 @@ controller.cart = async (req, res) => {
   try {
     const cart = await Cart.findOne({ user: req.user.id, status: true });
 
-    var order = await Order.find({ user: req.user.id, status: true });
+    var order = await Order.find({ user: req.user.id });
 
     console.log(order);
-    var total = order.map((order) => order.price);
     let totalPrice = 0;
-    total.forEach((total) => {
-      totalPrice = totalPrice + parseFloat(total);
+
+    order.forEach((order) => {
+      console.log(order);
+      totalPrice =
+        totalPrice + parseFloat(order.price) * parseFloat(order.quantity);
     });
     //Find if a cart already exists and use that to update, If there isn't one; Create.
     if (!cart) {

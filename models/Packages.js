@@ -14,7 +14,7 @@ const Packages = new mongoose.Schema(
       type: mongoose.Types.Decimal128,
     },
     description: String,
-    quantity: Number,
+    quantity: mongoose.Types.Decimal128,
     image: [String],
     longDescription: String,
     discount: Number,
