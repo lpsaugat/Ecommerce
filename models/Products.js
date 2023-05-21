@@ -26,7 +26,7 @@ var Product = new mongoose.Schema(
     },
 
     quantity: {
-      type: mongoose.Types.Decimal128,
+      type: Number,
       required: true,
       default: 1,
     },

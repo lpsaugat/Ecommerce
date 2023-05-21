@@ -29,13 +29,19 @@ const controller = {};
 controller.order = async (req, res, next) => {
   const { productID, quantity, price } = req.body;
   const product = await Products.findOne({ _id: productID });
+  const productQuantity = await Products.findOneAndUpdate(
+    { _id: productID },
+    { $dec: { quantity: quantity } },
+    { new: true, runValidators: true }
+  );
+
   try {
     var newOrder = await Order.findOneAndUpdate(
       {
         user: req.user.id,
         productID: productID,
       },
-      { $inc: { quantity: 1 } },
+      { $inc: { quantity: quantity } },
       { new: true, runValidators: true }
     );
     if (newOrder) {
@@ -64,10 +70,16 @@ controller.order = async (req, res, next) => {
 
 controller.orderupdate = async (req, res, next) => {
   const roles = ["super-admin", "admin"];
-  const filter = req.params.id;
+  const filter = req.body.id;
   console.log(filter);
+  const update = req.body;
   try {
     const getorder = await Order.findOne({ _id: filter });
+    const productQuantity = await Products.findOneAndUpdate(
+      { _id: filter },
+      { $dec: { quantity: quantity } },
+      { new: true, runValidators: true }
+    );
     if (!getorder) {
       return res
         .status(404)
@@ -99,7 +111,6 @@ controller.orderupdate = async (req, res, next) => {
 //Admin to view all products
 controller.orderview = async (req, res) => {
   if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
-    console.log("sd1f");
     const orders = await Order.find()
       .sort("-createdAt")
       .populate({ path: "User", select: "name user_type email" })
@@ -149,6 +160,12 @@ controller.orderdelete = async (req, res, next) => {
   const update = { ...req.body };
   try {
     const getorder = await Order.findOne({ _id: filter });
+    const productQuantity = await Products.findOneAndUpdate(
+      { _id: productID },
+      { $inc: { quantity: quantity } },
+      { new: true, runValidators: true }
+    );
+
     if (!getorder) {
       return res
         .status(404)
