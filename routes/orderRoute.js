@@ -44,9 +44,15 @@ router.post(
 );
 
 router.get(
-  "/admindashboard/carts",
-  verifyTokenAndAdmin,
+  "/dashboard/cartview",
+  verifyTokenAndAuthorization,
   orderController.viewCart
+);
+
+router.get(
+  "/dashboard/shipping",
+  verifyTokenAndAuthorization,
+  orderController.viewShipping
 );
 
 module.exports = router;
