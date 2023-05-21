@@ -378,17 +378,10 @@ controller.search = async (req, res) => {
     const productdata = await Product.find({
       $or: [
         {
-          $text: {
-            $search: searchQuery,
-            $caseSensitive: false,
-            $diacriticSensitive: true,
-          },
+          description: { $regex: regex },
         },
         {
-          description: { $regex: searchQuery },
-        },
-        {
-          name: { $regex: searchQuery },
+          name: { $regex: regex },
         },
       ],
     });
