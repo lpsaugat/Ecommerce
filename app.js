@@ -35,9 +35,10 @@ const productRoute = require("./routes/productRoute");
 const adminRoute = require("./routes/adminRoute");
 const packageRoute = require("./routes/packageRoute");
 const orderRoute = require("./routes/orderRoute");
-
+const errorHandlerMiddleware = require("./middleware/errorHandler");
 const { resourceUsage } = require("process");
 app.use(cookieparser());
+app.use(errorHandlerMiddleware);
 
 app.use("/public", express.static("public"));
 
