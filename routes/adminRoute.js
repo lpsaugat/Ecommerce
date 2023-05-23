@@ -137,4 +137,19 @@ router.put(
   verifyTokenAndAdmin,
   adminController.aboutUsDataUpdate
 );
+
+//Add filters
+router.post(
+  "/admindashboard/filter",
+  verifyTokenAndAdmin,
+  adminController.filter
+);
+
+//filter update
+router.patch(
+  "/admindashboard/filter",
+  verifyTokenAndAdmin,
+  adminController.filterUpdate
+);
+
 module.exports = router;

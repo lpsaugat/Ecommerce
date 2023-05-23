@@ -12,16 +12,11 @@ const AboutUs = require("../models/AboutUs");
 
 const Order = require("../models/Order");
 const Subscription = require("../models/Subscription");
+const Filter = require("../models/Filter");
 
 const imageUploader = require("./imageUploader");
 
 const express = require("express");
-const CryptoJS = require("crypto-js");
-const jwt = require("jsonwebtoken");
-const path = require("path");
-
-const Products = require("../models/Products");
-const app = express();
 
 const controller = {};
 
@@ -590,6 +585,56 @@ controller.offerView = async (req, res) => {
   if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
     const offers = await Offer.find().sort("-createdAt").populate("createdBy");
     res.send(offers);
+  }
+};
+
+//Make a filter
+controller.filter = async (req, res) => {
+  console.log(req.body);
+
+  try {
+    const newFilter = await Filter.create({
+      ...req.body,
+    });
+    res.json(newFilter);
+  } catch (err) {
+    console.log(err);
+    res.json(err);
+  }
+};
+
+//Update the filter
+controller.filterUpdate = async (req, res) => {
+  const filter = req.params.id;
+  try {
+    const getFilter = await Filter.findOne({ _id: filter });
+    if (!getFilter) {
+      return res
+        .status(404)
+        .json({ message: `No Filter found with id ${filter}` });
+    }
+    if (
+      roles.includes(req.user.user_type) ||
+      getFilter.createdBy.toString() === req.user.id
+    ) {
+      if (req.user.user_type === "vendor" && req.body.fieldFilter) {
+        return res.status(403).json("You are not authorized to do that");
+      }
+      const updatedFilter = await Filter.findOneAndUpdate(
+        filter,
+        update,
+
+        { new: true, runValidators: true }
+      );
+      console.log(updatedFilter);
+
+      res.status(200).json(updatedFilter);
+    } else {
+      res.status(403).json(`User is not allowed to update the Filter`);
+    }
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
   }
 };
 

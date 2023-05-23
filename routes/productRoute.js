@@ -1,23 +1,4 @@
 const router = require("express").Router();
-const CryptoJS = require("crypto-js");
-const multer = require("multer");
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, "public/Images/uploadedfiles/");
-//   },
-//   filename: function (req, file, cb) {
-//     cb(
-//       null,
-//       file.originalname +
-//         "-" +
-//         Date.now() +
-//         "." +
-//         file.originalname.split(".").pop()
-//     );
-//   },
-// });
-
-// const upload = multer({ storage: storage });
 
 const productController = require("../controller/productcontroller");
 
@@ -39,7 +20,6 @@ router.post(
 router.put(
   "/dashboard/products/:id",
   verifyTokenAndAuthorization,
-  // upload.single("Image"),
 
   productController.productupdate
 );

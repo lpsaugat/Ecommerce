@@ -19,9 +19,6 @@ cloudinary.config({
   api_secret: "GK4nxkk850713C1knFAiYO0abuk",
 });
 
-// const bcrypt = require('bcrypt');
-// const salt = bcrypt.genSaltSync(10);
-
 const app = express();
 app.use(express.json());
 app.use(fileUpload({ useTempFiles: true, createParentPath: true }));
