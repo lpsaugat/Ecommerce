@@ -36,8 +36,13 @@ const adminRoute = require("./routes/adminRoute");
 const packageRoute = require("./routes/packageRoute");
 const orderRoute = require("./routes/orderRoute");
 const errorHandlerMiddleware = require("./middleware/error-handler");
+const notFoundMiddleware = require("./middleware/error-handler");
+
 const { resourceUsage } = require("process");
 app.use(cookieparser());
+
+//Middlewares
+app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
 app.use("/public", express.static("public"));
