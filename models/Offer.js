@@ -13,15 +13,20 @@ const offer = new mongoose.Schema(
     },
     valid_from: {
       type: Date,
+      required: [true, "Please provide valid from date"],
     },
     valid_to: {
       type: Date,
+      required: [true, "Please provide valid to date"],
     },
     image: String,
     code: {
       type: String,
     },
-    status: Boolean,
+    status: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );

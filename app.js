@@ -35,7 +35,7 @@ const productRoute = require("./routes/productRoute");
 const adminRoute = require("./routes/adminRoute");
 const packageRoute = require("./routes/packageRoute");
 const orderRoute = require("./routes/orderRoute");
-const errorHandlerMiddleware = require("./middleware/errorHandler");
+const errorHandlerMiddleware = require("./middleware/error-handler");
 const { resourceUsage } = require("process");
 app.use(cookieparser());
 app.use(errorHandlerMiddleware);

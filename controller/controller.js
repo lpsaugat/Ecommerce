@@ -14,6 +14,7 @@ const Products = require("../models/Products");
 const Package = require("../models/Packages");
 const PackageType = require("../models/packageType");
 const AboutUs = require("../models/AboutUs");
+const Offer = require("../models/Offer");
 
 const { post } = require("jquery");
 const app = express();
@@ -403,7 +404,7 @@ controller.offers = async (req, res) => {
     })
       .sort("-createdAt")
       .populate("createdBy");
-    res.send(offers);
+    res.json(offers);
   }
 };
 
