@@ -6,10 +6,7 @@ const Order = require("../models/Order");
 const Subscription = require("../models/Subscription");
 
 const express = require("express");
-const CryptoJS = require("crypto-js");
-const jwt = require("jsonwebtoken");
-const path = require("path");
-const multer = require("multer");
+
 const Products = require("../models/Products");
 const { post } = require("jquery");
 const app = express();
@@ -19,21 +16,6 @@ const sgMail = require("@sendgrid/mail");
 const dotenv = require("dotenv");
 dotenv.config();
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "public/Images/uploadedfiles/");
-  },
-  filename: function (req, file, cb) {
-    cb(
-      null,
-      file.fieldname +
-        "-" +
-        Date.now() +
-        "." +
-        file.originalname.split(".").pop()
-    );
-  },
-});
 
 const controller = {};
 

@@ -38,7 +38,6 @@ const orderRoute = require("./routes/orderRoute");
 const errorHandlerMiddleware = require("./middleware/error-handler");
 const notFoundMiddleware = require("./middleware/error-handler");
 
-const { resourceUsage } = require("process");
 app.use(cookieparser());
 
 //Middlewares
@@ -72,9 +71,3 @@ app.listen(3000, ip.address(), () =>
 );
 
 // app.listen(3000);
-
-// mongoose.connection.once('open', () => {
-//     app.listen(app.get('port')
-// , '192.168.101.14'
-// );
-// })

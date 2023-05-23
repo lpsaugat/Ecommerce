@@ -9,16 +9,11 @@ const Order = require("../models/Order");
 const Subscription = require("../models/Subscription");
 
 const express = require("express");
-const CryptoJS = require("crypto-js");
-const jwt = require("jsonwebtoken");
-const path = require("path");
-const multer = require("multer");
+
 const Products = require("../models/Products");
 const Packages = require("../models/Packages");
 const PackageTypes = require("../models/packageType");
 
-const { post } = require("jquery");
-const app = express();
 const imageUploader = require("./imageUploader");
 
 const cloudinary = require("cloudinary").v2;

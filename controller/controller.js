@@ -1,4 +1,3 @@
-const connection = require("express-myconnection");
 const User = require("../models/User");
 const Carousel = require("../models/Carousel");
 const Product = require("../models/Products");
@@ -6,18 +5,10 @@ const Order = require("../models/Order");
 const Subscription = require("../models/Subscription");
 const siteSettings = require("../models/siteSettings");
 const express = require("express");
-const CryptoJS = require("crypto-js");
-const jwt = require("jsonwebtoken");
-const path = require("path");
-const multer = require("multer");
-const Products = require("../models/Products");
 const Package = require("../models/Packages");
 const PackageType = require("../models/packageType");
 const AboutUs = require("../models/AboutUs");
 const Offer = require("../models/Offer");
-
-const { post } = require("jquery");
-const app = express();
 
 const controller = {};
 

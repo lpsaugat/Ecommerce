@@ -19,25 +19,9 @@ const express = require("express");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const path = require("path");
-const multer = require("multer");
+
 const Products = require("../models/Products");
-const { post } = require("jquery");
 const app = express();
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "public/Images/uploadedfiles/");
-  },
-  filename: function (req, file, cb) {
-    cb(
-      null,
-      file.fieldname +
-        "-" +
-        Date.now() +
-        "." +
-        file.originalname.split(".").pop()
-    );
-  },
-});
 
 const controller = {};
 

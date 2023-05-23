@@ -10,9 +10,7 @@ const express = require("express");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const path = require("path");
-const multer = require("multer");
 const Products = require("../models/Products");
-const { post } = require("jquery");
 const app = express();
 const imageUploader = require("./imageUploader");
 
