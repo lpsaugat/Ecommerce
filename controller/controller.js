@@ -393,4 +393,18 @@ controller.search = async (req, res) => {
   }
 };
 
+//View all offers for customer
+controller.offers = async (req, res) => {
+  if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
+    const offers = await Offer.find({
+      valid_from: { $gte: new Date(date.now()) },
+      valid_to: { $lte: new Date(date.now()) },
+      status: true,
+    })
+      .sort("-createdAt")
+      .populate("createdBy");
+    res.send(offers);
+  }
+};
+
 module.exports = controller;

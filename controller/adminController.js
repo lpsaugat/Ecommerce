@@ -6,6 +6,8 @@ const Category = require("../models/Categories");
 const Ad = require("../models/Ad");
 const Banner = require("../models/Banner");
 const siteSettings = require("../models/siteSettings");
+const Offer = require("../models/Offer");
+
 const AboutUs = require("../models/AboutUs");
 
 const Order = require("../models/Order");
@@ -605,7 +607,6 @@ controller.offerView = async (req, res) => {
     const offers = await Offer.find().sort("-createdAt").populate("createdBy");
     res.send(offers);
   }
-  res.send(products);
 };
 
 module.exports = controller;
