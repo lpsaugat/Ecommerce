@@ -20,7 +20,10 @@ const Order = new mongoose.Schema(
     quantity: mongoose.Types.Decimal128,
     name: String,
     status: { type: Boolean, default: true },
-    orderStatus: { type: String, enum: ["paid", "unpaid", "cancelled"] },
+    orderStatus: {
+      type: String,
+      enum: ["paid", "unpaid", "cancelled", "confirmed"],
+    },
   },
   { timestamps: true }
 );

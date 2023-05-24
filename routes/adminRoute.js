@@ -1,23 +1,4 @@
 const router = require("express").Router();
-const CryptoJS = require("crypto-js");
-const multer = require("multer");
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "public/Images/uploadedfiles/");
-  },
-  filename: function (req, file, cb) {
-    cb(
-      null,
-      file.originalname +
-        "-" +
-        Date.now() +
-        "." +
-        file.originalname.split(".").pop()
-    );
-  },
-});
-
-const upload = multer({ storage: storage });
 
 const adminController = require("../controller/adminController");
 
@@ -45,7 +26,6 @@ router.put(
 router.post(
   "/admindashboard/subscription",
   verifyTokenAndAdmin,
-  upload.single("BackgroundImage"),
 
   adminController.SubscriptionWriting
 );
@@ -53,7 +33,6 @@ router.post(
 router.put(
   "/admindashboard/subscription",
   verifyTokenAndAdmin,
-  upload.single("BackgroundImage"),
 
   adminController.SubscriptionUpdate
 );
@@ -62,7 +41,6 @@ router.put(
 router.post(
   "/admindashboard/Ads",
   verifyTokenAndAdmin,
-  upload.single("BackgroundImage"),
 
   adminController.AdWriting
 );
@@ -70,7 +48,6 @@ router.post(
 router.put(
   "/admindashboard/Ads",
   verifyTokenAndAdmin,
-  upload.single("BackgroundImage"),
 
   adminController.AdUpdate
 );

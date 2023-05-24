@@ -263,7 +263,7 @@ controller.shippingUpdate = async (req, res) => {
   }
 };
 
-//Admin view all carts
+//Admin and Vendor view all carts
 controller.viewCart = async (req, res) => {
   let carts;
   if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {

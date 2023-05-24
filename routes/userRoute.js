@@ -15,8 +15,9 @@ router.post("/Sign_In", userController.checkUser);
 router.get("/Sign_Up", userController.signup);
 router.post("/Sign_Up", userController.createUser);
 
-// Update User
+//Refactor User functions......................................................
 
+// Update User
 router.put("/dashboard/:id", verifyTokenAndAuthorization, async (req, res) => {
   if (req.body.password) {
     req.body.password = CryptoJS.AES.encrypt(
@@ -52,7 +53,7 @@ router.get("/admindashboard/", verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
-// Get All Vendor
+// Get All Vendors
 router.get("/admindashboard/vendor/", verifyTokenAndAdmin, async (req, res) => {
   try {
     const user = await User.find({ user_type: "vendor" });
