@@ -41,10 +41,21 @@ router.put("/dashboard/:id", verifyTokenAndAuthorization, async (req, res) => {
 });
 
 // Get All Users
-router.get("/admindashboard/:id", verifyTokenAndAdmin, async (req, res) => {
+router.get("/admindashboard/", verifyTokenAndAdmin, async (req, res) => {
   try {
     const user = await User.find();
     // const { password, ...others } = user._doc;
+    res.status(200).json(user);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+// Get All Vendor
+router.get("/admindashboard/vendor/", verifyTokenAndAdmin, async (req, res) => {
+  try {
+    const user = await User.find({ user_type: "vendor" });
     res.status(200).json(user);
   } catch (err) {
     console.log(err);
