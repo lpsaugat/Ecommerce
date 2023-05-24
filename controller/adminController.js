@@ -175,6 +175,14 @@ controller.categoryDelete = async (req, res) => {
   }
 };
 
+// Get all category
+controller.categoryView = async (req, res) => {
+  if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
+    const categories = await Cateogry.find().sort("-createdAt");
+    res.send(categories);
+  }
+};
+
 //Writing in Ad
 controller.AdWriting = async (req, res) => {
   const folder = "Ad";

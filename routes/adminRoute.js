@@ -80,6 +80,20 @@ router.post(
   adminController.category
 );
 
+//Delete a category
+router.delete(
+  "/admindashboard/category/:id",
+  verifyTokenAndAdmin,
+  adminController.categoryDelete
+);
+
+//Create a category
+router.get(
+  "/admindashboard/category",
+  verifyTokenAndAdmin,
+  adminController.categoryView
+);
+
 //Site settings
 router.post(
   "/admindashboard/sitesettings",

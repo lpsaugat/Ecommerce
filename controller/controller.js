@@ -265,7 +265,7 @@ controller.success = (req, res) => {
   res.render("success");
 };
 
-controller.orderconfirmation = (req, res) => {
+controller.orderconfirmation = async (req, res) => {
   res.render("orderconfirmation");
 };
 
