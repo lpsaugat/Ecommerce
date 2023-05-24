@@ -42,43 +42,28 @@ router.put("/dashboard/:id", verifyTokenAndAuthorization, async (req, res) => {
 });
 
 // Get All Users
-router.get("/admindashboard/", verifyTokenAndAdmin, async (req, res) => {
-  try {
-    const user = await User.find();
-    // const { password, ...others } = user._doc;
-    res.status(200).json(user);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
+router.get("/admindashboard/", verifyTokenAndAdmin, userController.getAllUsers);
 
 // Get All Vendors
-router.get("/admindashboard/vendor/", verifyTokenAndAdmin, async (req, res) => {
-  try {
-    const user = await User.find({ user_type: "vendor" });
-    res.status(200).json(user);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
+router.get(
+  "/admindashboard/vendors/",
+  verifyTokenAndAdmin,
+  userController.getAllVendors
+);
+
+//Delete details for a specific user from Username
+router.get(
+  "/admindashboard/user/:id",
+  verifyTokenAndAdmin,
+  userController.getUser
+);
 
 //Delete a specific user from Username
-router.delete("/admindashboard/:id", verifyTokenAndAdmin, async (req, res) => {
-  try {
-    const deletedUser = await User.findOneAndDelete(req.body.username);
-    if (!deletedUser) {
-      // Return a 404 response if the user is not found
-      return res.status(404).json({ message: "User not found" });
-    } else {
-      return res.status(200).json({ message: "User deleted" });
-    }
-  } catch (err) {
-    console.log("err");
-    res.status(500).json(err);
-  }
-});
+router.delete(
+  "/admindashboard/user/:id",
+  verifyTokenAndAdmin,
+  userController.deleteUser
+);
 
 router.post("/forget-password", userController.forgetPassword);
 

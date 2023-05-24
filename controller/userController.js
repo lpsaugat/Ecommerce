@@ -230,4 +230,61 @@ controller.logout = async (req, res, next) => {
   res.redirect("/");
 };
 
+//User changes from Admin
+
+// Get All Users
+controller.getAllUsers = async (req, res) => {
+  try {
+    const user = await User.find();
+    // const { password, ...others } = user._doc;
+    res.status(200).json(user);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+};
+
+// Get All Vendors
+controller.getAllVendors = async (req, res) => {
+  try {
+    const user = await User.find({ user_type: "vendor" });
+    res.status(200).json(user);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+};
+
+//Get a specific user from Username
+controller.getUser = async (req, res) => {
+  try {
+    const user = await User.findOne(req.params.username);
+    if (!user) {
+      // Return a 404 response if the user is not found
+      return res.status(404).json({ message: "User not found" });
+    } else {
+      return res.status(200).json(user);
+    }
+  } catch (err) {
+    console.log("err");
+    res.status(500).json(err);
+  }
+};
+
+//Delete a specific user from Username
+controller.deleteUser = async (req, res) => {
+  try {
+    const deletedUser = await User.findOneAndDelete(req.params.username);
+    if (!deletedUser) {
+      // Return a 404 response if the user is not found
+      return res.status(404).json({ message: "User not found" });
+    } else {
+      return res.status(200).json({ message: "User deleted" });
+    }
+  } catch (err) {
+    console.log("err");
+    res.status(500).json(err);
+  }
+};
+
 module.exports = controller;
