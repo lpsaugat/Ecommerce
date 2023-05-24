@@ -113,8 +113,9 @@ controller.dashboard = async (req, res) => {
   const userdata = data.userdata;
   const productdata = data.productdata;
   const orderdata = data.orderdata;
+  const sitedata = data.sitedata;
 
-  res.render("dashboard", { productdata, userdata, orderdata });
+  res.render("dashboard", { sitedata, productdata, userdata, orderdata });
 };
 
 controller.mobilepassword = async (req, res) => {
@@ -122,14 +123,16 @@ controller.mobilepassword = async (req, res) => {
   const userdata = data.userdata;
   const productdata = data.productdata;
   const orderdata = data.orderdata;
+  const sitedata = data.sitedata;
 
-  res.render("mobilepassword", { productdata, userdata, orderdata });
+  res.render("mobilepassword", { sitedata, productdata, userdata, orderdata });
 };
 
 //Subscription Packages page
 controller.familypackages = async (req, res) => {
   const data = await getData();
   const packagedata = data.packagedata;
+  const sitedata = data.sitedata;
 
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 9;
@@ -152,11 +155,13 @@ controller.familypackages = async (req, res) => {
     packages,
   };
   console.log(dataPagination);
-  res.render("familypackages", { dataPagination, packagedata });
+  res.render("familypackages", { sitedata, dataPagination, packagedata });
 };
 
 //Subscription Packages filter
 controller.filterPackage = async (req, res) => {
+  const data = await getData();
+  const sitedata = data.sitedata;
   let query = {};
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 9;
@@ -209,7 +214,7 @@ controller.filterPackage = async (req, res) => {
     packages,
   };
   console.log(dataPagination);
-  res.render("familypackages", { dataPagination, packages });
+  res.render("familypackages", { sitedata, dataPagination, packages });
 };
 
 controller.package = (req, res) => {
@@ -219,21 +224,26 @@ controller.package = (req, res) => {
 controller.singlepackage = async (req, res) => {
   const data = await getData();
   const packagedata = data.packagedata;
+
   const productdata = data.productdata;
-  res.render("singlepackage", { packagedata, productdata });
+  const sitedata = data.sitedata;
+
+  res.render("singlepackage", { sitedata, packagedata, productdata });
 };
 
 controller.singleproduct = async (req, res) => {
   const data = await getData();
   const productdata = data.productdata;
-  res.render("singleproduct", { productdata });
+  const sitedata = data.sitedata;
+  res.render("singleproduct", { sitedata, productdata });
 };
 
 controller.singleproductview = async (req, res) => {
   const data = await getData();
   const productdata = data.productdata;
+  const sitedata = data.sitedata;
   const singleproduct = await Product.findOne({ _id: req.params.id });
-  res.render(`singleproduct`, { singleproduct, productdata });
+  res.render(`singleproduct`, { sitedata, singleproduct, productdata });
 };
 
 controller.cart = async (req, res) => {
@@ -283,7 +293,7 @@ controller.test = (req, res) => {
 //Products page and show all products
 controller.getAllProducts = async (req, res) => {
   const data = await getData();
-  const productdata = data.productdata;
+  const sitedata = data.sitedata;
 
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 9;
@@ -306,11 +316,13 @@ controller.getAllProducts = async (req, res) => {
     products,
   };
   console.log(dataPagination);
-  res.render("products", { dataPagination, products });
+  res.render("products", { sitedata, dataPagination, products });
 };
 
 //Products page with filters after query
 controller.filterProduct = async (req, res) => {
+  const data = await getData();
+  const sitedata = data.sitedata;
   let query = {};
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 9;
@@ -362,7 +374,7 @@ controller.filterProduct = async (req, res) => {
     products,
   };
   console.log(dataPagination);
-  res.render("products", { dataPagination, products });
+  res.render("products", { sitedata, dataPagination, products });
 };
 
 //Search
