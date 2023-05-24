@@ -178,7 +178,7 @@ controller.categoryDelete = async (req, res) => {
 // Get all category
 controller.categoryView = async (req, res) => {
   if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
-    const categories = await Cateogry.find().sort("-createdAt");
+    const categories = await Category.find().sort("-createdAt");
     res.send(categories);
   }
 };
