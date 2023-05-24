@@ -134,6 +134,7 @@ controller.SubscriptionUpdate = async (req, res) => {
   }
 };
 
+//Create Category
 controller.category = async (req, res) => {
   try {
     const newCategory = await Category.create({
@@ -143,6 +144,34 @@ controller.category = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.json(err);
+  }
+};
+
+//Delete a category
+controller.categoryDelete = async (req, res) => {
+  const roles = ["super-admin", "admin"];
+  try {
+    const getCategory = await Category.findOne({
+      id: req.params.id,
+    });
+    if (!getCategory) {
+      return res
+        .status(404)
+        .json({ message: `No Category found for ${req.params.id}` });
+    }
+    if (roles.includes(req.user.user_type)) {
+      const deletedCategory = await Category.findOneAndDelete({
+        id: req.params.id,
+      });
+      console.log(deletedCategory);
+
+      res.status(200).json(deletedCategory);
+    } else {
+      res.status(403).json(`User is not allowed to delete the Category`);
+    }
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
   }
 };
 
