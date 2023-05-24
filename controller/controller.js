@@ -220,7 +220,7 @@ controller.singlepackage = async (req, res) => {
   const data = await getData();
   const packagedata = data.packagedata;
   const productdata = data.productdata;
-  res.render("singleproduct", { packagedata, productdata });
+  res.render("singlepackage", { packagedata, productdata });
 };
 
 controller.singleproduct = async (req, res) => {
@@ -239,13 +239,13 @@ controller.singleproductview = async (req, res) => {
 controller.cart = async (req, res) => {
   const data = await getData();
   var orderdata = {};
-  if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
-    orderdata = data.orderdata;
-  } else if (req.user.user_type === "vendor") {
-    orderdata = await Order.find({ vendor: req.user.id });
-  } else if (req.user.user_type === "customer") {
-    orderdata = await Order.find({ user: req.user.id });
-  }
+  // if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
+  //   orderdata = data.orderdata;
+  // } else if (req.user.user_type === "vendor") {
+  //   orderdata = await Order.find({ vendor: req.user.id });
+  // } else if (req.user.user_type === "customer") {
+  orderdata = await Order.find({ user: req.user.id });
+  // }
   var subtotal = 0;
   orderdata.forEach((i) => {
     subtotal = subtotal + i.price * i.quantity; // Calculate total price
@@ -253,8 +253,11 @@ controller.cart = async (req, res) => {
   res.render("cart", { orderdata, subtotal });
 };
 
-controller.billing = (req, res) => {
-  res.render("billing");
+controller.billing = async (req, res) => {
+  const data = await getData();
+  const sitedata = data.sitedata;
+  cartdata = Cart.find({ user: req.user.username });
+  res.render("billing", { cartdata, sitedata });
 };
 
 controller.payments = (req, res) => {
@@ -362,6 +365,7 @@ controller.filterProduct = async (req, res) => {
   res.render("products", { dataPagination, products });
 };
 
+//Search
 controller.search = async (req, res) => {
   const searchQuery = req.query.search;
   const regex = new RegExp(searchQuery, "i");
