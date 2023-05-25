@@ -9,6 +9,7 @@ const Package = require("../models/Packages");
 const PackageType = require("../models/packageType");
 const AboutUs = require("../models/AboutUs");
 const Offer = require("../models/Offer");
+const Filter = require("../models/Filter");
 
 const controller = {};
 
@@ -23,6 +24,7 @@ async function getData() {
     const packagedata = await Package.find();
     const packageTypedata = await PackageType.find();
     const aboutUsdata = await AboutUs.find();
+    const filterdata = await Filter.find();
 
     return {
       productdata,
@@ -33,6 +35,7 @@ async function getData() {
       packagedata,
       packageTypedata,
       aboutUsdata,
+      filterdata,
     };
   } catch (err) {
     console.log(err);
@@ -69,6 +72,7 @@ controller.slider = (req, res) => {
   res.render("slider");
 };
 
+//Subscription page
 controller.subscription = async (req, res) => {
   try {
     const data = await getData();
@@ -85,6 +89,8 @@ controller.subscription = async (req, res) => {
 controller.products = async (req, res) => {
   const data = await getData();
   const sitedata = data.sitedata;
+  const filterdata = data.filterdata;
+
   const page = Number(req.query.page) || 1;
   // const limit = Number(req.query.limit) || 20;
   const limit = Number(req.query.limit) || 12;
@@ -95,7 +101,7 @@ controller.products = async (req, res) => {
     const data = await getData();
     const productdata = data?.productdata;
 
-    res.render("products", { sitedata, productdata });
+    res.render("products", { filterdata, sitedata, productdata });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Internal server Error" });
@@ -138,6 +144,7 @@ controller.familypackages = async (req, res) => {
   const data = await getData();
   const packagedata = data.packagedata;
   const sitedata = data.sitedata;
+  const filterdata = data.filterdata;
 
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 9;
@@ -160,7 +167,12 @@ controller.familypackages = async (req, res) => {
     packages,
   };
   console.log(dataPagination);
-  res.render("familypackages", { sitedata, dataPagination, packagedata });
+  res.render("familypackages", {
+    filterdata,
+    sitedata,
+    dataPagination,
+    packagedata,
+  });
 };
 
 //Subscription Packages filter
@@ -318,6 +330,7 @@ controller.test = (req, res) => {
 controller.getAllProducts = async (req, res) => {
   const data = await getData();
   const sitedata = data.sitedata;
+  const filterdata = data.filterdata;
 
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 9;
@@ -340,7 +353,7 @@ controller.getAllProducts = async (req, res) => {
     products,
   };
   console.log(dataPagination);
-  res.render("products", { sitedata, dataPagination, products });
+  res.render("products", { filterdata, sitedata, dataPagination, products });
 };
 
 //Products page with filters after query
