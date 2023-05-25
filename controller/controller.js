@@ -274,7 +274,7 @@ controller.cart = async (req, res) => {
 controller.billing = async (req, res) => {
   const data = await getData();
   const sitedata = data.sitedata;
-  cartdata = Cart.find({ user: req.user.username });
+  cartdata = Cart.find({ user: req.user.username, status: true });
   res.render("billing", { cartdata, sitedata });
 };
 

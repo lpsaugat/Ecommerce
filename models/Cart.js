@@ -14,6 +14,10 @@ const Cart = new mongoose.Schema(
       type: mongoose.Types.Decimal128,
     },
     status: { type: Boolean, default: true },
+    orderStatus: {
+      type: String,
+      enum: ["paid", "unpaid", "cancelled", "confirmed"],
+    },
   },
   { timestamps: true }
 );
