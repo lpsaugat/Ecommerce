@@ -112,10 +112,17 @@ controller.dashboard = async (req, res) => {
   const data = await getData();
   const userdata = data.userdata;
   const productdata = data.productdata;
-  const orderdata = data.orderdata;
-  const sitedata = data.sitedata;
 
-  res.render("dashboard", { sitedata, productdata, userdata, orderdata });
+  orderdata = await Order.find({ user: req.user.id, status: true });
+  cartdata = await Cart.find({ user: req.user.id, status: true });
+
+  res.render("dashboard", {
+    sitedata,
+    productdata,
+    userdata,
+    orderdata,
+    cartdata,
+  });
 };
 
 controller.mobilepassword = async (req, res) => {
@@ -254,13 +261,15 @@ controller.cart = async (req, res) => {
   // } else if (req.user.user_type === "vendor") {
   //   orderdata = await Order.find({ vendor: req.user.id });
   // } else if (req.user.user_type === "customer") {
-  orderdata = await Order.find({ user: req.user.id });
+  orderdata = await Order.find({ user: req.user.id, status: true });
+  cartdata = await Cart.find({ user: req.user.id, status: true });
+
   // }
   var subtotal = 0;
   orderdata.forEach((i) => {
     subtotal = subtotal + i.price * i.quantity; // Calculate total price
   });
-  res.render("cart", { orderdata, subtotal });
+  res.render("cart", { cartdata, orderdata, subtotal });
 };
 
 controller.billing = async (req, res) => {
