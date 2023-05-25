@@ -41,15 +41,11 @@ async function getData() {
 
 controller.home = async (req, res) => {
   try {
-    // const productdata = await Product.find({ status: true }).sort("-createdAt");
-    const {
-      productdata,
-      carouseldata,
-      sitedata,
-      packagedata,
-      packageTypedata,
-      ...otherdata
-    } = await getData();
+    const productdata = await Product.find({ status: true }).sort("-createdAt");
+    const packagedata = await Package.find({ status: true }).sort("-createdAt");
+
+    const { carouseldata, sitedata, packageTypedata, ...otherdata } =
+      await getData();
     res.render("Homepage", {
       productdata,
       carouseldata,
@@ -87,6 +83,8 @@ controller.subscription = async (req, res) => {
 };
 
 controller.products = async (req, res) => {
+  const data = await getData();
+  const sitedata = data.sitedata;
   const page = Number(req.query.page) || 1;
   // const limit = Number(req.query.limit) || 20;
   const limit = Number(req.query.limit) || 12;
@@ -97,7 +95,7 @@ controller.products = async (req, res) => {
     const data = await getData();
     const productdata = data?.productdata;
 
-    res.render("products", { productdata });
+    res.render("products", { sitedata, productdata });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Internal server Error" });
@@ -255,6 +253,7 @@ controller.singleproductview = async (req, res) => {
 
 controller.cart = async (req, res) => {
   const data = await getData();
+  const sitedata = data.sitedata;
   var orderdata = {};
   // if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
   //   orderdata = data.orderdata;
@@ -269,7 +268,7 @@ controller.cart = async (req, res) => {
   orderdata.forEach((i) => {
     subtotal = subtotal + i.price * i.quantity; // Calculate total price
   });
-  res.render("cart", { cartdata, orderdata, subtotal });
+  res.render("cart", { sitedata, cartdata, orderdata, subtotal });
 };
 
 controller.billing = async (req, res) => {
@@ -288,7 +287,23 @@ controller.success = (req, res) => {
 };
 
 controller.orderconfirmation = async (req, res) => {
-  res.render("orderconfirmation");
+  const data = await getData();
+  const sitedata = data.sitedata;
+  var orderdata = {};
+
+  orderdata = await Order.find({
+    user: req.user.id,
+    status: true,
+    orderStatus: "confirmed",
+  });
+  cartdata = await Cart.find({ user: req.user.id, status: true });
+
+  // }
+  var subtotal = 0;
+  orderdata.forEach((i) => {
+    subtotal = subtotal + i.price * i.quantity; // Calculate total price
+  });
+  res.render("orderconfirmation", { sitedata, cartdata, orderdata, subtotal });
 };
 
 controller.vendor = (req, res) => {
