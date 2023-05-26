@@ -143,4 +143,14 @@ router.patch(
   adminController.filterUpdate
 );
 
+//Add sorts
+router.post("/admindashboard/sort", verifyTokenAndAdmin, adminController.sort);
+
+//sort update
+router.patch(
+  "/admindashboard/sort",
+  verifyTokenAndAdmin,
+  adminController.sortUpdate
+);
+
 module.exports = router;

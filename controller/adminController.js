@@ -675,4 +675,52 @@ controller.filterUpdate = async (req, res) => {
   }
 };
 
+//Make a Sort
+controller.sort = async (req, res) => {
+  console.log(req.body);
+
+  try {
+    const newSort = await Sort.create({
+      ...req.body,
+    });
+    res.json(newSort);
+  } catch (err) {
+    console.log(err);
+    res.json(err);
+  }
+};
+
+//Update the Sort
+controller.sortUpdate = async (req, res) => {
+  const Sort = req.params.id;
+  try {
+    const getSort = await Sort.findOne({ _id: Sort });
+    if (!getSort) {
+      return res.status(404).json({ message: `No Sort found with id ${Sort}` });
+    }
+    if (
+      roles.includes(req.user.user_type) ||
+      getSort.createdBy.toString() === req.user.id
+    ) {
+      if (req.user.user_type === "vendor" && req.body.fieldSort) {
+        return res.status(403).json("You are not authorized to do that");
+      }
+      const updatedSort = await Sort.findOneAndUpdate(
+        sort,
+        update,
+
+        { new: true, runValidators: true }
+      );
+      console.log(updatedSort);
+
+      res.status(200).json(updatedSort);
+    } else {
+      res.status(403).json(`User is not allowed to update the Filter`);
+    }
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+};
+
 module.exports = controller;
