@@ -17,7 +17,7 @@ imageUploader = async (req, res, file, folder) => {
           use_filename: true,
           folder: `uploads/images/` + folder,
         });
-        const sendImageToDB = result.secure_url.split("/").pop();
+        const sendImageToDB = result.secure_url;
         images.push(sendImageToDB);
         fs.unlinkSync(file[i].tempFilePath);
       }
@@ -32,7 +32,7 @@ imageUploader = async (req, res, file, folder) => {
         use_filename: true,
         folder: `uploads/images/` + folder,
       });
-      const sendImageToDB = result.secure_url.split("/").pop();
+      const sendImageToDB = result.secure_url;
       images.push(sendImageToDB);
       fs.unlinkSync(file.tempFilePath);
     }
