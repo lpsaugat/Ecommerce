@@ -90,7 +90,6 @@ controller.products = async (req, res) => {
   const data = await getData();
   const sitedata = data.sitedata;
   const filterdata = data.filterdata;
-
   const page = Number(req.query.page) || 1;
   // const limit = Number(req.query.limit) || 20;
   const limit = Number(req.query.limit) || 12;
