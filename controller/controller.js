@@ -27,7 +27,7 @@ async function getData() {
     const packageTypedata = await PackageType.find();
     const aboutUsdata = await AboutUs.find();
     const filterdata = await Filter.find();
-    const ratingdata = await Rating.find();
+    const reviewdata = await Review.find();
 
     return {
       productdata,
@@ -39,6 +39,7 @@ async function getData() {
       packageTypedata,
       aboutUsdata,
       filterdata,
+      reviewdata,
     };
   } catch (err) {
     console.log(err);
@@ -255,6 +256,7 @@ controller.singlepackage = async (req, res) => {
     singlepackage,
     products,
     productdata,
+    reviews,
   });
 };
 
@@ -304,12 +306,17 @@ controller.cart = async (req, res) => {
 controller.billing = async (req, res) => {
   const data = await getData();
   const sitedata = data.sitedata;
-  cartdata = Cart.find({ user: req.user.username, status: true });
-  res.render("billing", { cartdata, sitedata });
+  cartdata = Order.find({ user: req.user.username, status: true });
+  cartdata = Cart.findOne({ user: req.user.username, status: true });
+  res.render("billing", { orderdata, cartdata, sitedata });
 };
 
-controller.payments = (req, res) => {
-  res.render("payments");
+controller.payments = async (req, res) => {
+  const data = await getData();
+  const sitedata = data.sitedata;
+  cartdata = Order.find({ user: req.user.username, status: true });
+  cartdata = Cart.findOne({ user: req.user.username, status: true });
+  res.render("payments", { orderdata, cartdata, sitedata });
 };
 
 controller.success = (req, res) => {
