@@ -368,10 +368,21 @@ controller.getAllProducts = async (req, res) => {
 
   const totalPages = Math.ceil(count / limit);
 
-  const products = await Product.find()
-    .sort("-createdAt")
-    .skip(skip)
-    .limit(limit);
+  const sort = req.query.sort;
+  let products;
+  if (!sort) {
+    products = await Product.find(query)
+      .sort("-createdAt")
+      .skip(skip)
+      .limit(limit);
+  } else if (sort === "high") {
+    products = await Product.find().sort("-price").skip(skip).limit(limit);
+  } else if (sort === "low") {
+    products = await Product.find().sort("price").skip(skip).limit(limit);
+  } else if (sort === "newest") {
+    products = await Product.find().sort("createdAt").skip(skip).limit(limit);
+  }
+  res.json(products);
 
   const dataPagination = {
     count,
@@ -422,10 +433,24 @@ controller.filterProduct = async (req, res) => {
   const count = await Product.countDocuments(query);
 
   // const subscriptionType = req.body.subscriptionType;
-  const products = await Product.find(query)
-    .sort("-createdAt")
-    .skip(skip)
-    .limit(limit);
+  const sort = req.query.sort;
+  let products;
+  if (!sort) {
+    products = await Product.find(query)
+      .sort("-createdAt")
+      .skip(skip)
+      .limit(limit);
+  } else if (sort === "high") {
+    products = await Product.find(query).sort("price").skip(skip).limit(limit);
+  } else if (sort === "low") {
+    products = await Product.find(query).sort("-price").skip(skip).limit(limit);
+  } else if (sort === "newest") {
+    products = await Product.find(query)
+      .sort("createdAt")
+      .skip(skip)
+      .limit(limit);
+  }
+
   // res.json({ count: products.length, products });
   // return { count: products.length, products };
 
