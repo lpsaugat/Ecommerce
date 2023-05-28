@@ -471,13 +471,29 @@ controller.offers = async (req, res) => {
 };
 
 //Post review from user
-controller.review = async (req, res) => {
-  const review = await create.Review({
-    ...req.body,
-    user: req.user.id,
-    productID: req.params.id,
-    packageID: req.params.id,
-  });
+controller.reviewProduct = async (req, res) => {
+  try {
+    const review = await create.Review({
+      ...req.body,
+      user: req.user.id,
+      productID: req.params.id,
+    });
+  } catch (err) {
+    res.json(err);
+  }
+};
+
+//Post review from user
+controller.reviewPackage = async (req, res) => {
+  try {
+    const review = await create.Review({
+      ...req.body,
+      user: req.user.id,
+      packageID: req.params.id,
+    });
+  } catch (err) {
+    res.json(err);
+  }
 };
 
 module.exports = controller;

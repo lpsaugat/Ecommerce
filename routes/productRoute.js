@@ -45,7 +45,4 @@ router.get(
   productController.productviewone
 );
 
-//Get a single product
-router.post("/dashboard/products/:id", verifyToken, productController.review);
-
 module.exports = router;

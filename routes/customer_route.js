@@ -47,6 +47,7 @@ router.get("/vendor", customerController.vendor);
 
 router.get("/singleproduct", customerController.singleproduct);
 router.get("/product/:id", customerController.singleproductview);
+router.get("/package/:id", customerController.singlepackage);
 
 router.get("/dashboard", verifyToken, customerController.dashboard);
 router.get("/mobilepassword", customerController.mobilepassword);
@@ -56,5 +57,9 @@ router.get("/test", customerController.test);
 router.get("/filterTest", customerController.getAllProducts);
 
 router.post("/products", customerController.filterProduct);
+
+router.post("/product/:id", customerController.review);
+
+router.post("/package/:id", customerController.review);
 
 module.exports = router;
