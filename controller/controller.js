@@ -306,17 +306,21 @@ controller.cart = async (req, res) => {
 controller.billing = async (req, res) => {
   const data = await getData();
   const sitedata = data.sitedata;
-  cartdata = Order.find({ user: req.user.username, status: true });
+  orderdata = Order.find({ user: req.user.username, status: true });
   cartdata = Cart.findOne({ user: req.user.username, status: true });
-  res.render("billing", { orderdata, cartdata, sitedata });
+  shippingdata = Shipping.findOne({ user: req.user.username, status: true });
+
+  res.render("billing", { shippingdata, orderdata, cartdata, sitedata });
 };
 
 controller.payments = async (req, res) => {
   const data = await getData();
   const sitedata = data.sitedata;
-  cartdata = Order.find({ user: req.user.username, status: true });
+  orderdata = Order.find({ user: req.user.username, status: true });
   cartdata = Cart.findOne({ user: req.user.username, status: true });
-  res.render("payments", { orderdata, cartdata, sitedata });
+  shippingdata = Shipping.findOne({ user: req.user.username, status: true });
+
+  res.render("payments", { shippingdata, orderdata, cartdata, sitedata });
 };
 
 controller.success = (req, res) => {
