@@ -10,6 +10,7 @@ const PackageType = require("../models/packageType");
 const AboutUs = require("../models/AboutUs");
 const Offer = require("../models/Offer");
 const Filter = require("../models/Filter");
+const Review = require("../models/Review");
 
 const controller = {};
 
@@ -25,6 +26,7 @@ async function getData() {
     const packageTypedata = await PackageType.find();
     const aboutUsdata = await AboutUs.find();
     const filterdata = await Filter.find();
+    const ratingdata = await Rating.find();
 
     return {
       productdata,
@@ -243,6 +245,8 @@ controller.singlepackage = async (req, res) => {
 
   const singlepackage = await Package.findOne({ _id: req.params.id });
   const products = await Product.find({ _id: { $in: singlepackage.products } });
+  const reviews = await Review.find({ packageID: req.params.id });
+
   const sitedata = data.sitedata;
 
   res.render("singlepackage", {
@@ -257,6 +261,7 @@ controller.singleproduct = async (req, res) => {
   const data = await getData();
   const productdata = data.productdata;
   const sitedata = data.sitedata;
+
   res.render("singleproduct", { sitedata, productdata });
 };
 
@@ -265,7 +270,14 @@ controller.singleproductview = async (req, res) => {
   const productdata = data.productdata;
   const sitedata = data.sitedata;
   const singleproduct = await Product.findOne({ _id: req.params.id });
-  res.render(`singleproduct`, { sitedata, singleproduct, productdata });
+  const reviews = await Review.find({ productID: req.params.id });
+
+  res.render(`singleproduct`, {
+    sitedata,
+    singleproduct,
+    productdata,
+    reviews,
+  });
 };
 
 controller.cart = async (req, res) => {
