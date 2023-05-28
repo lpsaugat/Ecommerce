@@ -287,4 +287,18 @@ controller.deleteUser = async (req, res) => {
   }
 };
 
+//Create billing from User
+controller.createBilling = async (req, res) => {
+  const newBilling = await Billing.create({
+    name: req.body.name,
+    email: req.body.email,
+    phone: req.body.phone,
+    user: req.user.id,
+    address: req.body.address,
+    status: true,
+  });
+  console.log(newBilling);
+  res.status(201).json(newBilling);
+};
+
 module.exports = controller;
