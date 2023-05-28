@@ -11,6 +11,7 @@ const AboutUs = require("../models/AboutUs");
 const Offer = require("../models/Offer");
 const Filter = require("../models/Filter");
 const Review = require("../models/Review");
+const { contains } = require("jquery");
 
 const controller = {};
 
@@ -467,6 +468,16 @@ controller.offers = async (req, res) => {
       .populate("createdBy");
     res.json(offers);
   }
+};
+
+//Post review from user
+controller.review = async (req, res) => {
+  const review = await create.Review({
+    ...req.body,
+    user: req.user.id,
+    productID: req.params.id,
+    packageID: req.params.id,
+  });
 };
 
 module.exports = controller;
