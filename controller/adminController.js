@@ -690,7 +690,7 @@ controller.sort = async (req, res) => {
   }
 };
 
-//Update the Sort
+//Update Sort
 controller.sortUpdate = async (req, res) => {
   const Sort = req.params.id;
   try {
