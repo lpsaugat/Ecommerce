@@ -58,8 +58,8 @@ router.get("/filterTest", customerController.getAllProducts);
 
 router.post("/products", customerController.filterProduct);
 
-// router.post("/product/:id", customerController.review);
+router.post("/product/:id", customerController.reviewProduct);
 
-// router.post("/package/:id", customerController.review);
+router.post("/package/:id", customerController.reviewPackage);
 
 module.exports = router;

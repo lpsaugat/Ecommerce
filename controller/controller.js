@@ -28,6 +28,7 @@ async function getData() {
     const aboutUsdata = await AboutUs.find();
     const filterdata = await Filter.find();
     const reviewdata = await Review.find();
+    const offerdata = await Offer.find();
 
     return {
       productdata,
@@ -46,6 +47,7 @@ async function getData() {
   }
 }
 
+//Homepage
 controller.home = async (req, res) => {
   try {
     const productdata = await Product.find({ status: true }).sort("-createdAt");
@@ -90,6 +92,7 @@ controller.subscription = async (req, res) => {
   }
 };
 
+//Products page
 controller.products = async (req, res) => {
   const data = await getData();
   const sitedata = data.sitedata;
@@ -115,6 +118,7 @@ controller.add_product = (req, res) => {
   res.render("Add_product");
 };
 
+//User dashboard
 controller.dashboard = async (req, res) => {
   const data = await getData();
   const userdata = data.userdata;
@@ -132,6 +136,7 @@ controller.dashboard = async (req, res) => {
   });
 };
 
+//Page for change password on mobile
 controller.mobilepassword = async (req, res) => {
   const data = await getData();
   const userdata = data.userdata;
@@ -241,6 +246,7 @@ controller.package = (req, res) => {
   res.render("Package");
 };
 
+//Single Package page
 controller.singlepackage = async (req, res) => {
   const data = await getData();
   const productdata = data.productdata;
@@ -268,6 +274,7 @@ controller.singleproduct = async (req, res) => {
   res.render("singleproduct", { sitedata, productdata });
 };
 
+//Single Product page
 controller.singleproductview = async (req, res) => {
   const data = await getData();
   const productdata = data.productdata;
@@ -283,6 +290,7 @@ controller.singleproductview = async (req, res) => {
   });
 };
 
+//Customer cart
 controller.cart = async (req, res) => {
   const data = await getData();
   const sitedata = data.sitedata;
@@ -303,6 +311,7 @@ controller.cart = async (req, res) => {
   res.render("cart", { sitedata, cartdata, orderdata, subtotal });
 };
 
+//Billing and details page after Checkout
 controller.billing = async (req, res) => {
   const data = await getData();
   const sitedata = data.sitedata;
@@ -313,6 +322,7 @@ controller.billing = async (req, res) => {
   res.render("billing", { shippingdata, orderdata, cartdata, sitedata });
 };
 
+//Payment page
 controller.payments = async (req, res) => {
   const data = await getData();
   const sitedata = data.sitedata;
@@ -323,10 +333,12 @@ controller.payments = async (req, res) => {
   res.render("payments", { shippingdata, orderdata, cartdata, sitedata });
 };
 
+//
 controller.success = (req, res) => {
   res.render("success");
 };
 
+//Confirm Order page
 controller.orderconfirmation = async (req, res) => {
   const data = await getData();
   const sitedata = data.sitedata;
@@ -382,7 +394,6 @@ controller.getAllProducts = async (req, res) => {
   } else if (sort === "newest") {
     products = await Product.find().sort("createdAt").skip(skip).limit(limit);
   }
-  res.json(products);
 
   const dataPagination = {
     count,
