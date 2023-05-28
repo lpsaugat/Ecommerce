@@ -239,12 +239,18 @@ controller.package = (req, res) => {
 
 controller.singlepackage = async (req, res) => {
   const data = await getData();
-  const packagedata = data.packagedata;
-
   const productdata = data.productdata;
+
+  const singlepackage = await Package.findOne({ _id: req.params.id });
+  const products = await Product.find({ _id: { $in: singlepackage.products } });
   const sitedata = data.sitedata;
 
-  res.render("singlepackage", { sitedata, packagedata, productdata });
+  res.render("singlepackage", {
+    sitedata,
+    singlepackage,
+    products,
+    productdata,
+  });
 };
 
 controller.singleproduct = async (req, res) => {
