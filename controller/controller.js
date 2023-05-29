@@ -161,10 +161,23 @@ controller.familypackages = async (req, res) => {
 
   const totalPages = Math.ceil(count / limit);
 
-  const packages = await Package.find()
-    .sort("-createdAt")
-    .skip(skip)
-    .limit(limit);
+  const sort = req.query.sort;
+  let packages;
+  if (!sort) {
+    packages = await Package.find(query)
+      .sort("-createdAt")
+      .skip(skip)
+      .limit(limit);
+  } else if (sort === "high") {
+    packages = await Package.find(query).sort("price").skip(skip).limit(limit);
+  } else if (sort === "low") {
+    packages = await Package.find(query).sort("-price").skip(skip).limit(limit);
+  } else if (sort === "newest") {
+    packages = await Package.find(query)
+      .sort("createdAt")
+      .skip(skip)
+      .limit(limit);
+  }
 
   const dataPagination = {
     count,
@@ -221,10 +234,24 @@ controller.filterPackage = async (req, res) => {
   const count = await Package.countDocuments(query);
 
   // const subscriptionType = req.body.subscriptionType;
-  const packages = await Package.find(query)
-    .sort("-createdAt")
-    .skip(skip)
-    .limit(limit);
+  const sort = req.query.sort;
+  let packages;
+  if (!sort) {
+    packages = await Package.find(query)
+      .sort("-createdAt")
+      .skip(skip)
+      .limit(limit);
+  } else if (sort === "high") {
+    packages = await Package.find(query).sort("price").skip(skip).limit(limit);
+  } else if (sort === "low") {
+    packages = await Package.find(query).sort("-price").skip(skip).limit(limit);
+  } else if (sort === "newest") {
+    packages = await Package.find(query)
+      .sort("createdAt")
+      .skip(skip)
+      .limit(limit);
+  }
+
   // res.json({ count: packages.length, packages });
   // return { count: packages.length, packages };
 
