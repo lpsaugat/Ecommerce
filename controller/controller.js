@@ -509,9 +509,12 @@ controller.filterProduct = async (req, res) => {
 controller.search = async (req, res) => {
   const searchQuery = req.query.search;
   const regex = new RegExp(searchQuery, "i");
-
+  let productdata;
   try {
-    const productdata = await Product.find({
+    const sort = req.query.sort;
+    let products;
+
+    productdata = await Product.find({
       $or: [
         {
           description: { $regex: regex },
@@ -521,6 +524,15 @@ controller.search = async (req, res) => {
         },
       ],
     });
+    if (!sort) {
+      productdata.sort("-createdAt");
+    } else if (sort === "high") {
+      productdata.sort("-createdAt");
+    } else if (sort === "low") {
+      productdata.sort("-price");
+    } else if (sort === "newest") {
+      productdata.sort("createdAt");
+    }
     console.log(productdata);
     res.json(productdata);
   } catch (err) {
