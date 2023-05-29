@@ -343,7 +343,6 @@ controller.orderconfirmation = async (req, res) => {
   const data = await getData();
   const sitedata = data.sitedata;
   var orderdata = {};
-
   orderdata = await Order.find({
     user: req.user.id,
     status: true,

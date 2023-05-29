@@ -35,20 +35,24 @@ router.delete(
   orderController.cart
 );
 
+//Create shipping after confirmation
 router.post("/shipping", verifyToken, orderController.shipping);
 
+//Update shipping status
 router.post(
   "/shippingUpdate",
   verifyTokenAndAuthorization,
   orderController.shippingUpdate
 );
 
+//View all Carts
 router.get(
   "/dashboard/cartview",
   verifyTokenAndAuthorization,
   orderController.viewCart
 );
 
+//View Shipping
 router.get(
   "/dashboard/shipping",
   verifyTokenAndAuthorization,
