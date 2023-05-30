@@ -20,7 +20,7 @@ router.get(
 );
 
 //Customer Order update
-router.get(
+router.patch(
   "/dashboard/orders",
   verifyToken,
   orderController.orderupdate,

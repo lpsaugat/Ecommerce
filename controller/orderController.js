@@ -111,7 +111,7 @@ controller.orderview = async (req, res) => {
     res.send(orders);
   } else if (req.user.user_type === "customer") {
     const orders = await Order.find({
-      User: req.user.id,
+      user: req.user.id,
     });
     res.send(orders);
   }
