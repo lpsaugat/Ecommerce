@@ -4,9 +4,9 @@ const Carousel = require("../models/Carousel");
 const Product = require("../models/Products");
 const Order = require("../models/Order");
 const Subscription = require("../models/Subscription");
-
+const CryptoJS = require("crypto-js");
 const express = require("express");
-
+const jwt = require("jsonwebtoken");
 const Products = require("../models/Products");
 const { post } = require("jquery");
 const app = express();

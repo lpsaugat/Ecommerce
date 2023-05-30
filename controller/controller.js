@@ -512,8 +512,7 @@ controller.search = async (req, res) => {
   let productdata;
   try {
     const sort = req.query.sort;
-    let products;
-
+    let productdata;
     productdata = await Product.find({
       $or: [
         {
