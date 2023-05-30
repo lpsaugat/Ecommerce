@@ -101,8 +101,8 @@ controller.orderview = async (req, res) => {
   if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
     const orders = await Order.find()
       .sort("-createdAt")
-      .populate({ path: "User", select: "name user_type email" })
-      .populate("ProductID");
+      .populate({ path: "user", select: "name user_type email" })
+      .populate("productID");
     res.json({ count: orders.length, orders });
   } else if (req.user.user_type === "vendor") {
     const orders = await Order.find({
