@@ -121,13 +121,12 @@ controller.packageDelete = async (req, res) => {
 
 //Get All Packages
 controller.packageView = async (req, res) => {
+  let packages;
   if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
-    const Packages = await Packages.find()
-      .sort("-createdAt")
-      .populate("createdBy");
-    res.send(Packages);
+    packages = await Packages.find().sort("-createdAt");
+    res.send(packages);
   }
-  res.send(Packages);
+  res.send(packages);
 };
 
 //Get a Specific Package
