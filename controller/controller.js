@@ -409,10 +409,7 @@ controller.getAllProducts = async (req, res) => {
   const sort = req.query.sort;
   let products;
   if (!sort) {
-    products = await Product.find(query)
-      .sort("-createdAt")
-      .skip(skip)
-      .limit(limit);
+    products = await Product.find().sort("-createdAt").skip(skip).limit(limit);
   } else if (sort === "high") {
     products = await Product.find().sort("-price").skip(skip).limit(limit);
   } else if (sort === "low") {
