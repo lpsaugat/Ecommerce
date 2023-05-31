@@ -31,7 +31,7 @@ router.delete(
 
 //Get all Packages
 router.get(
-  "/dashboard/packages/:id",
+  "/dashboard/packages",
   verifyTokenAndAdmin,
   packagesController.packageView
 );
