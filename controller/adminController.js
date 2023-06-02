@@ -589,7 +589,7 @@ controller.offerUpdate = async (req, res) => {
   }
 };
 
-//Delete a Offer
+//Delete an Offer
 controller.offerDelete = async (req, res) => {
   const roles = ["super-admin", "admin"];
   const filter = req.params.id;

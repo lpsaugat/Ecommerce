@@ -74,5 +74,6 @@ router.post("/verify-email", userController.verifyEmail);
 router.get("/verify-email", userController.verifiedEmail);
 
 router.get("/logout", userController.logout);
+router.post("/logout", userController.logout);
 
 module.exports = router;
