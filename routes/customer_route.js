@@ -28,7 +28,7 @@ const {
 
 //Homepage
 router.get("/", customerController.home);
-router.get("/search", customerController.search);
+router.post("/search", customerController.search);
 
 //About Us
 router.get("/AboutUs", customerController.aboutus);
