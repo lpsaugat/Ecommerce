@@ -7,6 +7,7 @@ const Ad = require("../models/Ad");
 const Banner = require("../models/Banner");
 const siteSettings = require("../models/siteSettings");
 const Offer = require("../models/Offer");
+const Sort = require("../models/Sort");
 
 const AboutUs = require("../models/AboutUs");
 
@@ -716,6 +717,34 @@ controller.sortUpdate = async (req, res) => {
       res.status(200).json(updatedSort);
     } else {
       res.status(403).json(`User is not allowed to update the Filter`);
+    }
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+};
+
+//Delete Sort
+controller.sortDelete = async (req, res) => {
+  const Sort = req.params.id;
+  try {
+    const getSort = await Sort.findOne({ _id: Sort });
+    if (!getSort) {
+      return res.status(404).json({ message: `No Sort found with id ${Sort}` });
+    }
+    if (
+      roles.includes(req.user.user_type) ||
+      getSort.createdBy.toString() === req.user.id
+    ) {
+      if (req.user.user_type === "vendor" && req.body.fieldSort) {
+        return res.status(403).json("You are not authorized to do that");
+      }
+      const deletedSort = await Sort.findOneAndDelete(Sort);
+      console.log(deletedSort);
+
+      res.status(200).json(deletedSort);
+    } else {
+      res.status(403).json(`User is not allowed to delete the Filter`);
     }
   } catch (err) {
     res.status(500).json(err);
