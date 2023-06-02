@@ -651,25 +651,16 @@ controller.filterUpdate = async (req, res) => {
         .status(404)
         .json({ message: `No Filter found with id ${filter}` });
     }
-    if (
-      roles.includes(req.user.user_type) ||
-      getFilter.createdBy.toString() === req.user.id
-    ) {
-      if (req.user.user_type === "vendor" && req.body.fieldFilter) {
-        return res.status(403).json("You are not authorized to do that");
-      }
-      const updatedFilter = await Filter.findOneAndUpdate(
-        filter,
-        update,
 
-        { new: true, runValidators: true }
-      );
-      console.log(updatedFilter);
+    const updatedFilter = await Filter.findOneAndUpdate(
+      filter,
+      update,
 
-      res.status(200).json(updatedFilter);
-    } else {
-      res.status(403).json(`User is not allowed to update the Filter`);
-    }
+      { new: true, runValidators: true }
+    );
+    console.log(updatedFilter);
+
+    res.status(200).json(updatedFilter);
   } catch (err) {
     res.status(500).json(err);
     console.log(err);
@@ -699,25 +690,16 @@ controller.sortUpdate = async (req, res) => {
     if (!getSort) {
       return res.status(404).json({ message: `No Sort found with id ${Sort}` });
     }
-    if (
-      roles.includes(req.user.user_type) ||
-      getSort.createdBy.toString() === req.user.id
-    ) {
-      if (req.user.user_type === "vendor" && req.body.fieldSort) {
-        return res.status(403).json("You are not authorized to do that");
-      }
-      const updatedSort = await Sort.findOneAndUpdate(
-        sort,
-        update,
 
-        { new: true, runValidators: true }
-      );
-      console.log(updatedSort);
+    const updatedSort = await Sort.findOneAndUpdate(
+      sort,
+      update,
 
-      res.status(200).json(updatedSort);
-    } else {
-      res.status(403).json(`User is not allowed to update the Filter`);
-    }
+      { new: true, runValidators: true }
+    );
+    console.log(updatedSort);
+
+    res.status(200).json(updatedSort);
   } catch (err) {
     res.status(500).json(err);
     console.log(err);
@@ -726,26 +708,17 @@ controller.sortUpdate = async (req, res) => {
 
 //Delete Sort
 controller.sortDelete = async (req, res) => {
-  const Sort = req.params.id;
+  const sort = req.params.id;
   try {
-    const getSort = await Sort.findOne({ _id: Sort });
+    const getSort = await Sort.findOne({ _id: sort });
     if (!getSort) {
-      return res.status(404).json({ message: `No Sort found with id ${Sort}` });
+      return res.status(404).json({ message: `No Sort found with id ${sort}` });
     }
-    if (
-      roles.includes(req.user.user_type) ||
-      getSort.createdBy.toString() === req.user.id
-    ) {
-      if (req.user.user_type === "vendor" && req.body.fieldSort) {
-        return res.status(403).json("You are not authorized to do that");
-      }
-      const deletedSort = await Sort.findOneAndDelete(Sort);
-      console.log(deletedSort);
 
-      res.status(200).json(deletedSort);
-    } else {
-      res.status(403).json(`User is not allowed to delete the Filter`);
-    }
+    const deletedSort = await Sort.findOneAndDelete(sort);
+    console.log(deletedSort);
+
+    res.status(200).json(deletedSort);
   } catch (err) {
     res.status(500).json(err);
     console.log(err);

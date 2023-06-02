@@ -153,4 +153,10 @@ router.patch(
   adminController.sortUpdate
 );
 
+//sort delete
+router.delete(
+  "/admindashboard/sort/:id",
+  verifyTokenAndAdmin,
+  adminController.sortDelete
+);
 module.exports = router;
