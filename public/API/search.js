@@ -1,7 +1,7 @@
 const search = document.querySelector("#search");
 
 if (search) {
-  search.addEventListener("submit", (event) => {
+  search.addEventListener("click", (event) => {
     console.log("jkjkj");
 
     event.preventDefault();
@@ -9,7 +9,7 @@ if (search) {
     const formData = new FormData(search);
     const name = formData.get("query");
 
-    fetch(`http://192.168.1.73:3000/search`, {
+    fetch(`http://192.168.1.73:3000/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
