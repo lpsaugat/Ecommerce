@@ -54,11 +54,11 @@ controller.carouselUpdate = async (req, res) => {
   let backgroundImage = [];
   let update = {};
   try {
-    if (req.files.backgroundImage) {
+    if (req.files) {
       backgroundImage = await imageUploader(
         req,
         res,
-        req.file.backgroundImage,
+        req.files.backgroundImage,
         folder
       );
       update = { backgroundImage: backgroundImage, ...req.body };
