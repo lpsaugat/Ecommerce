@@ -8,7 +8,8 @@ imageUploader = async (req, res, file, folder) => {
     if (file.length > 0) {
       for (i = 0; i < file.length; i++) {
         if (!file[i].mimetype.startsWith("image")) {
-          return res.json("Please Upload Image Only");
+          res.json("Please Upload Image Only");
+          res.end();
         }
         if (file[i].size > maxSize) {
           return res.json("Please Upload Image of size less than 10Mb");
@@ -23,7 +24,7 @@ imageUploader = async (req, res, file, folder) => {
       }
     } else {
       if (!file.mimetype.startsWith("image")) {
-        return res.send("Please Upload Image Only");
+        res.send("Please Upload Image Only");
       }
       if (file.size > maxSize) {
         return res.json("Please Upload Image of size less than 10Mb");

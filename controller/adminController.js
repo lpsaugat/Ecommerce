@@ -51,14 +51,18 @@ controller.carouselWriting = async (req, res) => {
 controller.carouselUpdate = async (req, res) => {
   const filter = { name: req.body.name };
   const folder = "carousel";
-  const file = req.files.backgroundImage;
   let backgroundImage = [];
   let update = {};
   try {
-    try {
-      backgroundImage = await imageUploader(req, res, file, folder);
+    if (req.files.backgroundImage) {
+      backgroundImage = await imageUploader(
+        req,
+        res,
+        req.file.backgroundImage,
+        folder
+      );
       update = { backgroundImage: backgroundImage, ...req.body };
-    } catch (err) {
+    } else {
       update = req.body;
     }
   } catch (err) {
