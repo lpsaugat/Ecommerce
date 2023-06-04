@@ -473,7 +473,7 @@ controller.aboutUsDataUpdate = async (req, res) => {
 
   try {
     try {
-      if (req.files.image) {
+      if (req.files) {
         const file = req.files.image;
         image = await imageUploader(req, res, file, folder);
       }
@@ -550,7 +550,7 @@ controller.offerUpdate = async (req, res) => {
   let update = {};
   let images = [];
   try {
-    if (req.files.image) {
+    if (req.files) {
       images = await imageUploader(req, res, req.files.image, folder);
       update = { ...req.body, image: images };
     } else {

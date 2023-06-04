@@ -52,7 +52,7 @@ controller.packageDetailsUpdate = async (req, res) => {
   let update = {};
   let images = [];
   try {
-    if (req.files.image) {
+    if (req.files) {
       images = await imageUploader(req, res, req.files.image, folder);
       update = { ...req.body, image: images };
     } else {
@@ -179,7 +179,7 @@ controller.packageTypeDetailsUpdate = async (req, res) => {
   let update = {};
   let images = [];
   try {
-    if (req.files.image) {
+    if (req.files) {
       images = await imageUploader(req, res, req.files.image, folder);
       update = { ...req.body, image: images };
     } else {
@@ -283,7 +283,7 @@ controller.offerDetailsUpdate = async (req, res) => {
   let update = {};
   let images = [];
   try {
-    if (req.files.image) {
+    if (req.files) {
       images = await imageUploader(req, res, req.files.image, folder);
       update = { ...req.body, image: images };
     } else {
