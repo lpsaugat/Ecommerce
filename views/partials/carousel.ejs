@@ -1,4 +1,7 @@
-<div class="bg-cover bg-center h-full" style="background-image: url('<%=  %>')">
+<div
+  class="bg-cover bg-center h-full"
+  style="background-image: url('<%=  carouseldata[0].backgroundImage%>')"
+>
   <div
     class="bg-black bg-opacity-50 lg:bg-opacity-25 h-full text-white lg:py-24 px-5 lg:mx-auto lg:px-0 object-fill flex py-auto"
   >
@@ -7,7 +10,7 @@
     >
       <div class="py-auto justify-start w-full">
         <p class="font-normal lg:text-xl text-sm text-uppercase text-[#FCFCFC]">
-          <%= carouseldata[0].firstheading %>
+          <%= carouseldata[0].offer %>
         </p>
         <p
           class="lg:text-6xl antialiased text-2xl md:text-[26.2px] font-prox font-semibold lg:leading-[73px] text-[#FCFCFC] pt-2 pb-4 lg:max-w-[736px] md:max-w-[400px]"
@@ -15,7 +18,7 @@
           <%= carouseldata[0].heading %>
         </p>
         <p class="lg:text-2xl mb-6 leading-none text-[#FCFCFC]">
-          <%= carouseldata[0].offer %>
+          <%= carouseldata[0].firstheading %>
         </p>
         <button
           onclick="location.href ='singlepackage'"
