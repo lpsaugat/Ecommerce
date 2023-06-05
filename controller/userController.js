@@ -304,4 +304,61 @@ controller.createBilling = async (req, res) => {
   res.status(201).json(newBilling);
 };
 
+//Add Role
+controller.addRole = async (req, res) => {
+  try {
+    const role = await Role.create({ ...req.body });
+    res.json(role);
+  } catch (err) {
+    res.json(err);
+  }
+};
+
+//Update Role
+controller.updateRole = async (req, res) => {
+  const filter = req.params.id;
+
+  try {
+    const role = await Role.findOne(filter);
+    if (!role) {
+      return res.json(`No Role found with id ${filter}`);
+    }
+    const update = req.body;
+    const newRole = await Role.findOneAndUpdate(
+      filter,
+      update,
+
+      { new: true, runValidators: true }
+    );
+    return res.json(newRole);
+  } catch (err) {}
+};
+
+//Delete a Role
+controller.deleteRole = async (req, res) => {
+  try {
+    const deletedRole = await Role.findOneAndDelete(req.params.id);
+    if (!deletedRole) {
+      // Return a 404 response if the role is not found
+      return res.status(404).json({ message: "Role not found" });
+    } else {
+      return res.status(200).json({ message: "Role deleted" });
+    }
+  } catch (err) {
+    console.log("err");
+    res.status(500).json(err);
+  }
+};
+
+// Get All Roles
+controller.viewRole = async (req, res) => {
+  try {
+    const role = await Role.find();
+    res.status(200).json(role);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+};
+
 module.exports = controller;
