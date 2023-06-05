@@ -46,14 +46,15 @@ const userSchema = new mongoose.Schema(
       // ],
     },
 
-    // user_type: {
-    //   type: String,
-    //   ref: "Role",
-    // },
-    // permission: {
-    //   type: [String],
-    //   ref: "Permission",
-    // },
+    user_type: {
+      type: String,
+      ref: "Role",
+      default: "customer",
+    },
+    permission: {
+      type: [String],
+      ref: "Permission",
+    },
     token: {
       type: String,
     },
