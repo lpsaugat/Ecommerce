@@ -13,7 +13,7 @@ const Filter = require("../models/Filter");
 const Review = require("../models/Review");
 const Ad = require("../models/Ad");
 const Banner = require("../models/Banner");
-
+const _ = require("lodash");
 const { contains } = require("jquery");
 
 const controller = {};
@@ -60,8 +60,14 @@ controller.home = async (req, res) => {
     const productdata = await Product.find({ status: true }).sort("-createdAt");
     const packagedata = await Package.find({ status: true }).sort("-createdAt");
 
-    const { carouseldata, sitedata, packageTypedata, ...otherdata } =
-      await getData();
+    const {
+      carouseldata,
+      sitedata,
+      packageTypedata,
+      addata,
+      bannerdata,
+      ...otherdata
+    } = await getData();
     res.render("Homepage", {
       productdata,
       carouseldata,
@@ -71,6 +77,7 @@ controller.home = async (req, res) => {
       packagedata,
       addata,
       bannerdata,
+      _,
     });
   } catch (err) {
     console.log(err);
