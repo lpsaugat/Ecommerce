@@ -64,7 +64,9 @@ mongoose
 const ip = require("ip");
 
 app.listen(3000, ip.address(), () =>
-  console.log(`The server is running on port ${process.env.PORT}`)
+  console.log(
+    `The server is running on port ${process.env.PORT} with ip ${ip.address()}`
+  )
 );
 
 // app.listen(3000);
