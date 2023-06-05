@@ -1,7 +1,8 @@
 const signupForm = document.querySelector("#signup-form");
 const signinForm = document.querySelector("#signin-form");
-const ip = require("ip");
-const ipAddress = ip.address();
+// const ip = require("ip");
+const ipAddress = window.location.hostname;
+console.log(ipAddress);
 if (signupForm) {
   signupForm.addEventListener("submit", (event) => {
     console.log("jkjkj");

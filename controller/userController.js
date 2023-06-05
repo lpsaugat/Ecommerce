@@ -7,6 +7,9 @@ const Subscription = require("../models/Subscription");
 const CryptoJS = require("crypto-js");
 const express = require("express");
 const jwt = require("jsonwebtoken");
+const Role = require("../models/Role");
+const Permission = require("../models/Permission");
+
 const Products = require("../models/Products");
 const { post } = require("jquery");
 const app = express();

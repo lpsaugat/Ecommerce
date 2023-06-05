@@ -1,4 +1,6 @@
 const search = document.querySelector("#search");
+const ip = require("ip");
+const ipAddress = ip.address();
 
 if (search) {
   search.addEventListener("click", (event) => {
@@ -9,7 +11,7 @@ if (search) {
     const formData = new FormData(search);
     const name = formData.get("query");
 
-    fetch(`http://192.168.1.73:3000/`, {
+    fetch(`http://${ipAddress}:3000/search`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

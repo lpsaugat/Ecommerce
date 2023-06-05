@@ -97,4 +97,25 @@ router.delete(
   userController.deleteRole
 );
 
+//Add Permissions
+router.post(
+  "/admindashboard/permission",
+  verifyTokenAndAdmin,
+  userController.addPermission
+);
+
+//Update Permission
+router.put(
+  "admindashboard/permission/:id",
+  verifyTokenAndAdmin,
+  userController.updatePermission
+);
+
+//Update Permission
+router.delete(
+  "admindashboard/permission/:id",
+  verifyTokenAndAdmin,
+  userController.deletePermission
+);
+
 module.exports = router;
