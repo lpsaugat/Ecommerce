@@ -111,7 +111,10 @@
       <div
         class="grid grid-cols-2 md:hidden gap-x-[19px] sm:gap-x-[23px] md:gap-x-[19px] gap-y-5"
       >
-        <%- include('partials/productSwiper'); %>
+        <% for (var i =0; i <4; i++ ) { %> <% if
+        (_.includes(productdata.category, 'Most')){ %> <%-
+        include('partials/allCards'); %> <% }} %>
+
         <div class="swiper-slide"><%- include('partials/card2'); %></div>
         <div class="swiper-slide"><%- include('partials/card3'); %></div>
         <div class="swiper-slide"><%- include('partials/card4'); %></div>
@@ -123,7 +126,9 @@
     >
       <div class="cards">
         <div class="card-wrapper swiper-wrapper">
-          <%- include('partials/productSwiper'); %>
+          <% for (var i =0; i <productdata.length; i++ ) { if
+          (_.includes(productdata.category, 'Most')) { %> <%-
+          include('partials/allCards'); %> <% }} %>
         </div>
       </div>
 
