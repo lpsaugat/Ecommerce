@@ -76,4 +76,25 @@ router.get("/verify-email", userController.verifiedEmail);
 router.get("/logout", userController.logout);
 router.post("/logout", userController.logout);
 
+//Add Roles
+router.post(
+  "/admindashboard/role",
+  verifyTokenAndAdmin,
+  userController.addRole
+);
+
+//Update Role
+router.put(
+  "admindashboard/role/:id",
+  verifyTokenAndAdmin,
+  userController.updateRole
+);
+
+//Update Role
+router.delete(
+  "admindashboard/role/:id",
+  verifyTokenAndAdmin,
+  userController.deleteRole
+);
+
 module.exports = router;
