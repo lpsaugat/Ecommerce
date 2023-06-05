@@ -63,16 +63,21 @@
           <div class="lg:block hidden">
             <ul class="list-none flex flex-row gap-[30px]">
               <li>
-                <a href="javascript:search()" id="search"
+                <a href="javascript:search()" id="searchbutton"
                   ><img src="../../public/Images/search.svg" />
                 </a>
-                <input
-                  class="w-[200px] border-[1px] rounded-[5px] h-[24px] pl-5"
-                  type="text"
-                  id="searchheader"
-                  placeholder="Search"
-                  style="display: none"
-                />
+                <form id="search" class="gap-x-2 flex">
+                  <input
+                    class="w-[200px] border-[1px] rounded-[5px] h-[24px] pl-5"
+                    type="text"
+                    id="searchheader"
+                    placeholder="Search"
+                    style="display: none"
+                  />
+                  <submit style="display: none" id="searchText" :
+                    ><img src="../../public/Images/search.svg" />
+                  </submit>
+                </form>
               </li>
               <li>
                 <a href="dashboard"
