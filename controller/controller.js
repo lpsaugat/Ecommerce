@@ -11,6 +11,9 @@ const AboutUs = require("../models/AboutUs");
 const Offer = require("../models/Offer");
 const Filter = require("../models/Filter");
 const Review = require("../models/Review");
+const Ad = require("../models/Ad");
+const Banner = require("../models/Banner");
+
 const { contains } = require("jquery");
 
 const controller = {};
@@ -29,6 +32,8 @@ async function getData() {
     const filterdata = await Filter.find();
     const reviewdata = await Review.find();
     const offerdata = await Offer.find();
+    const bannerdata = await Banner.find();
+    const addata = await Ad.find();
 
     return {
       productdata,
@@ -41,6 +46,8 @@ async function getData() {
       aboutUsdata,
       filterdata,
       reviewdata,
+      bannerdata,
+      addata,
     };
   } catch (err) {
     console.log(err);
@@ -62,6 +69,8 @@ controller.home = async (req, res) => {
       packagedata,
       packageTypedata,
       packagedata,
+      addata,
+      bannerdata,
     });
   } catch (err) {
     console.log(err);
