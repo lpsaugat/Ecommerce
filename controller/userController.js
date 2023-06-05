@@ -361,4 +361,60 @@ controller.viewRole = async (req, res) => {
   }
 };
 
+//Add Permission
+controller.addPermission = async (req, res) => {
+  try {
+    const permission = await Permission.create({ ...req.body });
+    res.json(permission);
+  } catch (err) {
+    res.json(err);
+  }
+};
+
+//Update Permission
+controller.updatePermission = async (req, res) => {
+  const filter = req.params.id;
+
+  try {
+    const permission = await Permission.findOne(filter);
+    if (!permission) {
+      return res.json(`No Permission found with id ${filter}`);
+    }
+    const update = req.body;
+    const newPermission = await Permission.findOneAndUpdate(
+      filter,
+      update,
+
+      { new: true, runValidators: true }
+    );
+    return res.json(newPermission);
+  } catch (err) {}
+};
+
+//Delete a Permission
+controller.deletePermission = async (req, res) => {
+  try {
+    const deletedPermission = await Permission.findOneAndDelete(req.params.id);
+    if (!deletedPermission) {
+      // Return a 404 response if the Permission is not found
+      return res.status(404).json({ message: "Permission not found" });
+    } else {
+      return res.status(200).json({ message: "Permission deleted" });
+    }
+  } catch (err) {
+    console.log("err");
+    res.status(500).json(err);
+  }
+};
+
+// Get All Permissions
+controller.viewPermission = async (req, res) => {
+  try {
+    const permission = await Permission.find();
+    res.status(200).json(permission);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+};
 module.exports = controller;

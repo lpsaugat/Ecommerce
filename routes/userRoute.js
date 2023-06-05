@@ -97,6 +97,9 @@ router.delete(
   userController.deleteRole
 );
 
+//Get all Roles
+router.get("admindashboard/role", verifyTokenAndAdmin, userController.viewRole);
+
 //Add Permissions
 router.post(
   "/admindashboard/permission",
@@ -111,11 +114,18 @@ router.put(
   userController.updatePermission
 );
 
-//Update Permission
+//Delete Permission
 router.delete(
   "admindashboard/permission/:id",
   verifyTokenAndAdmin,
   userController.deletePermission
+);
+
+//Get all Permissions
+router.get(
+  "admindashboard/permission",
+  verifyTokenAndAdmin,
+  userController.viewPermission
 );
 
 module.exports = router;
