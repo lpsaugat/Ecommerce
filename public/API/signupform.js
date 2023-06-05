@@ -1,6 +1,7 @@
 const signupForm = document.querySelector("#signup-form");
 const signinForm = document.querySelector("#signin-form");
-
+const ip = require("ip");
+const ipAddress = ip.address();
 if (signupForm) {
   signupForm.addEventListener("submit", (event) => {
     console.log("jkjkj");
@@ -17,7 +18,7 @@ if (signupForm) {
     const Confirmpassword = formData.get("Confirmpassword");
 
     if (password === Confirmpassword) {
-      fetch(`http://192.168.1.88:3000/Sign_Up`, {
+      fetch(`http://${ipAddress}:3000/Sign_Up`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -54,7 +55,7 @@ if (signinForm) {
 
     const password = formData.get("password");
 
-    fetch(`http://192.168.1.88:3000/Sign_In`, {
+    fetch(`http://${ipAddress}:3000/Sign_In`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
