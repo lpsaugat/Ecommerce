@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema(
       required: true,
       validate: {
         validator: function (value) {
-          return /^[a-zA-Z]+$/.test(value);
+          return /^[a-zA-Z\s]+$/.test(value);
         },
         message: "Name must contain only letters",
       },
@@ -46,14 +46,14 @@ const userSchema = new mongoose.Schema(
       // ],
     },
 
-    user_type: {
-      type: String,
-      ref: "Role",
-    },
-    permission: {
-      type: [String],
-      ref: "Permission",
-    },
+    // user_type: {
+    //   type: String,
+    //   ref: "Role",
+    // },
+    // permission: {
+    //   type: [String],
+    //   ref: "Permission",
+    // },
     token: {
       type: String,
     },
