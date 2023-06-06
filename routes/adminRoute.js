@@ -39,17 +39,32 @@ router.put(
 
 //Ads
 router.post(
-  "/admindashboard/Ads",
+  "/admindashboard/ads",
   verifyTokenAndAdmin,
 
   adminController.AdWriting
 );
 
 router.put(
-  "/admindashboard/Ads",
+  "/admindashboard/ads",
   verifyTokenAndAdmin,
 
   adminController.AdUpdate
+);
+
+//Banners
+router.post(
+  "/admindashboard/banners",
+  verifyTokenAndAdmin,
+
+  adminController.BannerWriting
+);
+
+router.put(
+  "/admindashboard/banner",
+  verifyTokenAndAdmin,
+
+  adminController.BannerUpdate
 );
 
 //Add offers
