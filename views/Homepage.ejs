@@ -152,8 +152,8 @@
       <div
         class="md:grid hidden md:grid-cols-2 md:gap-x-4 lg:gap-x-7 w-full md:pr-5 lg:pr-0"
       >
-        <%- include ("./partials/adsmall") %> <%- include ("./partials/adsmall")
-        %>
+        <% for (var i =0; i <=1; i++ ) { %> <%- include ("./partials/adsmall")
+        %> <% } %>
       </div>
     </div>
   </div>
@@ -162,13 +162,9 @@
   <div class="Adswipe">
     <div class="md:hidden block swiper mySwiper mt-7">
       <div class="swiper-wrapper">
+        <% for (var i =0; i <2; i++ ) { %>
         <div class="swiper-slide"><%- include ("./partials/adsmall") %></div>
-        <div class="swiper-slide w-full">
-          <%- include ("./partials/adsmall") %>
-        </div>
-        <div class="swiper-slide w-full">
-          <%- include ("./partials/adsmall") %>
-        </div>
+        <% } %>
       </div>
       <div
         class="swiper-pagination clickableClass flex justify-start absolute pl-[20px]"
@@ -273,7 +269,10 @@
     </div>
   </div>
 
-  <div class="block md:hidden mt-7"><%- include ("./partials/adsmall") %></div>
+  <div class="block md:hidden mt-7">
+    <% for (var i =0; i <1; i++ ) { %> <%- include ("./partials/adsmall") %> <%
+    } %>
+  </div>
 
   <!-- Just For You -->
   <div
@@ -407,7 +406,10 @@
     </div>
   </div>
 
-  <div class="block md:hidden mt-7"><%- include ("./partials/adsmall") %></div>
+  <div class="block md:hidden mt-7">
+    <% for (var i =0; i <1; i++ ) { %> <%- include ("./partials/adsmall") %> <%
+    } %>
+  </div>
   <!-- Popular Pre-made Packages -->
   <div
     class="max-w-[1200px] mx-auto px-5 lg:px-10 cardcss relative lg:mt-[80px] mt-7"
