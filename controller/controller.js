@@ -59,7 +59,7 @@ controller.home = async (req, res) => {
   try {
     const productdata = await Product.find({ status: true }).sort("-createdAt");
     const packagedata = await Package.find({ status: true }).sort("-createdAt");
-
+    var i = 0;
     const {
       carouseldata,
       sitedata,
@@ -78,6 +78,7 @@ controller.home = async (req, res) => {
       addata,
       bannerdata,
       _,
+      i,
     });
   } catch (err) {
     console.log(err);
