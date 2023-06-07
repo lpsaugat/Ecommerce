@@ -190,7 +190,9 @@
       <div
         class="grid grid-cols-2 md:hidden gap-x-[19px] sm:gap-x-[23px] md:gap-x-[19px] gap-y-5"
       >
-        <div class="swiper-slide"><%- include('partials/card'); %></div>
+        <% for (var i =0; i <4; i++ ) { %> <% if
+        (_.includes(productdata.category, 'Featured')){ %> <%-
+        include('partials/allCards'); %> <% }} %>
         <div class="swiper-slide"><%- include('partials/card2'); %></div>
         <div class="swiper-slide"><%- include('partials/card3'); %></div>
         <div class="swiper-slide"><%- include('partials/card4'); %></div>
@@ -202,15 +204,9 @@
     >
       <div class="cards1">
         <div class="card-wrapper swiper-wrapper">
-          <div class="swiper-slide"><%- include('partials/card'); %></div>
-          <div class="swiper-slide"><%- include('partials/card2'); %></div>
-          <div class="swiper-slide"><%- include('partials/card3'); %></div>
-          <div class="swiper-slide"><%- include('partials/card4'); %></div>
-          <div class="swiper-slide"><%- include('partials/card'); %></div>
-          <div class="swiper-slide"><%- include('partials/card2'); %></div>
-          <div class="swiper-slide"><%- include('partials/card3'); %></div>
-          <div class="swiper-slide"><%- include('partials/card4'); %></div>
-          <div class="swiper-slide"><%- include('partials/card'); %></div>
+          <% for (var i =0; i <productdata.length; i++ ) { if
+          (_.includes(productdata.category, 'Featured')) { %> <%-
+          include('partials/allCards'); %> <% }} %>
         </div>
       </div>
 
@@ -295,7 +291,11 @@
       <div
         class="grid grid-cols-2 md:hidden gap-x-[19px] sm:gap-x-[23px] md:gap-x-[19px] gap-y-5"
       >
-        <div class="swiper-slide"><%- include('partials/card'); %></div>
+        <div class="card-wrapper swiper-wrapper">
+          <% for (var i =0; i <productdata.length; i++ ) { if
+          (_.includes(productdata.category, 'ForYou')) { %> <%-
+          include('partials/allCards'); %> <% }} %>
+        </div>
         <div class="swiper-slide"><%- include('partials/card2'); %></div>
         <div class="swiper-slide"><%- include('partials/card3'); %></div>
         <div class="swiper-slide"><%- include('partials/card4'); %></div>
@@ -307,7 +307,11 @@
     >
       <div class="cards2">
         <div class="card-wrapper swiper-wrapper">
-          <div class="swiper-slide"><%- include('partials/card'); %></div>
+          <div class="card-wrapper swiper-wrapper">
+            <% for (var i =0; i <productdata.length; i++ ) { if
+            (_.includes(productdata.category, 'ForYou')) { %> <%-
+            include('partials/allCards'); %> <% }} %>
+          </div>
           <div class="swiper-slide"><%- include('partials/card2'); %></div>
           <div class="swiper-slide"><%- include('partials/card3'); %></div>
           <div class="swiper-slide"><%- include('partials/card4'); %></div>
@@ -434,10 +438,8 @@
       <div
         class="grid grid-cols-2 md:hidden gap-x-[19px] sm:gap-x-[23px] md:gap-x-[19px] gap-y-5"
       >
-        <div class="swiper-slide"><%- include('partials/card'); %></div>
-        <div class="swiper-slide"><%- include('partials/card2'); %></div>
-        <div class="swiper-slide"><%- include('partials/card3'); %></div>
-        <div class="swiper-slide"><%- include('partials/card4'); %></div>
+        <% for (var i =0; i <4; i++ ) { if (_.includes(package.category,
+        'Popular')) { %> <%- include('partials/allPackages'); %> <% }} %>
       </div>
     </div>
 
@@ -446,7 +448,9 @@
     >
       <div class="cards3">
         <div class="card-wrapper swiper-wrapper">
-          <div class="swiper-slide"><%- include('partials/card'); %></div>
+          <% for (var i =0; i <packagedata.length; i++ ) { if
+          (_.includes(package.category, 'Popular')) { %> <%-
+          include('partials/allPackages'); %> <% }} %>
           <div class="swiper-slide"><%- include('partials/card2'); %></div>
           <div class="swiper-slide"><%- include('partials/card3'); %></div>
           <div class="swiper-slide"><%- include('partials/card4'); %></div>
