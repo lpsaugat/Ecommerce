@@ -205,7 +205,7 @@
       <div class="cards1">
         <div class="card-wrapper swiper-wrapper">
           <% for (var i =0; i <productdata.length; i++ ) { if
-          (_.includes(productdata.category, 'Featured')) { %> <%-
+          (_.includes(productdata.category, 'Most')) { %> <%-
           include('partials/allCards'); %> <% }} %>
         </div>
       </div>
@@ -449,7 +449,7 @@
       <div class="cards3">
         <div class="card-wrapper swiper-wrapper">
           <% for (var i =0; i <packagedata.length; i++ ) { if
-          (_.includes(package.category, 'Popular')) { %> <%-
+          (_.includes(packagedata.category, 'Popular')) { %> <%-
           include('partials/allPackages'); %> <% }} %>
           <div class="swiper-slide"><%- include('partials/card2'); %></div>
           <div class="swiper-slide"><%- include('partials/card3'); %></div>

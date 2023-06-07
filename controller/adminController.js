@@ -197,7 +197,7 @@ controller.AdWriting = async (req, res) => {
   try {
     image = await imageUploader(req, res, file, folder);
   } catch (error) {
-    process.exit();
+    return;
   }
   try {
     const newAd = await Ad.create({
@@ -255,7 +255,7 @@ controller.BannerWriting = async (req, res) => {
   try {
     image = await imageUploader(req, res, file, folder);
   } catch (error) {
-    process.exit();
+    return;
   }
   try {
     const newBanner = await Banner.create({

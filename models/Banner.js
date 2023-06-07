@@ -12,7 +12,10 @@ const Banner = new mongoose.Schema({
     type: String,
   },
   image: {
-    type: String,
+    type: [String],
+  },
+  status: {
+    type: Boolean,
   },
 });
 module.exports = mongoose.model("Banner", Banner);
