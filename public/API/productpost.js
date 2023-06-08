@@ -23,3 +23,24 @@ function addedtocart(element, productID, quantity, price) {
       console.error(error);
     });
 }
+
+function deleteProduct(productID) {
+  console.log(productID);
+  fetch(`http://${ipAddress}:3000/dashboard/orders/${productID}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({}),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      // Do something with the response data
+    })
+
+    .catch((error) => {
+      console.log();
+      console.log(error);
+    });
+}
