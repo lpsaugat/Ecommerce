@@ -13,6 +13,8 @@ const Filter = require("../models/Filter");
 const Review = require("../models/Review");
 const Ad = require("../models/Ad");
 const Banner = require("../models/Banner");
+const Cart = require("../models/Cart");
+
 const _ = require("lodash");
 const { contains } = require("jquery");
 

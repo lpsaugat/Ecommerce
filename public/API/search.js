@@ -1,6 +1,4 @@
 const search = document.querySelector("#search");
-const ip = require("ip");
-const ipAddress = ip.address();
 
 if (search) {
   search.addEventListener("click", (event) => {

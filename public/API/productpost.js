@@ -1,6 +1,3 @@
-const ip = require("ip");
-const ipAddress = ip.address();
-
 function addedtocart(element, productID, quantity, price) {
   console.log(productID, "id");
   fetch(`http://${ipAddress}:3000/order`, {
