@@ -518,14 +518,52 @@ controller.filterProduct = async (req, res) => {
 };
 
 //Search
+// controller.search = async (req, res) => {
+//   const searchQuery = req.query.search;
+//   const regex = new RegExp(searchQuery, "i");
+//   let productdata;
+//   query = [
+//     {
+//       description: { $regex: regex },
+//     },
+//     {
+//       name: { $regex: regex },
+//     },
+//   ];
+//   try {
+//     productdata = await Product.find({
+//       $or: [
+//         {
+//           description: { $regex: regex },
+//         },
+//         {
+//           name: { $regex: regex },
+//         },
+//       ],
+//     });
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json({ message: "Internal server Error" });
+//   }
+// };
+
+//View Products after search
 controller.search = async (req, res) => {
-  const searchQuery = req.query.search;
-  const regex = new RegExp(searchQuery, "i");
-  let productdata;
-  try {
-    const sort = req.query.sort;
-    let productdata;
-    productdata = await Product.find({
+  const data = await getData();
+  const sitedata = data.sitedata;
+  let query = {};
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 9;
+  const skip = (page - 1) * limit;
+  let price;
+  let subscriptionType;
+  let familySize;
+  let category;
+  // const price = { range1: 0, range2: 200 };
+  if (req.query.search) {
+    const searchQuery = req.query.search;
+    const regex = new RegExp(searchQuery, "i");
+    query.search = {
       $or: [
         {
           description: { $regex: regex },
@@ -534,22 +572,64 @@ controller.search = async (req, res) => {
           name: { $regex: regex },
         },
       ],
-    });
-    if (!sort) {
-      productdata.sort("-createdAt");
-    } else if (sort === "high") {
-      productdata.sort("-createdAt");
-    } else if (sort === "low") {
-      productdata.sort("-price");
-    } else if (sort === "newest") {
-      productdata.sort("createdAt");
-    }
-    console.log(productdata);
-    res.json(productdata);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: "Internal server Error" });
+    };
   }
+  if (req.body.subscriptionType) {
+    subscriptionType = req.body.subscriptionType;
+    query.subscriptionType = { $in: subscriptionType };
+  }
+  if (req.body.price) {
+    price = req.body.price;
+    query.price = { $gte: price.range1, $lte: price.range2 };
+  }
+  if (req.body.familySize) {
+    familySize = req.body.familySize;
+    query.familySize = { $in: familySize };
+  }
+  if (req.body.category) {
+    category = req.body.category;
+    query.category = { $in: category };
+  }
+  if (req.body.rating) {
+    rating = req.body.rating;
+    query.rating = { $in: rating };
+  }
+  console.log(query);
+  const count = await Product.countDocuments(query);
+
+  // const subscriptionType = req.body.subscriptionType;
+  const sort = req.query.sort;
+  let products;
+  if (!sort) {
+    products = await Product.find(query)
+      .sort("-createdAt")
+      .skip(skip)
+      .limit(limit);
+  } else if (sort === "high") {
+    products = await Product.find(query).sort("price").skip(skip).limit(limit);
+  } else if (sort === "low") {
+    products = await Product.find(query).sort("-price").skip(skip).limit(limit);
+  } else if (sort === "newest") {
+    products = await Product.find(query)
+      .sort("createdAt")
+      .skip(skip)
+      .limit(limit);
+  }
+
+  // res.json({ count: products.length, products });
+  // return { count: products.length, products };
+
+  const totalPages = Math.ceil(count / limit);
+
+  const dataPagination = {
+    count,
+    totalPages,
+    page,
+    prev: page === 1 ? 1 : page - 1,
+    next: page === totalPages ? totalPages : page + 1,
+    products,
+  };
+  res.render("products", { sitedata, dataPagination, products });
 };
 
 //View all offers for customer
