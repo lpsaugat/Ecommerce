@@ -63,7 +63,7 @@
           <div class="lg:block hidden">
             <ul class="list-none flex flex-row gap-[30px]">
               <li>
-                <a href="javascript:search()" id="searchbutton"
+                <a href="javascript:searchQuery()" id="searchbutton"
                   ><img src="../../public/Images/search.svg" />
                 </a>
                 <form id="search" class="gap-x-2 flex">
@@ -71,6 +71,7 @@
                     class="w-[200px] border-[1px] rounded-[5px] h-[24px] pl-5"
                     type="text"
                     id="searchheader"
+                    name="query"
                     placeholder="Search"
                     style="display: none"
                   />

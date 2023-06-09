@@ -3,7 +3,6 @@ var main = document.getElementById("main");
 var menu1 = document.getElementById("menu1");
 var navbutton = document.getElementById("navbutton");
 var nav = document.getElementById("nav");
-
 // menu1.classList.remove('bg-black');
 // menu.classList.remove('transform');
 
@@ -76,7 +75,7 @@ function footer1() {
 
 // }
 
-function search() {
+function searchQuery() {
   var searchbutton = document.getElementById("searchbutton");
   var searchheader = document.getElementById("searchheader");
   var searchText = document.getElementById("searchText");

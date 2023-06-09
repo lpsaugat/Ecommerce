@@ -1,29 +1,33 @@
-const search = document.querySelector("#search");
+const searchForm = document.querySelector("#search");
 
-if (search) {
-  search.addEventListener("click", (event) => {
-    console.log("jkjkj");
-
+if (searchForm) {
+  searchForm.addEventListener("click", (event) => {
     event.preventDefault();
 
-    const formData = new FormData(search);
+    const formData = new FormData(searchForm);
     const name = formData.get("query");
+    console.log(name);
 
-    fetch(`http://${ipAddress}:3000/search`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
+    fetch(`http://${ipAddress}:3000/search?search=${name}`, { method: "GET" })
+      .then((response) => {
+        if (response.ok) {
+          return fetch(`http://${ipAddress}:3000/search?search=${name}`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((response) => (window.location.href = response.url))
+            .then((data) => {})
+            .catch((error) => {
+              console.log();
+              console.log(error);
+            });
+        }
       })
       .catch((error) => {
-        console.error(error);
+        // Handle the error
+        console.log(error);
       });
   });
 }

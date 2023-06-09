@@ -43,6 +43,8 @@ app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
 app.use("/public", express.static("public"));
+app.use("/CSS", express.static("public/CSS"));
+app.use("/JS", express.static("public/JS"));
 
 app.use("/", customer_route);
 app.use("/", userRoute);
