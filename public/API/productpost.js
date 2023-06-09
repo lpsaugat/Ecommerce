@@ -36,7 +36,7 @@ function deleteProduct(productID) {
         return fetch(`http://${ipAddress}:3000/cart/`, {
           method: "GET",
           headers: {
-            "Content-Type": "application/html",
+            "Content-Type": "application/json",
           },
         })
           .then((response) => (window.location.href = response.url))

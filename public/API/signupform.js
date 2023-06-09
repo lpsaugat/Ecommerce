@@ -5,8 +5,6 @@ const ipAddress = window.location.hostname;
 console.log(ipAddress);
 if (signupForm) {
   signupForm.addEventListener("submit", (event) => {
-    console.log("jkjkj");
-
     event.preventDefault();
 
     const formData = new FormData(signupForm);
@@ -47,8 +45,6 @@ if (signupForm) {
 
 if (signinForm) {
   signinForm.addEventListener("submit", (event) => {
-    console.log("jkjkj");
-
     event.preventDefault();
 
     const formData = new FormData(signinForm);
@@ -66,7 +62,22 @@ if (signinForm) {
         password,
       }),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
+          return fetch(`http://${ipAddress}:3000/`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((response) => (window.location.href = response.url))
+            .then((data) => {})
+            .catch((error) => {
+              console.log();
+              console.log(error);
+            });
+        }
+      })
       .then((data) => {
         console.log(data);
         // Do something with the response data
