@@ -25,19 +25,30 @@ function addedtocart(element, productID, quantity, price) {
 }
 
 function deleteProduct(productID) {
-  console.log(productID);
   fetch(`http://${ipAddress}:3000/dashboard/orders/${productID}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({}),
   })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      // Do something with the response data
+    .then((response) => {
+      if (response.ok) {
+        return fetch(`http://${ipAddress}:3000/cart/`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/html",
+          },
+        })
+          .then((response) => (window.location.href = response.url))
+          .then((data) => {})
+          .catch((error) => {
+            console.log();
+            console.log(error);
+          });
+      }
     })
+
+    .then((data) => {})
 
     .catch((error) => {
       console.log();
