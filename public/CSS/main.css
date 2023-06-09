@@ -1,25 +1,25 @@
 @font-face {
   font-family: 'Proxima Nova';
 
-  src: url('./Fonts/Poppins-Regular.ttf');
+  src: url('../Fonts/Poppins-Regular.ttf');
 }
 
 @font-face {
   font-family: 'Poppins';
 
-  src: url('../public/Fonts/Poppins-Regular.ttf');
+  src: url('../Fonts/Poppins-Regular.ttf');
 }
 
 @font-face {
   font-family: 'Lato';
 
-  src: url('../public/Fonts/Lato-Regular.ttf');
+  src: url('../Fonts/Lato-Regular.ttf');
 }
 
 @font-face {
   font-family: 'Roboto';
 
-  src: url('../public/Fonts/Roboto-Regular.ttf');
+  src: url('../Fonts/Roboto-Regular.ttf');
 }
 
 /*

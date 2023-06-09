@@ -17,8 +17,8 @@ const imageUploader = require("./imageUploader");
 const cloudinary = require("cloudinary").v2;
 
 const controller = {};
-
 //Customer Order
+
 controller.order = async (req, res, next) => {
   const { productID, quantity, price } = req.body;
   const product = await Products.findOne({ _id: productID });
@@ -158,14 +158,8 @@ controller.orderdelete = async (req, res, next) => {
       getorder.createdBy.toString() === req.user.id ||
       getorder.user.toString() === req.user.id
     ) {
-      const productQuantity = await Products.findOneAndUpdate(
-        { _id: filter },
-        { $inc: { quantity: getorder.quantity } },
-        { new: true, runValidators: true }
-      );
-      const deletedorder = await Order.findOneAndDelete(filter);
-      next();
-      res.status(200).json(deletedorder);
+      const deleteProduct = await Order.findOneAndDelete(filter);
+      res.json(deleteProduct);
     } else {
       res.status(403).json(`User is not allowed to delete the order`);
     }
@@ -176,17 +170,15 @@ controller.orderdelete = async (req, res, next) => {
 };
 
 //Cart
-controller.cart = async (req, res) => {
+controller.cart = async (req, res, next) => {
   try {
     const cart = await Cart.findOne({ user: req.user.id, status: true });
 
     var order = await Order.find({ user: req.user.id });
 
-    console.log(order);
     let totalPrice = 0;
 
     order.forEach((order) => {
-      console.log(order);
       totalPrice =
         totalPrice + parseFloat(order.price) * parseFloat(order.quantity);
     });
@@ -202,7 +194,7 @@ controller.cart = async (req, res) => {
         { orders: order, total: totalPrice },
         { new: true }
       );
-      console.log(updatedCart);
+      next();
     }
   } catch (err) {
     console.log(err.message);

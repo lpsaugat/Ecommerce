@@ -341,11 +341,7 @@ controller.cart = async (req, res) => {
   const data = await getData();
   const sitedata = data.sitedata;
   var orderdata = {};
-  // if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
-  //   orderdata = data.orderdata;
-  // } else if (req.user.user_type === "vendor") {
-  //   orderdata = await Order.find({ vendor: req.user.id });
-  // } else if (req.user.user_type === "customer") {
+
   orderdata = await Order.find({ user: req.user.id, status: true });
   cartdata = await Cart.find({ user: req.user.id, status: true });
 
