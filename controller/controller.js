@@ -70,7 +70,6 @@ controller.home = async (req, res) => {
       bannerdata,
       ...otherdata
     } = await getData();
-
     res.render("Homepage", {
       productdata,
       carouseldata,

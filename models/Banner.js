@@ -16,6 +16,7 @@ const Banner = new mongoose.Schema({
   },
   status: {
     type: Boolean,
+    default: true,
   },
 });
 module.exports = mongoose.model("Banner", Banner);

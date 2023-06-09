@@ -16,6 +16,7 @@ const Ad = new mongoose.Schema({
   },
   status: {
     type: Boolean,
+    default: true,
   },
 });
 module.exports = mongoose.model("Ad", Ad);

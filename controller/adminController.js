@@ -204,6 +204,8 @@ controller.AdWriting = async (req, res) => {
       name: req.body.name,
       heading: req.body.heading,
       image: image,
+      title: req.body.title,
+      text: req.body.text,
     });
     res.json(newAd);
   } catch (err) {
@@ -262,6 +264,8 @@ controller.BannerWriting = async (req, res) => {
       name: req.body.name,
       heading: req.body.heading,
       image: image,
+      title: req.body.title,
+      text: req.body.text,
     });
     res.json(newBanner);
   } catch (err) {
