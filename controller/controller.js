@@ -70,6 +70,7 @@ controller.home = async (req, res) => {
       bannerdata,
       ...otherdata
     } = await getData();
+
     res.render("Homepage", {
       productdata,
       carouseldata,
@@ -142,6 +143,7 @@ controller.dashboard = async (req, res) => {
   const data = await getData();
   const userdata = data.userdata;
   const productdata = data.productdata;
+  const sitedata = data.sitedata;
 
   orderdata = await Order.find({ user: req.user.id, status: true });
   cartdata = await Cart.find({ user: req.user.id, status: true });

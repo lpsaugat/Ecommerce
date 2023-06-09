@@ -36,67 +36,6 @@
       >
         <% for (var i = 0; i < 4; i++ ) { %> <%-
         include('partials/allPackageTypes'); %> <% } %>
-        <div
-          class="p-[4.96px] lg:p-[8.25px] md:p-[5.74px] justify-center rounded border-[1px] sm:flex-shrink-0 lg:w-full"
-        >
-          <a href="singlepackage">
-            <img
-              src="../public/Images/homepage/box1.png"
-              class="h-[100.87px] md:h-[116.66px] lg:h-[167.99px] w-full"
-            />
-            <div
-              class="font-medium text-xs md:text-sm lg:text-lg text-center py-[12px] md:py-[17.85] lg:py-[16.52]"
-            >
-              GIH Well Pacakages
-            </div></a
-          >
-        </div>
-        <div
-          class="p-[4.96px] lg:p-[8.25px] md:p-[5.74px] justify-center rounded border-[1px] sm:flex-shrink-0 lg:w-full"
-        >
-          <a href="singlepackage">
-            <img
-              src="../public/Images/homepage/box4.png"
-              class="h-[100.87px] md:h-[116.66px] lg:h-[167.99px] w-full"
-            />
-            <div
-              class="font-medium text-xs md:text-sm lg:text-lg text-center py-[12px] md:py-[17.85] lg:py-[16.52]"
-            >
-              Cage Fitness
-            </div>
-          </a>
-        </div>
-        <div
-          class="p-[4.96px] lg:p-[8.25px] md:p-[5.74px] justify-center rounded border-[1px] sm:flex-shrink-0 lg:w-full"
-        >
-          <a href="singlepackage">
-            <img
-              src="../public/Images/homepage/box3.png"
-              class="h-[100.87px] md:h-[116.66px] lg:h-[167.99px] w-full"
-            />
-            <div
-              class="font-medium text-xs md:text-sm lg:text-lg text-center py-[12px] md:py-[17.85] lg:py-[16.52]"
-            >
-              Best From Fresh Farm
-            </div>
-          </a>
-        </div>
-
-        <div
-          class="p-[4.96px] lg:p-[8.25px] md:p-[5.74px] justify-center rounded border-[1px] sm:flex-shrink-0 lg:w-full"
-        >
-          <a href="singlepackage">
-            <img
-              src="../public/Images/homepage/box2.png"
-              class="h-[100.87px] md:h-[116.66px] lg:h-[167.99px] w-full"
-            />
-            <div
-              class="font-medium text-xs md:text-sm lg:text-lg text-center py-[12px] md:py-[17.85] lg:py-[16.52]"
-            >
-              Rage Packages
-            </div>
-          </a>
-        </div>
       </div>
     </div>
     <div class="justify-between flex items-center md:pr-5 lg:pr-0">
@@ -114,12 +53,8 @@
         class="grid grid-cols-2 md:hidden gap-x-[19px] sm:gap-x-[23px] md:gap-x-[19px] gap-y-5"
       >
         <% for (var i =0; i <4; i++ ) { %> <% if
-        (_.includes(productdata.category, 'Most')){ %> <%-
+        (_.includes(productdata[i].category, 'Best')){ %> <%-
         include('partials/allCards'); %> <% }} %>
-
-        <div class="swiper-slide"><%- include('partials/card2'); %></div>
-        <div class="swiper-slide"><%- include('partials/card3'); %></div>
-        <div class="swiper-slide"><%- include('partials/card4'); %></div>
       </div>
     </div>
 
@@ -129,7 +64,7 @@
       <div class="cards">
         <div class="card-wrapper swiper-wrapper">
           <% for (var i =0; i <productdata.length; i++ ) { if
-          (_.includes(productdata.category, 'Most')) { %> <%-
+          (_.includes(productdata[i].category, 'Best')) { %> <%-
           include('partials/allCards'); %> <% }} %>
         </div>
       </div>
@@ -193,11 +128,8 @@
         class="grid grid-cols-2 md:hidden gap-x-[19px] sm:gap-x-[23px] md:gap-x-[19px] gap-y-5"
       >
         <% for (var i =0; i <4; i++ ) { %> <% if
-        (_.includes(productdata.category, 'Featured')){ %> <%-
+        (_.includes(productdata[i].category, 'Featured')){ %> <%-
         include('partials/allCards'); %> <% }} %>
-        <div class="swiper-slide"><%- include('partials/card2'); %></div>
-        <div class="swiper-slide"><%- include('partials/card3'); %></div>
-        <div class="swiper-slide"><%- include('partials/card4'); %></div>
       </div>
     </div>
 
@@ -207,7 +139,7 @@
       <div class="cards1">
         <div class="card-wrapper swiper-wrapper">
           <% for (var i =0; i <productdata.length; i++ ) { if
-          (_.includes(productdata.category, 'Best')) { %> <%-
+          (_.includes(productdata[i].category, 'Featured')) { %> <%-
           include('partials/allCards'); %> <% }} %>
         </div>
       </div>
@@ -295,12 +227,9 @@
       >
         <div class="card-wrapper swiper-wrapper">
           <% for (var i =0; i <productdata.length; i++ ) { if
-          (_.includes(productdata.category, 'ForYou')) { %> <%-
+          (_.includes(productdata[i].category, 'ForYou')) { %> <%-
           include('partials/allCards'); %> <% }} %>
         </div>
-        <div class="swiper-slide"><%- include('partials/card2'); %></div>
-        <div class="swiper-slide"><%- include('partials/card3'); %></div>
-        <div class="swiper-slide"><%- include('partials/card4'); %></div>
       </div>
     </div>
 
@@ -311,17 +240,9 @@
         <div class="card-wrapper swiper-wrapper">
           <div class="card-wrapper swiper-wrapper">
             <% for (var i =0; i <productdata.length; i++ ) { if
-            (_.includes(productdata.category, 'ForYou')) { %> <%-
+            (_.includes(productdata[i].category, 'ForYou')) { %> <%-
             include('partials/allCards'); %> <% }} %>
           </div>
-          <div class="swiper-slide"><%- include('partials/card2'); %></div>
-          <div class="swiper-slide"><%- include('partials/card3'); %></div>
-          <div class="swiper-slide"><%- include('partials/card4'); %></div>
-          <div class="swiper-slide"><%- include('partials/card'); %></div>
-          <div class="swiper-slide"><%- include('partials/card2'); %></div>
-          <div class="swiper-slide"><%- include('partials/card3'); %></div>
-          <div class="swiper-slide"><%- include('partials/card4'); %></div>
-          <div class="swiper-slide"><%- include('partials/card'); %></div>
         </div>
       </div>
 
@@ -440,7 +361,7 @@
       <div
         class="grid grid-cols-2 md:hidden gap-x-[19px] sm:gap-x-[23px] md:gap-x-[19px] gap-y-5"
       >
-        <% for (var i =0; i <4; i++ ) { if (_.includes(packagedata.category,
+        <% for (var i =0; i <4; i++ ) { if (_.includes(packagedata[i].category,
         'Popular')) { %> <%- include('partials/allPackages'); %> <% }} %>
       </div>
     </div>
@@ -451,7 +372,7 @@
       <div class="cards3">
         <div class="card-wrapper swiper-wrapper">
           <% for (var i =0; i <packagedata.length; i++ ) { if
-          (_.includes(packagedata.category, 'Popular')) { %> <%-
+          (_.includes(packagedata[i].category, 'Popular')) { %> <%-
           include('partials/allPackages'); %> <% }} %> >
         </div>
       </div>
