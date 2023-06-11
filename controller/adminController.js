@@ -30,7 +30,7 @@ controller.carouselWriting = async (req, res) => {
   try {
     backgroundImage = await imageUploader(req, res, file, folder);
   } catch (error) {
-    process.exit();
+    return;
   }
   try {
     const newCarousel = await Carousel.create({
@@ -93,7 +93,7 @@ controller.SubscriptionWriting = async (req, res) => {
   try {
     image = await imageUploader(req, res, file, folder);
   } catch (error) {
-    process.exit();
+    return;
   }
   try {
     const newSubscription = await Subscription.create({
@@ -118,7 +118,7 @@ controller.SubscriptionUpdate = async (req, res) => {
   try {
     image = await imageUploader(req, res, file, folder);
   } catch (error) {
-    process.exit();
+    return;
   }
   const filter = { name: req.body.name };
   console.log(filter);
@@ -317,7 +317,7 @@ controller.siteSettings = async (req, res) => {
   try {
     logos = await imageUploader(req, res, file, folder);
   } catch (error) {
-    process.exit();
+    return;
   }
   try {
     const settings = await siteSettings.create({
@@ -439,12 +439,12 @@ controller.aboutUsData = async (req, res) => {
   try {
     image = await imageUploader(req, res, file, folder);
   } catch (error) {
-    process.exit();
+    return;
   }
   try {
     missionImage = await imageUploader(req, res, missionFile, folder);
   } catch (error) {
-    process.exit();
+    return;
   }
   try {
     const About = await AboutUs.create({

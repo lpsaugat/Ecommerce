@@ -13,7 +13,7 @@ const Subscription = new mongoose.Schema(
     },
 
     backgroundImage: {
-      type: String,
+      type: [String],
       required: false,
     },
   },
