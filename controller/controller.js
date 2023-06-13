@@ -105,8 +105,9 @@ controller.home = async (req, res) => {
 };
 
 controller.aboutus = async (req, res) => {
-  const { sitedata, aboutUsdata, ...otherdata } = await getData();
-  res.render("AboutUs", { sitedata, aboutUsdata });
+  const { sitedata, cartdata, orderdata, aboutUsdata, ...otherdata } =
+    await getData();
+  res.render("AboutUs", { cartdata, orderdata, sitedata, aboutUsdata });
 };
 
 controller.slider = (req, res) => {
@@ -119,8 +120,15 @@ controller.subscription = async (req, res) => {
     const data = await getData();
     const subscriptiondata = data.subscriptiondata;
     const sitedata = data.sitedata;
+    const orderdata = data.orderdata;
+    const cartdata = data.cartdata;
 
-    res.render("subscription", { sitedata, subscriptiondata });
+    res.render("subscription", {
+      cartdata,
+      orderdata,
+      sitedata,
+      subscriptiondata,
+    });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Internal server Error" });
@@ -132,6 +140,8 @@ controller.products = async (req, res) => {
   const data = await getData();
   const sitedata = data.sitedata;
   const filterdata = data.filterdata;
+  const orderdata = data.orderdata;
+  const cartdata = data.cartdata;
   const page = Number(req.query.page) || 1;
   // const limit = Number(req.query.limit) || 20;
   const limit = Number(req.query.limit) || 12;
@@ -142,7 +152,13 @@ controller.products = async (req, res) => {
     const data = await getData();
     const productdata = data?.productdata;
 
-    res.render("products", { filterdata, sitedata, productdata });
+    res.render("products", {
+      cartdata,
+      orderdata,
+      filterdata,
+      sitedata,
+      productdata,
+    });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Internal server Error" });
@@ -159,9 +175,8 @@ controller.dashboard = async (req, res) => {
   const userdata = data.userdata;
   const productdata = data.productdata;
   const sitedata = data.sitedata;
-
-  orderdata = await Order.find({ user: req.user.id, status: true });
-  cartdata = await Cart.find({ user: req.user.id, status: true });
+  const orderdata = data.orderdata;
+  const cartdata = data.cartdata;
 
   res.render("dashboard", {
     sitedata,
@@ -179,8 +194,15 @@ controller.mobilepassword = async (req, res) => {
   const productdata = data.productdata;
   const orderdata = data.orderdata;
   const sitedata = data.sitedata;
+  const cartdata = data.cartdata;
 
-  res.render("mobilepassword", { sitedata, productdata, userdata, orderdata });
+  res.render("mobilepassword", {
+    sitedata,
+    productdata,
+    userdata,
+    orderdata,
+    cartdata,
+  });
 };
 
 //Subscription Packages page
@@ -189,6 +211,8 @@ controller.familypackages = async (req, res) => {
   const packagedata = data.packagedata;
   const sitedata = data.sitedata;
   const filterdata = data.filterdata;
+  const cartdata = data.cartdata;
+  const orderdata = data.orderdata;
 
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 9;
@@ -229,6 +253,8 @@ controller.familypackages = async (req, res) => {
     sitedata,
     dataPagination,
     packagedata,
+    orderdata,
+    cartdata,
   });
 };
 
@@ -236,6 +262,8 @@ controller.familypackages = async (req, res) => {
 controller.filterPackage = async (req, res) => {
   const data = await getData();
   const sitedata = data.sitedata;
+  const cartdata = data.cartdata;
+  const orderdata = data.orderdata;
   let query = {};
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 9;
@@ -302,7 +330,13 @@ controller.filterPackage = async (req, res) => {
     packages,
   };
   console.log(dataPagination);
-  res.render("familypackages", { sitedata, dataPagination, packages });
+  res.render("familypackages", {
+    orderdata,
+    cartdata,
+    sitedata,
+    dataPagination,
+    packages,
+  });
 };
 
 controller.package = (req, res) => {
@@ -313,7 +347,8 @@ controller.package = (req, res) => {
 controller.singlepackage = async (req, res) => {
   const data = await getData();
   const productdata = data.productdata;
-
+  const cartdata = data.cartdata;
+  const orderdata = data.orderdata;
   const singlepackage = await Package.findOne({ _id: req.params.id });
   const products = await Product.find({ _id: { $in: singlepackage.products } });
   const reviews = await Review.find({ packageID: req.params.id });
@@ -326,6 +361,8 @@ controller.singlepackage = async (req, res) => {
     products,
     productdata,
     reviews,
+    cartdata,
+    orderdata,
   });
 };
 
@@ -333,8 +370,10 @@ controller.singleproduct = async (req, res) => {
   const data = await getData();
   const productdata = data.productdata;
   const sitedata = data.sitedata;
+  const cartdata = data.cartdata;
+  const orderdata = data.orderdata;
 
-  res.render("singleproduct", { sitedata, productdata });
+  res.render("singleproduct", { cartdata, orderdata, sitedata, productdata });
 };
 
 //Single Product page
@@ -344,12 +383,15 @@ controller.singleproductview = async (req, res) => {
   const sitedata = data.sitedata;
   const singleproduct = await Product.findOne({ _id: req.params.id });
   const reviews = await Review.find({ productID: req.params.id });
-
+  const cartdata = data.cartdata;
+  const orderdata = data.orderdata;
   res.render(`singleproduct`, {
     sitedata,
     singleproduct,
     productdata,
     reviews,
+    cartdata,
+    orderdata,
   });
 };
 
