@@ -1,5 +1,7 @@
 const connection = require("express-myconnection");
 const User = require("../models/User");
+const Cart = require("../models/Cart");
+
 const Carousel = require("../models/Carousel");
 const Product = require("../models/Products");
 const Order = require("../models/Order");
@@ -22,12 +24,30 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const controller = {};
 
-controller.signin = (req, res) => {
-  res.render("Sign_In");
+controller.signin = async (req, res) => {
+  let orderdata;
+  let cartdata;
+  try {
+    orderdata = await Order.find({ user: req.user.id, status: true });
+    cartdata = await Cart.find({ user: req.user.id, status: true });
+  } catch (err) {
+    orderdata = 0;
+    cartdata = 0;
+  }
+  res.render("Sign_In", { orderdata, cartdata });
 };
 
-controller.signup = (req, res) => {
-  res.render("Sign_Up");
+controller.signup = async (req, res) => {
+  let orderdata;
+  let cartdata;
+  try {
+    orderdata = await Order.find({ user: req.user.id, status: true });
+    cartdata = await Cart.find({ user: req.user.id, status: true });
+  } catch (err) {
+    orderdata = 0;
+    cartdata = 0;
+  }
+  res.render("Sign_Up", { orderdata, cartdata });
 };
 
 //SignUp from User

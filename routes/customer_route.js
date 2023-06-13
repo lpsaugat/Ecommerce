@@ -28,6 +28,7 @@ const {
 
 //Homepage
 router.get("/", customerController.home);
+router.post("/search", customerController.search);
 router.get("/search", customerController.search);
 
 //About Us
