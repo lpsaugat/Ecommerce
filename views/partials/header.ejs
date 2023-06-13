@@ -75,9 +75,9 @@
                     placeholder="Search"
                     style="display: none"
                   />
-                  <submit style="display: none" id="searchText" :
+                  <!-- <submit style="display: none" id="searchText" :
                     ><img src="../../public/Images/search.svg" />
-                  </submit>
+                  </submit> -->
                 </form>
               </li>
               <li>
@@ -88,7 +88,18 @@
                 /></a>
               </li>
               <li>
-                <a href="Cart"><img src="../../public/Images/cart.svg" /> </a>
+                <a href="Cart">
+                  <div class="flex flex-row relative overflow-visible">
+                    <img src="../../public/Images/cart.svg" />
+                    <% if (cartdata.length){ %>
+                    <div
+                      class="absolute rounded-full bg-red-600 text-white w-5 h-5 -top-[10px] -right-[10px] text-center"
+                    >
+                      <% orderdata.length%>
+                    </div>
+                    <%}%>
+                  </div>
+                </a>
               </li>
             </ul>
           </div>
