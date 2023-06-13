@@ -21,12 +21,12 @@ const { contains } = require("jquery");
 const controller = {};
 
 //Fetch all of the data from models
-async function getData() {
+async function getData(req, res) {
   try {
     const productdata = await Product.find();
     const carouseldata = await Carousel.find();
     const subscriptiondata = await Subscription.find();
-    const orderdata = await Order.find();
+
     const sitedata = await siteSettings.find();
     const packagedata = await Package.find();
     const packageTypedata = await PackageType.find();
@@ -36,12 +36,22 @@ async function getData() {
     const offerdata = await Offer.find();
     const bannerdata = await Banner.find();
     const addata = await Ad.find();
+    let orderdata;
+    let cartdata;
+    try {
+      orderdata = await Order.find({ user: req.user.id, status: true });
+      cartdata = await Cart.find({ user: req.user.id, status: true });
+    } catch (err) {
+      orderdata = 0;
+      cartdata = 0;
+    }
 
     return {
       productdata,
       carouseldata,
       subscriptiondata,
       orderdata,
+      cartdata,
       sitedata,
       packagedata,
       packageTypedata,
@@ -61,6 +71,7 @@ controller.home = async (req, res) => {
   try {
     const productdata = await Product.find({ status: true }).sort("-createdAt");
     const packagedata = await Package.find({ status: true }).sort("-createdAt");
+
     var i = 0;
     const {
       carouseldata,
@@ -68,6 +79,8 @@ controller.home = async (req, res) => {
       packageTypedata,
       addata,
       bannerdata,
+      cartdata,
+      orderdata,
       ...otherdata
     } = await getData();
     res.render("Homepage", {
@@ -79,6 +92,9 @@ controller.home = async (req, res) => {
       packagedata,
       addata,
       bannerdata,
+      cartdata,
+      orderdata,
+
       _,
       i,
     });
@@ -564,16 +580,7 @@ controller.search = async (req, res) => {
   if (req.query.search) {
     const searchQuery = req.query.search;
     const regex = new RegExp(searchQuery, "i");
-    query.search = {
-      $or: [
-        {
-          description: { $regex: regex },
-        },
-        {
-          name: { $regex: regex },
-        },
-      ],
-    };
+    query.search = { $regex: regex };
   }
   if (req.body.subscriptionType) {
     subscriptionType = req.body.subscriptionType;
