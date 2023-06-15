@@ -31,8 +31,8 @@ controller.signin = async (req, res) => {
     orderdata = await Order.find({ user: req.user.id, status: true });
     cartdata = await Cart.find({ user: req.user.id, status: true });
   } catch (err) {
-    orderdata = 0;
-    cartdata = 0;
+    orderdata = false;
+    cartdata = false;
   }
   res.render("Sign_In", { orderdata, cartdata });
 };
@@ -44,8 +44,8 @@ controller.signup = async (req, res) => {
     orderdata = await Order.find({ user: req.user.id, status: true });
     cartdata = await Cart.find({ user: req.user.id, status: true });
   } catch (err) {
-    orderdata = 0;
-    cartdata = 0;
+    orderdata = false;
+    cartdata = false;
   }
   res.render("Sign_Up", { orderdata, cartdata });
 };
