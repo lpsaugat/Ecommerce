@@ -14,6 +14,7 @@ const Review = require("../models/Review");
 const Ad = require("../models/Ad");
 const Banner = require("../models/Banner");
 const Cart = require("../models/Cart");
+const Shipping = require("../models/Shipping");
 
 const _ = require("lodash");
 const { contains } = require("jquery");
@@ -36,14 +37,15 @@ async function getData(req, res) {
     const offerdata = await Offer.find();
     const bannerdata = await Banner.find();
     const addata = await Ad.find();
+
     let orderdata;
     let cartdata;
     try {
       orderdata = await Order.find({ user: req.user.id, status: true });
       cartdata = await Cart.find({ user: req.user.id, status: true });
     } catch (err) {
-      orderdata = 0;
-      cartdata = 0;
+      orderdata = false;
+      cartdata = false;
     }
 
     return {
@@ -82,7 +84,10 @@ controller.home = async (req, res) => {
       cartdata,
       orderdata,
       ...otherdata
-    } = await getData();
+    } = await getData(req, res);
+
+    console.log(req.user);
+    console.log(orderdata);
     res.render("Homepage", {
       productdata,
       carouseldata,
@@ -117,7 +122,7 @@ controller.slider = (req, res) => {
 //Subscription page
 controller.subscription = async (req, res) => {
   try {
-    const data = await getData();
+    const data = await getData(req, res);
     const subscriptiondata = data.subscriptiondata;
     const sitedata = data.sitedata;
     const orderdata = data.orderdata;
@@ -397,14 +402,12 @@ controller.singleproductview = async (req, res) => {
 
 //Customer cart
 controller.cart = async (req, res) => {
-  const data = await getData();
+  const data = await getData(req, res);
   const sitedata = data.sitedata;
   var orderdata = {};
-
-  orderdata = await Order.find({ user: req.user.id, status: true });
-  cartdata = await Cart.find({ user: req.user.id, status: true });
-
-  // }
+  orderdata = data.orderdata;
+  cartdata = data.cartdata;
+  console.log(orderdata);
   var subtotal = 0;
   orderdata.forEach((i) => {
     subtotal = subtotal + i.price * i.quantity; // Calculate total price
@@ -414,13 +417,12 @@ controller.cart = async (req, res) => {
 
 //Billing and details page after Checkout
 controller.billing = async (req, res) => {
-  const data = await getData();
+  const data = await getData(req, res);
   const sitedata = data.sitedata;
-  orderdata = Order.find({ user: req.user.username, status: true });
-  cartdata = Cart.findOne({ user: req.user.username, status: true });
-  shippingdata = Shipping.findOne({ user: req.user.username, status: true });
+  const orderdata = data.orderdata;
+  const cartdata = data.cartdata;
 
-  res.render("billing", { shippingdata, orderdata, cartdata, sitedata });
+  res.render("billing", { orderdata, cartdata, sitedata });
 };
 
 //Payment page

@@ -201,6 +201,27 @@ controller.cart = async (req, res, next) => {
   }
 };
 
+//Create Billing of Customer after he posts onto Billing info
+controller.billing = async (req, res) => {
+  try {
+    const cart = await Cart.findOne({ user: req.user.id, status: true });
+
+    if (!cart) {
+      return res.json("There isn't any product in your cart");
+    } else {
+      const newBilling = await Billing.create({
+        user: req.user.id,
+        email: req.body.email,
+        phone: req.body.phone,
+        country: req.body.country,
+        streetAddress: req.body.streetAddress,
+      });
+      console.log(newBilling);
+    }
+  } catch (err) {
+    console.log(err.message);
+  }
+};
 //Create Shipping of Cart when delivery is ready
 controller.shipping = async (req, res) => {
   try {

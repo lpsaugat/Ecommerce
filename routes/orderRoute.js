@@ -36,6 +36,9 @@ router.delete(
   orderController.cart
 );
 
+//Create billing after confirmation
+router.post("/billing", verifyToken, orderController.billing);
+
 //Create shipping after confirmation
 router.post("/shipping", verifyToken, orderController.shipping);
 

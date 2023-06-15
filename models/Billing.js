@@ -18,7 +18,7 @@ const Billing = new mongoose.Schema(
     email: {
       type: String,
     },
-    status: Boolean,
+    status: { type: Boolean, default: true },
   },
   { timestamps: true }
 );
