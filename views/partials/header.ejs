@@ -91,11 +91,11 @@
                 <a href="Cart">
                   <div class="flex flex-row relative overflow-visible">
                     <img src="../../public/Images/cart.svg" />
-                    <% if (cartdata.length){ %>
+                    <% if (cartdata!=false || cartdata == {}){ %>
                     <div
                       class="absolute rounded-full bg-red-600 text-white w-5 h-5 -top-[10px] -right-[10px] text-center"
                     >
-                      <% orderdata.length%>
+                      <%= orderdata.length%>
                     </div>
                     <%}%>
                   </div>
