@@ -1,44 +1,49 @@
-<% for (var i =0; i <=6; i=i+2 ) { %>
-
-<div
-  class="border-[1px] justify-between items-center flex py-[14px] md:py-[12px] lg:pt-[15px] px-[10px] md:px-[11px] lg:px-[17px] rounded-[3px] mt-6 lg:mt-[15px] lg:shadow-none shadow-[0px_0px_2px_rgba(0,0,0,0.25)]"
->
-  <div class="flex w-full">
-    <div
-      class="overflow-visible relative border-[0.5px] md:h-[86px] md:w-[86px] h-[69px] w-[69px] justify-center rounded-[3px] lg:rounded-[5px] flex items-center ml-[10px] lg:ml-0 md:ml-[15px]"
-    >
-      <img
-        src="../public/Images/singlepackage/<%= i%>.png"
-        class="flex items-center justify-center"
-      />
+<% for (var i =0; i
+<orderdata.length; i++ ) { %>
+  <div
+    class="border-[1px] justify-between items-center flex py-[14px] md:py-[12px] lg:pt-[15px] px-[10px] md:px-[11px] lg:px-[17px] rounded-[3px] mt-6 lg:mt-[15px] lg:shadow-none shadow-[0px_0px_2px_rgba(0,0,0,0.25)]"
+  >
+    <div class="flex w-full">
       <div
-        class="absolute -top-2 -right-2 md:-top-[9.5px] md:-right-[9.5px] rounded-full bg-[#c4c4c4] w-[16px] h-[16px] md:w-[19px] md:h-[19px] text-center justify-center flex text-[10px] md:text-[12px] text-white font-medium"
+        class="overflow-visible relative border-[0.5px] md:h-[86px] md:w-[86px] h-[69px] w-[69px] justify-center rounded-[3px] lg:rounded-[5px] flex items-center ml-[10px] lg:ml-0 md:ml-[15px]"
       >
-        3
-      </div>
-    </div>
-    <div
-      class="pl-[10px] md:pl-[10px] flex flex-col lg:font-medium text-ellipsis truncate lg:flex-row w-full lg:grid grid-cols-12 lg:items-center"
-    >
-      <div
-        class="text-[12px] md:text-sm lg:text-[16px] col-span-5 lg:pl-[40px]"
-      >
-        Aarati Rice
+        <img
+          src="  <%= orderdata[i].image %>"
+          class="flex items-center justify-center"
+        />
         <div
-          class="opacity-80 col-span-2 text-[10px] md:text-[12px] pt-[9px] md:pt-[10px] lg:pt-[16px] lg:text-[14px]"
+          class="absolute -top-2 -right-2 md:-top-[9.5px] md:-right-[9.5px] rounded-full bg-[#c4c4c4] w-[16px] h-[16px] md:w-[19px] md:h-[19px] text-center justify-center flex text-[10px] md:text-[12px] text-white font-medium"
         >
-          Rs.100/kg
+          <%= orderdata[i].quantity %>
         </div>
       </div>
-
       <div
-        class="text-[12px] col-span-3 w-auto md:text-[16px] lg:pt-0 font-medium pt-[14px] md:pt-[17px] justify-between items-center grid-cols-2 flex"
+        class="pl-[10px] md:pl-[10px] flex flex-col lg:font-medium text-ellipsis truncate lg:flex-row w-full lg:grid grid-cols-12 lg:items-center"
       >
-        <div class="lg:hidden">Rs.4500</div>
+        <div
+          class="text-[12px] md:text-sm lg:text-[16px] col-span-5 lg:pl-[40px]"
+        >
+          <%= orderdata[i].name %>
+          <div
+            class="opacity-80 col-span-2 text-[10px] md:text-[12px] pt-[9px] md:pt-[10px] lg:pt-[16px] lg:text-[14px]"
+          >
+            <%= orderdata[i].measure %>
+          </div>
+        </div>
+
+        <div
+          class="text-[12px] col-span-3 w-auto md:text-[16px] lg:pt-0 font-medium pt-[14px] md:pt-[17px] justify-between items-center grid-cols-2 flex"
+        >
+          <div class="lg:hidden">
+            Rs.<%= orderdata[i].price * orderdata[i].quantity %>
+          </div>
+        </div>
+        <div class="hidden lg:block col-span-2 text-[16px]">
+          Rs.<%= orderdata[i].price * orderdata[i].quantity %>
+        </div>
       </div>
-      <div class="hidden lg:block col-span-2 text-[16px]">Rs.4500</div>
     </div>
   </div>
-</div>
 
-<% } %>
+  <% } %>
+</orderdata.length;>
