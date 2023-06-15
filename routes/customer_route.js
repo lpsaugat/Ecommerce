@@ -21,31 +21,45 @@ const upload = multer({ storage: storage });
 
 const customerController = require("../controller/controller");
 const {
+  verifyTokenOrNon,
+
   verifyToken,
   verifyTokenAndAuthorization,
   verifyTokenAndAdmin,
 } = require("./verifyToken");
 
 //Homepage
-router.get("/", customerController.home);
+router.get("/", verifyTokenOrNon, customerController.home);
 router.post("/search", customerController.search);
 router.get("/search", customerController.search);
 
 //About Us
-router.get("/AboutUs", customerController.aboutus);
+router.get("/AboutUs", verifyTokenOrNon, customerController.aboutus);
 router.get("/add_product", customerController.add_product);
 router.get("/slider", customerController.slider);
-router.get("/subscription", customerController.subscription);
+router.get("/subscription", verifyTokenOrNon, customerController.subscription);
 
 //Products page
-router.get("/products", customerController.getAllProducts);
-router.get("/singleproduct", customerController.singleproduct);
+router.get("/products", verifyTokenOrNon, customerController.getAllProducts);
+router.get(
+  "/singleproduct",
+  verifyTokenOrNon,
+  customerController.singleproduct
+);
 
 //Packages
-router.get("/package", customerController.package);
-router.get("/singlepackage", customerController.singlepackage);
+router.get("/package", verifyTokenOrNon, customerController.package);
+router.get(
+  "/singlepackage",
+  verifyTokenOrNon,
+  customerController.singlepackage
+);
 
-router.get("/familypackages", customerController.familypackages);
+router.get(
+  "/familypackages",
+  verifyTokenOrNon,
+  customerController.familypackages
+);
 router.get("/cart", verifyToken, customerController.cart);
 router.get("/Billing", customerController.billing);
 router.get("/payments", customerController.payments);
@@ -53,8 +67,12 @@ router.get("/success", customerController.success);
 router.get("/orderconfirmation", customerController.orderconfirmation);
 router.get("/vendor", customerController.vendor);
 
-router.get("/product/:id", customerController.singleproductview);
-router.get("/package/:id", customerController.singlepackage);
+router.get(
+  "/product/:id",
+  verifyTokenOrNon,
+  customerController.singleproductview
+);
+router.get("/package/:id", verifyTokenOrNon, customerController.singlepackage);
 
 router.get("/dashboard", verifyToken, customerController.dashboard);
 router.get("/mobilepassword", customerController.mobilepassword);
@@ -62,7 +80,7 @@ router.get("/mobilepassword", customerController.mobilepassword);
 router.get("/test", customerController.test);
 
 router.get("/filterTest", customerController.getAllProducts);
-router.post("/products", customerController.filterProduct);
+router.post("/products", verifyTokenOrNon, customerController.filterProduct);
 
 //Review for package and product
 router.post("/product/:id", verifyToken, customerController.reviewProduct);
