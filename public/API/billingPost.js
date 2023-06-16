@@ -1,7 +1,7 @@
-const billForm = document.querySelector("#BillForm");
+const billForm = document.querySelector("#Billform");
 
 if (billForm) {
-  billForm.addEventListener("click", (event) => {
+  billForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
     const formData = new FormData(billForm);
@@ -28,7 +28,22 @@ if (billForm) {
         phone,
       }),
     })
-      .then(response)
+      .then((response) => {
+        if (response.ok) {
+          return fetch(`http://${ipAddress}:3000/payments`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((response) => (window.location.href = response.url))
+            .then((data) => {})
+            .catch((error) => {
+              console.log();
+              console.log(error);
+            });
+        }
+      })
 
       .catch((error) => {
         // Handle the error

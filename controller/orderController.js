@@ -5,6 +5,7 @@ const Product = require("../models/Products");
 const Order = require("../models/Order");
 const Cart = require("../models/Cart");
 const Shipping = require("../models/Shipping");
+const Billing = require("../models/Billing");
 
 const Subscription = require("../models/Subscription");
 

@@ -61,8 +61,8 @@ router.get(
   customerController.familypackages
 );
 router.get("/cart", verifyToken, customerController.cart);
-router.get("/Billing", customerController.billing);
-router.get("/payments", customerController.payments);
+router.get("/Billing", verifyToken, customerController.billing);
+router.get("/payments", verifyToken, customerController.payments);
 router.get("/success", customerController.success);
 router.get("/orderconfirmation", customerController.orderconfirmation);
 router.get("/vendor", customerController.vendor);
