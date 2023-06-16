@@ -429,9 +429,10 @@ controller.billing = async (req, res) => {
 controller.payments = async (req, res) => {
   const data = await getData();
   const sitedata = data.sitedata;
-  orderdata = Order.find({ user: req.user.username, status: true });
-  cartdata = Cart.findOne({ user: req.user.username, status: true });
-  shippingdata = Shipping.findOne({ user: req.user.username, status: true });
+  const orderdata = data.orderdata;
+  const cartdata = data.cartdata;
+
+  shippingdata = Shipping.findOne({ user: req.user.id, status: true });
 
   res.render("payments", { shippingdata, orderdata, cartdata, sitedata });
 };
