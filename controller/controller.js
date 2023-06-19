@@ -357,7 +357,7 @@ controller.singlepackage = async (req, res) => {
   const singlepackage = await Package.findOne({ _id: req.params.id });
   const products = await Product.find({ _id: { $in: singlepackage.products } });
   const reviews = await Review.find({ packageID: req.params.id });
-
+  let total = 0;
   const sitedata = data.sitedata;
 
   res.render("singlepackage", {
@@ -368,6 +368,7 @@ controller.singlepackage = async (req, res) => {
     reviews,
     cartdata,
     orderdata,
+    total,
   });
 };
 

@@ -37,9 +37,7 @@
       <div class="pt-4 hidden lg:block font-medium text-sm">
         Categories: <%= singlepackage.category %>
       </div>
-      <div class="pt-4 hidden lg:block font-medium text-sm">
-        Avalability: In Stock
-      </div>
+      <div class="pt-4 hidden lg:block font-medium text-sm">Avalability:</div>
       <div class="pt-4 font-semibold text-base">
         Rs. <%= singlepackage.price %>
       </div>
@@ -118,7 +116,7 @@
         </div>
       </div>
       <div class="font-medium text-base">
-        Bundle Price: Rs.
+        Bundle Price: Rs. <%= total %>
         <span class="text-[#237700]"> <%= singlepackage.price %> </span>
       </div>
     </div>
@@ -127,7 +125,7 @@
   <div class="lg:flex justify-end hidden gap-x-[15px] pt-[30px]">
     <button
       class="w-[200px] h-[42px] rounded-[8px] items-center flex justify-center border-[1px] border-[#3baf3d] text-[#3baf3d] font-medium"
-      onclick="addToCartPackages(singlepackage)"
+      onclick="addToCartPackages('<%=singlepackage%>')"
     >
       <div class="my-auto text-[#3baf3d] flex">
         Add
@@ -620,7 +618,7 @@
     >
       Taxes and shipping calculated at checkout
     </div>
-    <div class="font-medium md:font-[16px]">Rs.45000</div>
+    <div class="font-medium md:font-[16px]">Rs.<%= total %></div>
   </div>
   <div class="justify-end flex pt-[16px] gap-x-[10px]">
     <button

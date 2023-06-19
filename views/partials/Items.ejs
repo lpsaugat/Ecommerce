@@ -30,7 +30,9 @@
         <div
           class="text-[12px] col-span-3 w-auto md:text-[16px] lg:pt-0 font-medium pt-[14px] md:pt-[17px] justify-between items-center grid-cols-2 flex"
         >
-          <div class="lg:hidden">Rs. <%= products[i].price %></div>
+          <div class="lg:hidden">
+            Rs. <%= products[i].price %><%= total=total+products[i].price %>
+          </div>
           <div
             class="justify-end md:hidden lg:flex font-roboto flex items-center left-0 w-auto"
           >
