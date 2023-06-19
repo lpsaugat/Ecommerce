@@ -506,7 +506,8 @@ controller.getAllProducts = async (req, res) => {
   console.log(dataPagination);
   res.render("products", {
     cartdata,
-    orderdatafilterdata,
+    orderdata,
+    filterdata,
     sitedata,
     dataPagination,
     products,
