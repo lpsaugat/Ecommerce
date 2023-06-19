@@ -432,9 +432,7 @@ controller.payments = async (req, res) => {
   const orderdata = data.orderdata;
   const cartdata = data.cartdata;
 
-  shippingdata = Shipping.findOne({ user: req.user.id, status: true });
-
-  res.render("payments", { shippingdata, orderdata, cartdata, sitedata });
+  res.render("payments", { orderdata, cartdata, sitedata });
 };
 
 //
