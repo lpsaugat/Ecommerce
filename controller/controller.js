@@ -474,7 +474,8 @@ controller.getAllProducts = async (req, res) => {
   const data = await getData();
   const sitedata = data.sitedata;
   const filterdata = data.filterdata;
-
+  const cartdata = data.cartdata;
+  const orderdata = data.orderdata;
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 9;
   const skip = (page - 1) * limit;
@@ -503,7 +504,13 @@ controller.getAllProducts = async (req, res) => {
     products,
   };
   console.log(dataPagination);
-  res.render("products", { filterdata, sitedata, dataPagination, products });
+  res.render("products", {
+    cartdata,
+    orderdatafilterdata,
+    sitedata,
+    dataPagination,
+    products,
+  });
 };
 
 //Products page with filters after query
