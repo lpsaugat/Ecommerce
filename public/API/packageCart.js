@@ -13,7 +13,9 @@ function cartAllProducts(productID, quantity, price) {
 }
 
 function addToCartPackages(element) {
-  for (let i = 0; i < element.length; i++) {
-    cartAllProducts(element.product[i], 1, 100);
+  console.log(element.products[0]);
+  for (let i = 0; i < element.products.length; i++) {
+    cartAllProducts(element.products[i], 1, 0);
+    console.log(element.products[i]);
   }
 }
