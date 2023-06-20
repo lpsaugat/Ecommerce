@@ -181,8 +181,8 @@ controller.dashboard = async (req, res) => {
   const sitedata = data.sitedata;
   const orderdata = data.orderdata;
   const cartdata = data.cartdata;
-  const userdata = User.findOne({ id: req.user.id });
-
+  const userdata = await User.findOne({ _id: req.user.id });
+  console.log(userdata);
   res.render("dashboard", {
     sitedata,
     productdata,
