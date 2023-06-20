@@ -177,11 +177,11 @@ controller.add_product = (req, res) => {
 //User dashboard
 controller.dashboard = async (req, res) => {
   const data = await getData();
-  const userdata = data.userdata;
   const productdata = data.productdata;
   const sitedata = data.sitedata;
   const orderdata = data.orderdata;
   const cartdata = data.cartdata;
+  const userdata = User.findOne({ id: req.user.id });
 
   res.render("dashboard", {
     sitedata,
@@ -363,8 +363,6 @@ controller.singlepackage = async (req, res) => {
   for (let i = 0; i < products.length; i++) {
     total += parseFloat(products[i].price.toString());
   }
-
-  console.log(total);
 
   res.render("singlepackage", {
     sitedata,
