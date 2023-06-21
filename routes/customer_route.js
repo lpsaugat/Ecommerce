@@ -48,18 +48,14 @@ router.get(
 );
 
 //Packages
-router.get("/package", verifyTokenOrNon, customerController.package);
+// router.get("/package", verifyTokenOrNon, customerController.package);
 router.get(
   "/singlepackage",
   verifyTokenOrNon,
   customerController.singlepackage
 );
 
-router.get(
-  "/familypackages",
-  verifyTokenOrNon,
-  customerController.familypackages
-);
+router.get("/package", verifyTokenOrNon, customerController.familypackages);
 router.get("/cart", verifyToken, customerController.cart);
 router.get("/Billing", verifyToken, customerController.billing);
 router.get("/payments", verifyToken, customerController.payments);

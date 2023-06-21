@@ -225,7 +225,7 @@ controller.familypackages = async (req, res) => {
   const count = await Package.countDocuments();
 
   const totalPages = Math.ceil(count / limit);
-
+  query = {};
   const sort = req.query.sort;
   let packages;
   if (!sort) {
@@ -334,7 +334,6 @@ controller.filterPackage = async (req, res) => {
     next: page === totalPages ? totalPages : page + 1,
     packages,
   };
-  console.log(dataPagination);
   res.render("familypackages", {
     orderdata,
     cartdata,
