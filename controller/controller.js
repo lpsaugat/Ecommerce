@@ -87,7 +87,6 @@ controller.home = async (req, res) => {
     } = await getData(req, res);
 
     console.log(req.user);
-    console.log(orderdata);
     res.render("Homepage", {
       productdata,
       carouseldata,
@@ -411,7 +410,6 @@ controller.cart = async (req, res) => {
   var orderdata = {};
   orderdata = data.orderdata;
   cartdata = data.cartdata;
-  console.log(orderdata);
   var subtotal = 0;
   orderdata.forEach((i) => {
     subtotal = subtotal + i.price * i.quantity; // Calculate total price
