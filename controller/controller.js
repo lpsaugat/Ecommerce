@@ -278,24 +278,24 @@ controller.filterPackage = async (req, res) => {
   let category;
   let rating;
   // const price = { range1: 0, range2: 200 };
-  if (req.body.subscriptionType) {
-    subscriptionType = req.body.subscriptionType;
+  if (req.query.subscriptionType) {
+    subscriptionType = req.query.subscriptionType;
     query.subscriptionType = { $in: subscriptionType };
   }
-  if (req.body.price) {
-    price = req.body.price;
+  if (req.query.price) {
+    price = req.query.price;
     query.price = { $gte: price.range1, $lte: price.range2 };
   }
-  if (req.body.familySize) {
-    familySize = req.body.familySize;
+  if (req.query.familySize) {
+    familySize = req.query.familySize;
     query.familySize = { $in: familySize };
   }
-  if (req.body.category) {
-    category = req.body.category;
+  if (req.query.category) {
+    category = req.query.category;
     query.category = { $in: category };
   }
-  if (req.body.rating) {
-    rating = req.body.rating;
+  if (req.query.rating) {
+    rating = req.query.rating;
     query.rating = { $in: rating };
   }
   console.log(query);
@@ -504,7 +504,6 @@ controller.getAllProducts = async (req, res) => {
     next: page === totalPages ? totalPages : page + 1,
     products,
   };
-  console.log(dataPagination);
   res.render("products", {
     cartdata,
     orderdata,
@@ -519,6 +518,9 @@ controller.getAllProducts = async (req, res) => {
 controller.filterProduct = async (req, res) => {
   const data = await getData();
   const sitedata = data.sitedata;
+  const cartdata = data.cartdata;
+  const orderdata = data.orderdata;
+
   let query = {};
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 9;
@@ -528,23 +530,23 @@ controller.filterProduct = async (req, res) => {
   let familySize;
   let category;
   // const price = { range1: 0, range2: 200 };
-  if (req.body.subscriptionType) {
-    subscriptionType = req.body.subscriptionType;
+  if (req.query.subscriptionType) {
+    subscriptionType = req.query.subscriptionType;
     query.subscriptionType = { $in: subscriptionType };
   }
-  if (req.body.price) {
-    price = req.body.price;
+  if (req.query.price) {
+    price = req.query.price;
     query.price = { $gte: price.range1, $lte: price.range2 };
   }
-  if (req.body.familySize) {
-    familySize = req.body.familySize;
+  if (req.query.familySize) {
+    familySize = req.query.familySize;
     query.familySize = { $in: familySize };
   }
-  if (req.body.category) {
-    category = req.body.category;
+  if (req.query.category) {
+    category = req.query.category;
     query.category = { $in: category };
   }
-  if (req.body.rating) {
+  if (req.query.rating) {
     rating = req.body.rating;
     query.rating = { $in: rating };
   }
@@ -583,8 +585,13 @@ controller.filterProduct = async (req, res) => {
     next: page === totalPages ? totalPages : page + 1,
     products,
   };
-  console.log(dataPagination);
-  res.render("products", { sitedata, dataPagination, products });
+  res.render("products", {
+    cartdata,
+    orderdata,
+    sitedata,
+    dataPagination,
+    products,
+  });
 };
 
 //Search
@@ -635,24 +642,24 @@ controller.search = async (req, res) => {
     const regex = new RegExp(searchQuery, "i");
     query.search = { $regex: regex };
   }
-  if (req.body.subscriptionType) {
-    subscriptionType = req.body.subscriptionType;
+  if (req.query.subscriptionType) {
+    subscriptionType = req.query.subscriptionType;
     query.subscriptionType = { $in: subscriptionType };
   }
-  if (req.body.price) {
-    price = req.body.price;
+  if (req.query.price) {
+    price = req.query.price;
     query.price = { $gte: price.range1, $lte: price.range2 };
   }
-  if (req.body.familySize) {
-    familySize = req.body.familySize;
+  if (req.query.familySize) {
+    familySize = req.query.familySize;
     query.familySize = { $in: familySize };
   }
-  if (req.body.category) {
-    category = req.body.category;
+  if (req.query.category) {
+    category = req.query.category;
     query.category = { $in: category };
   }
-  if (req.body.rating) {
-    rating = req.body.rating;
+  if (req.query.rating) {
+    rating = req.query.rating;
     query.rating = { $in: rating };
   }
   console.log(query);
