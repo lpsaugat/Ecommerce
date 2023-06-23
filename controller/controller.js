@@ -529,10 +529,11 @@ controller.filterProduct = async (req, res) => {
   let subscriptionType;
   let familySize;
   let category;
+  console.log(req.query.subscriptionType);
   // const price = { range1: 0, range2: 200 };
   if (req.query.subscriptionType) {
     subscriptionType = req.query.subscriptionType;
-    query.subscriptionType = { $in: subscriptionType };
+    query.subscriptionType = { $in: [subscriptionType] };
   }
   if (req.query.price) {
     price = req.query.price;
@@ -540,15 +541,15 @@ controller.filterProduct = async (req, res) => {
   }
   if (req.query.familySize) {
     familySize = req.query.familySize;
-    query.familySize = { $in: familySize };
+    query.familySize = { $in: [familySize] };
   }
   if (req.query.category) {
     category = req.query.category;
-    query.category = { $in: category };
+    query.category = { $in: [category] };
   }
   if (req.query.rating) {
     rating = req.query.rating;
-    query.rating = { $in: rating };
+    query.rating = { $in: [rating] };
   }
   console.log(query);
   const count = await Product.countDocuments(query);
