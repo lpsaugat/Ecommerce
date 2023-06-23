@@ -1,8 +1,8 @@
-var subType = ["Premium"];
+var subType = [];
 var priceRange = { range1: 0, range2: 200 };
-var familySize = ["Small"];
-var category = ["Non-Veg"];
-var ratingParam = 4;
+var familySize = [];
+var category = [];
+var ratingParam;
 
 function checkTick(element) {
   switch (true) {
@@ -50,4 +50,16 @@ function filterAdd() {
       // Handle any errors
       console.error(error);
     });
+}
+
+function resetFilters() {
+  subType = [];
+  priceRange = { range1: 0, range2: 1000 };
+  familySize = [];
+  category = [];
+  ratingParam = [];
+  for (let i = 1; i < 22; i++) {
+    check[i][0].style.display = "none";
+    check[i][1].style.display = "none";
+  }
 }
