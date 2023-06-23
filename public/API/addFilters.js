@@ -2,7 +2,7 @@ var subType = [];
 var priceRange = { range1: 0, range2: 200 };
 var familySize = [];
 var category = [];
-var ratingParam;
+var ratingParam = [];
 
 function checkTick(element) {
   switch (true) {
@@ -14,6 +14,39 @@ function checkTick(element) {
       break;
     case element.classList.contains("check3"):
       subType.push("Silver");
+      break;
+    case element.classList.contains("check4"):
+      familySize.push("1");
+      break;
+    case element.classList.contains("check5"):
+      familySize.push("2");
+      break;
+    case element.classList.contains("check6"):
+      familySize.push("3");
+      break;
+    case element.classList.contains("check7"):
+      familySize.push("4");
+      break;
+    case element.classList.contains("check8"):
+      familySize.push("5");
+      break;
+    case element.classList.contains("check9"):
+      familySize.push("6");
+      break;
+    case element.classList.contains("check10"):
+      familySize.push("7");
+      break;
+    case element.classList.contains("check11"):
+      familySize.push("8");
+      break;
+    case element.classList.contains("check12"):
+      familySize.push("9");
+      break;
+    case element.classList.contains("check14"):
+      category.push("Non-Veg");
+      break;
+    case element.classList.contains("check15"):
+      category.push("Veg");
       break;
   }
 }
