@@ -547,7 +547,7 @@ controller.filterProduct = async (req, res) => {
     query.category = { $in: category };
   }
   if (req.query.rating) {
-    rating = req.body.rating;
+    rating = req.query.rating;
     query.rating = { $in: rating };
   }
   console.log(query);

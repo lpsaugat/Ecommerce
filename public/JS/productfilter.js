@@ -20,6 +20,7 @@ for (let i = 1; i < 22; i++) {
 function checkf(i) {
   hideandshow(check[i][0]);
   hideandshow(check[i][1]);
+  checkTick(check[i][0]);
 }
 
 function filtersidebarf() {

@@ -40,7 +40,7 @@ router.get("/slider", customerController.slider);
 router.get("/subscription", verifyTokenOrNon, customerController.subscription);
 
 //Products page
-router.get("/products", verifyTokenOrNon, customerController.getAllProducts);
+router.get("/products", verifyTokenOrNon, customerController.filterProduct);
 router.get(
   "/singleproduct",
   verifyTokenOrNon,
