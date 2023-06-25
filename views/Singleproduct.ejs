@@ -118,7 +118,7 @@
         <div class="hidden lg:block">
           <button
             class="w-full h-[42px] rounded-[8px] mt-[24px] items-center flex justify-center border-[1px] border-[#3baf3d] text-[#3baf3d] font-medium"
-            onclick="addedtocart(this,'<%= singleproduct.id %>','1', '<%= singleproduct.price %>')"
+            onclick="addedtocartSingle(this,'<%= singleproduct.id %>', '<%= singleproduct.price %>')"
           >
             <div class="my-auto text-[#3baf3d] flex">
               Add
@@ -1078,7 +1078,7 @@
   <div class="justify-end flex pt-[16px] gap-x-[10px]">
     <button
       class="md:w-[122px] w-[113px] h-[32px] rounded-[8px] text-[12px] items-center flex justify-center border-[1px] border-[#3baf3d] text-[#3baf3d] font-medium"
-      onclick="addedtocart(this,'<%= singleproduct.id %>','1', '<%= singleproduct.price %>')"
+      onclick="addedtocartSingle(this,'<%= singleproduct.id %>', '<%= singleproduct.price %>')"
     >
       <div class="my-auto text-[#3baf3d] flex">
         Add
@@ -1088,7 +1088,7 @@
     </button>
     <button
       class="md:w-[122px] w-[113px] h-[32px] rounded-[8px] text-[12px] items-center flex justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
-      onclick="window.href='/cart'"
+      onclick="location.href='/cart'"
     >
       Buy Now
     </button>
