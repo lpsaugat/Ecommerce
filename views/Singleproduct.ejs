@@ -7,21 +7,24 @@
     <!-- Product Image -->
 
     <div class="gap-y-[20px] hidden lg:block space-y-[20px]">
-      <div
+      <button
         class="border-[1.5px] border-[#182B3C] rounded-[5px] py-[17px] px-[10] flex justify-center items-center h-[105px] w-[105px]"
+        onclick="imageChange(0)"
       >
         <img src="<%= singleproduct.image[0]%>" />
-      </div>
-      <div
+      </button>
+      <button
         class="border-[1.5px] rounded-[5px] py-[17px] px-[10] flex justify-center items-center h-[105px] w-[105px]"
+        onclick="imageChange(1)"
       >
         <img src="<%= singleproduct.image[1]%>" />
-      </div>
-      <div
+      </button>
+      <button
         class="border-[1.5px] rounded-[5px] py-[17px] px-[10] flex justify-center items-center h-[105px] w-[105px]"
+        onclick="imageChange(2)"
       >
         <img src="<%= singleproduct.image[2]%>" />
-      </div>
+      </button>
     </div>
 
     <div
@@ -30,8 +33,19 @@
     >
       <img
         src="<%= singleproduct.image[0]%>"
-        class="lg:h-auto md:h-[294px] h-[226.32px] absolute"
+        class="lg:h-auto md:h-[294px] h-[226.32px] absolute product-image"
         id="product-image"
+        style="display: flex"
+      />
+      <img
+        src="<%= singleproduct.image[1]%>"
+        class="lg:h-auto md:h-[294px] h-[226.32px] absolute product-image"
+        style="display: none"
+      /><img
+        src="<%= singleproduct.image[2]%>"
+        class="lg:h-auto md:h-[294px] h-[226.32px] absolute product-image"
+        style="display: none"
+      />
       />
 
       <div
