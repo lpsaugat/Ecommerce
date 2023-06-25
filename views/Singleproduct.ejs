@@ -10,17 +10,17 @@
       <div
         class="border-[1.5px] border-[#182B3C] rounded-[5px] py-[17px] px-[10] flex justify-center items-center h-[105px] w-[105px]"
       >
-        <img src="../public/Images/SingleProduct/1.png" />
+        <img src="<%= singleproduct.image[0]%>" />
       </div>
       <div
         class="border-[1.5px] rounded-[5px] py-[17px] px-[10] flex justify-center items-center h-[105px] w-[105px]"
       >
-        <img src="../public/Images/SingleProduct/2.png" />
+        <img src="<%= singleproduct.image[1]%>" />
       </div>
       <div
         class="border-[1.5px] rounded-[5px] py-[17px] px-[10] flex justify-center items-center h-[105px] w-[105px]"
       >
-        <img src="../public/Images/SingleProduct/3.png" />
+        <img src="<%= singleproduct.image[2]%>" />
       </div>
     </div>
 
@@ -29,7 +29,7 @@
       class="image-container lg:rounded-[5px] lg:h-auto relative rounded-[3px] border-[1px] h-[237.4px] md:h-[335px] lg:min-h-[450px] col-span-5 items-center justify-center flex"
     >
       <img
-        src="<%= singleproduct.image%>"
+        src="<%= singleproduct.image[0]%>"
         class="lg:h-auto md:h-[294px] h-[226.32px] absolute"
         id="product-image"
       />
