@@ -1817,6 +1817,10 @@ video {
   border-top-right-radius: 0px;
 }
 
+.border {
+  border-width: 1px;
+}
+
 .border-\[0\.5px\] {
   border-width: 0.5px;
 }
@@ -2678,11 +2682,6 @@ video {
 .text-\[\#32aa00\] {
   --tw-text-opacity: 1;
   color: rgb(50 170 0 / var(--tw-text-opacity));
-}
-
-.text-\[\#3683c6\] {
-  --tw-text-opacity: 1;
-  color: rgb(54 131 198 / var(--tw-text-opacity));
 }
 
 .text-\[\#3BAF3D\] {
