@@ -87,12 +87,7 @@
         <%= singleproduct.description %>
         <br /><br />
         <div>
-          <ol class="list-disc ml-4">
-            <li>Healthy</li>
-            <li>Beneficial</li>
-            <li>High Nutritions</li>
-            <li>Excellent</li>
-          </ol>
+          <ol class="list-disc ml-4"></ol>
         </div>
         <div class="lg:flex pt-[16px] hidden items-center">
           <div class="font-medium text-[16px]">Quantity</div>
@@ -150,11 +145,13 @@
           <div class="font-semibold text-[18px] lg:text-[24px pt-[30px]">
             Description
           </div>
+          <% if(false) {%>
           <div
             class="font-semibold text-[12px] lg:text-[16px] pt-[18px] lg:pt-[39px]"
           >
             Details
           </div>
+
           <div class="pt-4 text-xs md:text-sm lg:max-w-[348px] text-justify">
             <ol class="list-disc ml-4 space-y-[15px]">
               <li>
@@ -180,6 +177,7 @@
               <li>We plan to make our products and services affordable.</li>
             </ol>
           </div>
+          <% }%> <% singleproduct.longDescription %>
         </div>
         <div class="lg:hidden">
           <div class="font-semibold text-[18px] lg:text-[24px pt-[30px]">
@@ -594,7 +592,7 @@
               </div>
             </div>
             <div
-              class="bg-[#f2f2f2] pb-[15px] md:pb-[17.95px] lg:pb-[25px] lg:border-b-[1px] lg:rounded-none rounded-[5px] mt-[20px] lg:mt-5 pl-[14px] lg:pl-[40px] pt-[16px] lg:pt-[30px] lg:pr-[40px] pr-[20px]"
+              class="bg-[#dcd3d3] pb-[15px] md:pb-[17.95px] lg:pb-[25px] lg:border-b-[1px] lg:rounded-none rounded-[5px] mt-[20px] lg:mt-5 pl-[14px] lg:pl-[40px] pt-[16px] lg:pt-[30px] lg:pr-[40px] pr-[20px]"
             >
               <div class="justify-between flex flex-col">
                 <div class="flex w-full">
@@ -676,6 +674,7 @@
     <div class="border-[1px] border-t-0 rounded-b-[5px] py-[40px]">
       <div style="display: block" class="details px-[40px]">
         <div class="hidden lg:block">
+          <% if(false) {%>
           <div class="font-semibold text-[12px] lg:text-[16px] pt-[18px]">
             Details
           </div>
@@ -704,9 +703,13 @@
               <li>We plan to make our products and services affordable.</li>
             </ol>
           </div>
+          <%}%>
         </div>
       </div>
-      <div style="display: none" class="details px-[40px]">Category</div>
+      <div style="display: none" class="details px-[40px]">
+        <% singleproduct.category.forEach((value) => { %> <%= value %> , <% });
+        %>
+      </div>
       <div style="display: none" class="details px-[40px]">
         <div class="">
           <div
@@ -1075,8 +1078,13 @@
   <div class="justify-end flex pt-[16px] gap-x-[10px]">
     <button
       class="md:w-[122px] w-[113px] h-[32px] rounded-[8px] text-[12px] items-center flex justify-center border-[1px] border-[#3baf3d] text-[#3baf3d] font-medium"
+      onclick="addedtocart(this)"
     >
-      Add to Cart
+      <div class="my-auto text-[#3baf3d] flex">
+        Add
+        <div class="text-[#3baf3d] added" style="display: none">ed&nbsp;</div>
+        to Cart
+      </div>
     </button>
     <button
       class="md:w-[122px] w-[113px] h-[32px] rounded-[8px] text-[12px] items-center flex justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
