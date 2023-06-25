@@ -49,13 +49,13 @@
                 <a href="/">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="aboutus">About Us</a>
+                <a class="nav-link" href="/aboutus">About Us</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="subscription">Subscription Basket</a>
+                <a class="nav-link" href="/subscription">Subscription Basket</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="products">Shop</a>
+                <a class="nav-link" href="/products">Shop</a>
               </li>
             </ul>
           </div>
@@ -81,14 +81,14 @@
                 </form>
               </li>
               <li>
-                <a href="dashboard"
+                <a href="/dashboard"
                   ><img
                     src="../../public/Images/user.svg"
                     style="width: 24px; height: 20px"
                 /></a>
               </li>
               <li>
-                <a href="Cart">
+                <a href="/Cart">
                   <div class="flex flex-row relative overflow-visible">
                     <img src="../../public/Images/cart.svg" />
                     <% if (cartdata!=false || cartdata == {}){ %>
@@ -133,10 +133,10 @@
         >
           <div class="flex flex-col px-5 py-4 text-sm gap-y-9 pb-[300px]">
             <a href="/">Home</a>
-            <a href="aboutus">About Us</a>
-            <a href="subscription">Subscription Package</a>
-            <a href="products">Shop</a>
-            <a href="dashboard" class="hidden md:block">My Profile</a>
+            <a href="/aboutus">About Us</a>
+            <a href="/subscription">Subscription Package</a>
+            <a href="/products">Shop</a>
+            <a href="/dashboard" class="hidden md:block">My Profile</a>
             <div class="md:hidden">
               <a
                 href="javascript:mobmenudisplay()"
@@ -153,15 +153,15 @@
               </a>
               <div style="display: none" id="mob-menu" class="md:hidden">
                 <div class="flex flex-col">
-                  <a href="dashboard" class="pl-[4px] pt-[20px]">My Details</a>
-                  <a href="mobilepassword" class="pl-[4px] pt-[20px]"
+                  <a href="/dashboard" class="pl-[4px] pt-[20px]">My Details</a>
+                  <a href="/mobilepassword" class="pl-[4px] pt-[20px]"
                     >Password</a
                   >
                 </div>
               </div>
             </div>
             <div>
-              <a href="cart">My Cart</a>
+              <a href="/cart">My Cart</a>
             </div>
 
             <a
@@ -175,13 +175,13 @@
           >
             <button
               class="text-[#3BAF3D] border-[#3BAF3D] border-solid border-[1px] rounded-lg w-[113px] h-[32px]"
-              onclick="location.href = 'Sign_Up'"
+              onclick="location.href = '/Sign_Up'"
             >
               Sign Up
             </button>
             <button
               class="bg-[#3BAF3D] border-none text-[#FCFCFC] rounded-lg w-[113px] h-[32px]"
-              onclick="location.href = 'Sign_In'"
+              onclick="location.href = '/Sign_In'"
             >
               Login
             </button>
