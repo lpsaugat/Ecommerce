@@ -118,7 +118,7 @@
         <div class="hidden lg:block">
           <button
             class="w-full h-[42px] rounded-[8px] mt-[24px] items-center flex justify-center border-[1px] border-[#3baf3d] text-[#3baf3d] font-medium"
-            onclick="addedtocart(this)"
+            onclick="addedtocart(this,'<%= singleproduct.id %>','1', '<%= singleproduct.price %>')"
           >
             <div class="my-auto text-[#3baf3d] flex">
               Add
@@ -132,7 +132,7 @@
         <div class="hidden lg:block">
           <button
             class="w-full lg:h-[42px] md:h-[36px] h-[32px] mt-[20px] mb-[30px] flex rounded-[8px] text-[12px] lg:text-[14px] items-center justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
-            onclick="location.href = 'cart'"
+            onclick="location.href = '/cart'"
           >
             Buy Now &nbsp;
             <img
@@ -1041,7 +1041,7 @@
     <div class="font-prox text-lg font-bold lg:text-3xl text-[18px]">
       Related Products
     </div>
-    <a href="products">
+    <a href="/products">
       <div class="font-poppins font-normal text-xs md:text-base lg:flex hidden">
         View All &nbsp;<img src="../public/Images/next.svg" /></div
     ></a>
@@ -1078,7 +1078,7 @@
   <div class="justify-end flex pt-[16px] gap-x-[10px]">
     <button
       class="md:w-[122px] w-[113px] h-[32px] rounded-[8px] text-[12px] items-center flex justify-center border-[1px] border-[#3baf3d] text-[#3baf3d] font-medium"
-      onclick="addedtocart(this)"
+      onclick="addedtocart(this,'<%= singleproduct.id %>','1', '<%= singleproduct.price %>')"
     >
       <div class="my-auto text-[#3baf3d] flex">
         Add
@@ -1088,6 +1088,7 @@
     </button>
     <button
       class="md:w-[122px] w-[113px] h-[32px] rounded-[8px] text-[12px] items-center flex justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
+      onclick="window.href='/cart'"
     >
       Buy Now
     </button>
