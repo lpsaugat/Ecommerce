@@ -7,7 +7,7 @@
       class="lg:rounded-[5px] mt-[3px] relative overflow-hidden rounded-[3px] shadow-[0_0px_4px_rgba(0,0,0,0.25)] h-[237.4px] md:h-[335px] lg:min-h-[450px] lg:h-auto col-span-3 items-center justify-center flex"
     >
       <img
-        src="../public/Images/singlepackage/package.png"
+        src="<%= singlepackage.image%>"
         class="lg:h-auto md:h-[294px] h-[226.32px] absolute magnified"
         onmouseover="magnify(this)"
         onmouseout="magnifyout(this)"
@@ -37,7 +37,10 @@
       <div class="pt-4 hidden lg:block font-medium text-sm">
         Categories: <%= singlepackage.category %>
       </div>
-      <div class="pt-4 hidden lg:block font-medium text-sm">Avalability:</div>
+      <div class="pt-4 hidden lg:block font-medium text-sm">
+        Avalability: <% if(singlepackage.quantity<=0) { %> Out of Stock, <%
+        }else{ %> In Stock <%}; %>
+      </div>
       <div class="pt-4 font-semibold text-base">
         Rs. <%= singlepackage.price %>
       </div>
@@ -45,14 +48,7 @@
         <%= singlepackage.description %>
 
         <br /><br />
-        <div>
-          <ol class="list-disc ml-4">
-            <li>Healthy</li>
-            <li>Beneficial</li>
-            <li>High Nutritions</li>
-            <li>Excellent</li>
-          </ol>
-        </div>
+        <div></div>
       </div>
     </div>
   </div>
@@ -586,7 +582,7 @@
       Related Products
     </div>
     <div class="font-poppins font-normal text-xs md:text-base lg:flex hidden">
-      <a href="/products" class="flex items-center">
+      <a href="/package" class="flex items-center">
         View All &nbsp;<img src="../public/Images/next.svg"
       /></a>
     </div>
