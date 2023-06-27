@@ -24,6 +24,30 @@ function addedtocart(element, productID, quantity, price) {
     });
 }
 
+function orderUpdate(productID, quantity) {
+  console.log(productID, "id");
+  fetch(`http://${ipAddress}:3000/order`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      productID,
+      quantity,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      // Do something with the response data
+    })
+
+    .catch((error) => {
+      console.log();
+      console.error(error);
+    });
+}
+
 function deleteProduct(productID) {
   fetch(`http://${ipAddress}:3000/dashboard/orders/${productID}`, {
     method: "DELETE",
