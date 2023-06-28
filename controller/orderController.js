@@ -60,10 +60,10 @@ controller.order = async (req, res, next) => {
 controller.orderupdate = async (req, res, next) => {
   const roles = ["super-admin", "admin"];
   const filter = req.body.id;
-  console.log(filter);
   const update = req.body.quantity;
   try {
     const getorder = await Order.findOne({ _id: filter });
+    console.log();
     const productQuantity = await Products.findOneAndUpdate(
       { _id: getorder.id },
       { $inc: { quantity: -req.body.quantity } },
@@ -80,10 +80,11 @@ controller.orderupdate = async (req, res, next) => {
       getorder.user.toString() === req.user.id
     ) {
       const updatedOrder = await Order.findOneAndUpdate(
-        filter,
+        { _id: filter },
         { $inc: { quantity: req.body.quantity } },
         { new: true, runValidators: true }
       );
+      console.log(updatedOrder);
       next();
       res.status(200).json(updatedOrder);
     } else {
