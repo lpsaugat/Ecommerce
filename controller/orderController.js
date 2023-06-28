@@ -61,12 +61,12 @@ controller.orderupdate = async (req, res, next) => {
   const roles = ["super-admin", "admin"];
   const filter = req.body.id;
   console.log(filter);
-  const update = req.body;
+  const update = req.body.quantity;
   try {
     const getorder = await Order.findOne({ _id: filter });
     const productQuantity = await Products.findOneAndUpdate(
-      { _id: filter },
-      { $dec: { quantity: quantity } },
+      { _id: getorder.id },
+      { $inc: { quantity: -req.body.quantity } },
       { new: true, runValidators: true }
     );
     if (!getorder) {
@@ -81,8 +81,7 @@ controller.orderupdate = async (req, res, next) => {
     ) {
       const updatedOrder = await Order.findOneAndUpdate(
         filter,
-        update,
-
+        { $inc: { quantity: req.body.quantity } },
         { new: true, runValidators: true }
       );
       next();
