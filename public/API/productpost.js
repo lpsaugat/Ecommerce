@@ -24,15 +24,15 @@ function addedtocart(element, productID, quantity, price) {
     });
 }
 
-function orderUpdate(productID, quantity) {
-  console.log(productID, "id");
-  fetch(`http://${ipAddress}:3000/order`, {
+function orderUpdate(orderID, quantity) {
+  console.log(orderID, "id");
+  fetch(`http://${ipAddress}:3000/dashboard/orders`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      id: productID,
+      id: orderID,
       quantity,
     }),
   })

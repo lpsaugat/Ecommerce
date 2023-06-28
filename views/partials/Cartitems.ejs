@@ -39,7 +39,10 @@
             class="justify-end md:hidden lg:flex font-roboto flex items-center left-0 w-auto"
           >
             <div class="flex items-center">
-              <button onclick="decrease('<%=i%>')" class="h-[10px]">
+              <button
+                onclick="decrease('<%=i%>'); orderUpdate('<%=orderdata[i].id%>', -1)"
+                class="h-[10px]"
+              >
                 <img src="../../public/Images/substract.svg" />
               </button>
               &nbsp; &nbsp;
@@ -55,7 +58,10 @@
               />
               &nbsp; &nbsp;
 
-              <button onclick="increase('<%= i%>')" class="w-[10px]">
+              <button
+                onclick="increase('<%= i%>'); orderUpdate('<%=orderdata[i].id%>', 1)"
+                class="w-[10px]"
+              >
                 <img src="../../public/Images/add.svg" />
               </button>
             </div>
