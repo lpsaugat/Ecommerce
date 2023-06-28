@@ -741,4 +741,14 @@ controller.reviewPackage = async (req, res) => {
   }
 };
 
+controller.cartCount = async (req, res) => {
+  let cartCount;
+  try {
+    cartCount = await Order.find({ user: req.user.id, status: true });
+    cartCount = cartCount.length;
+  } catch (err) {
+    cartCount = false;
+  }
+  res.json({ count: cartCount });
+};
 module.exports = controller;

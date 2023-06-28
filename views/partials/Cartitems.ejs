@@ -36,7 +36,7 @@
             Rs. <%= orderdata[i].price * orderdata[i].quantity %>
           </div>
           <div
-            class="justify-end md:hidden font-roboto flex items-center left-0 w-auto"
+            class="justify-end md:hidden lg:flex font-roboto flex items-center left-0 w-auto"
           >
             <div class="flex items-center">
               <button onclick="decrease('<%=i%>')" class="h-[10px]">
@@ -60,6 +60,7 @@
               </button>
             </div>
           </div>
+          <%if(false){%>
           <div
             class="hidden lg:flex w-[123px] relative h-[49px] overflow-visible border-[1px] rounded-[3px] flex-col gird"
           >
@@ -75,12 +76,14 @@
                   </div>
                 </div>
               </a>
+
               <text class="text-center flex justify-start w-full pl-[32px]"
                 ><%= orderdata[i].quantity%></text
               >
+
               <div
                 id="myDropdown<%= i%>"
-                class="dropdown-content myDropdown z-40 bg-white"
+                class="dropdown-content myDropdown z-40 bg-white overflow-scroll max-h-[10px]"
               >
                 <a> 1</a>
                 <a> 2</a>
@@ -88,6 +91,7 @@
               </div>
             </div>
           </div>
+          <%}%>
         </div>
         <div class="hidden lg:block col-span-2">
           Rs. <%= orderdata[i].price * orderdata[i].quantity %>

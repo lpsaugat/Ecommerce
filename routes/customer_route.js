@@ -55,6 +55,8 @@ router.get(
   customerController.singlepackage
 );
 
+router.get("/cartCount", verifyToken, customerController.cartCount);
+
 router.get("/package", verifyTokenOrNon, customerController.familypackages);
 router.get("/cart", verifyToken, customerController.cart);
 router.get("/Billing", verifyToken, customerController.billing);
