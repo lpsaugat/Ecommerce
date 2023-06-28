@@ -32,15 +32,18 @@
         <div
           class="text-[12px] col-span-3 w-auto md:text-[16px] lg:pt-0 font-medium pt-[14px] md:pt-[17px] justify-between items-center grid-cols-2 flex"
         >
-          <div class="lg:hidden">
-            Rs. <%= orderdata[i].price * orderdata[i].quantity %>
+          <div class="lg:hidden flex">
+            Rs.
+            <div id="cartItem<%=i%>">
+              <%= orderdata[i].price * orderdata[i].quantity %>
+            </div>
           </div>
           <div
             class="justify-end md:hidden lg:flex font-roboto flex items-center left-0 w-auto"
           >
             <div class="flex items-center">
               <button
-                onclick="decrease('<%=i%>'); orderUpdate('<%=orderdata[i].id%>', -1)"
+                onclick="decrease('<%=i%>'); orderUpdate('<%=orderdata[i].id%>', -1); changeTotal('<%=i%>')"
                 class="h-[10px]"
               >
                 <img src="../../public/Images/substract.svg" />
@@ -59,7 +62,7 @@
               &nbsp; &nbsp;
 
               <button
-                onclick="increase('<%= i%>'); orderUpdate('<%=orderdata[i].id%>', 1)"
+                onclick="increase('<%= i%>'); orderUpdate('<%=orderdata[i].id%>', 1); changeTotal('<%=i%>')"
                 class="w-[10px]"
               >
                 <img src="../../public/Images/add.svg" />
@@ -99,8 +102,11 @@
           </div>
           <%}%>
         </div>
-        <div class="hidden lg:block col-span-2">
-          Rs. <%= orderdata[i].price * orderdata[i].quantity %>
+        <div class="hidden lg:flex col-span-2">
+          Rs.
+          <div id="cartItem2<%=i%>">
+            <%= orderdata[i].price * orderdata[i].quantity %>
+          </div>
         </div>
 
         <button

@@ -84,7 +84,6 @@ controller.orderupdate = async (req, res, next) => {
         { $inc: { quantity: req.body.quantity } },
         { new: true, runValidators: true }
       );
-      console.log(updatedOrder);
       next();
       res.status(200).json(updatedOrder);
     } else {

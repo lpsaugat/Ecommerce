@@ -743,12 +743,34 @@ controller.reviewPackage = async (req, res) => {
 
 controller.cartCount = async (req, res) => {
   let cartCount;
+  var subTotal = 0;
+  var eachTotal = {};
   try {
-    cartCount = await Order.find({ user: req.user.id, status: true });
-    cartCount = cartCount.length;
+    orders = await Order.find({ user: req.user.id, status: true });
+    orders.forEach((i, index) => {
+      subTotal = subTotal + i.price * i.quantity; // Calculate total price
+      eachTotal[index] = i.price * i.quantity; // Calculate single element total price
+    });
+    cartCount = orders.length;
   } catch (err) {
     cartCount = false;
   }
-  res.json({ count: cartCount });
+  res.json({ count: cartCount, subTotal, eachTotal });
 };
+
+// controller.eachTotal = async (req, res) => {
+//   let cartCount;
+//   var eachTotal = {};
+//   try {
+//     orders = await Order.find({ user: req.user.id, status: true });
+//     orderdata.forEach((i) => {
+//       eachTotal[i] = i.price * i.quantity; // Calculate total price
+//     });
+//     cartCount = orders.length;
+//   } catch (err) {
+//     cartCount = false;
+//   }
+//   res.json({ count: cartCount, subtotal, eachTotal });
+// };
+
 module.exports = controller;
