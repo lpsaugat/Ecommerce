@@ -32,7 +32,7 @@ function orderUpdate(productID, quantity) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      productID,
+      id: productID,
       quantity,
     }),
   })
