@@ -14,15 +14,15 @@
     </div>
     <div class="pl-[27px]">
       <div class="pl-[15px]">
-        <div class="text-[24px] font-medium"><%= productdata[0].name%></div>
-        <div class="pt-[24px] text-[18px] max-w-[344px]">
-          Dinner Package is a healthy package is a healthy package and is full
-          of nutritions.
+        <div class="text-[24px] font-medium" id="popUpName">NAME</div>
+        <div class="pt-[24px] text-[18px] max-w-[344px]" id="popUpDescription">
+          DESCRIPTION
         </div>
         <div class="text-[#32aa00] text-base flex items-center pt-[24px]">
-          Rs.<span class="text-lg font-bold text-[#32aa00]"
-            >&nbsp;20,000.00</span
-          >
+          Rs.&nbsp;
+          <div id="popUpPrice" class="text-lg font-bold text-[#32aa00]">
+            PRICE
+          </div>
         </div>
         <div class="flex items-center left-0 w-auto gap-x-[24px] pt-[24px]">
           <div class="text-[16px]">Quantity</div>

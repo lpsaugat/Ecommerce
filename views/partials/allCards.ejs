@@ -3,8 +3,7 @@
     <a href="/product/<%= productdata[i]._id%>">
       <div
         class="rounded-[7.4px] sm:rounded-[9.6px] md:rounded-[12px] z-50 rounded-b-none sm:rounded-b-none md:rounded-b-none border-b-0 border-[1px] pb-[14px] md:pb-[17.57px] lg:pb-[24px] pt-[20px] lg:pt-[7px]"
-        onmouseover="popupf()"
-        onmouseover="setpopupnumber(0)"
+        onmouseover="popupf(); popUpFetch('<%= productdata[i]._id%>')"
       >
         <img
           src="<%= productdata[i].image[0] %>"
