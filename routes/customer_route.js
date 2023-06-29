@@ -55,7 +55,11 @@ router.get(
   customerController.singlepackage
 );
 
+//Dynamic Cart amount and Total
 router.get("/cartCount", verifyToken, customerController.cartCount);
+
+//Dynamic Popup Route
+router.get("/popUp", customerController.popUp);
 
 router.get("/package", verifyTokenOrNon, customerController.familypackages);
 router.get("/cart", verifyToken, customerController.cart);

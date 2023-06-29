@@ -758,6 +758,16 @@ controller.cartCount = async (req, res) => {
   res.json({ count: cartCount, subTotal, eachTotal });
 };
 
+controller.popUp = async (req, res) => {
+  let popUp;
+  try {
+    popUp = await Product.findOne(req.body.productID);
+    res.json(popUp);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 // controller.eachTotal = async (req, res) => {
 //   let cartCount;
 //   var eachTotal = {};
