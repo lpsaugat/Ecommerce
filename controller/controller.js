@@ -761,8 +761,8 @@ controller.cartCount = async (req, res) => {
 controller.popUp = async (req, res) => {
   let popUp;
   try {
-    popUp = await Product.findOne(req.body.productID);
-    res.json(popUp);
+    popUp = await Product.findOne({ _id: req.body.productID });
+    res.json({ popUp });
   } catch (err) {
     console.log(err);
   }

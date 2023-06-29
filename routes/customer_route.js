@@ -59,7 +59,7 @@ router.get(
 router.get("/cartCount", verifyToken, customerController.cartCount);
 
 //Dynamic Popup Route
-router.get("/popUp", customerController.popUp);
+router.post("/popUp", customerController.popUp);
 
 router.get("/package", verifyTokenOrNon, customerController.familypackages);
 router.get("/cart", verifyToken, customerController.cart);
