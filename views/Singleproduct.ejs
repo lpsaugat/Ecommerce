@@ -1018,16 +1018,26 @@
               </div>
             </div>
           </div>
-          <textarea
-            type="text"
-            class="w-[100%] h-[122px] border-[1px] rounded-[5px] pl-[16px] lg:pl-[20px] pt-[11px] lg:mt-[19px] mt-2"
-            rows="5"
-            placeholder="Type to Comment"
-          ></textarea>
+          <form id="productReview">
+            <textarea
+              type="text"
+              name="comment"
+              class="w-[100%] h-[122px] border-[1px] rounded-[5px] pl-[16px] lg:pl-[20px] pt-[11px] lg:mt-[19px] mt-2"
+              rows="5"
+              placeholder="Type to Comment"
+            ></textarea>
+            <input
+              type="hidden"
+              name="productID"
+              value="<%=singleproduct._id %>"
+            />
+          </form>
         </div>
       </div>
       <div class="flex justify-end w-full pt-[16px] lg:pt-[30px]">
         <button
+          form="productReview"
+          type="submit"
           class="flex items-center lg:text-[14px] text-xs text-white justify-center bg-gradient-to-r w-[97px] lg:w-[108px] from-[#fd3232] to-[#f84c4c] rounded-[8px] h-[32px] md:h-[37px]"
         >
           Publish
