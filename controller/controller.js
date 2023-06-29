@@ -718,11 +718,13 @@ controller.offers = async (req, res) => {
 //Post review from user
 controller.reviewProduct = async (req, res) => {
   try {
-    const review = await create.Review({
+    const review = await Review.create({
       ...req.body,
       user: req.user.id,
       productID: req.params.id,
     });
+
+    res.json(review);
   } catch (err) {
     res.json(err);
   }
@@ -731,7 +733,7 @@ controller.reviewProduct = async (req, res) => {
 //Post review from user
 controller.reviewPackage = async (req, res) => {
   try {
-    const review = await create.Review({
+    const review = await Review.create({
       ...req.body,
       user: req.user.id,
       packageID: req.params.id,

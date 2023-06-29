@@ -1,14 +1,14 @@
-const productReview = document.querySelector("#productReview");
+const productReview = document.getElementById("productReview");
 
 if (productReview) {
-  productRevieew.addEventListener("submit", (event) => {
+  productReview.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const formData = new FormData(productRevieew);
+    const formData = new FormData(productReview);
     const comment = formData.get("comment");
     const rating = formData.get("rating");
-
-    fetch(`http://${ipAddress}:3000/productReview`, {
+    const productID = formData.get("productID");
+    fetch(`http://${ipAddress}:3000/reviewProduct/${productID}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -18,7 +18,6 @@ if (productReview) {
         rating,
       }),
     })
-      .then((response) => response.json())
       .then((data) => {
         console.log(data);
         // Do something with the response data

@@ -85,7 +85,16 @@ router.get("/filterTest", customerController.getAllProducts);
 router.post("/products", verifyTokenOrNon, customerController.filterProduct);
 
 //Review for package and product
-router.post("/reviewProduct", verifyToken, customerController.reviewProduct);
-router.post("/reviewPackage", verifyToken, customerController.reviewPackage);
+router.post(
+  "/reviewProduct/:id",
+  verifyTokenOrNon,
+  customerController.reviewProduct
+);
+
+router.post(
+  "/reviewPackage/:id",
+  verifyToken,
+  customerController.reviewPackage
+);
 
 module.exports = router;
