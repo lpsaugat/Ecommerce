@@ -10,7 +10,11 @@
     <div
       class="rounded-[3px] border-[1px] w-[460px] h-[378px] items-center flex justify-center"
     >
-      <img src="../public/Images/homepage/PopupImage.png" class="h-full" />
+      <img
+        id="popUpImage"
+        src="../public/Images/homepage/PopupImage.png"
+        class="h-full"
+      />
     </div>
     <div class="pl-[27px]">
       <div class="pl-[15px]">
@@ -61,12 +65,12 @@
               to Cart &nbsp; <img src="../../public/Images/shopping-cart.svg" />
             </div>
           </button>
-          <button
-            class="w-[200px] h-[46px] rounded-[8px] items-center flex justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
-            onclick="location.href= '/product/<%= productdata[0]._id%>'"
+          <a
+            class="cursor-pointer w-[200px] h-[46px] rounded-[8px] items-center flex justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
+            id="popUpViewDetail"
           >
             View Detail &nbsp; <img src="../public/Images/arrow.svg" />
-          </button>
+          </a>
         </div>
       </div>
     </div>
