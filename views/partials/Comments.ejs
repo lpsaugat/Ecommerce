@@ -11,7 +11,11 @@
         <div class="pl-[14px] lg:pl-[16px] w-full">
           <div class="font-semibold text-sm flex justify-between w-full">
             <div><%=reviews[i].user%></div>
-            <div><%=reviews[i].createdAt%></div>
+            <div>
+              <%- new Intl.DateTimeFormat('en-US', { month: 'short', day:
+              'numeric', year: 'numeric' }).format(new
+              Date(reviews[i].createdAt)) %>
+            </div>
           </div>
           <div class="pt-[4px] flex gap-x-[3.4px]">
             <%- include ("./star") %>
