@@ -26,7 +26,9 @@ function popUpFetch(element) {
       var popUpAddedToCart = document.getElementById("popUpAddedToCart");
       popUpImage.src = productImage;
       popUpViewDetail.href = `/product/${productID}`;
-      popUpAddedToCart.onclick = `popUpAddedToCart(${productID},1,${productPrice})`;
+      popUpAddedToCart.onclick = function () {
+        popUpAddToCart(productID, 1, productPrice);
+      };
       popUpName.textContent = productName;
       popUpDescription.textContent = productDesc;
       popUpPrice.textContent = productPrice;
@@ -36,7 +38,7 @@ function popUpFetch(element) {
     });
 }
 
-function popUpAddedToCart(productID, quantity, price) {
+function popUpAddToCart(productID, quantity, price) {
   console.log(productID, "id");
   fetch(`http://${ipAddress}:3000/order`, {
     method: "POST",
