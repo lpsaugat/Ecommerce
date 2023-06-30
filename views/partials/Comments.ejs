@@ -18,7 +18,8 @@
             </div>
           </div>
           <div class="pt-[4px] flex gap-x-[3.4px]">
-            <%- include ("./star") %>
+            <% for (var j = 0; j < reviews[i].rating; j++ ) { %> <%- include
+            ("./oneStar") %> <%}%>
           </div>
         </div>
       </div>
