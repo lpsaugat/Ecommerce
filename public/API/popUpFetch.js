@@ -23,15 +23,41 @@ function popUpFetch(element) {
       var popUpDescription = document.getElementById("popUpDescription");
       var popUpImage = document.getElementById("popUpImage");
       var popUpViewDetail = document.getElementById("popUpViewDetail");
-
+      var popUpAddedToCart = document.getElementById("popUpAddedToCart");
       popUpImage.src = productImage;
       popUpViewDetail.href = `/product/${productID}`;
-
+      popUpAddedToCart.onclick = `popUpAddedToCart(${productID},1,${productPrice})`;
       popUpName.textContent = productName;
       popUpDescription.textContent = productDesc;
       popUpPrice.textContent = productPrice;
     })
     .catch((error) => {
       console.error("Error:", error);
+    });
+}
+
+function popUpAddedToCart(productID, quantity, price) {
+  console.log(productID, "id");
+  fetch(`http://${ipAddress}:3000/order`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      productID,
+      quantity,
+      price,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      // Do something with the response data
+      element.querySelector(".added").style.display = "block";
+    })
+
+    .catch((error) => {
+      console.log();
+      console.error(error);
     });
 }
