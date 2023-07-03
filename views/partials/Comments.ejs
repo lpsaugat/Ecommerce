@@ -1,5 +1,7 @@
 <% for (var i =0; i
 <reviews.length; i++ ) { %>
+  <% if(reviews[i].comment!==""){%>
+
   <div
     class="border-[0.5px] lg:border-0 pb-[15px] md:pb-[17.95px] lg:pb-[25px] lg:border-b-[1px] lg:rounded-none rounded-[5px] mt-[20px] lg:mt-0 pl-[14px] lg:pl-[40px] pt-[16px] lg:pt-[30px] lg:pr-[40px] pr-[20px] shadow-[0px_1px_2px_rgba(0,0,0,0.25)] lg:shadow-none"
   >
@@ -33,5 +35,5 @@
     </div>
   </div>
 
-  <% } %>
+  <% }} %>
 </reviews.length;>
