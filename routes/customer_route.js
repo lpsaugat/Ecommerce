@@ -97,4 +97,17 @@ router.post(
   customerController.reviewPackage
 );
 
+router.get("/pagesProduct", (req, res) => {
+  // Retrieve the existing query parameters
+  const { category, subscriptionType, rating, familySize } = req.query;
+  const nextPage = req.body.page;
+  // Perform pagination logic
+
+  // Construct the next page URL with the existing parameters
+  const nextPageURL = `/product?category=${category}&subscriptionType=${subscriptionType}&rating=${rating}&pages=${nextPage}`;
+
+  // Return the next page URL
+  res.json({ nextPageURL });
+});
+
 module.exports = router;

@@ -130,3 +130,25 @@ function resetFilters() {
     check[i][1].style.display = "none";
   }
 }
+
+function nextPage(pageNumber) {
+  const currentURL = window.location.href;
+
+  const url = new URL(currentURL);
+  const queryParams = url.searchParams;
+
+  fetch(
+    `http://${ipAddress}:3000/product${
+      currentURL.includes("?") ? "&" : "?"
+    }${queryParams.toString()}&page=${parseInt(pageNumber)}`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        pageNumber,
+      }),
+    }
+  );
+}
