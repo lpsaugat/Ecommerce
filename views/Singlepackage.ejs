@@ -558,12 +558,21 @@
             </div>
           </div>
         </div>
-        <textarea
-          type="text"
-          class="w-[100%] h-[122px] border-[1px] rounded-[5px] pl-[16px] lg:pl-[20px] pt-[11px] lg:mt-[19px] mt-2"
-          rows="5"
-          placeholder="Type to Comment"
-        ></textarea>
+        <form id="packageReview">
+          <textarea
+            type="text"
+            name="comment"
+            class="w-[100%] h-[122px] border-[1px] rounded-[5px] pl-[16px] lg:pl-[20px] pt-[11px] lg:mt-[19px] mt-2"
+            rows="5"
+            placeholder="Type to Comment"
+          ></textarea>
+          <input
+            type="hidden"
+            name="packageID"
+            value="<%=singlepackage._id %>"
+          />
+          <input type="hidden" id="ratingID" value="" name="rating" />
+        </form>
       </div>
     </div>
     <div class="flex justify-end w-full pt-[16px] lg:pt-[30px]">
