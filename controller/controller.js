@@ -393,6 +393,19 @@ controller.singleproductview = async (req, res) => {
   const reviews = await Review.find({ productID: req.params.id });
   const cartdata = data.cartdata;
   const orderdata = data.orderdata;
+
+  // Filter reviews that have a rating
+  const ratedReviews = reviews.filter((review) => review.rating !== null);
+
+  // Calculate the average rating
+  const averageRating =
+    ratedReviews.reduce((total, review) => total + review.rating, 0) /
+    ratedReviews.length;
+  averageRatingNumber = averageRating.toFixed(1);
+  averageRatingStar = averageRating.toFixed(0);
+
+  console.log(averageRatingStar);
+
   res.render(`singleproduct`, {
     sitedata,
     singleproduct,
@@ -400,6 +413,8 @@ controller.singleproductview = async (req, res) => {
     reviews,
     cartdata,
     orderdata,
+    averageRating,
+    _,
   });
 };
 
