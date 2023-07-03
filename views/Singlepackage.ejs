@@ -30,10 +30,12 @@
       </div>
       <div class="justify-left flex items-center font-normal text-xs pt-[16px]">
         <div class="flex gap-x-[4px]">
-          <%-include ("./partials/star") %>&nbsp;
+          <% for (var i = 0; i < averageRatingStar; i++ ) { %> <%- include
+          ("./partials/oneStar") %> <%}%>&nbsp;
         </div>
-        <div class="font-medium text-sm">4 reviews</div>
+        <div class="font-medium text-sm"><%= reviews.length%> reviews</div>
       </div>
+      <div class="font-medium text-sm pt-1">(<%=averageRatingNumber%> /5)</div>
       <div class="pt-4 hidden lg:block font-medium text-sm">
         Categories: <%= singlepackage.category %>
       </div>
@@ -143,12 +145,12 @@
       <div class="justify-between flex items-center">
         <div class="flex flex-col">
           <div class="font-semibold text-lg pt-[18px] md:pt-[30px]">
-            4.0 <text class="text-base">/5</text>
+            <%= averageRatingNumber%> <text class="text-base">/5</text>
           </div>
           <div
             class="text-[#182B3C ] opacity-50 font-normal text-[14px] pt-[3px]"
           >
-            Based on 4 reviews
+            Based on <%= reviews.length%> reviews
           </div>
         </div>
         <div class="flex gap-x-[6px]">
@@ -347,15 +349,13 @@
       <div class="flex pt-[32px]">
         <div class="flex flex-col">
           <div class="text-[40px] font-medium leading-[49px]">
-            5.0 &nbsp;<text class="text-[26px]">/5</text>
+            <%= averageRatingNumber%> &nbsp;<text class="text-[26px]">/5</text>
           </div>
-          <div class="opacity-50">Based on 4 reviews</div>
+          <div class="opacity-50">Based on <%= reviews.length%> reviews</div>
           <div class="pt-[16px] flex gap-x-[9.4px]">
+            <% for (var i = 1; i <= averageRatingStar; i++ ) { %>
             <img src="../public/Images/Star.svg" class="w-[40px]" />
-            <img src="../public/Images/Star.svg" class="w-[40px]" />
-            <img src="../public/Images/Star.svg" class="w-[40px]" />
-            <img src="../public/Images/Star.svg" class="w-[40px]" />
-            <img src="../public/Images/Star.svg" class="w-[40px]" />
+            <%}%>
           </div>
         </div>
         <div class="pl-[62px] space-y-[16px]">

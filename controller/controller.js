@@ -362,6 +362,15 @@ controller.singlepackage = async (req, res) => {
     total += parseFloat(products[i].price.toString());
   }
 
+  // Filter reviews that have a rating
+  const ratedReviews = reviews.filter((review) => review.rating !== null);
+
+  // Calculate the average rating
+  const averageRating =
+    ratedReviews.reduce((total, review) => total + review.rating, 0) /
+    ratedReviews.length;
+  averageRatingNumber = averageRating.toFixed(1);
+  averageRatingStar = averageRating.toFixed(0);
   res.render("singlepackage", {
     sitedata,
     singlepackage,
@@ -371,6 +380,8 @@ controller.singlepackage = async (req, res) => {
     cartdata,
     orderdata,
     total,
+    averageRatingNumber,
+    averageRatingStar,
   });
 };
 
@@ -403,8 +414,6 @@ controller.singleproductview = async (req, res) => {
     ratedReviews.length;
   averageRatingNumber = averageRating.toFixed(1);
   averageRatingStar = averageRating.toFixed(0);
-
-  console.log(averageRatingStar);
 
   res.render(`singleproduct`, {
     sitedata,
