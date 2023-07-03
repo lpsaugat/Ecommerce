@@ -136,6 +136,9 @@ function pageProduct(pageNumber) {
 
   const url = new URL(currentURL);
   const queryParams = url.searchParams;
+  if (queryParams.get("page")) {
+    queryParams.delete("page");
+  }
   const newUrl = `http://${ipAddress}:3000/products?${queryParams.toString()}&page=${parseInt(
     pageNumber
   )}`;
@@ -153,6 +156,11 @@ function pagePackage(pageNumber) {
 
   const url = new URL(currentURL);
   const queryParams = url.searchParams;
+
+  if (queryParams.get("page")) {
+    queryParams.delete("page");
+  }
+
   const newUrl = `http://${ipAddress}:3000/package?${queryParams.toString()}&page=${parseInt(
     pageNumber
   )}`;
