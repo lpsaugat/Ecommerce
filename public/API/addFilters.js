@@ -131,24 +131,36 @@ function resetFilters() {
   }
 }
 
-function nextPage(pageNumber) {
+function pageProduct(pageNumber) {
   const currentURL = window.location.href;
 
   const url = new URL(currentURL);
   const queryParams = url.searchParams;
+  const newUrl = `http://${ipAddress}:3000/products?${queryParams.toString()}&page=${parseInt(
+    pageNumber
+  )}`;
+  console.log(newUrl);
+  fetch(newUrl, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((response) => (window.location.href = response.url));
+}
 
-  fetch(
-    `http://${ipAddress}:3000/product${
-      currentURL.includes("?") ? "&" : "?"
-    }${queryParams.toString()}&page=${parseInt(pageNumber)}`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        pageNumber,
-      }),
-    }
-  );
+function pagePackage(pageNumber) {
+  const currentURL = window.location.href;
+
+  const url = new URL(currentURL);
+  const queryParams = url.searchParams;
+  const newUrl = `http://${ipAddress}:3000/package?${queryParams.toString()}&page=${parseInt(
+    pageNumber
+  )}`;
+  console.log(newUrl);
+  fetch(newUrl, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((response) => (window.location.href = response.url));
 }
