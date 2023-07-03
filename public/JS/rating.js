@@ -19,7 +19,7 @@ function rating(index, element) {
 
     if (index === i) {
       i = rates.length;
-      ratingID.value = i;
+      ratingID.value = index + 1;
     }
   }
 }

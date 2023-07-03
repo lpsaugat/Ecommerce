@@ -7,6 +7,7 @@ if (productReview) {
     const formData = new FormData(productReview);
     const comment = formData.get("comment");
     const rating = formData.get("rating");
+    console.log(rating);
     const productID = formData.get("productID");
     fetch(`http://${ipAddress}:3000/reviewProduct/${productID}`, {
       method: "POST",
@@ -19,7 +20,6 @@ if (productReview) {
       }),
     })
       .then((data) => {
-        console.log(data);
         // Do something with the response data
       })
       .catch((error) => {
