@@ -3,6 +3,8 @@ const fs = require("fs");
 const User = require("../models/User");
 const Carousel = require("../models/Carousel");
 const Product = require("../models/Products");
+const Review = require("../models/Review");
+
 const Order = require("../models/Order");
 const Subscription = require("../models/Subscription");
 
@@ -159,6 +161,26 @@ controller.productviewone = async (req, res) => {
       res.send(`No product found with id: ${req.params.id}`);
     }
     res.send(product);
+  }
+};
+
+//Update rating on all products
+controller.productRating = async (req, res) => {
+  const allProducts = await Product.find();
+  for (const produsct of allProducts) {
+    var reviews = await Review.find({ productID: product._id });
+    const ratedReviews = reviews.filter((review) => review.rating !== null);
+
+    const averageRating =
+      ratedReviews.reduce((total, review) => total + review.rating, 0) /
+      ratedReviews.length;
+    roundedRating = averageRating.toFixed(0);
+    const updateProduct = await Product.findOneAndUpdate(
+      { _id: product._id },
+      { rating: roundedRating },
+      { new: true, runValidators: true }
+    );
+    console.log(updateProduct);
   }
 };
 
