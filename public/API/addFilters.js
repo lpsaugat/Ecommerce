@@ -1,5 +1,5 @@
 var subType = [];
-var priceRange = { range1: 0, range2: 200 };
+var priceRange = [];
 var familySize = [];
 var category = [];
 var ratingParam = [];
@@ -55,13 +55,19 @@ function ratingFilter(element) {
   ratingParam.push(element);
 }
 
+function priceFilter(range1, range2) {
+  priceRange = [range1, range2];
+  console.log(priceRange);
+}
+
 function filterAdd() {
   const searchParams = new URLSearchParams();
   if (subType.length > 0) {
     searchParams.append("subscriptionType", subType.join(","));
   }
   if (priceRange.length > 0) {
-    searchParams.append("priceRange", priceRange.join(","));
+    searchParams.append("price[range1]", priceRange[0]);
+    searchParams.append("price[range2]", priceRange[1]);
   }
   if (familySize.length > 0) {
     searchParams.append("familySize", familySize.join(","));
