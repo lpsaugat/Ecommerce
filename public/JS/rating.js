@@ -20,6 +20,29 @@ function rating(index, element) {
     if (index === i) {
       i = rates.length;
       ratingID.value = index + 1;
+      ratingFilter(element);
+    }
+  }
+}
+
+function ratingFetch(index, element) {
+  const rates = element.parentNode.querySelectorAll(".ratingbutton");
+
+  for (let i = 0; i < rates.length; i++) {
+    const r = rates[i];
+    r.querySelector(".star").style.display = "none";
+    r.querySelector(".star-shade").style.display = "block";
+  }
+
+  for (let i = 0; i < rates.length; i++) {
+    const r = rates[i];
+
+    r.querySelector(".star-shade").style.display = "none";
+    r.querySelector(".star").style.display = "block";
+
+    if (index === i) {
+      i = rates.length;
+      ratingFilter(index);
     }
   }
 }

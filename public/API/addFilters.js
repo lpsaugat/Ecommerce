@@ -51,6 +51,10 @@ function checkTick(element) {
   }
 }
 
+function ratingFilter(element) {
+  ratingParam.push(element);
+}
+
 function filterAdd() {
   const searchParams = new URLSearchParams();
   if (subType.length > 0) {
