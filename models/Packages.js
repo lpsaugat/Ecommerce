@@ -28,6 +28,9 @@ const Packages = new mongoose.Schema(
     },
     slug: String,
     status: Boolean,
+    averageRating: {
+      type: mongoose.Types.Decimal128,
+    },
   },
   { timestamps: true }
 );

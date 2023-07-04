@@ -1,4 +1,4 @@
-const { Timestamp } = require("mongodb");
+const { Timestamp, Decimal128 } = require("mongodb");
 const mongoose = require("mongoose"); // Erase if already required
 
 // Declare the Schema of the Mongo model
@@ -51,6 +51,9 @@ var Product = new mongoose.Schema(
     status: {
       type: Boolean,
       default: true,
+    },
+    averageRating: {
+      type: mongoose.Types.Decimal128,
     },
   },
   { timestamps: true }
