@@ -174,4 +174,11 @@ router.delete(
   verifyTokenAndAdmin,
   adminController.sortDelete
 );
+
+//View Homepage
+router.get(
+  "/admindashboard/homepage",
+  verifyTokenAndAdmin,
+  adminController.adminHomepage
+);
 module.exports = router;

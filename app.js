@@ -55,6 +55,8 @@ app.use("/", orderRoute);
 
 // app.set('port', process.env.PORT || 3000,);
 app.set("views", path.join(__dirname, "views"));
+app.set("admindashboard", path.join(__dirname, "views", "admindashboard"));
+
 app.set("view engine", "ejs");
 
 mongoose

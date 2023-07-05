@@ -733,4 +733,15 @@ controller.sortDelete = async (req, res) => {
   }
 };
 
+//Admin Homepage
+controller.adminHomepage = async (req, res) => {
+  cartdata = [];
+  orderdata = [];
+
+  try {
+    res.render("admindashboard/homepage", { cartdata, orderdata });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
 module.exports = controller;
