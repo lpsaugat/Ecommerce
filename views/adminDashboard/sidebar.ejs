@@ -1,0 +1,37 @@
+<div class="bg-slate-400">
+  <button class="sidebar w-full text-xs rounded-lg mt-2 h-12">Dashboard</button>
+  <button class="sidebar w-full text-xs rounded-lg mt-2 h-12">Products</button>
+  <button class="sidebar w-full text-xs rounded-lg mt-2 h-12">Shipping</button>
+  <button class="sidebar w-full text-xs rounded-lg mt-2 h-12">Homepage</button>
+</div>
+
+<script>
+  var sidebar = document.getElementsByClassName("sidebar");
+  switch (true) {
+    case urlContainsWord("homepage"): {
+      sidebar[0].style.backgroundColor = "#38C102";
+      sidebar[0].style.color = "white";
+
+      break;
+    }
+    case urlContainsWord("product"): {
+      sidebar[1].style.backgroundColor = "#38C112";
+      sidebar[1].style.color = "white";
+      break;
+    }
+    case urlContainsWord("shipping"): {
+      sidebar[2].style.backgroundColor = "#38C102";
+      sidebar[1].style.color = "white";
+
+      break;
+    }
+  }
+
+  function urlContainsWord(word) {
+    var url = window.location.href;
+    var lowercaseUrl = url.toLowerCase();
+    var lowercaseWord = word.toLowerCase();
+
+    return lowercaseUrl.indexOf(lowercaseWord) !== -1;
+  }
+</script>
