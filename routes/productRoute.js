@@ -10,7 +10,7 @@ const {
 
 //Products Add
 router.post(
-  "/dashboard/products",
+  "/admindashboard/products",
   verifyTokenAndAuthorization,
 
   productController.productdetails
@@ -18,7 +18,7 @@ router.post(
 
 //Update a product
 router.put(
-  "/dashboard/products/:id",
+  "/admindashboard/products/:id",
   verifyTokenAndAuthorization,
 
   productController.productupdate
@@ -26,21 +26,21 @@ router.put(
 
 //Delete a product
 router.delete(
-  "/dashboard/products/:id",
+  "/admindashboard/products/:id",
   verifyTokenAndAdmin,
   productController.productdelete
 );
 
 //Get all products
 router.get(
-  "/dashboard/products",
+  "/admindashboard/products",
   verifyTokenAndAuthorization,
   productController.productview
 );
 
 //Get a single product
 router.get(
-  "/dashboard/products/:id",
+  "/admindashboard/products/:id",
   verifyTokenAndAuthorization,
   productController.productviewone
 );

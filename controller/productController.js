@@ -129,16 +129,19 @@ controller.productdelete = async (req, res) => {
 
 //Get all Product
 controller.productview = async (req, res) => {
+  cartdata = [];
+  orderdata = [];
+
   if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
     const products = await Product.find()
       .sort("-createdAt")
       .populate("createdBy");
-    res.send(products);
+    res.render("admindashboard/products", { products });
   } else if (req.user.user_type === "vendor") {
     const products = await Product.find({
       createdBy: req.user.id,
     });
-    res.send(products);
+    res.render("admindashboard/products", { products });
   }
 };
 
