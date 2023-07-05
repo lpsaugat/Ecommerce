@@ -1,8 +1,16 @@
-<div class="">
-  <button class="sidebar w-full text-xs rounded-lg mt-2 h-12">Dashboard</button>
-  <button class="sidebar w-full text-xs rounded-lg mt-2 h-12">Products</button>
-  <button class="sidebar w-full text-xs rounded-lg mt-2 h-12">Shipping</button>
-  <button class="sidebar w-full text-xs rounded-lg mt-2 h-12">Homepage</button>
+<div class="rounded-lg border-[3px] px-1 bg-[white]">
+  <button class="sidebar w-full text-base rounded-lg mt-2 h-12 text-[#12ADF1]">
+    Dashboard
+  </button>
+  <button class="sidebar w-full text-base rounded-lg mt-2 h-12 text-[#12ADF1]">
+    Products
+  </button>
+  <button class="sidebar w-full text-base rounded-lg mt-2 h-12 text-[#12ADF1]">
+    Shipping
+  </button>
+  <button class="sidebar w-full text-base rounded-lg mt-2 h-12 text-[#12ADF1]">
+    Users
+  </button>
 </div>
 
 <script>
@@ -15,7 +23,7 @@
       break;
     }
     case urlContainsWord("product"): {
-      sidebar[1].style.backgroundColor = "#38C112";
+      sidebar[1].style.backgroundColor = "#38C102";
       sidebar[1].style.color = "white";
       break;
     }
