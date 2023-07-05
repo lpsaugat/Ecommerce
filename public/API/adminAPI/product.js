@@ -7,18 +7,29 @@ if (addProduct) {
     const name = formData.get("name");
     const price = formData.get("price");
     const primaryImage = formData.get("primaryImage");
+    const otherImages = formData.getAll("otherImages");
     const description = formData.get("description");
     const longDescription = formData.get("longDescription");
-
+    const categories = formData.get("category");
     const requestBody = new FormData();
     requestBody.append("name", name);
     requestBody.append("price", price);
     requestBody.append("longDescription", longDescription);
     requestBody.append("description", description);
+    const allCategories = categories
+      .split(",")
+      .map((elements) => elements.trim());
 
+    allCategories.forEach((category, index) => {
+      requestBody.append("category", category);
+    });
+    console.log(allCategories);
     // Append each image to the FormData object
-
+    console.log(otherImages);
     requestBody.append("image", primaryImage);
+    for (i = 0; i < otherImages.length; i++) {
+      requestBody.append("image", otherImages[i]);
+    }
 
     console.log(requestBody);
 
