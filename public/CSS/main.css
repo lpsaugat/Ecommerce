@@ -1400,6 +1400,14 @@ video {
   width: 100%;
 }
 
+.w-8 {
+  width: 2rem;
+}
+
+.w-6 {
+  width: 1.5rem;
+}
+
 .min-w-full {
   min-width: 100%;
 }
@@ -2571,6 +2579,18 @@ video {
 
 .pt-\[9px\] {
   padding-top: 9px;
+}
+
+.pl-1 {
+  padding-left: 0.25rem;
+}
+
+.pl-3 {
+  padding-left: 0.75rem;
+}
+
+.pl-6 {
+  padding-left: 1.5rem;
 }
 
 .text-left {
