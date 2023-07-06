@@ -150,6 +150,7 @@ controller.productview = async (req, res) => {
 controller.productviewone = async (req, res) => {
   cartdata = [];
   orderdata = [];
+
   try {
     if (
       req.user.user_type === "admin" ||
@@ -161,7 +162,8 @@ controller.productviewone = async (req, res) => {
       if (!product) {
         res.send(`No product found with id: ${req.params.id}`);
       }
-      res.render("admindashboard/singleProduct", { product });
+      const reviews = Review.find({ productID: req.params.id });
+      res.render("admindashboard/singleProduct", { product, reviews });
     } else if (req.user.user_type === "vendor") {
       const product = await Product.findOne({
         createdBy: req.user.id,
@@ -170,7 +172,9 @@ controller.productviewone = async (req, res) => {
       if (!product) {
         res.send(`No product found with id: ${req.params.id}`);
       }
-      res.render("admindashboard/singleProduct", { product });
+      const reviews = Review.find({ productID: req.params.id });
+
+      res.render("admindashboard/singleProduct", { product, reviews });
     }
   } catch (err) {
     console.log(err);

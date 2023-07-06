@@ -740,6 +740,10 @@ video {
   grid-column: span 8 / span 8;
 }
 
+.m-2 {
+  margin: 0.5rem;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -1690,6 +1694,11 @@ video {
   row-gap: 30px;
 }
 
+.gap-x-\[100px\] {
+  -moz-column-gap: 100px;
+       column-gap: 100px;
+}
+
 .space-x-5 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(1.25rem * var(--tw-space-x-reverse));
@@ -2077,11 +2086,6 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.bg-\[\#F34343\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(243 67 67 / var(--tw-bg-opacity));
-}
-
 .bg-opacity-10 {
   --tw-bg-opacity: 0.1;
 }
@@ -2164,6 +2168,14 @@ video {
 
 .p-\[4\.96px\] {
   padding: 4.96px;
+}
+
+.p-1 {
+  padding: 0.25rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
 }
 
 .px-1 {
@@ -2259,6 +2271,21 @@ video {
 .py-\[40px\] {
   padding-top: 40px;
   padding-bottom: 40px;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .pb-4 {
@@ -2579,6 +2606,10 @@ video {
 
 .pt-\[9px\] {
   padding-top: 9px;
+}
+
+.pr-2 {
+  padding-right: 0.5rem;
 }
 
 .text-left {
