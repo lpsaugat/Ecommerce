@@ -148,23 +148,32 @@ controller.productview = async (req, res) => {
 
 //Get a specific product
 controller.productviewone = async (req, res) => {
-  if (req.user.user_type === "admin" || req.user.user_type === "super-admin") {
-    const product = await Product.findOne({ _id: req.params.id })
-      .sort("-createdAt")
-      .populate("createdBy");
-    if (!product) {
-      res.send(`No product found with id: ${req.params.id}`);
+  cartdata = [];
+  orderdata = [];
+  try {
+    if (
+      req.user.user_type === "admin" ||
+      req.user.user_type === "super-admin"
+    ) {
+      const product = await Product.findOne({ _id: req.params.id })
+        .sort("-createdAt")
+        .populate("createdBy");
+      if (!product) {
+        res.send(`No product found with id: ${req.params.id}`);
+      }
+      res.render("admindashboard/singleProduct", { product });
+    } else if (req.user.user_type === "vendor") {
+      const product = await Product.findOne({
+        createdBy: req.user.id,
+        _id: req.params.id,
+      });
+      if (!product) {
+        res.send(`No product found with id: ${req.params.id}`);
+      }
+      res.render("admindashboard/singleProduct", { product });
     }
-    res.send(product);
-  } else if (req.user.user_type === "vendor") {
-    const product = await Product.findOne({
-      createdBy: req.user.id,
-      _id: req.params.id,
-    });
-    if (!product) {
-      res.send(`No product found with id: ${req.params.id}`);
-    }
-    res.send(product);
+  } catch (err) {
+    console.log(err);
   }
 };
 
