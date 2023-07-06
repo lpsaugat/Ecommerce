@@ -134,6 +134,7 @@ controller.productview = async (req, res) => {
 
   if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
     const products = await Product.find()
+      .limit(5)
       .sort("-createdAt")
       .populate("createdBy");
     res.render("admindashboard/products", { products });
