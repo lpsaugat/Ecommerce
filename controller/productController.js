@@ -127,7 +127,7 @@ controller.productdelete = async (req, res) => {
   }
 };
 
-//Get all Product
+//Product View
 controller.productview = async (req, res) => {
   cartdata = [];
   orderdata = [];
@@ -141,7 +141,9 @@ controller.productview = async (req, res) => {
   } else if (req.user.user_type === "vendor") {
     const products = await Product.find({
       createdBy: req.user.id,
-    });
+    })
+      .limit(5)
+      .sort("-createdAt");
     res.render("admindashboard/products", { products });
   }
 };
@@ -178,6 +180,24 @@ controller.productviewone = async (req, res) => {
     }
   } catch (err) {
     console.log(err);
+  }
+};
+
+//Get all Products
+controller.getAllProducts = async (req, res) => {
+  cartdata = [];
+  orderdata = [];
+
+  if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
+    const products = await Product.find()
+      .sort("-createdAt")
+      .populate("createdBy");
+    res.render("admindashboard/allProducts", { products });
+  } else if (req.user.user_type === "vendor") {
+    const products = await Product.find({
+      createdBy: req.user.id,
+    }).sort("-createdAt");
+    res.render("admindashboard/allProducts", { products });
   }
 };
 

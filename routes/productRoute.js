@@ -31,11 +31,18 @@ router.delete(
   productController.productdelete
 );
 
-//Get all products
+//Product View
 router.get(
   "/admindashboard/products",
   verifyTokenAndAuthorization,
   productController.productview
+);
+
+//Get all Products
+router.get(
+  "/admindashboard/allProducts",
+  verifyTokenAndAuthorization,
+  productController.getAllProducts
 );
 
 //Get a single product
