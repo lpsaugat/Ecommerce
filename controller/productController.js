@@ -187,18 +187,47 @@ controller.productviewone = async (req, res) => {
 controller.getAllProducts = async (req, res) => {
   cartdata = [];
   orderdata = [];
-
+  query = {};
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 9;
+  const skip = (page - 1) * limit;
+  let count;
+  let products;
   if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
-    const products = await Product.find()
+    products = await Product.find(query)
       .sort("-createdAt")
-      .populate("createdBy");
-    res.render("admindashboard/allProducts", { products });
+      .populate("createdBy")
+      .skip(skip)
+      .limit(limit);
+    count = await Product.countDocuments(query);
   } else if (req.user.user_type === "vendor") {
-    const products = await Product.find({
+    products = await Product.find({
       createdBy: req.user.id,
-    }).sort("-createdAt");
-    res.render("admindashboard/allProducts", { products });
+      query,
+    })
+      .sort("-createdAt")
+      .skip(skip)
+      .limit(limit);
+    count = await Product.countDocuments({
+      createdBy: req.user.id,
+      query,
+    });
   }
+  const totalPages = Math.ceil(count / limit);
+
+  const dataPagination = {
+    count,
+    totalPages,
+    page,
+    prev: page === 1 ? 1 : page - 1,
+    next: page === totalPages ? totalPages : page + 1,
+    products,
+  };
+
+  res.render("admindashboard/allProducts", {
+    products: dataPagination.products,
+    dataPagination,
+  });
 };
 
 //Update rating on all products
