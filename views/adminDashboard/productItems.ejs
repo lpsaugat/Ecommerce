@@ -56,10 +56,15 @@
         <div class="lg:flex font-roboto flex items-center left-0 w-auto">
           <div class="flex items-center">
             <div class="flex justify-center">
-              <button>
+              <button
+                onclick="location.href='productEdit/<%=products[i]._id%>'"
+              >
                 <img src="../../public/Images/Dashboard/edit.svg" class="w-6" />
               </button>
-              <button class="pl-2">
+              <button
+                class="pl-2"
+                onclick="location.href='products/<%=products[i]._id%>'"
+              >
                 <img
                   src="../../public/Images/eye-password-show.svg"
                   class="w-6"
