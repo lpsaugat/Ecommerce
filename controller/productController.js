@@ -183,6 +183,39 @@ controller.productviewone = async (req, res) => {
   }
 };
 
+//Update Product
+controller.productEdit = async (req, res) => {
+  cartdata = [];
+  orderdata = [];
+
+  try {
+    if (
+      req.user.user_type === "admin" ||
+      req.user.user_type === "super-admin"
+    ) {
+      const product = await Product.findOne({ _id: req.params.id })
+        .sort("-createdAt")
+        .populate("createdBy");
+      if (!product) {
+        res.send(`No product found with id: ${req.params.id}`);
+      }
+      res.render("admindashboard/productEdit", { product });
+    } else if (req.user.user_type === "vendor") {
+      const product = await Product.findOne({
+        createdBy: req.user.id,
+        _id: req.params.id,
+      });
+      if (!product) {
+        res.send(`No product found with id: ${req.params.id}`);
+      }
+
+      res.render("admindashboard/productEdit", { product });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 //Get all Products
 controller.getAllProducts = async (req, res) => {
   cartdata = [];

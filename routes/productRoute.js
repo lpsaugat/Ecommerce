@@ -24,6 +24,13 @@ router.put(
   productController.productupdate
 );
 
+//Product Update Page
+router.get(
+  "/admindashboard/productEdit/:id",
+  verifyTokenAndAuthorization,
+  productController.productEdit
+);
+
 //Delete a product
 router.delete(
   "/admindashboard/products/:id",

@@ -1,0 +1,139 @@
+<div class="bg-[#FAFAFA] p-5">
+  <div class="hidden"><%- include ("../partials/header") %></div>
+  <div class=""><img src="../../public/Images/logo.svg" /></div>
+  <div class="flex max-w-1200 mx-auto pt-5">
+    <div class="grid gap-x-3 grid-cols-4 w-full rounded-sm">
+      <%- include ("./sidebar") %>
+      <div class="grid col-span-3 grid-cols-3 gap-x-1">
+        <div
+          class="rounded-md col-span-3 w-full text-[17px] p-4 text-[#000123] bg-white border-2 mt-2"
+        >
+          <form class="border-2 rounded-lg p-3 mt-2" id="addProduct">
+            <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
+              <label for="Name" class="text-[12px] md:text-[14px] font-medium"
+                >Name *</label
+              >
+              <input
+                type="text"
+                name="name"
+                class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
+              />
+            </div>
+            <div class="mt-[21px] md:mt-[24px] lg:mt-[16px] flex gap-x-1">
+              <div class="flex flex-col">
+                <label
+                  for="price"
+                  class="text-[12px] md:text-[14px] font-medium"
+                  >Price (Rs.) *</label
+                >
+                <input
+                  type="text"
+                  name="price"
+                  class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
+                />
+              </div>
+              <div class="flex flex-col">
+                <label
+                  for="quantity"
+                  class="text-[12px] md:text-[14px] font-medium"
+                  >Quantity *</label
+                >
+                <input
+                  type="text"
+                  name="quantity"
+                  class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
+                />
+              </div>
+              <div class="flex flex-col">
+                <label
+                  for="measure"
+                  class="text-[12px] md:text-[14px] font-medium"
+                  >Measure</label
+                >
+                <input
+                  type="text"
+                  name="measure"
+                  class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
+                />
+              </div>
+            </div>
+
+            <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
+              <label
+                for="primaryImage"
+                class="text-[12px] md:text-[14px] font-medium"
+                >Display Image * :</label
+              >
+              <input type="file" name="primaryImage" />
+            </div>
+            <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
+              <label
+                for="description"
+                class="text-[12px] md:text-[14px] font-medium"
+                >Description</label
+              >
+              <input
+                type="text"
+                name="description"
+                class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
+              />
+            </div>
+            <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
+              <label
+                for="longDescription"
+                class="text-[12px] md:text-[14px] font-medium"
+                >Long Description</label
+              >
+              <input
+                type="text"
+                name="longDescription"
+                class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
+              />
+            </div>
+            <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
+              <label
+                for="otherImages"
+                class="text-[12px] md:text-[14px] font-medium"
+                >Other Images:</label
+              >
+              <input type="file" name="otherImages" multiple />
+            </div>
+
+            <div class="mt-[21px] md:mt-[24px] lg:mt-[16px] flex-col flex">
+              <label
+                for="category"
+                class="text-[12px] md:text-[14px] font-medium"
+                >Categories</label
+              >
+              <select
+                id="categoryDropdown"
+                multiple
+                size="3"
+                class="overflow-y-scroll"
+              >
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+                <option value="option4">Option 4</option>
+              </select>
+              <input
+                type="text"
+                id="selectedOptionsField"
+                readonly
+                name="category"
+              />
+            </div>
+            <button
+              type="submit"
+              class="text-[17px] mt-3 font-medium p-3 bg-gradient-to-r from-[#3baf3d] to-[#5DC234] text-white border-2 rounded-md"
+            >
+              Update Product
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hidden"><%- include ("../partials/footer") %></div>
+</div>
