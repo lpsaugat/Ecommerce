@@ -36,7 +36,7 @@ if (addProduct) {
 
     fetch(`http://${ipAddress}:3000/admindashboard/products`, {
       method: "POST",
-      headers: {},
+      headers: { "Content-Type": "application/json" },
       body: requestBody,
     })
       .then((response) => response.json())
@@ -94,12 +94,15 @@ if (updateProduct) {
     const formDataArray = Array.from(requestBody.entries());
 
     var sendRequest = formDataArray.filter(([name, value]) => value !== "");
-    console.log(sendRequest);
+    const convertedFormData = new FormData();
+    sendRequest.forEach(([name, value]) => {
+      convertedFormData.append(name, value);
+    });
 
     fetch(`http://${ipAddress}:3000/admindashboard/products/${productID}`, {
       method: "PUT",
       headers: {},
-      body: sendRequest,
+      body: convertedFormData,
     })
       .then((response) => response.json())
       .then((data) => {})
