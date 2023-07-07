@@ -63,7 +63,7 @@ controller.productupdate = async (req, res) => {
   } catch (err) {
     return;
   }
-
+  console.log(update);
   const filter = req.params.id;
   try {
     const getproduct = await Product.findOne({ _id: filter });
@@ -76,17 +76,12 @@ controller.productupdate = async (req, res) => {
       roles.includes(req.user.user_type) ||
       getproduct.createdBy.toString() === req.user.id
     ) {
-      if (req.user.user_type === "vendor" && req.body.fieldFilter) {
-        return res.status(403).json("You are not authorized to do that");
-      }
       const updatedProduct = await Product.findOneAndUpdate(
         filter,
         update,
 
         { new: true, runValidators: true }
       );
-      console.log(updatedProduct);
-
       res.status(200).json(updatedProduct);
     } else {
       res.status(403).json(`User is not allowed to update the product`);
@@ -183,7 +178,7 @@ controller.productviewone = async (req, res) => {
   }
 };
 
-//Update Product
+//Update Product page
 controller.productEdit = async (req, res) => {
   cartdata = [];
   orderdata = [];
