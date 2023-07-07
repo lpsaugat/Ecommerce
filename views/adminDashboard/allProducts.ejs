@@ -13,7 +13,14 @@
         >
           PUT ALL SORTING HERE
         </div>
+        <div class="grid col-span-3 grid-cols-3 gap-x-1">
+            <div class="mt-10 col-span-3">
+                <% for(i=0;i<products.length;i++) {%>
+                  <%- include("./productItems")%> <%}%>
+              </div>
+        </div>
       </div>
+
       <div class="hidden"><%- include ("../partials/footer") %></div>
     </div>
   </div>

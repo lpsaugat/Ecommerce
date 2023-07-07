@@ -53,32 +53,36 @@
             </div>
           </div>
         </div>
+        <div class="lg:flex font-roboto flex items-center left-0 w-auto">
+          <div class="flex items-center">
+            <div class="flex justify-center">
+              <button>
+                <img src="../../public/Images/Dashboard/edit.svg" class="w-6" />
+              </button>
+              <button class="pl-2">
+                <img
+                  src="../../public/Images/eye-password-show.svg"
+                  class="w-6"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
         <div
           class="text-[12px] justify-between col-span-3 w-auto md:text-[16px] lg:pt-0 font-medium pt-[14px] md:pt-[17px] items-center grid-cols-2 flex"
         >
-          <div class="lg:flex font-roboto flex items-center left-0 w-auto">
-            <div class="flex items-center">
-              <div class="flex justify-center">
-                <button>
-                  <img
-                    src="../../public/Images/Dashboard/edit.svg"
-                    class="w-6"
-                  />
-                </button>
-                <button class="pl-2">
-                  <img
-                    src="../../public/Images/eye-password-show.svg"
-                    class="w-6"
-                  />
-                </button>
-              </div>
-            </div>
-          </div>
           <div class="flex flex-col items-center">
             <div class="text-[12px]">Vendor</div>
             <button class="text-[14px] border-2 rounded-lg p-1">
               <%= products[i].createdBy.name%>
             </button>
+          </div>
+          <div class="pl-1 flex flex-col items-center">
+            <div class="text-[14px]">
+              <%- new Intl.DateTimeFormat('en-US', { month: 'short', day:
+              'numeric', year: 'numeric' }).format(new
+              Date(products[i].createdAt)) %>
+            </div>
           </div>
         </div>
       </div>
