@@ -5,7 +5,7 @@
     <div class="grid gap-x-3 grid-cols-4 w-full rounded-sm">
       <%- include ("./sidebar") %>
 
-      <div class="grid col-span-3 grid-cols-3 gap-x-1">
+      <div class="grid col-span-3 grid-cols-3 gap-x-1  p-3 border-[3px] rounded-lg">
         <!-- Product summary -->
         <div
           class="rounded-md w-full col-span-1 text-[26px] p-4 bg-white text-[#FFFFFA] border-2 h-[192px] mt-2"
@@ -22,8 +22,9 @@
         </div>
         <!-- Add Products Form -->
         <div
-          class="rounded-md w-full col-span-2 text-[17px] p-4 text-[#000123] bg-white border-2 mt-2"
+          class="rounded-md w-full col-span-2 font-medium text-[17px] p-4 text-[#000123] bg-white border-2 mt-2"
         >
+        Add Product:
           <form class="border-2 rounded-lg p-3 mt-2" id="addProduct">
             <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
               <label for="Name" class="text-[12px] md:text-[14px] font-medium"
@@ -154,7 +155,7 @@
           <% for(i=0;i<products.length;i++) {%>
             <%- include("./productItems")%><%}%>
         </div>
-        <div class="mt-5 col-span-3 justify-center flex"><button class="p-3 px-4 border-2 rounded-md  font-medium" onclick="window.location.href='/admindashboard/allproducts'">View All</button>
+        <div class="mt-5 col-span-3 justify-center flex"><button class="p-3 px-4 border-2 rounded-md  font-medium bg-whte" onclick="window.location.href='/admindashboard/allproducts'">View All</button>
 </div>
       </div>
     </div>
