@@ -22,7 +22,7 @@ var Product = new mongoose.Schema(
     measure: {
       type: String,
       required: false,
-      default: "",
+      default: "Full Quantity",
     },
 
     quantity: {

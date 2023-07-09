@@ -63,6 +63,7 @@ controller.productupdate = async (req, res) => {
   } catch (err) {
     return;
   }
+  filter = req.params.id;
   try {
     const getproduct = await Product.findOne({ _id: filter });
     if (!getproduct) {
@@ -75,7 +76,7 @@ controller.productupdate = async (req, res) => {
       getproduct.createdBy.toString() === req.user.id
     ) {
       const updatedProduct = await Product.findOneAndUpdate(
-        { _id: req.params.id },
+        { _id: filter },
         update,
 
         { new: true, runValidators: true }
