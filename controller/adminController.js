@@ -737,9 +737,24 @@ controller.sortDelete = async (req, res) => {
 controller.adminHomepage = async (req, res) => {
   cartdata = [];
   orderdata = [];
+  let productAmount;
+  let users;
+  if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
+    productAmount = await Product.countDocuments();
+    users = await User.countDocuments({ usertype: "customer" });
+    vendors = await User.countDocuments({ usertype: "vendor" });
+  } else if (req.user.user_type === "vendor") {
+    productAmount = null;
+  }
 
   try {
-    res.render("admindashboard/homepage", { cartdata, orderdata });
+    res.render("admindashboard/homepage", {
+      cartdata,
+      orderdata,
+      productAmount,
+      users,
+      vendors,
+    });
   } catch (err) {
     res.status(500).json(err);
   }
