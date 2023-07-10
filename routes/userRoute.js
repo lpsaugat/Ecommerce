@@ -64,7 +64,7 @@ router.get(
 
 //Delete details for a specific user from Username
 router.get(
-  "/admindashboard/user/:id",
+  "/admindashboard/userEdit/:id",
   verifyTokenAndAdmin,
   userController.getUser
 );

@@ -328,15 +328,17 @@ controller.getAllVendors = async (req, res) => {
   }
 };
 
-//Get a specific user from Username
+//Get a specific user
 controller.getUser = async (req, res) => {
+  cartdata = [];
+  orderdata = [];
   try {
-    const user = await User.findOne(req.params.username);
+    const user = await User.findOne({ _id: req.params.id });
     if (!user) {
       // Return a 404 response if the user is not found
       return res.status(404).json({ message: "User not found" });
     } else {
-      return res.status(200).json(user);
+      res.render("admindashboard/userEdit", user);
     }
   } catch (err) {
     console.log("err");
