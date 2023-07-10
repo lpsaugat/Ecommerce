@@ -41,9 +41,16 @@ router.put("/dashboard/:id", verifyTokenAndAuthorization, async (req, res) => {
   }
 });
 
-// Get All Users
+// User Page
 router.get(
   "/admindashboard/users",
+  verifyTokenAndAdmin,
+  userController.userPage
+);
+
+// Get all Users
+router.get(
+  "/admindashboard/allUsers",
   verifyTokenAndAdmin,
   userController.getAllUsers
 );

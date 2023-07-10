@@ -255,8 +255,8 @@ controller.logout = async (req, res, next) => {
 
 //User changes from Admin
 
-// Get All Users
-controller.getAllUsers = async (req, res) => {
+// User Page
+controller.userPage = async (req, res) => {
   cartdata = [];
   orderdata = [];
   try {
@@ -284,6 +284,37 @@ controller.getAllUsers = async (req, res) => {
     console.log(err);
     res.status(500).json(err);
   }
+};
+
+//Get all Users
+controller.getAllUsers = async (req, res) => {
+  cartdata = [];
+  orderdata = [];
+  query = {};
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 9;
+  const skip = (page - 1) * limit;
+  let count;
+  let users;
+  if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
+    users = await User.find(query).sort("-createdAt").skip(skip).limit(limit);
+    count = await User.countDocuments(query);
+  }
+  const totalPages = Math.ceil(count / limit);
+
+  const dataPagination = {
+    count,
+    totalPages,
+    page,
+    prev: page === 1 ? 1 : page - 1,
+    next: page === totalPages ? totalPages : page + 1,
+    users,
+  };
+
+  res.render("admindashboard/allUsers", {
+    users: dataPagination.users,
+    dataPagination,
+  });
 };
 
 // Get All Vendors
