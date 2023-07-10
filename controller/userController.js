@@ -346,10 +346,38 @@ controller.getUser = async (req, res) => {
   }
 };
 
-//Delete a specific user from Username
+//Edit a specific user
+controller.editUser = async (req, res) => {
+  update = req.body;
+  try {
+    const user = await User.find({ id: req.params.id });
+    if (!user) {
+      // Return a 404 response if the user is not found
+      return res.status(404).json({ message: "User not found" });
+    } else {
+      if (
+        req.user.user_type === "super-admin" ||
+        req.user.user_type === "admin" ||
+        user.id === req.user.id
+      ) {
+        const updatedUser = await User.findOneAndUpdate(
+          { id: req.params.id },
+          { update },
+          { new: true, runValidators: true }
+        );
+        return res.status(200).json({ message: "User deleted" });
+      }
+    }
+  } catch (err) {
+    console.log("err");
+    res.status(500).json(err);
+  }
+};
+
+//Delete a specific user
 controller.deleteUser = async (req, res) => {
   try {
-    const deletedUser = await User.findOneAndDelete(req.params.username);
+    const deletedUser = await User.findOneAndDelete(req.params.id);
     if (!deletedUser) {
       // Return a 404 response if the user is not found
       return res.status(404).json({ message: "User not found" });
