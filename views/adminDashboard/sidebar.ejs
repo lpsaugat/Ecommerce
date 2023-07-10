@@ -14,7 +14,10 @@
   <button class="sidebar w-full text-base rounded-lg mt-2 h-12 text-[#12ADF1]">
     Shipping
   </button>
-  <button class="sidebar w-full text-base rounded-lg mt-2 h-12 text-[#12ADF1]">
+  <button
+    class="sidebar w-full text-base rounded-lg mt-2 h-12 text-[#12ADF1]"
+    onclick="window.location.href='/admindashboard/users'"
+  >
     Users
   </button>
 </div>
@@ -35,7 +38,13 @@
     }
     case urlContainsWord("shipping"): {
       sidebar[2].style.backgroundColor = "#38C102";
-      sidebar[1].style.color = "white";
+      sidebar[2].style.color = "white";
+
+      break;
+    }
+    case urlContainsWord("users"): {
+      sidebar[3].style.backgroundColor = "#38C102";
+      sidebar[3].style.color = "white";
 
       break;
     }
