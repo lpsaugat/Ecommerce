@@ -741,8 +741,8 @@ controller.adminHomepage = async (req, res) => {
   let users;
   if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
     productAmount = await Product.countDocuments();
-    users = await User.countDocuments({ usertype: "customer" });
-    vendors = await User.countDocuments({ usertype: "vendor" });
+    users = await User.countDocuments({ usertype: "customer", status: true });
+    vendors = await User.countDocuments({ usertype: "vendor", status: true });
   } else if (req.user.user_type === "vendor") {
     productAmount = null;
   }

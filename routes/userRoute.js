@@ -42,7 +42,11 @@ router.put("/dashboard/:id", verifyTokenAndAuthorization, async (req, res) => {
 });
 
 // Get All Users
-router.get("/admindashboard/", verifyTokenAndAdmin, userController.getAllUsers);
+router.get(
+  "/admindashboard/users",
+  verifyTokenAndAdmin,
+  userController.getAllUsers
+);
 
 // Get All Vendors
 router.get(

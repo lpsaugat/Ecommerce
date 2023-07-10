@@ -257,10 +257,27 @@ controller.logout = async (req, res, next) => {
 
 // Get All Users
 controller.getAllUsers = async (req, res) => {
+  cartdata = [];
+  orderdata = [];
   try {
-    const user = await User.find();
+    const users = await User.countDocuments();
+    const vendors = await User.countDocuments({
+      user_type: "vendor",
+      status: true,
+    });
+    const customers = await User.countDocuments({
+      user_type: "customer",
+      status: true,
+    });
+    const unverified = await User.countDocuments({ status: false });
+
     // const { password, ...others } = user._doc;
-    res.status(200).json(user);
+    res.render("admindashboard/users", {
+      users,
+      vendors,
+      customers,
+      unverified,
+    });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
