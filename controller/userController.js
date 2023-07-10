@@ -260,12 +260,13 @@ controller.getAllUsers = async (req, res) => {
   cartdata = [];
   orderdata = [];
   try {
-    const users = await User.countDocuments();
-    const vendors = await User.countDocuments({
+    const users = await User.find().sort({ createdAt: -1 }).limit(5);
+    const totalUsers = await User.countDocuments();
+    const totalVendors = await User.countDocuments({
       user_type: "vendor",
       status: true,
     });
-    const customers = await User.countDocuments({
+    const totalCustomers = await User.countDocuments({
       user_type: "customer",
       status: true,
     });
@@ -273,10 +274,11 @@ controller.getAllUsers = async (req, res) => {
 
     // const { password, ...others } = user._doc;
     res.render("admindashboard/users", {
-      users,
-      vendors,
-      customers,
+      totalUsers,
+      totalVendors,
+      totalCustomers,
       unverified,
+      users,
     });
   } catch (err) {
     console.log(err);
