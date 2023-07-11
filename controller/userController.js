@@ -338,7 +338,8 @@ controller.getUser = async (req, res) => {
       // Return a 404 response if the user is not found
       return res.status(404).json({ message: "User not found" });
     } else {
-      res.render("admindashboard/userEdit", user);
+      console.log(user);
+      res.render("admindashboard/userEdit", { user });
     }
   } catch (err) {
     console.log("err");
@@ -355,17 +356,13 @@ controller.editUser = async (req, res) => {
       // Return a 404 response if the user is not found
       return res.status(404).json({ message: "User not found" });
     } else {
-      if (
-        req.user.user_type === "super-admin" ||
-        req.user.user_type === "admin" ||
-        user.id === req.user.id
-      ) {
+      if (req.user.user_type === "super-admin" || user.id === req.user.id) {
         const updatedUser = await User.findOneAndUpdate(
           { id: req.params.id },
           { update },
           { new: true, runValidators: true }
         );
-        return res.status(200).json({ message: "User deleted" });
+        return res.status(200).json(updatedUser);
       }
     }
   } catch (err) {
