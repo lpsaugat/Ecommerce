@@ -64,6 +64,12 @@ const userSchema = new mongoose.Schema(
     profileImage: {
       type: [String],
     },
+    phone: {
+      type: Number,
+    },
+    address: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
