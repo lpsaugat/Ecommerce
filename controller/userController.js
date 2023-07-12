@@ -328,6 +328,11 @@ controller.getAllVendors = async (req, res) => {
   }
 };
 
+//Get customer page
+controller.getCustomer = async (req, res) => {};
+//Get vendor page
+controller.getVendor = async (req, res) => {};
+
 //Get a specific user
 controller.getUser = async (req, res) => {
   cartdata = [];

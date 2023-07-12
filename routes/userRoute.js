@@ -62,7 +62,21 @@ router.get(
   userController.getAllVendors
 );
 
-//Delete details for a specific user from Username
+// Get Vendor Page
+router.get(
+  "/admindashboard/userVendor/:id",
+  verifyTokenAndAdmin,
+  userController.getVendor
+);
+
+// Get Customer Page
+router.get(
+  "/admindashboard/userVendor/:id",
+  verifyTokenAndAdmin,
+  userController.getCustomer
+);
+
+//Update details page
 router.get(
   "/admindashboard/userEdit/:id",
   verifyTokenAndAdmin,
