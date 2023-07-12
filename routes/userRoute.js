@@ -71,7 +71,7 @@ router.get(
 
 // Get Customer Page
 router.get(
-  "/admindashboard/userVendor/:id",
+  "/admindashboard/userCustomer/:id",
   verifyTokenAndAdmin,
   userController.getCustomer
 );

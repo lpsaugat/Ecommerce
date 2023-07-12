@@ -329,9 +329,41 @@ controller.getAllVendors = async (req, res) => {
 };
 
 //Get customer page
-controller.getCustomer = async (req, res) => {};
+controller.getCustomer = async (req, res) => {
+  cartdata = [];
+  orderdata = [];
+  try {
+    const user = await User.findOne({ _id: req.params.id });
+    if (!user) {
+      // Return a 404 response if the user is not found
+      return res.status(404).json({ message: "User not found" });
+    } else {
+      console.log(user);
+      res.render("admindashboard/singleUserCustomer", { user });
+    }
+  } catch (err) {
+    console.log("err");
+    res.status(500).json(err);
+  }
+};
 //Get vendor page
-controller.getVendor = async (req, res) => {};
+controller.getVendor = async (req, res) => {
+  cartdata = [];
+  orderdata = [];
+  try {
+    const user = await User.findOne({ _id: req.params.id });
+    if (!user) {
+      // Return a 404 response if the user is not found
+      return res.status(404).json({ message: "User not found" });
+    } else {
+      console.log(user);
+      res.render("admindashboard/singleUserVendor", { user });
+    }
+  } catch (err) {
+    console.log("err");
+    res.status(500).json(err);
+  }
+};
 
 //Get a specific user
 controller.getUser = async (req, res) => {
