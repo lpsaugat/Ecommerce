@@ -42,7 +42,13 @@
               </button>
               <button
                 class="pl-2"
-                onclick="location.href='users/<%=users[i]._id%>'"
+                <% if (users[i].user_type=="customer"){%>
+                  onclick="location.href='userCustomer/<%=users[i]._id%>'"
+
+                <%}else if (users[i].user_type=="vendor"){%>
+                onclick="location.href='userVendor/<%=users[i]._id%>'"<%}%>
+
+
               >
                 <img
                   src="../../public/Images/eye-password-show.svg"
