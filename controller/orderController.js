@@ -292,19 +292,28 @@ controller.viewCart = async (req, res) => {
 
 //Admin view all shipping
 controller.viewShipping = async (req, res) => {
-  let shipping;
-  if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
-    shipping = await Shipping.find({ status: true })
-      .sort("-createdAt")
-      .populate("user");
-    res.json({ count: shipping.length, shipping });
-  } else if (req.user.user_type === "vendor") {
-    shipping = await Shipping.find({
-      createdBy: req.user.id,
-      status: true,
-    });
+  cartdata = [];
+  orderdata = [];
+
+  try {
+    let shipping;
+    if (
+      req.user.user_type === "super-admin" ||
+      req.user.user_type === "admin"
+    ) {
+      shipping = await Shipping.find({ status: true })
+        .sort("-createdAt")
+        .populate("user");
+    } else if (req.user.user_type === "vendor") {
+      shipping = await Shipping.find({
+        createdBy: req.user.id,
+        status: true,
+      });
+    }
+    res.render("admindashboard/shipping", { count: shipping.length, shipping });
+  } catch (err) {
+    res.send(err);
   }
-  res.send(shipping);
 };
 
 module.exports = controller;

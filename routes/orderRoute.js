@@ -58,7 +58,7 @@ router.get(
 
 //View Shipping
 router.get(
-  "/dashboard/shipping",
+  "/admindashboard/shipping",
   verifyTokenAndAuthorization,
   orderController.viewShipping
 );
