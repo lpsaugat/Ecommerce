@@ -16,7 +16,7 @@ const Cart = new mongoose.Schema(
     status: { type: Boolean, default: true },
     orderStatus: {
       type: String,
-      enum: ["paid", "unpaid", "cancelled", "confirmed"],
+      enum: ["paid", "unpaid", "cancelled", "confirmed", "placed"],
     },
   },
   { timestamps: true }
