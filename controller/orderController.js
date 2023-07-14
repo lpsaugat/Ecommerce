@@ -301,11 +301,23 @@ controller.viewShipping = async (req, res) => {
       req.user.user_type === "super-admin" ||
       req.user.user_type === "admin"
     ) {
-      shipping = await Shipping.find({ status: true, order })
+      shippingConfirmed = await Shipping.find({
+        status: true,
+        deliveryStatus: "confirmed",
+      })
+        .sort("-createdAt")
+        .populate("user");
+      shippingOnTheWay = await Shipping.find({
+        status: true,
+        deliveryStatus: "ontheway",
+      })
         .sort("-createdAt")
         .populate("user");
     }
-    res.render("admindashboard/shipping", { count: shipping.length, shipping });
+    res.render("admindashboard/shipping", {
+      shippingConfirmed,
+      shippingOntheWay,
+    });
   } catch (err) {
     res.send(err);
   }
