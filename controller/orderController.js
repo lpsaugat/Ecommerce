@@ -301,14 +301,9 @@ controller.viewShipping = async (req, res) => {
       req.user.user_type === "super-admin" ||
       req.user.user_type === "admin"
     ) {
-      shipping = await Shipping.find({ status: true })
+      shipping = await Shipping.find({ status: true, order })
         .sort("-createdAt")
         .populate("user");
-    } else if (req.user.user_type === "vendor") {
-      shipping = await Shipping.find({
-        createdBy: req.user.id,
-        status: true,
-      });
     }
     res.render("admindashboard/shipping", { count: shipping.length, shipping });
   } catch (err) {
