@@ -296,7 +296,6 @@ controller.viewShipping = async (req, res) => {
   orderdata = [];
 
   try {
-    let shipping;
     if (
       req.user.user_type === "super-admin" ||
       req.user.user_type === "admin"
@@ -313,11 +312,12 @@ controller.viewShipping = async (req, res) => {
       })
         .sort("-createdAt")
         .populate("user");
+
+      res.render("admindashboard/shipping", {
+        shippingOnTheWay,
+        shippingConfirmed,
+      });
     }
-    res.render("admindashboard/shipping", {
-      shippingConfirmed,
-      shippingOntheWay,
-    });
   } catch (err) {
     res.send(err);
   }
