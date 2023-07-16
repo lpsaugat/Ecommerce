@@ -242,7 +242,7 @@ controller.shipping = async (req, res) => {
         location: req.body.location,
         charge: 100,
         paymentMethod: req.body.paymentMethod,
-        deliveryStatus: "OrderFulfilled",
+        deliveryStatus: "confirmed",
         netTotal: 100 + parseFloat(cart.total),
       });
       console.log(newShipping);
@@ -294,15 +294,13 @@ controller.viewCart = async (req, res) => {
 controller.viewShipping = async (req, res) => {
   cartdata = [];
   orderdata = [];
-
+  let shipping;
   try {
     if (
       req.user.user_type === "super-admin" ||
       req.user.user_type === "admin"
     ) {
-      shipping = await Shipping.find({ status: true })
-        .limit(5)
-        .sort("-createdAt");
+      shipping = await Shipping.find().limit(5).sort("-createdAt");
       shippingConfirmed = await Shipping.find({
         status: true,
         deliveryStatus: "confirmed",
@@ -319,6 +317,7 @@ controller.viewShipping = async (req, res) => {
       res.render("admindashboard/shipping", {
         shippingOnTheWay,
         shippingConfirmed,
+        shipping,
       });
     }
   } catch (err) {
