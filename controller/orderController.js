@@ -302,21 +302,26 @@ controller.viewShipping = async (req, res) => {
     ) {
       shipping = await Shipping.find().limit(5).sort("-createdAt");
       shippingConfirmed = await Shipping.find({
-        status: true,
         deliveryStatus: "confirmed",
-      })
-        .sort("-createdAt")
-        .populate("user");
+      }).countDocuments();
       shippingOnTheWay = await Shipping.find({
         status: true,
         deliveryStatus: "ontheway",
-      })
-        .sort("-createdAt")
-        .populate("user");
+      }).countDocuments();
+      shippingDelivered = await Shipping.find({
+        status: true,
+        deliveryStatus: "delivered",
+      }).countDocuments();
+      shippingCancelled = await Shipping.find({
+        status: true,
+        deliveryStatus: "cancelled",
+      }).countDocuments();
 
       res.render("admindashboard/shipping", {
         shippingOnTheWay,
         shippingConfirmed,
+        shippingCancelled,
+        shippingDelivered,
         shipping,
       });
     }

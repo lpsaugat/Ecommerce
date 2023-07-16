@@ -13,14 +13,19 @@
           class="rounded-md w-full col-span-1 text-[26px] p-4 bg-white text-[#FFFFFA] border-2 h-[192px] mt-2"
         >
           <div class="text-[17px] font-medium text-[black]">
-            Total Shipping : <% shippingConfirmed.length +
-            shippingOnTheWay.length%>
+            Total Shipping : <%= shipping.length%>
           </div>
           <div class="text-[17px] font-medium text-[black]">
-            Order Confirmed : <% shippingConfirmed.length %>
+             Confirmed : <%= shippingConfirmed %>
           </div>
           <div class="text-[17px] font-medium text-[black]">
-            Order On Route : <% shippingOnTheWay.length %>
+            On Route : <%= shippingOnTheWay %>
+          </div>
+          <div class="text-[17px] font-medium text-[black]">
+            Delivered : <%= shippingDelivered %>
+          </div>
+          <div class="text-[17px] font-medium text-[black]">
+            Cancelled : <%= shippingCancelled %>
           </div>
         </div>
         <div class="mt-10 col-span-3">
