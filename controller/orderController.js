@@ -300,6 +300,9 @@ controller.viewShipping = async (req, res) => {
       req.user.user_type === "super-admin" ||
       req.user.user_type === "admin"
     ) {
+      shipping = await Shipping.find({ status: true })
+        .limit(5)
+        .sort("-createdAt");
       shippingConfirmed = await Shipping.find({
         status: true,
         deliveryStatus: "confirmed",
