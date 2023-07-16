@@ -59,8 +59,15 @@ router.get(
 //View Shipping
 router.get(
   "/admindashboard/shipping",
-  verifyTokenAndAuthorization,
+  verifyTokenAndAdmin,
   orderController.viewShipping
+);
+
+//View All Shipping
+router.get(
+  "/admindashboard/allshipping",
+  verifyTokenAndAdmin,
+  orderController.viewAllShipping
 );
 
 module.exports = router;

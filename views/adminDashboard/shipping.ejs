@@ -32,7 +32,10 @@
           <div><% for(i=0;i<shipping.length;i++) {%>
             <%- include("./shippingItems")%><%}%></div>
         </div>
+        <div class="col-span-3 justify-center flex h-[52px]"><button class="p-3 px-4 border-2 rounded-md  font-medium bg-whte" onclick="window.location.href='/admindashboard/allShipping'">View All</button>
+        </div>
       </div>
+      
     </div>
   </div>
   <div class="hidden"><%- include ("../partials/footer") %></div>

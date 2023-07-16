@@ -290,7 +290,7 @@ controller.viewCart = async (req, res) => {
   res.send(carts);
 };
 
-//Admin view all shipping
+//Admin view shipping
 controller.viewShipping = async (req, res) => {
   cartdata = [];
   orderdata = [];
@@ -322,6 +322,27 @@ controller.viewShipping = async (req, res) => {
         shippingConfirmed,
         shippingCancelled,
         shippingDelivered,
+        shipping,
+      });
+    }
+  } catch (err) {
+    res.send(err);
+  }
+};
+
+//Admin View all Shipping
+controller.viewAllShipping = async (req, res) => {
+  cartdata = [];
+  orderdata = [];
+  let shipping;
+  try {
+    if (
+      req.user.user_type === "super-admin" ||
+      req.user.user_type === "admin"
+    ) {
+      shipping = await Shipping.find().sort("-createdAt");
+
+      res.render("admindashboard/allshipping", {
         shipping,
       });
     }
