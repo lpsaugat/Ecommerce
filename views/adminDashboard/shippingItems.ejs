@@ -6,7 +6,7 @@
   >
     <div class="flex w-full md:h-[86px]">
       <div
-        class="md:w-[86px] w-[69px] justify-center flex items-center ml-[10px] lg:ml-0 md:ml-[15px]"
+        class="md:w-[86px] w-[69px] justify-center flex items-center ml-[10px]"
       >
         <%= shipping[i].deliveryStatus %>
       </div>
@@ -17,19 +17,24 @@
           class="text-[12px] md:text-sm lg:text-[16px] col-span-4 lg:pl-[40px] items-center flex"
         >
           <%= shipping[i].user %>
-
-          <div
-            class="opacity-80 col-span-2 text-[10px] md:text-[12px] pt-[9px] md:pt-[10px] lg:pt-[16px] lg:text-[14px]"
-          >
-            <%= shipping[i].total %>
-          </div>
         </div>
 
         <div
-          class="text-[12px] col-span-4 w-auto md:text-[16px] lg:pt-0 font-medium pt-[14px] md:pt-[17px] justify-between items-center grid-cols-1 flex"
+          class="text-[12px] col-span-2 w-auto md:text-[16px] lg:pt-0 font-medium pt-[14px] md:pt-[17px] justify-between items-center grid-cols-1 flex"
         >
           Rs. <%= shipping[i].netTotal%>
         </div>
+        <form
+          class="col-span-2 justify-between items-center flex text-[16px] pt-[17px]"
+        >
+          <select id="deliveryStatus" name="deliveryStatus">
+            <option disabled selected><%= shipping[i].deliveryStatus%></option>
+            <option value="confirmed">confirmed</option>
+            <option value="ontheway">ontheway</option>
+            <option value="fulfilled">fulfilled</option>
+            <option value="cancelled">cancelled</option>
+          </select>
+        </form>
         <div class="lg:flex font-roboto flex items-center left-0 w-auto">
           <div class="flex items-center">
             <div class="flex justify-center">

@@ -872,6 +872,10 @@ video {
   margin-top: 67px;
 }
 
+.ml-\[20px\] {
+  margin-left: 20px;
+}
+
 .block {
   display: block;
 }
@@ -2600,6 +2604,10 @@ video {
 
 .pt-\[9px\] {
   padding-top: 9px;
+}
+
+.pt-\[17px\] {
+  padding-top: 17px;
 }
 
 .text-left {
