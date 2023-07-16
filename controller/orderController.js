@@ -255,14 +255,14 @@ controller.shipping = async (req, res) => {
 //Update Shipping when deliveryStatus changes
 controller.shippingUpdate = async (req, res) => {
   try {
-    const shipping = await Shipping.findOne({ user: req.params.id });
+    const shipping = await Shipping.findOne({ _id: req.body.updateID });
     if (!shipping) {
       return res.json("Shipping wasn't found");
     } else {
       const updatedShipping = await Shipping.findOneAndUpdate(
-        { user: req.body.updateID },
+        { _id: req.body.updateID },
         {
-          deliveryStatus: req.body.deliveryStatus,
+          deliveryStatus: req.body.status,
         },
         { new: true }
       );

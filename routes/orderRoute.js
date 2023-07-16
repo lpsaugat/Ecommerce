@@ -44,8 +44,8 @@ router.post("/shipping", verifyToken, orderController.shipping);
 
 //Update shipping status
 router.post(
-  "/shippingUpdate",
-  verifyTokenAndAuthorization,
+  "/admindashboard/shippingUpdate",
+  verifyTokenAndAdmin,
   orderController.shippingUpdate
 );
 
