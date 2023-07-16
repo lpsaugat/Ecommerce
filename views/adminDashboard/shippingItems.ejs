@@ -26,8 +26,16 @@
         </div>
         <form
           class="col-span-2 justify-between items-center flex text-[16px] pt-[17px]"
+          class="deliveryStatus"
+          name="deliveryStatus"
         >
-          <select id="deliveryStatus" name="deliveryStatus">
+          <input
+            class="hidden"
+            name="shippingID"
+            value="<%=shipping[i].id%>"
+            readonly
+          />
+          <select name="status">
             <option disabled selected><%= shipping[i].deliveryStatus%></option>
             <option value="confirmed">confirmed</option>
             <option value="ontheway">ontheway</option>
