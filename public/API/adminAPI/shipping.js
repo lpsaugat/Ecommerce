@@ -1,8 +1,8 @@
-const shippingStatus = document.querySelectorAll('form[name="deliveryStatus"]');
+const shippingStatus = document.querySelectorAll(".deliveryStatus");
+console.log(shippingStatus);
 
-shippingStatus.forEach(function (form) {
-  var dropdown = form.querySelector('select[name="status"]');
-  dropdown.addEventListener("change", function (event) {
+Array.from(shippingStatus).forEach(function (form) {
+  form.addEventListener("change", function (event) {
     event.preventDefault();
     const formData = new FormData(form);
     console.log(formData);
