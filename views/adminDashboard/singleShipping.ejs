@@ -37,7 +37,11 @@
           <div class="text-[17px] font-medium text-[black]">Products :</div>
           <div class="text-[17px] font-medium text-[black]">Amount :</div>
         </div>
-      </div>
+        <div class="mt-10 col-span-3">
+            <% for(i=0;i<orders.length;i++) {%>
+              <%- include("./orderItems")%><%}%>
+          </div>
+                </div>
     </div>
   </div>
 </div>

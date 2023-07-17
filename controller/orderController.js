@@ -356,7 +356,9 @@ controller.viewSingleShipping = async (req, res) => {
   cartdata = [];
   orderdata = [];
   let shipping;
-  let orders = {};
+  let orders = [];
+  let products = [];
+
   try {
     if (
       req.user.user_type === "super-admin" ||
@@ -370,14 +372,17 @@ controller.viewSingleShipping = async (req, res) => {
         cart = await Cart.findOne({ _id: shipping.cart });
         console.log(cart);
         for (i = 0; i < cart.orders.length; i++) {
-          order = await Order.find({ _id: cart.orders[i] });
-          console.log(order);
+          order = await Order.findOne({ _id: cart.orders[i] });
+          product = await Product.findOne({ _id: order.productID });
           orders[i] = order;
+          products[i] = product;
         }
+        console.log(orders);
         res.render("admindashboard/singleShipping", {
           shipping,
           user,
           orders,
+          products,
         });
       }
     }
