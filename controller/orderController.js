@@ -373,7 +373,9 @@ controller.viewSingleShipping = async (req, res) => {
         console.log(cart);
         for (i = 0; i < cart.orders.length; i++) {
           order = await Order.findOne({ _id: cart.orders[i] });
-          product = await Product.findOne({ _id: order.productID });
+          product = await Product.findOne({ _id: order.productID }).populate(
+            "createdBy"
+          );
           orders[i] = order;
           products[i] = product;
         }
