@@ -70,4 +70,11 @@ router.get(
   orderController.viewAllShipping
 );
 
+//View Single Shipping
+router.get(
+  "/admindashboard/shipping/:id",
+  verifyTokenAndAdmin,
+  orderController.viewSingleShipping
+);
+
 module.exports = router;

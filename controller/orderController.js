@@ -351,4 +351,29 @@ controller.viewAllShipping = async (req, res) => {
   }
 };
 
+//Admin View single Shipping
+controller.viewSingleShipping = async (req, res) => {
+  cartdata = [];
+  orderdata = [];
+  let shipping;
+  try {
+    if (
+      req.user.user_type === "super-admin" ||
+      req.user.user_type === "admin"
+    ) {
+      shipping = await Shipping.findOne({ _id: req.params.id });
+      if (!shipping) {
+        res.send(`No shipping found with id: ${req.params.id}`);
+      } else {
+        user = await User.findOne({ _id: shipping.user });
+        res.render("admindashboard/singleShipping", {
+          shipping,
+          user,
+        });
+      }
+    }
+  } catch (err) {
+    res.send(err);
+  }
+};
 module.exports = controller;
