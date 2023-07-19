@@ -8,22 +8,10 @@
 
       <div class="grid col-span-3 grid-cols-3 gap-x-1  p-3 border-[3px] rounded-lg">
         <!-- Product summary -->
-        <div
-          class="rounded-md w-full col-span-1 text-[26px] p-4 bg-white text-[#FFFFFA] border-2 h-[192px] mt-2"
-        >
-          <div class="text-[17px] font-medium text-[black]">
-            Total Products :
-          </div>
-          <div class="text-[17px] font-medium text-[black]">
-            Sold Number :
-          </div>
-          <div class="text-[17px] font-medium text-[black]">
-            Out of Stock : 
-          </div>
-        </div>
+       
         <!-- Add Products Form -->
         <div
-          class="rounded-md w-full col-span-2 font-medium text-[17px] p-4 text-[#000123] bg-white border-2 mt-2"
+          class="rounded-md w-full col-span-3 font-medium text-[17px] p-4 text-[#000123] bg-white border-2 mt-2"
         >
         Add Product:
           <form class="border-2 rounded-lg p-3 mt-2" id="addProduct">
@@ -50,6 +38,18 @@
                   name="price"
                   class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
                   required
+                />
+              </div>
+              <div class="flex flex-col">
+                <label
+                  for="discountFrom"
+                  class="text-[12px] md:text-[14px] font-medium"
+                  >Discount From (Rs.) </label
+                >
+                <input
+                  type="text"
+                  name="discountFrom"
+                  class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
                 />
               </div>
               <div class="flex flex-col">
@@ -174,7 +174,13 @@
         selectedOptionsField.value = selectedOptions.join(", ");
       });
     </script>
+
   </div>
   <div class="hidden"><%- include ("../partials/footer") %></div>
-
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+  <script>
+    var quill = new Quill('#editor', {
+      theme: 'snow' // Choose a theme (snow, bubble, etc.)
+    });
+  </script>
 </div>

@@ -15,6 +15,10 @@ var Product = new mongoose.Schema(
     longDescription: {
       type: String,
     },
+    discountedPrice: {
+      type: mongoose.Types.Decimal128,
+      required: false,
+    },
     price: {
       type: mongoose.Types.Decimal128,
       required: true,
