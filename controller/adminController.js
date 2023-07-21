@@ -21,6 +21,14 @@ const express = require("express");
 
 const controller = {};
 
+async function totalOrders() {
+  let totalQuantity = 0;
+  var totalOrders = await Order.countDocuments({ orderStatus: "delivered" });
+  totalOrders.array.forEach((element) => {
+    totalQuantity = totalQuantity + element.quantity;
+  });
+}
+
 //Writing in Carousel
 controller.carouselWriting = async (req, res) => {
   const folder = "carousel";
