@@ -36,7 +36,6 @@ if (addProduct) {
 
     fetch(`http://${ipAddress}:3000/admindashboard/products`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       body: requestBody,
     })
       .then((response) => response.json())
