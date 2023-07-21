@@ -21,12 +21,21 @@ const express = require("express");
 
 const controller = {};
 
-async function totalOrders() {
-  let totalQuantity = 0;
-  var totalOrders = await Order.countDocuments({ orderStatus: "delivered" });
-  totalOrders.array.forEach((element) => {
-    totalQuantity = totalQuantity + element.quantity;
-  });
+async function total() {
+  try {
+    let totalQuantity = 0;
+    var ordersCount = await Order.countDocuments({ orderStatus: "delivered" });
+    var totalOrders = await Order.find({ orderStatus: "delivered" });
+
+    totalOrders.forEach((element) => {
+      totalQuantity = totalQuantity + element.quantity;
+    });
+    console.log(ordersCount, totalQuantity);
+    return { totalQuantity, ordersCount };
+  } catch (err) {
+    console.log(err);
+    process.exit();
+  }
 }
 
 //Writing in Carousel
@@ -747,6 +756,7 @@ controller.adminHomepage = async (req, res) => {
   orderdata = [];
   let productAmount;
   let users;
+  const { ordersCount, totalQuantity } = await total();
   if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
     productAmount = await Product.countDocuments();
     users = await User.countDocuments({ usertype: "customer", status: true });
@@ -762,6 +772,8 @@ controller.adminHomepage = async (req, res) => {
       productAmount,
       users,
       vendors,
+      ordersCount,
+      totalQuantity,
     });
   } catch (err) {
     res.status(500).json(err);
