@@ -6,11 +6,48 @@
   <div class="flex max-w-1200 mx-auto pt-5">
     <div class="grid gap-x-3 grid-cols-4 w-full rounded-sm">
       <%- include ("./sidebar") %>
-
       <div
-        class="grid col-span-3 grid-cols-3 gap-x-1 p-3 border-[3px] rounded-lg"
-      ></div>
+        class="rounded-md w-full col-span-3 font-medium text-[17px] p-4 text-[#000123] bg-white border-2 mt-2"
+      >
+        Add Category:
+        <form class="border-2 rounded-lg p-3 mt-2" id="addCategory">
+          <div class="flex gap-x-2">
+            <div class="mt-[21px] md:mt-[24px] lg:mt-[16px] w-1/2">
+              <label for="Name" class="text-[12px] md:text-[14px] font-medium"
+                >Name *</label
+              >
+              <input
+                type="text"
+                name="name"
+                class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
+                required
+              />
+            </div>
+            <div class="mt-[21px] md:mt-[24px] lg:mt-[16px] w-1/2">
+              <label for="Name" class="text-[12px] md:text-[14px] font-medium"
+                >Parent Category</label
+              >
+              <div class="mt-3 w-full items-center flex">
+                <select name="parentCategory">
+                  <option>NONE</option>
+
+                  <option value="confirmed">confirmed</option>
+                  <option value="ontheway">ontheway</option>
+                  <option value="delivered">delivered</option>
+                  <option value="cancelled">cancelled</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <button
+            type="submit"
+            class="text-[17px] mt-3 font-medium p-3 bg-gradient-to-r from-[#3baf3d] to-[#5DC234] text-white rounded-md"
+          >
+            Add Category
+          </button>
+        </form>
+      </div>
     </div>
   </div>
+  <div class="hidden"><%- include ("../partials/footer") %></div>
 </div>
-<div class="hidden"><%- include ("../partials/footer") %></div>
