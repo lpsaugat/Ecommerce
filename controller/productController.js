@@ -147,7 +147,8 @@ controller.productview = async (req, res) => {
 controller.productviewone = async (req, res) => {
   cartdata = [];
   orderdata = [];
-
+  let totalOrders;
+  let totalAmount;
   try {
     if (
       req.user.user_type === "admin" ||
@@ -159,10 +160,20 @@ controller.productviewone = async (req, res) => {
       if (!product) {
         res.send(`No product found with id: ${req.params.id}`);
       }
-      const reviews = Review.find({ productID: req.params.id });
-      const orders = Order.find({ productID: req.params.id });
-
-      res.render("admindashboard/singleProduct", { product, reviews, orders });
+      const reviews = await Review.find({ productID: req.params.id });
+      const orders = await Order.find({ productID: req.params.id });
+      orders.forEach((order) => {
+        totalAmount =
+          totalAmount + parseFloat(order.price) * parseFloat(order.quantity);
+        totalOrders = totalOrders + parseFloat(order.quantity);
+      });
+      res.render("admindashboard/singleProduct", {
+        product,
+        reviews,
+        totalAmount,
+        totalOrders,
+        orders,
+      });
     } else if (req.user.user_type === "vendor") {
       const product = await Product.findOne({
         createdBy: req.user.id,
@@ -171,10 +182,20 @@ controller.productviewone = async (req, res) => {
       if (!product) {
         res.send(`No product found with id: ${req.params.id}`);
       }
-      const reviews = Review.find({ productID: req.params.id });
-      const orders = Order.find({ productID: req.params.id });
-
-      res.render("admindashboard/singleProduct", { product, reviews, orders });
+      const reviews = await Review.find({ productID: req.params.id });
+      const orders = await Order.find({ productID: req.params.id });
+      orders.forEach((order) => {
+        totalAmount =
+          totalAmount + parseFloat(order.price) * parseFloat(order.quantity);
+        totalOrders = totalOrders + parseFloat(order.quantity);
+      });
+      res.render("admindashboard/singleProduct", {
+        product,
+        reviews,
+        totalAmount,
+        totalOrders,
+        orders,
+      });
     }
   } catch (err) {
     console.log(err);

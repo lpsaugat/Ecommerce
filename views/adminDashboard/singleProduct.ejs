@@ -105,10 +105,7 @@
                   class="pt-4 text-xs md:text-sm lg:max-w-[348px] text-justify"
                 >
                   <%= product.description %>
-                  <br /><br />
-                  <div>
-                    <ol class="list-disc ml-4"></ol>
-                  </div>
+
                   <div class="lg:flex pt-[16px] items-center">
                     <div class="font-medium text-[16px]">Quantity</div>
                     <div class="pl-[23px]">
@@ -117,9 +114,33 @@
                           type="text"
                           name="quantity"
                           value="<%=product.quantity%>"
-                          maxlength="2"
-                          max="10"
-                          size="1"
+                          readonly
+                          class="text-center items-center text-[14px] quantity w-[22.4px] h-[22.4px] lg:w-[42px] lg:h-[42px] lg:border-[1px] border-[0.6px] rounded-[3px]"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="lg:flex pt-[16px] items-center">
+                    <div class="font-medium text-[16px]">Total Orders</div>
+                    <div class="pl-[23px]">
+                      <div class="flex items-center">
+                        <input
+                          type="text"
+                          value="<%=totalOrders%>"
+                          readonly
+                          class="text-center items-center text-[14px] quantity w-[22.4px] h-[22.4px] lg:w-[42px] lg:h-[42px] lg:border-[1px] border-[0.6px] rounded-[3px]"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="lg:flex pt-[16px] items-center">
+                    <div class="font-medium text-[16px]">Amount Sold</div>
+                    <div class="pl-[23px]">
+                      <div class="flex items-center">
+                        <input
+                          type="text"
+                          value="<%=totalAmount%>"
+                          readonly
                           class="text-center items-center text-[14px] quantity w-[22.4px] h-[22.4px] lg:w-[42px] lg:h-[42px] lg:border-[1px] border-[0.6px] rounded-[3px]"
                         />
                       </div>
