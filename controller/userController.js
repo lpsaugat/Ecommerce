@@ -296,12 +296,17 @@ controller.getAllUsers = async (req, res) => {
   const skip = (page - 1) * limit;
   let count;
   let users;
-  if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
-    users = await User.find(query).sort("-createdAt").skip(skip).limit(limit);
-    count = await User.countDocuments(query);
-  }
-  const totalPages = Math.ceil(count / limit);
+  count = await User.countDocuments(query);
 
+  const totalPages = Math.ceil(count / limit);
+  const sort = req.query.sort;
+  if (!sort) {
+    users = await User.find(query).sort("-createdAt").skip(skip).limit(limit);
+  } else if (sort === "oldest") {
+    users = await User.find(query).sort("-createdAt").skip(skip).limit(limit);
+  } else if (sort === "newest") {
+    users = await User.find(query).sort("createdAt").skip(skip).limit(limit);
+  }
   const dataPagination = {
     count,
     totalPages,
