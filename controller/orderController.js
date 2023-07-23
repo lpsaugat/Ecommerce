@@ -228,8 +228,16 @@ controller.shipping = async (req, res) => {
   try {
     const cart = await Cart.findOne({ user: req.user.id, status: true });
     const order = await Order.updateMany(
-      { user: req.user.id },
-      { $set: { order: "confirmed" } }
+      { user: req.user.id, status: true },
+      { $set: { orderStatus: "confirmed" } }
+    );
+    const updateCart = await Cart.findOneAndUpdate(
+      {
+        user: req.user.id,
+        status: true,
+      },
+      { $set: { cartStatus: "confirmed" } },
+      { new: true }
     );
 
     //Find the cart and add the cart onto the shipping. If there isn't one; send error.
@@ -259,11 +267,23 @@ controller.shippingUpdate = async (req, res) => {
     if (!shipping) {
       return res.json("Shipping wasn't found");
     } else {
+      const order = await Order.updateMany(
+        { user: req.user.id, status: true },
+        { $set: { orderStatus: req.body.status } }
+      );
       const updatedShipping = await Shipping.findOneAndUpdate(
         { _id: req.body.updateID },
         {
           deliveryStatus: req.body.status,
         },
+        { new: true }
+      );
+      const updateCart = await Cart.findOneAndUpdate(
+        {
+          user: req.user.id,
+          status: true,
+        },
+        { $set: { cartStatus: req.body.status } },
         { new: true }
       );
       console.log(updatedShipping);
