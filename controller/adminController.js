@@ -160,9 +160,22 @@ controller.SubscriptionUpdate = async (req, res) => {
 
 //Create Category
 controller.category = async (req, res) => {
+  const folder = "category";
+  let create = {};
+  let images = [];
+  try {
+    if (req.files) {
+      images = await imageUploader(req, res, req.files.image, folder);
+      create = { ...req.body, image: images };
+    } else {
+      create = req.body;
+    }
+  } catch (err) {
+    return;
+  }
   try {
     const newCategory = await Category.create({
-      name: req.body.name,
+      create,
     });
     res.json(newCategory);
   } catch (err) {

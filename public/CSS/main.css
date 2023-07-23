@@ -872,6 +872,10 @@ video {
   margin-top: 67px;
 }
 
+.mt-4 {
+  margin-top: 1rem;
+}
+
 .block {
   display: block;
 }
@@ -1530,6 +1534,10 @@ video {
 
 .place-items-center {
   place-items: center;
+}
+
+.items-end {
+  align-items: flex-end;
 }
 
 .items-center {
@@ -2604,6 +2612,10 @@ video {
 
 .pt-\[9px\] {
   padding-top: 9px;
+}
+
+.pl-3 {
+  padding-left: 0.75rem;
 }
 
 .text-left {
