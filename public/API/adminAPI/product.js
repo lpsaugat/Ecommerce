@@ -7,8 +7,10 @@ if (addProduct) {
     const formData = new FormData(addProduct);
     const name = formData.get("name");
     const price = formData.get("price");
-    const discountedFrom = formData.get("discountedFrom");
-
+    var discountedFrom = formData.get("discountedFrom");
+    if ((discountedFrom = "null")) {
+      discountedFrom = 0;
+    }
     const primaryImage = formData.get("primaryImage");
     const otherImages = formData.getAll("otherImages");
     const description = formData.get("description");
@@ -60,8 +62,10 @@ if (updateProduct) {
     const formData = new FormData(updateProduct);
     const name = formData.get("name");
     const price = formData.get("price");
-    const discountedFrom = formData.get("discountedFrom");
-
+    var discountedFrom = formData.get("discountedFrom");
+    if ((discountedFrom = "null")) {
+      discountedFrom = 0;
+    }
     const quantity = formData.get("quantity");
     const measure = formData.get("measure");
 
