@@ -15,8 +15,7 @@ const Category = new mongoose.Schema({
   slug: {
     type: String,
   },
-
-  parent_of: {
+  parentCategory: {
     type: [String],
     ref: "Category",
   },
