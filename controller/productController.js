@@ -4,6 +4,7 @@ const User = require("../models/User");
 const Carousel = require("../models/Carousel");
 const Product = require("../models/Products");
 const Review = require("../models/Review");
+const Category = require("../models/Categories");
 
 const Order = require("../models/Order");
 const Subscription = require("../models/Subscription");
@@ -125,20 +126,21 @@ controller.productdelete = async (req, res) => {
 controller.productview = async (req, res) => {
   cartdata = [];
   orderdata = [];
+  const category = await Category.find().sort("-createdAt");
 
   if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
     const products = await Product.find()
       .limit(5)
       .sort("-createdAt")
       .populate("createdBy");
-    res.render("admindashboard/products", { products });
+    res.render("admindashboard/products", { products, category });
   } else if (req.user.user_type === "vendor") {
     const products = await Product.find({
       createdBy: req.user.id,
     })
       .limit(5)
       .sort("-createdAt");
-    res.render("admindashboard/products", { products });
+    res.render("admindashboard/products", { products, category });
   }
 };
 
@@ -149,6 +151,7 @@ controller.productviewone = async (req, res) => {
   let totalOrders;
   let totalAmount;
   try {
+    const category = await Category.find().sort("-createdAt");
     if (
       req.user.user_type === "admin" ||
       req.user.user_type === "super-admin"
@@ -175,6 +178,7 @@ controller.productviewone = async (req, res) => {
         totalAmount,
         totalOrders,
         orders,
+        category,
       });
     } else if (req.user.user_type === "vendor") {
       const product = await Product.findOne({
@@ -200,6 +204,7 @@ controller.productviewone = async (req, res) => {
         totalAmount,
         totalOrders,
         orders,
+        category,
       });
     }
   } catch (err) {

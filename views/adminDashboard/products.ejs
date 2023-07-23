@@ -132,10 +132,9 @@
                 size="3"
                 class="overflow-y-scroll"
               >
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-                <option value="option4">Option 4</option>
+              <% for (i = 0;i<category.length;i++){%>
+                <option value="<%=category[i].name%>"><%=category[i].name%></option>
+                <%}%>
               </select>
               <input
                 type="text"
