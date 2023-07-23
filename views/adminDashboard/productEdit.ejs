@@ -132,18 +132,30 @@
                 placeholder="<%=product.category%>"
               />
             </div>
-            <button
-              type="submit"
-              class="text-[17px] mt-3 font-medium p-3 bg-gradient-to-r from-[#3baf3d] to-[#5DC234] text-white border-2 rounded-md"
-            >
-              Update Product
-            </button>
+            <div class="flex justify-between">
+              <button
+                type="submit"
+                class="text-[17px] mt-3 font-medium p-3 bg-gradient-to-r from-[#3baf3d] to-[#5DC234] text-white rounded-md"
+              >
+                Update Product
+              </button>
+              <button
+                class="text-[17px] mt-3 font-medium p-3 bg-[#DC0D0D] text-white rounded-md"
+                onclick="deletefProduct()"
+              >
+                Delete Product
+              </button>
+            </div>
           </form>
         </div>
       </div>
     </div>
   </div>
-
+  <div class="flex">
+    <div id="deleteProduct" style="display: none">
+      <%- include ("./deleteProduct") %>
+    </div>
+  </div>
   <div class="hidden"><%- include ("../partials/footer") %></div>
 </div>
 <script>

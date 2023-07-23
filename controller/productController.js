@@ -97,7 +97,6 @@ controller.productdelete = async (req, res) => {
   const roles = ["super-admin", "admin"];
   const filter = req.params.id;
   console.log(filter);
-  const update = { ...req.body };
   try {
     const getproduct = await Product.findOne({ _id: filter });
     if (!getproduct) {
@@ -109,7 +108,7 @@ controller.productdelete = async (req, res) => {
       roles.includes(req.user.user_type) ||
       getproduct.createdBy.toString() === req.user.id
     ) {
-      const deletedProduct = await Product.findOneAndDelete(filter);
+      const deletedProduct = await Product.findOneAndDelete({ _id: filter });
       console.log(deletedProduct);
 
       res.status(200).json(deletedProduct);

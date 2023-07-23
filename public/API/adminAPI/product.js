@@ -110,3 +110,29 @@ if (updateProduct) {
       });
   });
 }
+
+var deleteProduct = document.getElementById("deleteProduct");
+
+function deletefProduct() {
+  deleteProduct.style.display = "block";
+  document.body.style.overflow = "hidden";
+}
+
+function cancelfDeleteProduct() {
+  deleteProduct.style.display = "none";
+  document.body.style.overflow = "auto";
+}
+
+function deleteProductID(productID) {
+  fetch(`http://${ipAddress}:3000/admindashboard/products/${productID}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => console.log("hehehe"))
+    .then((data) => {})
+    .catch((error) => {
+      console.error(error);
+    });
+}
