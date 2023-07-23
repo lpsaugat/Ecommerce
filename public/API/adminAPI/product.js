@@ -7,6 +7,8 @@ if (addProduct) {
     const formData = new FormData(addProduct);
     const name = formData.get("name");
     const price = formData.get("price");
+    const discountedFrom = formData.get("discountedFrom");
+
     const primaryImage = formData.get("primaryImage");
     const otherImages = formData.getAll("otherImages");
     const description = formData.get("description");
@@ -17,6 +19,8 @@ if (addProduct) {
     const requestBody = new FormData();
     requestBody.append("name", name);
     requestBody.append("price", price);
+    requestBody.append("discountedFrom", discountedFrom);
+
     requestBody.append("longDescription", longDescription);
     requestBody.append("description", description);
     requestBody.append("quantity", quantity);
@@ -56,6 +60,8 @@ if (updateProduct) {
     const formData = new FormData(updateProduct);
     const name = formData.get("name");
     const price = formData.get("price");
+    const discountedFrom = formData.get("discountedFrom");
+
     const quantity = formData.get("quantity");
     const measure = formData.get("measure");
 
@@ -70,6 +76,8 @@ if (updateProduct) {
     requestBody.append("measure", measure);
 
     requestBody.append("price", price);
+    requestBody.append("discountedFrom", discountedFrom);
+
     requestBody.append("longDescription", longDescription);
     requestBody.append("description", description);
     const allCategories = categories
