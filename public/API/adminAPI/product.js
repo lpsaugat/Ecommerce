@@ -38,9 +38,8 @@ if (addProduct) {
       method: "POST",
       body: requestBody,
     })
-      .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        window.location.href = `http://${ipAddress}:3000/admindashboard/products/`;
       })
       .catch((error) => {
         console.error(error);
@@ -103,7 +102,7 @@ if (updateProduct) {
       headers: {},
       body: convertedFormData,
     })
-      .then((response) => response.json())
+      .then((response) => (window.location.href = response.url))
       .then((data) => {})
       .catch((error) => {
         console.error(error);
@@ -123,14 +122,17 @@ function cancelfDeleteProduct() {
   document.body.style.overflow = "auto";
 }
 
-function deleteProductID(productID) {
+function adminDeleteProduct(productID) {
   fetch(`http://${ipAddress}:3000/admindashboard/products/${productID}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
   })
-    .then((response) => console.log("hehehe"))
+    .then(
+      (response) =>
+        (window.location.href = `http://${ipAddress}:3000/admindashboard/products/`)
+    )
     .then((data) => {})
     .catch((error) => {
       console.error(error);
