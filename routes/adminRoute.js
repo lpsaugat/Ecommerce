@@ -102,7 +102,7 @@ router.delete(
   adminController.categoryDelete
 );
 
-//Create a category
+//Get categories
 router.get(
   "/admindashboard/category",
   verifyTokenAndAdmin,

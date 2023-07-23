@@ -13,6 +13,12 @@
   </button>
   <button
     class="sidebar w-full text-base rounded-lg mt-2 h-12 text-[#12ADF1]"
+    onclick="window.location.href='/admindashboard/category'"
+  >
+    Category
+  </button>
+  <button
+    class="sidebar w-full text-base rounded-lg mt-2 h-12 text-[#12ADF1]"
     onclick="window.location.href='/admindashboard/orders'"
   >
     Orders
@@ -45,22 +51,28 @@
       sidebar[1].style.color = "white";
       break;
     }
-    case urlContainsWord("order"): {
+    case urlContainsWord("categor"): {
       sidebar[2].style.backgroundColor = "#38C102";
       sidebar[2].style.color = "white";
 
       break;
     }
-    case urlContainsWord("shipping"): {
+    case urlContainsWord("order"): {
       sidebar[3].style.backgroundColor = "#38C102";
       sidebar[3].style.color = "white";
 
       break;
     }
-
-    case urlContainsWord("user"): {
+    case urlContainsWord("shipping"): {
       sidebar[4].style.backgroundColor = "#38C102";
       sidebar[4].style.color = "white";
+
+      break;
+    }
+
+    case urlContainsWord("user"): {
+      sidebar[5].style.backgroundColor = "#38C102";
+      sidebar[5].style.color = "white";
 
       break;
     }
