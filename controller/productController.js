@@ -161,7 +161,10 @@ controller.productviewone = async (req, res) => {
         res.send(`No product found with id: ${req.params.id}`);
       }
       const reviews = await Review.find({ productID: req.params.id });
-      const orders = await Order.find({ productID: req.params.id });
+      const orders = await Order.find({
+        productID: req.params.id,
+        orderStatus: "delivered",
+      });
       orders.forEach((order) => {
         totalAmount =
           totalAmount + parseFloat(order.price) * parseFloat(order.quantity);
@@ -183,7 +186,10 @@ controller.productviewone = async (req, res) => {
         res.send(`No product found with id: ${req.params.id}`);
       }
       const reviews = await Review.find({ productID: req.params.id });
-      const orders = await Order.find({ productID: req.params.id });
+      const orders = await Order.find({
+        productID: req.params.id,
+        orderStatus: "delivered",
+      });
       orders.forEach((order) => {
         totalAmount =
           totalAmount + parseFloat(order.price) * parseFloat(order.quantity);
