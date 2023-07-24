@@ -171,13 +171,10 @@ controller.category = async (req, res) => {
       create = req.body;
     }
   } catch (err) {
-    return;
+    console.log(err);
   }
-  console.log(create);
   try {
-    const newCategory = await Category.create({
-      create,
-    });
+    const newCategory = await Category.create(create);
     res.json(newCategory);
   } catch (err) {
     console.log(err);
@@ -216,8 +213,8 @@ controller.categoryDelete = async (req, res) => {
 // Get all category
 controller.categoryView = async (req, res) => {
   try {
-    const categories = await Category.find().sort("-createdAt");
-    res.render("admindashboard/category", { categories });
+    const category = await Category.find().sort("-createdAt");
+    res.render("admindashboard/category", { category });
   } catch (err) {
     console.log(err);
   }

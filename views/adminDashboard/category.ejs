@@ -28,14 +28,23 @@
                 >Parent Category</label
               >
               <div class="mt-4 pl-1 flex">
-                <select name="parentCategory">
-                  <option>NONE</option>
-
-                  <option value=""></option>
-                  <option value=""></option>
-                  <option value=""></option>
-                  <option value=""></option>
-                </select>
+               
+              <select
+                id="categoryDropdown"
+                multiple
+                size="3"
+                class="overflow-y-scroll"
+              >
+              <% for (i = 0;i<category.length;i++){%>
+                <option value="<%=category[i].name%>"><%=category[i].name%></option>
+                <%}%>
+              </select>
+              <input
+                type="text"
+                id="selectedOptionsField"
+                readonly
+                name="parentName"
+              />
               </div>
             </div>
           </div>
@@ -73,5 +82,6 @@
       </div>
     </div>
   </div>
+  
   <div class="hidden"><%- include ("../partials/footer") %></div>
 </div>

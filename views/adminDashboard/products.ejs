@@ -166,19 +166,7 @@
         <button id="okButton">OK</button>
       </div>
     </div>
-    <script>
-      const dropdownCategory = document.getElementById("categoryDropdown");
-      const selectedOptionsField = document.getElementById(
-        "selectedOptionsField"
-      );
-
-      dropdownCategory.addEventListener("change", function () {
-        const selectedOptions = Array.from(
-          dropdownCategory.selectedOptions
-        ).map((option) => option.value);
-        selectedOptionsField.value = selectedOptions.join(", ");
-      });
-    </script>
+    
   <!-- <div id="editor"></div> -->
 
   </div>

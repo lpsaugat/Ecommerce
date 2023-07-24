@@ -13,8 +13,7 @@ if (updateUser) {
     const email = formData.get("email");
 
     const image = formData.get("image");
-    const description = formData.get("description");
-    const longDescription = formData.get("longDescription");
+
     const requestBody = new FormData();
     requestBody.append("name", name);
     requestBody.append("phone", phone);
