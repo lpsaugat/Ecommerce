@@ -45,7 +45,7 @@ if (addProduct) {
       body: requestBody,
     })
       .then((data) => {
-        window.location.href = `http://${ipAddress}:3000/admindashboard/products/`;
+        showAlert("Product Added", "The product has been added successfully.");
       })
       .catch((error) => {
         console.error(error);
