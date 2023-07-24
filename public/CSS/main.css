@@ -812,6 +812,10 @@ video {
   margin-top: 0.75rem;
 }
 
+.mt-4 {
+  margin-top: 1rem;
+}
+
 .mt-5 {
   margin-top: 1.25rem;
 }
@@ -870,10 +874,6 @@ video {
 
 .mt-\[67px\] {
   margin-top: 67px;
-}
-
-.mt-4 {
-  margin-top: 1rem;
 }
 
 .block {
@@ -1534,10 +1534,6 @@ video {
 
 .place-items-center {
   place-items: center;
-}
-
-.items-end {
-  align-items: flex-end;
 }
 
 .items-center {
@@ -2612,10 +2608,6 @@ video {
 
 .pt-\[9px\] {
   padding-top: 9px;
-}
-
-.pl-3 {
-  padding-left: 0.75rem;
 }
 
 .text-left {

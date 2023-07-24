@@ -24,18 +24,16 @@
                 >
                   <img src="<%= product.image[0]%>" class="h-full w-full" />
                 </button>
-                <button
+                <%for (var i=1;i<product.image.length;i++){%>
+                  <button
                   class="imageBorder border-[1.5px] rounded-[5px] py-[17px] px-[10] flex justify-center items-center h-[105px] w-[105px]"
-                  onclick="imageChange(1)"
+                  onclick="imageChange('<%=i%>')"
                 >
-                  <img src="<%= product.image[1]%>" class="h-full w-full" />
+                  <img src="<%= product.image[i]%>" class="h-full w-full" />
                 </button>
-                <button
-                  class="imageBorder border-[1.5px] rounded-[5px] py-[17px] px-[10] flex justify-center items-center h-[105px] w-[105px]"
-                  onclick="imageChange(2)"
-                >
-                  <img src="<%= product.image[2]%>" class="h-full w-full" />
-                </button>
+               <% }%>
+                
+                
               </div>
 
               <div
@@ -48,15 +46,14 @@
                   id="product-image"
                   style="display: flex"
                 />
-                <img
-                  src="<%= product.image[1]%>"
+                <%for (var i=1;i<product.image.length;i++){%>
+                  <img
+                  src="<%= product.image[i]%>"
                   class="absolute product-image h-full w-full p-2"
                   style="display: none"
-                /><img
-                  src="<%= product.image[2]%>"
-                  class="h-full w-full absolute product-image p-2"
-                  style="display: none"
                 />
+               <% }%>
+               
 
                 <div
                   class="top-[14px] right-[14px] md:top-[16px] lg:top-[20px] lg:right-[20px] absolute"

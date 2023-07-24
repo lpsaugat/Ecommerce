@@ -8,7 +8,7 @@ if (addProduct) {
     const name = formData.get("name");
     const price = formData.get("price");
     var discountedFrom = formData.get("discountedFrom");
-    if ((discountedFrom = "null")) {
+    if (discountedFrom === "") {
       discountedFrom = 0;
     }
     const primaryImage = formData.get("primaryImage");
@@ -63,7 +63,8 @@ if (updateProduct) {
     const name = formData.get("name");
     const price = formData.get("price");
     var discountedFrom = formData.get("discountedFrom");
-    if ((discountedFrom = "null")) {
+    console.log(discountedFrom);
+    if (discountedFrom === "") {
       discountedFrom = 0;
     }
     const quantity = formData.get("quantity");
