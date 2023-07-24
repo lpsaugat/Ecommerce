@@ -8,7 +8,6 @@ if (addcategory) {
     const parentName = formData.get("parentName");
     const slug = formData.get("slug");
     const description = formData.get("description");
-
     fetch(`http://${ipAddress}:3000/admindashboard/category`, {
       method: "POST",
       headers: {

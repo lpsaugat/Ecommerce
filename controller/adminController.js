@@ -173,6 +173,7 @@ controller.category = async (req, res) => {
   } catch (err) {
     return;
   }
+  console.log(create);
   try {
     const newCategory = await Category.create({
       create,

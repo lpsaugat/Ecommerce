@@ -34,6 +34,7 @@ var Product = new mongoose.Schema(
       required: true,
       default: 1,
     },
+
     image: {
       type: [String],
       required: true,

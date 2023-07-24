@@ -71,6 +71,8 @@ if (updateProduct) {
     const measure = formData.get("measure");
 
     const primaryImage = formData.get("primaryImage");
+    const existingImage = formData.get("existingImage");
+
     const otherImages = formData.getAll("otherImages");
     const description = formData.get("description");
     const longDescription = formData.get("longDescription");
@@ -93,15 +95,32 @@ if (updateProduct) {
       requestBody.append("category", category);
     });
     // Append each image to the FormData object
-
+    var existingImageFile;
     if (primaryImage.size !== 0) {
       requestBody.append("image", primaryImage);
+    } else if (primaryImage.size === 0) {
+      fetch(existingImage)
+        .then((response) => response.blob())
+        .then((blob) => {
+          console.log(blob);
+          existingImageFile = new File([blob], `${productID}image.png`, {
+            type: "image/png",
+          });
+          console.log(existingImageFile);
+          requestBody.append("image", existingImageFile);
+        })
+
+        .catch((error) => {
+          console.error("Error fetching the image:", error);
+        });
     }
+
     for (i = 0; i < otherImages.length; i++) {
       if (otherImages[i].size !== 0) {
         requestBody.append("image", otherImages[i]);
       }
     }
+    console.log(requestBody);
     const formDataArray = Array.from(requestBody.entries());
 
     var sendRequest = formDataArray.filter(([name, value]) => value !== "");
@@ -115,7 +134,7 @@ if (updateProduct) {
       headers: {},
       body: convertedFormData,
     })
-      .then((response) => (window.location.href = response.url))
+      // .then((response) => (window.location.href = response.url))
       .then((data) => {})
       .catch((error) => {
         console.error(error);
