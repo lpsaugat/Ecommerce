@@ -28,9 +28,13 @@ if (addCategory) {
       body: convertedFormData,
     })
       .then((data) => {
-        window.location.href = `http://${ipAddress}:3000/admindashboard/category/`;
+        showAlert(
+          "Category Added",
+          "The Category has been added successfully."
+        );
       })
       .catch((error) => {
+        showAlert("Error");
         console.error(error);
       });
   });
