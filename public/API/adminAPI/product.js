@@ -13,8 +13,15 @@ if (addProduct) {
     }
     const primaryImage = formData.get("primaryImage");
     const otherImages = formData.getAll("otherImages");
-    const description = formData.get("description");
-    const longDescription = formData.get("longDescription");
+    const description = tinymce
+      .get("descriptionTextArea")
+      .getContent({ format: "text" });
+    const longDescription = tinymce
+      .get("longDescriptionTextArea")
+      .getContent({ format: "text" });
+    // const description = formData.get("description");
+    // const longDescription = formData.get("longDescription");
+    console.log(longDescription);
     const categories = formData.get("category");
     const quantity = formData.get("quantity");
     const measure = formData.get("measure");
