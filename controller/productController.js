@@ -54,6 +54,7 @@ controller.productupdate = async (req, res) => {
   const folder = "products";
   let update = {};
   let images = [];
+
   try {
     if (req.files) {
       images = await imageUploader(req, res, req.files.image, folder);
@@ -216,6 +217,7 @@ controller.productviewone = async (req, res) => {
 controller.productEdit = async (req, res) => {
   cartdata = [];
   orderdata = [];
+  const category = await Category.find().sort("-createdAt");
 
   try {
     if (
@@ -228,7 +230,7 @@ controller.productEdit = async (req, res) => {
       if (!product) {
         res.send(`No product found with id: ${req.params.id}`);
       }
-      res.render("admindashboard/productEdit", { product });
+      res.render("admindashboard/productEdit", { product, category });
     } else if (req.user.user_type === "vendor") {
       const product = await Product.findOne({
         createdBy: req.user.id,
@@ -238,7 +240,7 @@ controller.productEdit = async (req, res) => {
         res.send(`No product found with id: ${req.params.id}`);
       }
 
-      res.render("admindashboard/productEdit", { product });
+      res.render("admindashboard/productEdit", { product, category });
     }
   } catch (err) {
     console.log(err);

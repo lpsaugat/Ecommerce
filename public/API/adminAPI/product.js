@@ -145,8 +145,14 @@ if (updateProduct) {
       headers: {},
       body: convertedFormData,
     })
-      // .then((response) => (window.location.href = response.url))
-      .then((data) => {})
+      .then((data) => {
+        {
+          showAlert(
+            "Product Updated",
+            "The product has been updated successfully."
+          );
+        }
+      })
       .catch((error) => {
         console.error(error);
       });

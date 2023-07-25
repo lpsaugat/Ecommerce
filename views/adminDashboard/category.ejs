@@ -5,10 +5,10 @@
     <div class="grid gap-x-3 grid-cols-4 w-full rounded-sm">
       <%- include ("./sidebar") %>
       <div
-        class="rounded-md w-full col-span-3 font-medium text-[17px] p-4 text-[#000123] bg-white border-2 mt-2"
+        class="rounded-md w-full col-span-3 font-medium text-[17px] p-4 text-[#000123] bg-white mt-2"
       >
         Add Category:
-        <form class="border-2 rounded-lg p-3 mt-2" id="addCategory">
+        <form class=" rounded-lg p-3 mt-2" id="addCategory">
           <div class="flex gap-x-2">
             <div class="mt-[21px] md:mt-[24px] lg:mt-[16px] w-1/2">
               <label for="Name" class="text-[12px] md:text-[14px] font-medium"
@@ -25,13 +25,13 @@
               <label for="Name" class="text-[12px] md:text-[14px] font-medium"
                 >Parent Category</label
               >
-              <div class="mt-4 pl-1 flex">
+              <div class="mt-4 pl-1 flex flex-col">
                
               <select
                 id="categoryDropdown"
                 multiple
                 size="3"
-                class="overflow-y-scroll"
+                class="overflow-y-scroll w-full"
               >
               <% for (i = 0;i<category.length;i++){%>
                 <option value="<%=category[i].name%>"><%=category[i].name%></option>
@@ -42,6 +42,7 @@
                 id="selectedOptionsField"
                 readonly
                 name="parentName"
+                class="w-full overflow-x-auto"
               />
               </div>
             </div>
