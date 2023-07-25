@@ -884,6 +884,10 @@ video {
   margin-top: 67px;
 }
 
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
 .block {
   display: block;
 }
@@ -1426,6 +1430,26 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.w-2\/3 {
+  width: 66.666667%;
+}
+
+.w-\[12\%\] {
+  width: 12%;
+}
+
+.w-\[75\%\] {
+  width: 75%;
+}
+
+.w-\[90\%\] {
+  width: 90%;
+}
+
+.w-\[97\%\] {
+  width: 97%;
 }
 
 .min-w-full {
@@ -2119,6 +2143,16 @@ video {
 .bg-\[\#f8f8f8\] {
   --tw-bg-opacity: 1;
   background-color: rgb(248 248 248 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#38C102\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(56 193 2 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#a9df94\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(169 223 148 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-10 {
@@ -3075,6 +3109,21 @@ video {
 .hover\:bg-\[\#c4c4c4\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(196 196 196 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-\[\#a9df94\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(169 223 148 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-\[\#91e271\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(145 226 113 / var(--tw-bg-opacity));
+}
+
+.hover\:text-white:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .focus\:rounded-b-none:focus {

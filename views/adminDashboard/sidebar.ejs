@@ -1,59 +1,119 @@
-<div class="h-full min-h-screen bg-[white]">
+<div class="h-full w-[97%] min-h-screen bg-[white]">
   <div class="m-4">
     <a href="/" class="">
       <img src="../../public/Images/logo.svg" />
     </a>
   </div>
-  <button
-    class="sidebar justify-start items-center flex w-full text-base pl-4 mt-2 h-12 text-[#12ADF1]"
-    onclick="window.location.href='/admindashboard/homepage'"
-  >
-    Dashboard
-  </button>
-  <button
-    class="sidebar justify-start items-center flex w-full text-base pl-4 mt-2 h-12 text-[#12ADF1]"
-    onclick="window.location.href='/admindashboard/allproducts'"
-  >
-    Products
-  </button>
+  <!-- Dashboard -->
   <div>
     <button
-      class="ml-3 w-full justify-start items-center flex text-base pl-4 mt-2 h-12 text-[#12ADF1]"
-      onclick="window.location.href='/admindashboard/allproducts'"
+      class="sidebar justify-start items-center flex w-full text-base pl-4 h-12 text-[#12ADF1] hover:bg-[#91e271] hover:text-white"
+      onclick="window.location.href='/admindashboard/homepage'"
     >
-      View all Products
-    </button>
-    <button
-      class="ml-3 w-full justify-start items-center flex text-base pl-4 mt-2 h-12 text-[#12ADF1]"
-      onclick="window.location.href='/admindashboard/products'"
-    >
-      Add Products
+      Dashboard
     </button>
   </div>
-  <button
-    class="sidebar justify-start items-center flex w-full text-base pl-4 mt-2 h-12 text-[#12ADF1]"
-    onclick="window.location.href='/admindashboard/category'"
-  >
-    Category
-  </button>
-  <button
-    class="sidebar justify-start items-center flex w-full text-base pl-4 mt-2 h-12 text-[#12ADF1]"
-    onclick="window.location.href='/admindashboard/orders'"
-  >
-    Orders
-  </button>
-  <button
-    class="sidebar justify-start items-center flex w-full text-base pl-4 mt-2 h-12 text-[#12ADF1]"
-    onclick="window.location.href='/admindashboard/shipping'"
-  >
-    Shipping
-  </button>
-  <button
-    class="sidebar justify-start items-center flex w-full text-base pl-4 mt-2 h-12 text-[#12ADF1]"
-    onclick="window.location.href='/admindashboard/users'"
-  >
-    Users
-  </button>
+  <!-- Products -->
+  <div>
+    <button
+      class="sidebar justify-start items-center flex w-full text-base pl-4 h-12 text-[#12ADF1] hover:bg-[#91e271] hover:text-white"
+      onclick="window.location.href='/admindashboard/allproducts'"
+    >
+      Products
+    </button>
+    <div class="bg-[#a9df94] text-white">
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
+        onclick="window.location.href='/admindashboard/allproducts'"
+      >
+        All Products
+      </button>
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
+        onclick="window.location.href='/admindashboard/products'"
+      >
+        Add Products
+      </button>
+    </div>
+  </div>
+  <!-- Category -->
+  <div>
+    <button
+      class="sidebar justify-start items-center flex w-full text-base pl-4 h-12 text-[#12ADF1] hover:bg-[#91e271] hover:text-white"
+      onclick="window.location.href='/admindashboard/category'"
+    >
+      Category
+    </button>
+    <div class="bg-[#a9df94] text-white">
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
+        onclick="window.location.href='/admindashboard/allcategories'"
+      >
+        All Categories
+      </button>
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
+        onclick="window.location.href='/admindashboard/category'"
+      >
+        Add Category
+      </button>
+    </div>
+  </div>
+  <!-- Orders -->
+  <div>
+    <button
+      class="sidebar justify-start items-center flex w-full text-base pl-4 h-12 text-[#12ADF1] hover:bg-[#91e271] hover:text-white"
+      onclick="window.location.href='/admindashboard/orders'"
+    >
+      Orders
+    </button>
+  </div>
+  <!-- Shipping -->
+  <div>
+    <button
+      class="sidebar justify-start items-center flex w-full text-base pl-4 h-12 text-[#12ADF1] hover:bg-[#91e271] hover:text-white"
+      onclick="window.location.href='/admindashboard/shipping'"
+    >
+      Shipping
+    </button>
+  </div>
+  <!-- Users -->
+  <div>
+    <button
+      class="sidebar justify-start items-center flex w-full text-base pl-4 h-12 text-[#12ADF1] hover:bg-[#91e271] hover:text-white"
+      onclick="window.location.href='/admindashboard/users'"
+    >
+      Users
+    </button>
+    <div class="bg-[#a9df94]">
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12 text-white"
+        onclick="window.location.href='/admindashboard/allusers'"
+      >
+        All Users
+      </button>
+      <div class="ml-2">
+        <button
+          class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12 text-white"
+          onclick="window.location.href='/admindashboard/allusers'"
+        >
+          Customers
+        </button>
+        <button
+          class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12 text-white"
+          onclick="window.location.href='/admindashboard/allusers'"
+        >
+          Vendors
+        </button>
+      </div>
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12 text-white"
+        onclick="window.location.href='/admindashboard/users'"
+      >
+        Add Users
+      </button>
+    </div>
+  </div>
 </div>
 
 <script>
