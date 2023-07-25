@@ -105,7 +105,7 @@
                 <div
                   class="pt-4 text-xs md:text-sm lg:max-w-[348px] text-justify overflow-hidden h-30"
                 >
-                  <p class="line-clamp-2"><%=product.description %></p>
+                  <p class="line-clamp-2"><%-product.description %></p>
 
                   <div class="lg:flex pt-[16px] items-center">
                     <div class="font-medium text-[16px]">Quantity</div>
@@ -182,7 +182,7 @@
                 </div>
               </div>
               <div class="border-[1px] border-t-0 rounded-b-[5px] py-[40px]">
-                <div style="display: block" class="details px-[40px]"></div>
+                <div style="display: block" class="details px-[40px]"><%-product.longDescription%></div>
                 <div style="display: none" class="details px-[40px]">
                   <% product.category.forEach((value) => { %> <%= value %> , <%
                   }); %>

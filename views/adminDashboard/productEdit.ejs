@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <div class="bg-[#FAFAFA] p-5">
   <div class="hidden"><%- include ("../partials/header") %></div>
   <a href="/" class="">
@@ -95,27 +97,27 @@
               <label
                 for="description"
                 class="text-[12px] md:text-[14px] font-medium"
-                >Description</label
-              >
-              <input
-                type="text"
+                >Description:</label
+              ><%-product.description%><br />
+              <textarea
                 name="description"
-                placeholder="<%=product.description%>"
-                class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
-              />
+                class="w-full mt-[14px] md:mt-[12px] border-[0.5px] rounded-[5px] p-2"
+                id="descriptionTextArea"
+                placeholder="Update Description Here"
+              ></textarea>
             </div>
             <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
               <label
                 for="longDescription"
                 class="text-[12px] md:text-[14px] font-medium"
                 >Long Description</label
-              >
-              <input
-                type="text"
+              ><%-product.longDescription%><br />
+              <textarea
                 name="longDescription"
-                placeholder="<%=product.longDescription%>"
-                class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
-              />
+                class="w-full mt-[14px] md:mt-[12px] border-[0.5px] rounded-[5px] p-2"
+                id="longDescriptionTextArea"
+                placeholder="Update Long Description Here"
+              ></textarea>
             </div>
             <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
               <label
@@ -172,14 +174,3 @@
   </div>
   <div class="hidden"><%- include ("../partials/footer") %></div>
 </div>
-<script>
-  const dropdownCategory = document.getElementById("categoryDropdown");
-  const selectedOptionsField = document.getElementById("selectedOptionsField");
-
-  dropdownCategory.addEventListener("change", function () {
-    const selectedOptions = Array.from(dropdownCategory.selectedOptions).map(
-      (option) => option.value
-    );
-    selectedOptionsField.value = selectedOptions.join(", ");
-  });
-</script>

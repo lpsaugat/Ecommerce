@@ -104,7 +104,7 @@
                 class="text-[12px] md:text-[14px] font-medium"
                 >Long Description</label
               >
-              <textarea name="longDescription" class="w-full mt-[14px] md:mt-[12px] border-[0.5px] rounded-[5px] p-2" id="descriptionTextArea"></textarea>
+              <textarea name="longDescription" class="w-full mt-[14px] md:mt-[12px] border-[0.5px] rounded-[5px] p-2" id="longDescriptionTextArea"></textarea>
 
             </div>
             <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
@@ -163,26 +163,12 @@
       </div>
     </div>
     
-  <!-- <div id="editor"></div> -->
-
+ 
   </div>
   <div class="hidden"><%- include ("../partials/footer") %></div>
   
   
 
-  <!-- Include TinyMCE script -->
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script>
 
-<!-- Initialize TinyMCE on the description textarea -->
-<script>
-  tinymce.init({
-    selector: "#descriptionTextArea , #longDescriptionTextArea",
-    height: 200, // Set the height of the editor
-    plugins: "advlist autolink lists link image charmap print preview anchor textcolor",
-    toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | forecolor backcolor",
-    mode: "exact", // Use "exact" for Standards Mode (default)
-
-  });
-</script>
   
 </div>

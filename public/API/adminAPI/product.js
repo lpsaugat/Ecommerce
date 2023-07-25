@@ -15,10 +15,10 @@ if (addProduct) {
     const otherImages = formData.getAll("otherImages");
     const description = tinymce
       .get("descriptionTextArea")
-      .getContent({ format: "text" });
+      .getContent({ format: "html" });
     const longDescription = tinymce
       .get("longDescriptionTextArea")
-      .getContent({ format: "text" });
+      .getContent({ format: "html" });
     // const description = formData.get("description");
     // const longDescription = formData.get("longDescription");
     console.log(longDescription);
@@ -81,8 +81,12 @@ if (updateProduct) {
     const existingImage = formData.get("existingImage");
 
     const otherImages = formData.getAll("otherImages");
-    const description = formData.get("description");
-    const longDescription = formData.get("longDescription");
+    const description = tinymce
+      .get("descriptionTextArea")
+      .getContent({ format: "html" });
+    const longDescription = tinymce
+      .get("longDescriptionTextArea")
+      .getContent({ format: "html" });
     const categories = formData.get("category");
     const requestBody = new FormData();
     requestBody.append("name", name);
