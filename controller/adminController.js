@@ -210,7 +210,7 @@ controller.categoryDelete = async (req, res) => {
   }
 };
 
-// Get all category
+// Category page
 controller.categoryView = async (req, res) => {
   try {
     const category = await Category.find().sort("-createdAt");
@@ -220,6 +220,15 @@ controller.categoryView = async (req, res) => {
   }
 };
 
+// Get all category
+controller.allCategoryView = async (req, res) => {
+  try {
+    const category = await Category.find().sort("-createdAt");
+    res.render("admindashboard/allCategories", { category });
+  } catch (err) {
+    console.log(err);
+  }
+};
 //Writing in Ad
 controller.AdWriting = async (req, res) => {
   const folder = "Ad";

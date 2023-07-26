@@ -15,10 +15,10 @@
         />
       </div>
       <div
-        class="bg-green-500 pl-[10px] md:pl-[10px] flex flex-col lg:font-medium text-ellipsis truncate lg:overflow-visible lg:flex-row w-full lg:grid grid-cols-12 lg:items-center"
+        class="pl-[10px] md:pl-[10px] flex flex-col lg:font-medium text-ellipsis truncate lg:overflow-visible lg:flex-row w-full lg:grid grid-cols-12 lg:items-center"
       >
         <div
-          class="bg-red-300 text-[12px] md:text-sm lg:text-[16px] col-span-4 lg:pl-[40px]"
+          class="text-[12px] md:text-sm lg:text-[16px] col-span-4 lg:pl-[40px]"
         >
           <%= products[i].name %>
 
@@ -30,7 +30,7 @@
         </div>
 
         <div
-          class="text-[12px] bg-pink-500 col-span-4 w-auto md:text-[16px] lg:pt-0 font-medium pt-[14px] md:pt-[17px] justify-between items-center grid-cols-2 flex"
+          class="text-[12px] col-span-4 w-auto md:text-[16px] lg:pt-0 font-medium pt-[14px] md:pt-[17px] justify-between items-center grid-cols-2 flex"
         >
           <div class="flex gap-x-10">
             <div>Rs. <%= products[i].price%></div>
@@ -66,6 +66,7 @@
             <div class="flex justify-center">
               <button
                 onclick="location.href='/admindashboard/productEdit/<%=products[i]._id%>'"
+                class="pl-1"
               >
                 <img src="../../public/Images/Dashboard/edit.svg" class="w-6" />
               </button>

@@ -1,0 +1,92 @@
+<div class="bg-[#f8f8f8] pr-5">
+    <div class="hidden"><%- include ("../partials/header") %></div>
+    
+    <div class="flex max-w-1200 mx-auto">
+      <div class="grid gap-x-3 grid-cols-4 w-full rounded-sm">
+        <%- include ("./sidebar") %>
+  
+        <div class="grid col-span-3 grid-cols-3 gap-x-1">
+          <div
+            class="rounded-t-md w-full col-span-3 text-[26px] py-4 bg-white text-[black] mt-2"
+          >
+          <div
+          class="w-full col-span-2 border-b-[1px] text-[17px] text-[#000123] bg-white"
+        >
+          <div
+            class="justify-between items-center flex py-[14px] md:py-[12px] lg:pt-[15px] px-[10px] md:px-[11px] lg:px-[17px] lg:shadow-none shadow-[0px_0px_2px_rgba(0,0,0,0.25)]"
+          >
+            <div class="flex w-full">
+              <div
+                class=" md:w-[86px] w-[69px] justify-center rounded-[3px] lg:rounded-[5px] flex items-center ml-[10px] lg:ml-0 md:ml-[15px]"
+              >
+                Image
+              </div>
+              <div
+                class="pl-[10px] md:pl-[10px] flex flex-col lg:font-medium text-ellipsis truncate lg:overflow-visible lg:flex-row w-full lg:grid grid-cols-12 lg:items-center"
+              >
+                <div
+                  class="text-[12px] md:text-sm lg:text-[16px] col-span-4 lg:pl-[40px] cursor-pointer"
+              onclick="toggleSort('name')" >
+                  Name
+        
+                  
+                </div>
+        
+                <div
+                  class="text-[12px] col-span-4 w-auto md:text-[16px] lg:pt-0 font-medium pt-[14px] md:pt-[17px] justify-between items-center grid-cols-2 flex"
+                >
+                  <div class="flex gap-x-7">
+                    <div  class="cursor-pointer"             onclick="toggleSort('description')" >
+                      Description</div>
+                    
+  
+                  </div>
+                  <div
+                    class="justify-end lg:flex font-roboto flex items-center left-0 w-auto"
+                  >
+                    <div class="flex items-center cursor-pointer"
+                      onclick="toggleSort('quantity')" >
+  
+                      Total Products
+                    </div>
+                    &nbsp;&nbsp;
+                    
+                  </div>
+                </div>
+                <div class="lg:flex font-roboto flex items-center left-0 w-auto">
+                  <div class="flex items-center">
+                    <div class="flex justify-center">
+                    
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="text-[12px] justify-between  gap-x-10 col-span-3 w-auto md:text-[16px] lg:pt-0 font-medium pt-[14px] md:pt-[17px] items-center grid-cols-2 flex"
+                >
+                    <div class="text-[14px]  col-span-2 pl-5 cursor-pointer"             onclick="toggleSort('parentCategory')" >
+                      Parent Category</div>
+  
+                    
+                    <div class="text-[14px] cursor-pointer"             onclick="toggleSort('createdAt')" >
+                      
+                      Created At 
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          </div>
+          <div class="grid col-span-3 grid-cols-3 gap-x-1">
+              <div class="col-span-3">
+                  <% for(i=0;i<category.length;i++) {%>
+                    <%- include("./categoryItems")%> <%}%>
+                </div>
+          </div>
+        </div>
+  
+        <div class="hidden"><%- include ("../partials/footer") %></div>
+      </div>
+    </div>
+  </div>
+  

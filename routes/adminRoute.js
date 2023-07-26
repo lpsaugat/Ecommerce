@@ -109,6 +109,13 @@ router.get(
   adminController.categoryView
 );
 
+//Get all categories
+router.get(
+  "/admindashboard/allcategories",
+  verifyTokenAndAdmin,
+  adminController.allCategoryView
+);
+
 //Site settings
 router.post(
   "/admindashboard/sitesettings",
