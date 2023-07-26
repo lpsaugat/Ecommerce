@@ -257,9 +257,15 @@ controller.getAllProducts = async (req, res) => {
   const skip = (page - 1) * limit;
   let count;
   let products;
+  let sort;
+  if (!req.query.sort) {
+    sort = "-createdAt";
+  } else {
+    sort = req.query.sort;
+  }
   if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
     products = await Product.find(query)
-      .sort("-createdAt")
+      .sort(sort)
       .populate("createdBy")
       .skip(skip)
       .limit(limit);
@@ -269,7 +275,7 @@ controller.getAllProducts = async (req, res) => {
       createdBy: req.user.id,
       query,
     })
-      .sort("-createdAt")
+      .sort(sort)
       .skip(skip)
       .limit(limit);
     count = await Product.countDocuments({
