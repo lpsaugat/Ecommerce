@@ -15,10 +15,10 @@
         />
       </div>
       <div
-        class="pl-[10px] md:pl-[10px] flex flex-col lg:font-medium text-ellipsis truncate lg:overflow-visible lg:flex-row w-full lg:grid grid-cols-12 lg:items-center"
+        class="bg-green-500 pl-[10px] md:pl-[10px] flex flex-col lg:font-medium text-ellipsis truncate lg:overflow-visible lg:flex-row w-full lg:grid grid-cols-12 lg:items-center"
       >
         <div
-          class="text-[12px] md:text-sm lg:text-[16px] col-span-5 lg:pl-[40px]"
+          class="bg-red-300 text-[12px] md:text-sm lg:text-[16px] col-span-4 lg:pl-[40px]"
         >
           <%= products[i].name %>
 
@@ -30,13 +30,12 @@
         </div>
 
         <div
-          class="text-[12px] col-span-3 w-auto md:text-[16px] lg:pt-0 font-medium pt-[14px] md:pt-[17px] justify-between items-center grid-cols-2 flex"
+          class="text-[12px] bg-pink-500 col-span-4 w-auto md:text-[16px] lg:pt-0 font-medium pt-[14px] md:pt-[17px] justify-between items-center grid-cols-2 flex"
         >
-          <div class="flex">
-            Rs.
-            <div id="cartItem"><%= products[i].price%></div>
-            /Rs.
-            <div id="cartItem"><%= products[i].price%></div>
+          <div class="flex gap-x-10">
+            <div>Rs. <%= products[i].price%></div>
+
+            <div>Rs. <%= products[i].price%></div>
           </div>
           <div
             class="justify-end lg:flex font-roboto flex items-center left-0 w-auto"
@@ -52,6 +51,13 @@
                 readonly
               />
               &nbsp; &nbsp;
+              <input
+                type="text"
+                name="quantity"
+                value="<%= products[i].quantity %>"
+                class="text-center items-center text-[14px] quantity w-[22.4px] h-[22.4px] lg:w-[42px] lg:h-[42px] lg:border-[1px] border-[0.6px] rounded-[3px]"
+                readonly
+              />
             </div>
           </div>
         </div>
