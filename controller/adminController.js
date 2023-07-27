@@ -210,6 +210,23 @@ controller.categoryDelete = async (req, res) => {
   }
 };
 
+//Update category page
+controller.categoryEdit = async (req, res) => {
+  cartdata = [];
+  orderdata = [];
+  const category = await Category.find().sort("-createdAt");
+
+  try {
+    const categoryEdit = await Category.findOne({ _id: req.params.id });
+    if (!categoryEdit) {
+      res.send(`No product found with id: ${req.params.id}`);
+    }
+    res.render("admindashboard/categoryEdit", { categoryEdit, category });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 // Category page
 controller.categoryView = async (req, res) => {
   try {

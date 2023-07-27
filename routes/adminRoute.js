@@ -95,6 +95,13 @@ router.post(
   adminController.category
 );
 
+//Get category edit page
+router.get(
+  "/admindashboard/categoryEdit/:id",
+  verifyTokenAndAdmin,
+  adminController.categoryEdit
+);
+
 //Delete a category
 router.delete(
   "/admindashboard/category/:id",
