@@ -222,8 +222,14 @@ controller.categoryView = async (req, res) => {
 
 // Get all category
 controller.allCategoryView = async (req, res) => {
+  let sort;
   try {
-    const category = await Category.find().sort("-createdAt");
+    if (!req.query.sort) {
+      sort = "-createdAt";
+    } else {
+      sort = req.query.sort;
+    }
+    const category = await Category.find().sort("-createdAt").sort(sort);
     res.render("admindashboard/allCategories", { category });
   } catch (err) {
     console.log(err);
