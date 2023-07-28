@@ -303,7 +303,7 @@ controller.getAllProducts = async (req, res) => {
 //Update rating on all products
 controller.productRating = async (req, res) => {
   const allProducts = await Product.find();
-  for (const produsct of allProducts) {
+  for (const product of allProducts) {
     var reviews = await Review.find({ productID: product._id });
     const ratedReviews = reviews.filter((review) => review.rating !== null);
 
@@ -317,6 +317,36 @@ controller.productRating = async (req, res) => {
       { new: true, runValidators: true }
     );
     console.log(updateProduct);
+  }
+};
+
+//Update Sold quantity and amount on all products
+controller.soldQuantity = async (req, res, next) => {
+  try {
+    let totalAmount = 0;
+    let totalOrders = 0;
+    products = await Product.find();
+    for (const product of products) {
+      const orders = await Order.find({
+        productID: product.id,
+        orderStatus: "delivered",
+      });
+      orders.forEach((order) => {
+        totalAmount =
+          totalAmount + parseFloat(order.price) * parseFloat(order.quantity);
+        totalOrders = totalOrders + parseFloat(order.quantity);
+      });
+      const productUpdate = await Product.findByIdAndUpdate(
+        { _id: product.id },
+        { soldQuantity: totalOrders, soldAmount: totalAmount }
+      );
+      totalAmount = 0;
+      totalOrders = 0;
+    }
+    console.log("All quantity Updated");
+    next();
+  } catch (err) {
+    console.log(err);
   }
 };
 

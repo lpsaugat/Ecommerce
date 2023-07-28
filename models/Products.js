@@ -60,6 +60,12 @@ var Product = new mongoose.Schema(
     averageRating: {
       type: mongoose.Types.Decimal128,
     },
+    soldQuantity: {
+      type: mongoose.Types.Decimal128,
+    },
+    soldAmount: {
+      type: mongoose.Types.Decimal128,
+    },
   },
   { timestamps: true }
 );

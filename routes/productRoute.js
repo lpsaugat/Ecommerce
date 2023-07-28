@@ -59,4 +59,10 @@ router.get(
   productController.productviewone
 );
 
+router.get(
+  "/admindashboard/updateProducts",
+  verifyTokenAndAdmin,
+  productController.soldQuantity
+);
+
 module.exports = router;

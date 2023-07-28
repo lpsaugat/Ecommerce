@@ -35,7 +35,7 @@
           <div class="flex gap-x-10">
             <div>Rs. <%= products[i].price%></div>
 
-            <div>Rs. <%= products[i].price%></div>
+            <div>Rs. <%= products[i].discountedFrom%></div>
           </div>
           <div
             class="justify-end lg:flex font-roboto flex items-center left-0 w-auto"
@@ -53,8 +53,8 @@
               &nbsp; &nbsp;
               <input
                 type="text"
-                name="quantity"
-                value="<%= products[i].quantity %>"
+                name="soldQuantity"
+                value="<%= products[i].soldQuantity %>"
                 class="text-center items-center text-[14px] quantity w-[22.4px] h-[22.4px] lg:w-[42px] lg:h-[42px] lg:border-[1px] border-[0.6px] rounded-[3px]"
                 readonly
               />
