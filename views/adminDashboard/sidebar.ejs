@@ -17,11 +17,16 @@
   <div>
     <button
       class="sidebar justify-start items-center flex w-full text-base pl-4 h-12 text-[#12ADF1] hover:bg-[#91e271] hover:text-white"
-      onclick="window.location.href='/admindashboard/allproducts'"
+      onclick="toggleSubSidebar('subSidebarProducts','buttonProducts')"
+      id="buttonProducts"
     >
       Products
     </button>
-    <div class="bg-[#a9df94] text-white">
+    <div
+      class="bg-[#a9df94] text-white"
+      id="subSidebarProducts"
+      style="display: none"
+    >
       <button
         class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
         onclick="window.location.href='/admindashboard/allproducts'"
@@ -40,11 +45,16 @@
   <div>
     <button
       class="sidebar justify-start items-center flex w-full text-base pl-4 h-12 text-[#12ADF1] hover:bg-[#91e271] hover:text-white"
-      onclick="window.location.href='/admindashboard/category'"
+      onclick="toggleSubSidebar('subSidebarCategory','buttonCategory')"
+      id="buttonCategory"
     >
       Category
     </button>
-    <div class="bg-[#a9df94] text-white">
+    <div
+      class="bg-[#a9df94] text-white"
+      id="subSidebarCategory"
+      style="display: none"
+    >
       <button
         class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
         onclick="window.location.href='/admindashboard/allcategories'"
@@ -63,7 +73,8 @@
   <div>
     <button
       class="sidebar justify-start items-center flex w-full text-base pl-4 h-12 text-[#12ADF1] hover:bg-[#91e271] hover:text-white"
-      onclick="window.location.href='/admindashboard/orders'"
+      onclick="toggleSubSidebar('subSidebarOrders','buttonOrders')"
+      id="buttonOrders"
     >
       Orders
     </button>
@@ -72,11 +83,16 @@
   <div>
     <button
       class="sidebar justify-start items-center flex w-full text-base pl-4 h-12 text-[#12ADF1] hover:bg-[#91e271] hover:text-white"
-      onclick="window.location.href='/admindashboard/shipping'"
+      onclick="toggleSubSidebar('subSidebarShipping','buttonShipping')"
+      id="buttonShipping"
     >
       Shipping
     </button>
-    <div class="bg-[#a9df94] text-white">
+    <div
+      class="bg-[#a9df94] text-white"
+      id="subSidebarShipping"
+      style="display: none"
+    >
       <button
         class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
         onclick="window.location.href='/admindashboard/shipping'"
@@ -95,11 +111,16 @@
   <div>
     <button
       class="sidebar justify-start items-center flex w-full text-base pl-4 h-12 text-[#12ADF1] hover:bg-[#91e271] hover:text-white"
-      onclick="window.location.href='/admindashboard/users'"
+      onclick="toggleSubSidebar('subSidebarUsers','buttonUsers')"
+      id="buttonUsers"
     >
       Users
     </button>
-    <div class="bg-[#a9df94]">
+    <div
+      class="bg-[#a9df94] text-white"
+      id="subSidebarUsers"
+      style="display: none"
+    >
       <button
         class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12 text-white"
         onclick="window.location.href='/admindashboard/allusers'"
@@ -168,6 +189,58 @@
       sidebar[5].style.color = "white";
 
       break;
+    }
+  }
+
+  function toggleSubSidebar(element, button) {
+    const subSidebar = document.getElementById(element);
+    const buttonColor = document.getElementById(button);
+    if (subSidebar.style.display === "none") {
+      subSidebar.style.display = "block";
+      buttonColor.style.color = "white";
+      buttonColor.style.backgroundColor = "#91e271";
+    } else {
+      subSidebar.style.display = "none";
+      buttonColor.style.color = "#91e271";
+      buttonColor.style.backgroundColor = "white";
+    }
+    switch (true) {
+      case urlContainsWord("homepage"): {
+        sidebar[0].style.backgroundColor = "#38C102";
+        sidebar[0].style.color = "white";
+
+        break;
+      }
+      case urlContainsWord("product"): {
+        sidebar[1].style.backgroundColor = "#38C102";
+        sidebar[1].style.color = "white";
+        break;
+      }
+      case urlContainsWord("categor"): {
+        sidebar[2].style.backgroundColor = "#38C102";
+        sidebar[2].style.color = "white";
+
+        break;
+      }
+      case urlContainsWord("order"): {
+        sidebar[3].style.backgroundColor = "#38C102";
+        sidebar[3].style.color = "white";
+
+        break;
+      }
+      case urlContainsWord("shipping"): {
+        sidebar[4].style.backgroundColor = "#38C102";
+        sidebar[4].style.color = "white";
+
+        break;
+      }
+
+      case urlContainsWord("user"): {
+        sidebar[5].style.backgroundColor = "#38C102";
+        sidebar[5].style.color = "white";
+
+        break;
+      }
     }
   }
 
