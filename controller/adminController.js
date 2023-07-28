@@ -200,9 +200,8 @@ controller.categoryUpdate = async (req, res) => {
   try {
     const newCategory = await Category.findOneAndUpdate(
       { _id: req.params.id },
-      { update },
-      { new: true },
-      { validators: true }
+      update,
+      { new: true, runValidators: true }
     );
     res.json(newCategory);
   } catch (err) {
