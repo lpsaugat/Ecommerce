@@ -182,6 +182,35 @@ controller.category = async (req, res) => {
   }
 };
 
+//Update Category
+controller.categoryUpdate = async (req, res) => {
+  const folder = "category";
+  let create = {};
+  let images = [];
+  try {
+    if (req.files) {
+      images = await imageUploader(req, res, req.files.image, folder);
+      update = { ...req.body, image: images };
+    } else {
+      update = req.body;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+  try {
+    const newCategory = await Category.findOneAndUpdate(
+      { _id: req.params.id },
+      { update },
+      { new: true },
+      { validators: true }
+    );
+    res.json(newCategory);
+  } catch (err) {
+    console.log(err);
+    res.json(err);
+  }
+};
+
 //Delete a category
 controller.categoryDelete = async (req, res) => {
   const roles = ["super-admin", "admin"];

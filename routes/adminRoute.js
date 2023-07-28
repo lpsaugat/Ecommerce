@@ -109,6 +109,13 @@ router.delete(
   adminController.categoryDelete
 );
 
+//Update a category
+router.put(
+  "/admindashboard/category/:id",
+  verifyTokenAndAdmin,
+  adminController.categoryUpdate
+);
+
 //Get categories
 router.get(
   "/admindashboard/category",
