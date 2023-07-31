@@ -1,5 +1,5 @@
 const addCategory = document.querySelector("#addCategory");
-
+const updateCategory = document.querySelector("#updateCategory");
 if (addCategory) {
   addCategory.addEventListener("submit", (event) => {
     event.preventDefault();
