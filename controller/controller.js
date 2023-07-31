@@ -113,7 +113,7 @@ controller.home = async (req, res) => {
 
 controller.aboutus = async (req, res) => {
   const { sitedata, cartdata, orderdata, aboutUsdata, ...otherdata } =
-    await getData();
+    await getData(req, res);
   res.render("AboutUs", { cartdata, orderdata, sitedata, aboutUsdata });
 };
 
@@ -144,7 +144,7 @@ controller.subscription = async (req, res) => {
 
 //Products page
 controller.products = async (req, res) => {
-  const data = await getData();
+  const data = await getData(req, res);
   const sitedata = data.sitedata;
   const filterdata = data.filterdata;
   const orderdata = data.orderdata;
@@ -156,7 +156,7 @@ controller.products = async (req, res) => {
   try {
     const count = await Product.countDocuments();
     const totalPages = Math.ceil(count / limit);
-    const data = await getData();
+    const data = await getData(req, res);
     const productdata = data?.productdata;
 
     res.render("products", {
@@ -178,7 +178,7 @@ controller.add_product = (req, res) => {
 
 //User dashboard
 controller.dashboard = async (req, res) => {
-  const data = await getData();
+  const data = await getData(req, res);
   const productdata = data.productdata;
   const sitedata = data.sitedata;
   const orderdata = data.orderdata;
@@ -196,7 +196,7 @@ controller.dashboard = async (req, res) => {
 
 //Page for change password on mobile
 controller.mobilepassword = async (req, res) => {
-  const data = await getData();
+  const data = await getData(req, res);
   const userdata = data.userdata;
   const productdata = data.productdata;
   const orderdata = data.orderdata;
@@ -214,7 +214,7 @@ controller.mobilepassword = async (req, res) => {
 
 //Subscription Packages page
 controller.familypackages = async (req, res) => {
-  const data = await getData();
+  const data = await getData(req, res);
   const packagedata = data.packagedata;
   const sitedata = data.sitedata;
   const filterdata = data.filterdata;
@@ -267,7 +267,7 @@ controller.familypackages = async (req, res) => {
 
 //Subscription Packages filter
 controller.filterPackage = async (req, res) => {
-  const data = await getData();
+  const data = await getData(req, res);
   const sitedata = data.sitedata;
   const cartdata = data.cartdata;
   const orderdata = data.orderdata;
@@ -351,7 +351,7 @@ controller.package = (req, res) => {
 
 //Single Package page
 controller.singlepackage = async (req, res) => {
-  const data = await getData();
+  const data = await getData(req, res);
   const productdata = data.productdata;
   const cartdata = data.cartdata;
   const orderdata = data.orderdata;
@@ -389,7 +389,7 @@ controller.singlepackage = async (req, res) => {
 };
 
 controller.singleproduct = async (req, res) => {
-  const data = await getData();
+  const data = await getData(req, res);
   const productdata = data.productdata;
   const sitedata = data.sitedata;
   const cartdata = data.cartdata;
@@ -400,7 +400,7 @@ controller.singleproduct = async (req, res) => {
 
 //Single Product page
 controller.singleproductview = async (req, res) => {
-  const data = await getData();
+  const data = await getData(req, res);
   const productdata = data.productdata;
   const sitedata = data.sitedata;
   const singleproduct = await Product.findOne({ _id: req.params.id });
@@ -456,7 +456,7 @@ controller.billing = async (req, res) => {
 
 //Payment page
 controller.payments = async (req, res) => {
-  const data = await getData();
+  const data = await getData(req, res);
   const sitedata = data.sitedata;
   const orderdata = data.orderdata;
   const cartdata = data.cartdata;
@@ -471,7 +471,7 @@ controller.success = (req, res) => {
 
 //Confirm Order page
 controller.orderconfirmation = async (req, res) => {
-  const data = await getData();
+  const data = await getData(req, res);
   const sitedata = data.sitedata;
   var orderdata = {};
   orderdata = await Order.find({
@@ -499,7 +499,7 @@ controller.test = (req, res) => {
 
 //Products page and show all products
 controller.getAllProducts = async (req, res) => {
-  const data = await getData();
+  const data = await getData(req, res);
   const sitedata = data.sitedata;
   const filterdata = data.filterdata;
   const cartdata = data.cartdata;
@@ -543,7 +543,7 @@ controller.getAllProducts = async (req, res) => {
 
 //Products page with filters after query
 controller.filterProduct = async (req, res) => {
-  const data = await getData();
+  const data = await getData(req, res);
   const sitedata = data.sitedata;
   const cartdata = data.cartdata;
   const orderdata = data.orderdata;
@@ -654,7 +654,7 @@ controller.filterProduct = async (req, res) => {
 
 //View Products after search
 controller.search = async (req, res) => {
-  const data = await getData();
+  const data = await getData(req, res);
   const sitedata = data.sitedata;
   let query = {};
   const page = Number(req.query.page) || 1;
