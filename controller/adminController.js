@@ -40,6 +40,15 @@ async function total() {
   }
 }
 
+//Admin LogIn
+controller.adminSignIn = async (req, res) => {
+  try {
+    res.render("admindashboard/signIn");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 //Writing in Carousel
 controller.carouselWriting = async (req, res) => {
   const folder = "carousel";

@@ -8,6 +8,9 @@ const {
   verifyTokenAndAdmin,
 } = require("./verifyToken");
 
+//Admin Sign In/ Log In
+router.get("/admindashboard/signIn", adminController.adminSignIn);
+
 //Homepage Carousel changes
 router.post(
   "/admindashboard/carousel",
