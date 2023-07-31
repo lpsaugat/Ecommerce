@@ -18,6 +18,7 @@ router.post(
 
   adminController.carouselWriting
 );
+
 router.put(
   "/admindashboard/carousel",
   verifyTokenAndAdmin,

@@ -1,4 +1,50 @@
 const updateUser = document.querySelector("#updateUser");
+const adminSignIn = document.querySelector("#adminSignIn");
+
+if (adminSignIn) {
+  adminSignIn.addEventListener("submit", (event) => {
+    event.preventDefault();
+    console.log(adminSignIn);
+    const formData = new FormData(adminSignIn);
+    const email = formData.get("email");
+
+    const password = formData.get("password");
+
+    fetch(`http://${ipAddress}:3000/Sign_In`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return fetch(`http://${ipAddress}:3000/admindashboard/homepage`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((response) => (window.location.href = response.url))
+            .then((data) => {})
+            .catch((error) => {
+              console.log();
+              console.log(error);
+            });
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        // Do something with the response data
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
+}
 
 if (updateUser) {
   updateUser.addEventListener("submit", (event) => {

@@ -1,0 +1,50 @@
+<div class="hidden"><%- include ("../partials/header") %></div>
+<div class="m-4">
+  <a href="/" class="">
+    <img src="../../public/Images/logo.svg" />
+  </a>
+</div>
+<div class="max-w-1200 mx-auto lg:pt-[80px] px-5">
+  <div class="font-medium text-center lg:text-[36px] text-[18px]">
+    Admin Sign In
+  </div>
+  <form
+    class="lg:max-w-[600px] md:max-w-[490px] mx-auto lg:mt-[30px] md:mt-[28px] mt-[24px]"
+    id="adminSignIn"
+  >
+    <div>
+      <label for="Email" class="text-[12px] md:text-[14px] font-medium"
+        >Email *</label
+      >
+      <input
+        type="email"
+        name="email"
+        class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
+        required
+      />
+    </div>
+    <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
+      <label for="password" class="text-[12px] md:text-[14px] font-medium"
+        >Password *</label
+      >
+      <input
+        type="password"
+        name="password"
+        class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
+        required
+      />
+    </div>
+    <!-- <div class="mt-[20px] lg:mt-[16px]">
+      <a class="font-normal text-[12px] lg:text-[14px] underline text-[#2B2E33]"
+        >Forgot your password?</a
+      >
+    </div> -->
+    <div class="mt-[20px] lg:mt-[24px]">
+      <input
+        type="submit"
+        class="h-[32px] md:h-[36px] lg:h-[42px] bg-gradient-to-r from-[#3baf3d] to-[#5DC234] w-full text-xs md:text-sm text-white my-auto font-medium rounded-[8px]"
+      />
+    </div>
+  </form>
+</div>
+<div class="hidden"><%- include ("../partials/footer") %></div>
