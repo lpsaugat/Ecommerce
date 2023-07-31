@@ -12,6 +12,8 @@ const Sort = require("../models/Sort");
 const AboutUs = require("../models/AboutUs");
 
 const Order = require("../models/Order");
+const Shipping = require("../models/Shipping");
+
 const Subscription = require("../models/Subscription");
 const Filter = require("../models/Filter");
 
@@ -26,14 +28,18 @@ orderdata = [];
 async function total() {
   try {
     let totalQuantity = 0;
+    let totalAmount = 0;
     var ordersCount = await Order.countDocuments({ orderStatus: "delivered" });
     var totalOrders = await Order.find({ orderStatus: "delivered" });
-
+    var totalShipping = await Shipping.find({ deliveryStatus: "delivered" });
     totalOrders.forEach((element) => {
       totalQuantity = totalQuantity + parseFloat(element.quantity);
     });
-    console.log(ordersCount, totalQuantity);
-    return { totalQuantity, ordersCount };
+    totalShipping.forEach((element) => {
+      totalAmount = totalAmount + parseFloat(element.netTotal);
+    });
+    console.log(ordersCount, totalQuantity, totalAmount);
+    return { totalQuantity, ordersCount, totalAmount };
   } catch (err) {
     console.log(err);
     process.exit();
@@ -863,11 +869,11 @@ controller.adminHomepage = async (req, res) => {
   orderdata = [];
   let productAmount;
   let users;
-  const { ordersCount, totalQuantity } = await total();
+  const { ordersCount, totalQuantity, totalAmount } = await total();
   if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
     productAmount = await Product.countDocuments();
-    users = await User.countDocuments({ usertype: "customer", status: true });
-    vendors = await User.countDocuments({ usertype: "vendor", status: true });
+    users = await User.countDocuments({ user_type: "customer" });
+    vendors = await User.countDocuments({ user_type: "vendor" });
   } else if (req.user.user_type === "vendor") {
     productAmount = null;
   }
@@ -881,6 +887,7 @@ controller.adminHomepage = async (req, res) => {
       vendors,
       ordersCount,
       totalQuantity,
+      totalAmount,
     });
   } catch (err) {
     res.status(500).json(err);
