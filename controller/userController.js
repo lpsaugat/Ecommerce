@@ -256,7 +256,7 @@ controller.logout = async (req, res, next) => {
 //Add user from Admin page
 controller.addUserPage = async (req, res) => {
   try {
-    res.render("admindashboard/addUser");
+    res.render("admindashboard/userAdd");
   } catch (err) {
     console.log(err);
   }
