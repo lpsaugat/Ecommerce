@@ -30,7 +30,7 @@ async function total() {
     var totalOrders = await Order.find({ orderStatus: "delivered" });
 
     totalOrders.forEach((element) => {
-      totalQuantity = totalQuantity + element.quantity;
+      totalQuantity = totalQuantity + parseFloat(element.quantity);
     });
     console.log(ordersCount, totalQuantity);
     return { totalQuantity, ordersCount };
