@@ -253,7 +253,14 @@ controller.logout = async (req, res, next) => {
   res.redirect("/");
 };
 
-//User changes from Admin
+//Add user from Admin page
+controller.addUserPage = async (req, res) => {
+  try {
+    res.render("admindashboard/addUser");
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 // User Page
 controller.userPage = async (req, res) => {
@@ -351,6 +358,7 @@ controller.getCustomer = async (req, res) => {
     res.status(500).json(err);
   }
 };
+
 //Get vendor page
 controller.getVendor = async (req, res) => {
   cartdata = [];

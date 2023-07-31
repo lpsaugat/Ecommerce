@@ -48,6 +48,13 @@ router.get(
   userController.userPage
 );
 
+// Add User Page
+router.get(
+  "/admindashboard/addUser",
+  verifyTokenAndAdmin,
+  userController.addUserPage
+);
+
 // Get all Users
 router.get(
   "/admindashboard/allUsers",
