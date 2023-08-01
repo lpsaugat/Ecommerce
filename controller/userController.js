@@ -52,9 +52,11 @@ controller.signup = async (req, res) => {
 
 //SignUp from User
 controller.createUser = async (req, res) => {
-  const email = req.body.email;
-
-  const findUser = await User.findOne({ email });
+ 
+ try{ 
+   const email = req.body.email;
+  
+  const findUser = await User.findOne({ email:email });
   if (!findUser) {
     // Create New User
     const user_type = req.body.user_type;
@@ -70,6 +72,8 @@ controller.createUser = async (req, res) => {
       name: req.body.name,
       email: req.body.email,
       user_type: req.body.user_type,
+      phone:req.body.phone,
+      addesss:req.body.address,
       password: CryptoJS.AES.encrypt(
         req.body.password,
         process.env.PASS_SECRET
@@ -83,6 +87,9 @@ controller.createUser = async (req, res) => {
       msg: "User already exists",
       success: false,
     });
+  }}
+  catch(err){
+    console.log(err)
   }
 };
 

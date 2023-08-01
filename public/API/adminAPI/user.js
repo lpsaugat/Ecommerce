@@ -99,12 +99,10 @@ if (updateUser) {
 }
 
 if (addUser) {
-  updateUser.addEventListener("submit", (event) => {
+  addUser.addEventListener("submit", (event) => {
     event.preventDefault();
-    const url = window.location.href;
-    const userID = url.split("/").pop();
-    console.log(userID);
-    const formData = new FormData(updateUser);
+    
+    const formData = new FormData(addUser);
     const name = formData.get("name");
     const phone = formData.get("phone");
     const address = formData.get("address");
@@ -112,6 +110,7 @@ if (addUser) {
     const password = formData.get("password");
 
     const image = formData.get("image");
+    const user_type = formData.get("user_type");
 
     const requestBody = new FormData();
     requestBody.append("name", name);
@@ -120,6 +119,7 @@ if (addUser) {
 
     requestBody.append("address", address);
     requestBody.append("password", password);
+    requestBody.append("user_type", user_type);
 
     // Append each image to the FormData object
 
@@ -137,12 +137,15 @@ if (addUser) {
 
     fetch(`http://${ipAddress}:3000/Sign_Up`, {
       method: "POST",
-      headers: {},
       body: convertedFormData,
     })
-      .then((data) => {
+      .then((response) => {
+        if(response.ok)
         {
           showAlert("User Added", "The user has been added successfully.");
+        }
+        else{
+          showAlert("Something Went Wrong", "User wasn't added");
         }
       })
       .catch((error) => {
