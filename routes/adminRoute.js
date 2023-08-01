@@ -204,6 +204,7 @@ router.delete(
 router.get(
   "/admindashboard/homepage",
   verifyTokenAndAdmin,
+  // adminController.soldQuantity,
   adminController.adminHomepage
 );
 module.exports = router;

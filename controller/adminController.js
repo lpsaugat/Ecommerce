@@ -893,4 +893,35 @@ controller.adminHomepage = async (req, res) => {
     res.status(500).json(err);
   }
 };
+
+//Update Sold quantity and amount on all products
+controller.soldQuantity = async (req, res, next) => {
+  try {
+    let totalAmount = 0;
+    let totalOrders = 0;
+    products = await Product.find();
+    for (const product of products) {
+      const orders = await Order.find({
+        productID: product.id,
+        orderStatus: "delivered",
+      });
+      orders.forEach((order) => {
+        totalAmount =
+          totalAmount + parseFloat(order.price) * parseFloat(order.quantity);
+        totalOrders = totalOrders + parseFloat(order.quantity);
+      });
+      const productUpdate = await Product.findByIdAndUpdate(
+        { _id: product.id },
+        { soldQuantity: totalOrders, soldAmount: totalAmount }
+      );
+      totalAmount = 0;
+      totalOrders = 0;
+    }
+    console.log("All quantity Updated");
+    next();
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 module.exports = controller;
