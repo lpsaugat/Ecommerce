@@ -177,12 +177,18 @@ function adminDeleteProduct(productID) {
     headers: {
       "Content-Type": "application/json",
     },
+  }).then((data) => {
+    {
+      showAlert(
+        "Product Deleted",
+        "The product has been deleted successfully."
+      );
+    }
   })
     .then(
       (response) =>
-        (window.location.href = `http://${ipAddress}:3000/admindashboard/products/`)
+        (window.location.href = `http://${ipAddress}:3000/admindashboard/allproducts/`)
     )
-    .then((data) => {})
     .catch((error) => {
       console.error(error);
     });

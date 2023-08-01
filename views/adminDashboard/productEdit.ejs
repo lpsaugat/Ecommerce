@@ -149,6 +149,7 @@
                 id="selectedOptionsField"
                 readonly
                 name="category"
+                placeholder="<%-product.category%>"
               />
             </div>
             <div class="flex justify-between">
@@ -161,7 +162,7 @@
               <button
                 class="text-[17px] mt-3 font-medium p-3 bg-[#DC0D0D] text-white rounded-md"
                 onclick="deletefProduct()"
-              >
+             >
                 Delete Product
               </button>
             </div>
@@ -173,6 +174,13 @@
   <div class="flex">
     <div id="deleteProduct" style="display: none">
       <%- include ("./deleteProduct") %>
+    </div>
+  </div>
+  <div id="customAlert" class="alert-modal">
+    <div class="alert-content">
+      <h2 id="alertTitle">alertTitle</h2>
+        <p id="alertMessage">alertMessage</p>
+      <button id="okButton">OK</button>
     </div>
   </div>
   <div class="hidden"><%- include ("../partials/footer") %></div>
