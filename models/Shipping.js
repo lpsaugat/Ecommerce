@@ -16,7 +16,8 @@ const Shipping = new mongoose.Schema(
     },
     deliveryStatus: {
       type: String,
-      enum: ["ontheway", "cancelled", "confirmed", "delivered"],
+      enum: ["placed","ontheway", "cancelled", "confirmed", "delivered"],
+      default:"placed"
     },
     charge: {
       type: mongoose.Types.Decimal128,
