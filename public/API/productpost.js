@@ -48,8 +48,8 @@ function orderUpdate(orderID, quantity) {
     });
 }
 
-function deleteProduct(productID) {
-  fetch(`http://${ipAddress}:3000/dashboard/orders/${productID}`, {
+function deleteOrder(orderID) {
+  fetch(`http://${ipAddress}:3000/dashboard/orders/${orderID}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
