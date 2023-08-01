@@ -325,15 +325,12 @@ controller.viewShipping = async (req, res) => {
         deliveryStatus: "confirmed",
       }).countDocuments();
       shippingOnTheWay = await Shipping.find({
-        status: true,
         deliveryStatus: "ontheway",
       }).countDocuments();
       shippingDelivered = await Shipping.find({
-        status: true,
         deliveryStatus: "delivered",
       }).countDocuments();
       shippingCancelled = await Shipping.find({
-        status: true,
         deliveryStatus: "cancelled",
       }).countDocuments();
 

@@ -473,14 +473,8 @@ controller.success = (req, res) => {
 controller.orderconfirmation = async (req, res) => {
   const data = await getData(req, res);
   const sitedata = data.sitedata;
-  var orderdata = {};
-  orderdata = await Order.find({
-    user: req.user.id,
-    status: true,
-    orderStatus: "confirmed",
-  });
-  cartdata = await Cart.find({ user: req.user.id, status: true });
-
+  var orderdata = data.orderdata;
+var cartdata = data.cartdata;
   // }
   var subtotal = 0;
   orderdata.forEach((i) => {
