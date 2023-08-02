@@ -375,28 +375,26 @@ controller.viewSingleShipping = async (req, res) => {
   let shipping;
   let orders = [];
   let products = [];
-
   try {
     if (
       req.user.user_type === "super-admin" ||
       req.user.user_type === "admin"
     ) {
       shipping = await Shipping.findOne({ _id: req.params.id });
+      console.log(req.params.id);
       if (!shipping) {
         res.send(`No shipping found with id: ${req.params.id}`);
       } else {
         user = await User.findOne({ _id: shipping.user });
         cart = await Cart.findOne({ _id: shipping.cart });
-        console.log(cart);
         for (i = 0; i < cart.orders.length; i++) {
           order = await Order.findOne({ _id: cart.orders[i] });
-          product = await Product.findOne({ _id: order.productID }).populate(
-            "createdBy"
-          );
+          product = await (
+            await Product.findOne({ _id: order.productID })
+          ).populate("createdBy");
           orders[i] = order;
           products[i] = product;
         }
-        console.log(orders);
         res.render("admindashboard/singleShipping", {
           shipping,
           user,
