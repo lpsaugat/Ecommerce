@@ -7,6 +7,7 @@ if (addCategory) {
     const name = formData.get("name");
     const parentCategory = formData.get("parentCategory");
     const slug = formData.get("slug");
+    const image = formData.get("image");
     const description = formData.get("description");
     const requestBody = new FormData();
 
@@ -15,6 +16,9 @@ if (addCategory) {
     requestBody.append("slug", slug);
 
     requestBody.append("description", description);
+    if (image.size !== 0) {
+      requestBody.append("image", image);
+    }
     const formDataArray = Array.from(requestBody.entries());
 
     var sendRequest = formDataArray.filter(([name, value]) => value !== "");
@@ -49,12 +53,15 @@ if (updateCategory) {
     const slug = formData.get("slug");
     const description = formData.get("description");
     const categoryID = formData.get("categoryID");
+    const image = formData.get("image");
     const requestBody = new FormData();
     requestBody.append("name", name);
     requestBody.append("parentCategory", parentCategory);
     requestBody.append("slug", slug);
     requestBody.append("description", description);
-
+    if (image.size !== 0) {
+      requestBody.append("image", image);
+    }
     const formDataArray = Array.from(requestBody.entries());
 
     var sendRequest = formDataArray.filter(([name, value]) => value !== "");

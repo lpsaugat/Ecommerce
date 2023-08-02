@@ -939,7 +939,6 @@ controller.categoryNumber = async (req, res, next) => {
         { totalProducts: totalProducts },
         { new: true }
       );
-      console.log(totalProducts);
     }
     console.log("All category Updated");
     next();
