@@ -52,44 +52,43 @@ controller.signup = async (req, res) => {
 
 //SignUp from User
 controller.createUser = async (req, res) => {
- 
- try{ 
-   const email = req.body.email;
-  
-  const findUser = await User.findOne({ email:email });
-  if (!findUser) {
-    // Create New User
-    const user_type = req.body.user_type;
-    if (["admin", "super-admin"].includes(user_type)) {
-      return res.status(403).json({
-        msg: "Unauthorized",
+  try {
+    const email = req.body.email;
+
+    const findUser = await User.findOne({ email: email });
+    if (!findUser) {
+      // Create New User
+      const user_type = req.body.user_type;
+      if (["admin", "super-admin"].includes(user_type)) {
+        return res.status(403).json({
+          msg: "Unauthorized",
+          success: false,
+        });
+      }
+      console.log("hi");
+      console.log(req.body);
+      const newUser = await User.create({
+        name: req.body.name,
+        email: req.body.email,
+        user_type: req.body.user_type,
+        phone: req.body.phone,
+        addesss: req.body.address,
+        password: CryptoJS.AES.encrypt(
+          req.body.password,
+          process.env.PASS_SECRET
+        ),
+      });
+      console.log(newUser);
+      res.status(201).json(newUser);
+    } else {
+      //User Already Exists
+      res.status(400).json({
+        msg: "User already exists",
         success: false,
       });
     }
-    console.log("hi");
-    console.log(req.body);
-    const newUser = await User.create({
-      name: req.body.name,
-      email: req.body.email,
-      user_type: req.body.user_type,
-      phone:req.body.phone,
-      addesss:req.body.address,
-      password: CryptoJS.AES.encrypt(
-        req.body.password,
-        process.env.PASS_SECRET
-      ),
-    });
-    console.log(newUser);
-    res.status(201).json(newUser);
-  } else {
-    //User Already Exists
-    res.status(400).json({
-      msg: "User already exists",
-      success: false,
-    });
-  }}
-  catch(err){
-    console.log(err)
+  } catch (err) {
+    console.log(err);
   }
 };
 
@@ -311,7 +310,10 @@ controller.getAllUsers = async (req, res) => {
   let count;
   let users;
   count = await User.countDocuments(query);
-
+  if (req.query.user_type) {
+    user_type = req.query.user_type;
+    query.user_type = { $in: [user_type] };
+  }
   const totalPages = Math.ceil(count / limit);
   const sort = req.query.sort;
   if (!sort) {
