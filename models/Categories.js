@@ -19,6 +19,9 @@ const Category = new mongoose.Schema({
     type: [String],
     ref: "Category",
   },
+  totalProducts: {
+    type: Number,
+  },
   status: {
     type: Boolean,
   },

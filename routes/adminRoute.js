@@ -205,6 +205,7 @@ router.get(
   "/admindashboard/homepage",
   verifyTokenAndAdmin,
   // adminController.soldQuantity,
+  adminController.categoryNumber,
   adminController.adminHomepage
 );
 module.exports = router;

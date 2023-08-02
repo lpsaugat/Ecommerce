@@ -912,12 +912,36 @@ controller.soldQuantity = async (req, res, next) => {
       });
       const productUpdate = await Product.findByIdAndUpdate(
         { _id: product.id },
-        { soldQuantity: totalOrders, soldAmount: totalAmount }
+        { soldQuantity: totalOrders, soldAmount: totalAmount },
+        { new: true }
       );
       totalAmount = 0;
       totalOrders = 0;
     }
     console.log("All quantity Updated");
+    next();
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Calculate total Products in a category
+controller.categoryNumber = async (req, res, next) => {
+  try {
+    products = await Product.find();
+    categories = await Category.find();
+    for (const category of categories) {
+      const totalProducts = await Product.find({
+        category: category.name,
+      }).countDocuments();
+      const categoryUpdate = await Category.findByIdAndUpdate(
+        { _id: category.id },
+        { totalProducts: totalProducts },
+        { new: true }
+      );
+      console.log(totalProducts);
+    }
+    console.log("All category Updated");
     next();
   } catch (err) {
     console.log(err);
