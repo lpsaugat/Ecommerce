@@ -13,6 +13,8 @@ const Role = require("../models/Role");
 const Permission = require("../models/Permission");
 
 const Products = require("../models/Products");
+const Shipping = require("../models/Shipping");
+
 const { post } = require("jquery");
 const app = express();
 const nodemailer = require("nodemailer");
@@ -359,11 +361,10 @@ controller.getCustomer = async (req, res) => {
       // Return a 404 response if the user is not found
       return res.status(404).json({ message: "User not found" });
     } else {
-      console.log(user);
-      res.render("admindashboard/singleUserCustomer", { user });
+      const shipping = await Shipping.find({ user: req.params.id });
+      res.render("admindashboard/singleUserCustomer", { user, shipping });
     }
   } catch (err) {
-    console.log("err");
     res.status(500).json(err);
   }
 };
