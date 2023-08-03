@@ -384,7 +384,20 @@ controller.getVendor = async (req, res) => {
         vendor: req.params.id,
         orderStatus: "delivered",
       });
-      res.render("admindashboard/singleUserVendor", { user, products, orders });
+      totalAmount = 0;
+      totalOrders = 0;
+      orders.forEach((order) => {
+        totalAmount =
+          totalAmount + parseFloat(order.price) * parseFloat(order.quantity);
+        totalOrders = totalOrders + parseFloat(order.quantity);
+      });
+      res.render("admindashboard/singleUserVendor", {
+        user,
+        products,
+        orders,
+        totalAmount,
+        totalOrders,
+      });
     }
   } catch (err) {
     console.log("err");
