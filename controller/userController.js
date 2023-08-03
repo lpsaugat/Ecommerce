@@ -380,8 +380,11 @@ controller.getVendor = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     } else {
       const products = await Product.find({ createdBy: req.params.id });
-
-      res.render("admindashboard/singleUserVendor", { user, products });
+      const orders = await Order.find({
+        vendor: req.params.id,
+        orderStatus: "delivered",
+      });
+      res.render("admindashboard/singleUserVendor", { user, products, orders });
     }
   } catch (err) {
     console.log("err");
