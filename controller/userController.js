@@ -379,8 +379,9 @@ controller.getVendor = async (req, res) => {
       // Return a 404 response if the user is not found
       return res.status(404).json({ message: "User not found" });
     } else {
-      console.log(user);
-      res.render("admindashboard/singleUserVendor", { user });
+      const products = await Product.find({ createdBy: req.params.id });
+
+      res.render("admindashboard/singleUserVendor", { user, products });
     }
   } catch (err) {
     console.log("err");
