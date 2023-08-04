@@ -87,6 +87,42 @@ if (updateCategory) {
   });
 }
 
+var deleteCategory = document.getElementById("deleteCategory");
+
+function deletefCategory() {
+  deleteCategory.style.display = "block";
+  document.body.style.overflow = "hidden";
+}
+
+function cancelfDeleteCategory() {
+  deleteCategory.style.display = "none";
+  document.body.style.overflow = "auto";
+}
+
+function adminDeleteCategory(categoryID) {
+  fetch(`http://${ipAddress}:3000/admindashboard/category/${categoryID}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((data) => {
+      {
+        showAlert(
+          "Category Deleted",
+          "The product has been deleted successfully."
+        );
+      }
+    })
+    .then(
+      (response) =>
+        (window.location.href = `http://${ipAddress}:3000/admindashboard/allcategories/`)
+    )
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 const dropdownCategory = document.getElementById("categoryDropdown");
 const selectedOptionsField = document.getElementById("selectedOptionsField");
 
