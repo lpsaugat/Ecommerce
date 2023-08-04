@@ -4,11 +4,35 @@
   <div class="flex max-w-1200 mx-auto">
     <div class="grid gap-x-3 grid-cols-4 w-full rounded-sm">
       <%- include ("./sidebar") %>
-
       <div class="grid col-span-3 grid-cols-3 gap-x-1 py-3">
+       
         <div
           class="rounded-t-md w-full col-span-3 text-[26px] py-4 bg-white text-[black] mt-2"
         >
+        <div
+        class="flex lg:justify-end mr-3 justify-center gap-x-[9px] md:gap-x-[12px] lg:gap-x-[9px]  font-normal"
+      >
+        <button
+          onclick="location.href = '/products?page=<%=dataPagination.prev%>'"
+          class="lg:w-[42px] lg:h-[42px] w-[36px] h-[36px] items-center flex justify-center border-[1px] rounded-[3px]"
+        >
+          <img src="../public/Images/accordion-active.svg" class="-rotate-90" />
+        </button>
+          
+        
+        <button
+          onclick="location.href = '/products?page=<%=dataPagination.next%>'"
+          class="lg:w-[42px] lg:h-[42px] w-[36px] h-[36px] items-center flex justify-center border-[1px] rounded-[3px]"
+        >
+          <img src="../public/Images/accordion-active.svg" class="rotate-90" />
+        </button>
+        <div class="h-[42px] items-center text-center hidden md:flex">Go To</div>
+        <input
+          type="number"
+          class="lg:w-[72px] md:w-[96px] md:h-[36px] border-[1px] rounded-[3px] items-center justify-center lg:h-[42px] md:flex hidden"
+       min="0" 
+       max="<%=dataPagination.totalPages%>"/>
+      </div>
         <div
         class="w-full col-span-2 border-b-[1px] text-[17px] text-[#000123] bg-white"
       >
