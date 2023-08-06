@@ -313,6 +313,7 @@ controller.allCategoryView = async (req, res) => {
     };
     res.render("admindashboard/allCategories", {
       category: dataPagination.category,
+      dataPagination,
     });
   } catch (err) {
     console.log(err);
