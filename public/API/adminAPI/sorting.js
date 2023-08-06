@@ -29,3 +29,24 @@ function toggleSort(criteria) {
   // Redirect to the modified URL
   window.location.href = modifiedUrl;
 }
+
+function adminPages(pageName) {
+  const currentURL = window.location.href;
+  const url = new URL(currentURL);
+  const queryParams = url.searchParams;
+  const pageNumber = document.getElementById("pageNumber").value;
+  if (queryParams.get("page")) {
+    queryParams.delete("page");
+  }
+
+  const newUrl = `http://${ipAddress}:3000/admindashboard/${pageName}?${queryParams.toString()}&page=${parseInt(
+    pageNumber
+  )}`;
+  console.log(newUrl);
+  fetch(newUrl, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((response) => (window.location.href = response.url));
+}

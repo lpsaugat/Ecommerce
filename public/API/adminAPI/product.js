@@ -194,24 +194,3 @@ function adminDeleteProduct(productID) {
       console.error(error);
     });
 }
-
-function adminProductPage(pageNumber) {
-  const currentURL = window.location.href;
-  const url = new URL(currentURL);
-  const queryParams = url.searchParams;
-
-  if (queryParams.get("page")) {
-    queryParams.delete("page");
-  }
-
-  const newUrl = `http://${ipAddress}:3000/admindashboard/allproducts?${queryParams.toString()}&page=${parseInt(
-    pageNumber
-  )}`;
-  console.log(newUrl);
-  fetch(newUrl, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then((response) => (window.location.href = response.url));
-}
