@@ -1,7 +1,9 @@
 function toggleSort(criteria) {
   // Get the current URL
   var currentUrl = window.location.href;
-
+  if (currentUrl.includes("page")) {
+    currentUrl = currentUrl.split("?")[0];
+  }
   // Check if the URL already contains a sort parameter
   if (currentUrl.includes("?sort=")) {
     // Check if it's ascending order (default case)
