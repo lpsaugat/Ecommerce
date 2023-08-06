@@ -6,12 +6,11 @@
       <%- include ("./sidebar") %>
       <div class="grid col-span-3 grid-cols-3 gap-x-1 py-3">
         <div
-        class=" bg-white rounded-md p-3 lg:justify-end col-span-3 gap-x-[9px] md:gap-x-[12px] lg:gap-x-[9px] font-normal"
+        class=" bg-white rounded-md p-3 flex-row justify-between col-span-3 gap-x-[9px] md:gap-x-[12px] lg:gap-x-[9px] font-normal"
       >
-      <div class="flex justify-end gap-x-2">
-      
-        
-       
+    <div class="flex justify-between gap-x-2">
+      <div class="flex  gap-x-2">    
+    
         <div class="h-[42px] text-lg items-center text-center hidden md:flex">Go To</div>
        <input
           type="number"
@@ -27,7 +26,20 @@
         class="p-3 h-[36px] text-lg items-center flex justify-center border-[1px] rounded-[3px]"
       >
         Submit
-      </button></div>
+      </button></div></div>
+      <div
+      class="border-[1px] rounded-[3px] w-full md:w-[330px] h-[36px] md:h-[32px] items-center flex pl-[6px] md:pl-[8.5px] md:mt-[0px] mt-[24px]"
+    >
+      <button>
+        <img src="../public/Images/search.svg" />
+      </button>
+      <input
+        class="opacity-50 ml-4 w-full border-none font-[12px]"
+        type="text"
+        placeholder="Add your own product"
+      />
+    </div>
+      
     </div>
         <div
           class="rounded-t-md w-full col-span-3 text-[26px] py-4 bg-white text-[black] mt-2"
