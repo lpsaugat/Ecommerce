@@ -31,13 +31,28 @@
                   class="text-[12px] md:text-[14px] font-medium"
                   >User Type *</label
                 >
-                <input
-                  type="text"
-                  name="user_type"
-                  class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
-                  required
-                />
+
+                <div class="mt-[14px] flex items-center space-x-4 h-[36px]">
+                  <input
+                    type="radio"
+                    name="user_type"
+                    value="customer"
+                    class="h-[18px] w-[18px]"
+                    required
+                  />
+                  <label for="customer">Customer</label>
+
+                  <input
+                    type="radio"
+                    name="user_type"
+                    value="vendor"
+                    class="h-[18px] w-[18px]"
+                    required
+                  />
+                  <label for="vendor">Vendor</label>
+                </div>
               </div>
+
               <div class="flex flex-col">
                 <label
                   for="Phone"
