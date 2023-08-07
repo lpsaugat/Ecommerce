@@ -37,16 +37,16 @@
         <div class="lg:flex font-roboto flex items-center left-0 w-auto">
           <div class="flex items-center">
             <div class="flex justify-center">
-              <button onclick="location.href='userEdit/<%=users[i]._id%>'">
+              <button onclick="location.href='/admindashboard/userEdit/<%=users[i]._id%>'">
                 <img src="../../public/Images/Dashboard/edit.svg" class="w-6" />
               </button>
               <button
                 class="pl-2"
                 <% if (users[i].user_type=="customer"){%>
-                  onclick="location.href='userCustomer/<%=users[i]._id%>'"
+                  onclick="location.href='/admindashboard/userCustomer/<%=users[i]._id%>'"
 
                 <%}else if (users[i].user_type=="vendor"){%>
-                onclick="location.href='userVendor/<%=users[i]._id%>'"<%}%>
+                onclick="location.href='/admindashboard/userVendor/<%=users[i]._id%>'"<%}%>
 
 
               >

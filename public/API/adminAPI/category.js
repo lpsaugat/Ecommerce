@@ -110,7 +110,7 @@ function adminDeleteCategory(categoryID) {
       {
         showAlert(
           "Category Deleted",
-          "The product has been deleted successfully."
+          "The category has been deleted successfully."
         );
       }
     })

@@ -415,7 +415,6 @@ controller.getUser = async (req, res) => {
       // Return a 404 response if the user is not found
       return res.status(404).json({ message: "User not found" });
     } else {
-      console.log(user);
       res.render("admindashboard/userEdit", { user });
     }
   } catch (err) {
@@ -451,7 +450,9 @@ controller.editUser = async (req, res) => {
 //Delete a specific user
 controller.deleteUser = async (req, res) => {
   try {
-    const deletedUser = await User.findOneAndDelete(req.params.id);
+    const deletedUser = await User.findByIdAndDelete({ _id: req.params.id });
+    console.log(deletedUser);
+
     if (!deletedUser) {
       // Return a 404 response if the user is not found
       return res.status(404).json({ message: "User not found" });

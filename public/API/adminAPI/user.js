@@ -101,7 +101,7 @@ if (updateUser) {
 if (addUser) {
   addUser.addEventListener("submit", (event) => {
     event.preventDefault();
-    
+
     const formData = new FormData(addUser);
     const name = formData.get("name");
     const phone = formData.get("phone");
@@ -140,11 +140,9 @@ if (addUser) {
       body: convertedFormData,
     })
       .then((response) => {
-        if(response.ok)
-        {
+        if (response.ok) {
           showAlert("User Added", "The user has been added successfully.");
-        }
-        else{
+        } else {
           showAlert("Something Went Wrong", "User wasn't added");
         }
       })
@@ -152,4 +150,37 @@ if (addUser) {
         console.error(error);
       });
   });
+}
+
+var deleteUser = document.getElementById("deleteUser");
+
+function deletefUser() {
+  deleteUser.style.display = "block";
+  document.body.style.overflow = "hidden";
+}
+
+function cancelfDeleteUser() {
+  deleteUser.style.display = "none";
+  document.body.style.overflow = "auto";
+}
+
+function adminDeleteUser(UserID) {
+  fetch(`http://${ipAddress}:3000/admindashboard/user/${UserID}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((data) => {
+      {
+        showAlert("User Deleted", "The user has been deleted successfully.");
+      }
+    })
+    .then(
+      (response) =>
+        (window.location.href = `http://${ipAddress}:3000/admindashboard/allusers/`)
+    )
+    .catch((error) => {
+      console.error(error);
+    });
 }
