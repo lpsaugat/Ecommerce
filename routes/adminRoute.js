@@ -12,11 +12,11 @@ const {
 router.get("/admindashboard/signIn", adminController.adminSignIn);
 
 //Carousel View
-router.post(
+router.get(
   "/admindashboard/carousel",
   verifyTokenAndAdmin,
 
-  adminController.carouselWriting
+  adminController.carouselView
 );
 
 //Homepage Carousel changes

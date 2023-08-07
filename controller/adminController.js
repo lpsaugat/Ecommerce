@@ -58,8 +58,8 @@ controller.adminSignIn = async (req, res) => {
 //Carousel Page
 controller.carouselView = async (req, res) => {
   try {
-    const carousel = await Category.find().sort("-createdAt");
-    res.render("admindashboard/carousel", { carousel });
+    const carousel = await Carousel.find().sort("-createdAt");
+    res.render("admindashboard/carousel", { carousel, carouseldata: carousel });
   } catch (err) {
     console.log(err);
   }
