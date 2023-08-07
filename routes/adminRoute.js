@@ -11,6 +11,14 @@ const {
 //Admin Sign In/ Log In
 router.get("/admindashboard/signIn", adminController.adminSignIn);
 
+//Carousel View
+router.post(
+  "/admindashboard/carousel",
+  verifyTokenAndAdmin,
+
+  adminController.carouselWriting
+);
+
 //Homepage Carousel changes
 router.post(
   "/admindashboard/carousel",

@@ -164,19 +164,19 @@
       >
         <button
           class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
-          onclick="window.location.href='/admindashboard/customize/carousel'"
+          onclick="window.location.href='/admindashboard/carousel'"
         >
           Carousel
         </button>
         <button
           class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
-          onclick="window.location.href='/admindashboard/customize/subscription'"
+          onclick="window.location.href='/admindashboard/subscription'"
         >
           Subscription
         </button>
         <button
           class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
-          onclick="window.location.href='/admindashboard/customize/Banner'"
+          onclick="window.location.href='/admindashboard/banner'"
         >
           Banner
         </button>
@@ -224,7 +224,9 @@
 
       break;
     }
-    case urlContainsWord("customize"): {
+    case urlContainsWord("carousel") ||
+      urlContainsWord("subscription") ||
+      urlContainsWord("banner"): {
       sidebar[6].style.backgroundColor = "#38C102";
       sidebar[6].style.color = "white";
 
@@ -279,7 +281,9 @@
 
         break;
       }
-      case urlContainsWord("customize"): {
+      case urlContainsWord("carousel") ||
+        urlContainsWord("subscription") ||
+        urlContainsWord("banner"): {
         sidebar[6].style.backgroundColor = "#38C102";
         sidebar[6].style.color = "white";
 

@@ -55,6 +55,16 @@ controller.adminSignIn = async (req, res) => {
   }
 };
 
+//Carousel Page
+controller.carouselView = async (req, res) => {
+  try {
+    const carousel = await Category.find().sort("-createdAt");
+    res.render("admindashboard/carousel", { carousel });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 //Writing in Carousel
 controller.carouselWriting = async (req, res) => {
   const folder = "carousel";
@@ -319,6 +329,7 @@ controller.allCategoryView = async (req, res) => {
     console.log(err);
   }
 };
+
 //Writing in Ad
 controller.AdWriting = async (req, res) => {
   const folder = "Ad";
