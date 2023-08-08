@@ -350,4 +350,17 @@ controller.soldQuantity = async (req, res, next) => {
   }
 };
 
+//Update all products
+controller.changeAllProducts = async (req, res) => {
+  const allProducts = await Product.find();
+  for (const product of allProducts) {
+    const updateProduct = await Product.findOneAndUpdate(
+      { _id: product._id },
+      { createdBy: req.user.id },
+      { new: true, runValidators: true }
+    );
+    console.log(updateProduct);
+  }
+};
+
 module.exports = controller;

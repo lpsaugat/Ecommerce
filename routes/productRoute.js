@@ -62,7 +62,7 @@ router.get(
 router.get(
   "/admindashboard/updateProducts",
   verifyTokenAndAdmin,
-  productController.soldQuantity
+  productController.changeAllProducts
 );
 
 module.exports = router;
