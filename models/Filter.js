@@ -20,5 +20,9 @@ const Filter = new mongoose.Schema({
   status: {
     type: Boolean,
   },
+  isActive: {
+    type: Boolean,
+    default: true,
+  },
 });
 module.exports = mongoose.model("Filter", Filter);

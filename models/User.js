@@ -70,6 +70,10 @@ const userSchema = new mongoose.Schema(
     address: {
       type: String,
     },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );

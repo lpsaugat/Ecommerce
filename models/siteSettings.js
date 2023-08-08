@@ -24,6 +24,10 @@ const siteSettings = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "Social",
     },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );

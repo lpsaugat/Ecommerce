@@ -36,6 +36,10 @@ const Pages = new mongoose.Schema(
       ref: "Filter",
     },
     status: Boolean,
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );

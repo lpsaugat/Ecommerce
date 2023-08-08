@@ -18,7 +18,12 @@ const packageType = new mongoose.Schema(
     },
     slug: String,
     status: Boolean,
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
+
   { timestamps: true }
 );
 module.exports = mongoose.model("packageType", packageType);

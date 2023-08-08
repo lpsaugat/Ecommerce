@@ -20,6 +20,10 @@ const Review = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "Package",
     },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );

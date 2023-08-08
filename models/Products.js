@@ -66,6 +66,10 @@ var Product = new mongoose.Schema(
     soldAmount: {
       type: mongoose.Types.Decimal128,
     },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );

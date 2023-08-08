@@ -26,6 +26,10 @@ const Category = new mongoose.Schema(
     status: {
       type: Boolean,
     },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );

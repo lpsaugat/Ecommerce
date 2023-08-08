@@ -20,6 +20,10 @@ const PaymentMethod = new mongoose.Schema(
       ref: "Package",
     },
     status: Boolean,
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );

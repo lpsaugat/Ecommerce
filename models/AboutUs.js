@@ -38,5 +38,9 @@ const aboutUs = new mongoose.Schema({
   vision: {
     type: [String],
   },
+  isActive: {
+    type: Boolean,
+    default: true,
+  },
 });
 module.exports = mongoose.model("aboutUs", aboutUs);

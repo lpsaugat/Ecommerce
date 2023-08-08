@@ -21,9 +21,13 @@ const Order = new mongoose.Schema(
     orderStatus: {
       type: String,
       enum: ["ontheway", "cancelled", "confirmed", "delivered", "placed"],
-      default:"placed"
+      default: "placed",
     },
     status: { type: Boolean, default: true },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );

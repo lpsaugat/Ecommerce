@@ -19,6 +19,10 @@ const Billing = new mongoose.Schema(
       type: String,
     },
     status: { type: Boolean, default: true },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );

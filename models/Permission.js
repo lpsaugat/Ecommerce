@@ -9,6 +9,10 @@ const permission = new mongoose.Schema(
       type: String,
     },
     status: Boolean,
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );

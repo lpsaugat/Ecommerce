@@ -31,6 +31,10 @@ const Packages = new mongoose.Schema(
     averageRating: {
       type: mongoose.Types.Decimal128,
     },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );

@@ -26,6 +26,10 @@ const Shipping = new mongoose.Schema(
       type: mongoose.Types.Decimal128,
     },
     status: Boolean,
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );
