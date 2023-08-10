@@ -27,8 +27,14 @@ router.post(
   adminController.carouselWriting
 );
 
+router.get(
+  "/admindashboard/carousel/:id",
+  verifyTokenAndAdmin,
+  adminController.carouselSingleView
+);
+
 router.put(
-  "/admindashboard/carousel",
+  "/admindashboard/carousel/:id",
   verifyTokenAndAdmin,
 
   adminController.carouselUpdate

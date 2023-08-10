@@ -65,6 +65,16 @@ controller.carouselView = async (req, res) => {
   }
 };
 
+//Carousel Page
+controller.carouselSingleView = async (req, res) => {
+  try {
+    const carousel = await Carousel.findOne({ _id: req.params.id });
+    res.render("admindashboard/carouselEdit", { carousel });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 //Writing in Carousel
 controller.carouselWriting = async (req, res) => {
   const folder = "carousel";
@@ -93,7 +103,7 @@ controller.carouselWriting = async (req, res) => {
 
 //Carousel Writings Update and Change
 controller.carouselUpdate = async (req, res) => {
-  const filter = { name: req.body.name };
+  const filter = { _id: req.params.id };
   const folder = "carousel";
   let backgroundImage = [];
   let update = {};
