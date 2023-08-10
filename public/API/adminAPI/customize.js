@@ -1,14 +1,12 @@
 const updateCarousel = document.querySelector("#updateCarousel");
 
 if (updateCarousel) {
-  console.log("heheh");
   updateCarousel.addEventListener("submit", (event) => {
     event.preventDefault();
     const url = window.location.href;
     const carouselID = url.split("/").pop();
     console.log(carouselID);
     const formData = new FormData(updateCarousel);
-    var heading = formData.get("heading");
 
     const offer = formData.get("offer");
 
@@ -31,7 +29,6 @@ if (updateCarousel) {
       requestBody.append("backgroundImage", primaryImage);
     }
 
-    console.log(requestBody);
     const formDataArray = Array.from(requestBody.entries());
 
     var sendRequest = formDataArray.filter(([name, value]) => value !== "");
