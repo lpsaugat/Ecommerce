@@ -152,7 +152,7 @@ controller.subscriptionView = async (req, res) => {
 //subscription Single Page with Update/Edit
 controller.subscriptionSingleView = async (req, res) => {
   try {
-    const subscription = await subscription.findOne({ _id: req.params.id });
+    const subscription = await Subscription.findOne({ _id: req.params.id });
     res.render("admindashboard/subscriptionEdit", { subscription });
   } catch (err) {
     console.log(err);
@@ -186,7 +186,6 @@ controller.SubscriptionWriting = async (req, res) => {
 //Subscription Writings Update and Change
 controller.SubscriptionUpdate = async (req, res) => {
   const folder = "Subscription";
-  const file = req.files.backgroundImage;
 
   let backgroundImage = [];
   let update = {};
