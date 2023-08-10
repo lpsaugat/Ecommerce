@@ -356,7 +356,7 @@ controller.changeAllProducts = async (req, res) => {
   for (const product of allProducts) {
     const updateProduct = await Product.findOneAndUpdate(
       { _id: product._id },
-      { createdBy: req.user.id },
+      { isActive: true },
       { new: true, runValidators: true }
     );
     console.log(updateProduct);
