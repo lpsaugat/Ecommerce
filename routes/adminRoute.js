@@ -27,17 +27,28 @@ router.post(
   adminController.carouselWriting
 );
 
+//Carousel Edit/ Single Page
 router.get(
   "/admindashboard/carousel/:id",
   verifyTokenAndAdmin,
   adminController.carouselSingleView
 );
 
+//Carousel Update
 router.put(
   "/admindashboard/carousel/:id",
   verifyTokenAndAdmin,
 
   adminController.carouselUpdate
+);
+
+
+//Subscription View
+router.get(
+  "/admindashboard/subscription",
+  verifyTokenAndAdmin,
+
+  adminController.subscriptionView
 );
 
 //Subscription Package Changes
@@ -48,12 +59,21 @@ router.post(
   adminController.SubscriptionWriting
 );
 
+//subscription Edit/ Single Page
+router.get(
+  "/admindashboard/subscription/:id",
+  verifyTokenAndAdmin,
+  adminController.subscriptionSingleView
+);
+
+//Subscription Update/Edit
 router.put(
-  "/admindashboard/subscription",
+  "/admindashboard/subscription/:id",
   verifyTokenAndAdmin,
 
   adminController.SubscriptionUpdate
 );
+
 
 //Ads
 router.post(

@@ -65,7 +65,7 @@ controller.carouselView = async (req, res) => {
   }
 };
 
-//Carousel Page
+//Carousel Single Page and Update/Edit
 controller.carouselSingleView = async (req, res) => {
   try {
     const carousel = await Carousel.findOne({ _id: req.params.id });
@@ -74,6 +74,7 @@ controller.carouselSingleView = async (req, res) => {
     console.log(err);
   }
 };
+
 
 //Writing in Carousel
 controller.carouselWriting = async (req, res) => {
@@ -138,6 +139,26 @@ controller.carouselUpdate = async (req, res) => {
   }
 };
 
+//subscription Page
+controller.subscriptionView = async (req, res) => {
+  try {
+    const subscription = await Subscription.find().sort("-createdAt");
+    res.render("admindashboard/subscription", { subscription, subscriptiondata: subscription });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//subscription Single Page with Update/Edit
+controller.subscriptionSingleView = async (req, res) => {
+  try {
+    const subscription = await subscription.findOne({ _id: req.params.id });
+    res.render("admindashboard/subscriptionEdit", { subscription });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 //Writing in Subscription
 controller.SubscriptionWriting = async (req, res) => {
   const folder = "Subscription";
@@ -152,7 +173,6 @@ controller.SubscriptionWriting = async (req, res) => {
   try {
     const newSubscription = await Subscription.create({
       name: req.body.name,
-
       subscriptionText: req.body.subscriptionText,
       backgroundImage: backgroundImage,
     });
@@ -167,16 +187,25 @@ controller.SubscriptionWriting = async (req, res) => {
 controller.SubscriptionUpdate = async (req, res) => {
   const folder = "Subscription";
   const file = req.files.backgroundImage;
-  let backgroundImage = [];
 
+  let backgroundImage = [];
+  let update = {};
   try {
-    image = await imageUploader(req, res, file, folder);
-  } catch (error) {
-    return;
+    if (req.files) {
+      backgroundImage = await imageUploader(
+        req,
+        res,
+        req.files.backgroundImage,
+        folder
+      );
+      update = { backgroundImage: backgroundImage, ...req.body };
+    } else {
+      update = req.body;
+    }
+  } catch (err) {
+    return console.log(err);
   }
-  const filter = { name: req.body.name };
-  console.log(filter);
-  const update = { ...req.body, backgroundImage: backgroundImage };
+  const filter = { _id: req.params.id };
   try {
     const updatedSubscription = await Subscription.findOneAndUpdate(
       filter,
