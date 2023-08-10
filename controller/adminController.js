@@ -428,6 +428,26 @@ controller.AdUpdate = async (req, res) => {
   }
 };
 
+//banner Page
+controller.bannerView = async (req, res) => {
+  try {
+    const banner = await Banner.find().sort("-createdAt");
+    res.render("admindashboard/banner", { banner, bannerdata: banner });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//banner Single Page with Update/Edit
+controller.bannerSingleView = async (req, res) => {
+  try {
+    const banner = await Banner.findOne({ _id: req.params.id });
+    res.render("admindashboard/bannerEdit", { banner });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 //Writing in Banner
 controller.BannerWriting = async (req, res) => {
   const folder = "Banner";

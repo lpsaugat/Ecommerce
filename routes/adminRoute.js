@@ -90,18 +90,33 @@ router.put(
   adminController.AdUpdate
 );
 
-//Banners
-router.post(
-  "/admindashboard/banners",
+//banner View
+router.get(
+  "/admindashboard/banner/:id",
   verifyTokenAndAdmin,
 
+  adminController.bannerView
+);
+
+//Banners
+router.post(
+  "/admindashboard/banner",
+  verifyTokenAndAdmin,
   adminController.BannerWriting
 );
 
-router.put(
-  "/admindashboard/banner",
+//banner Edit/ Single Page
+router.get(
+  "/admindashboard/banner/:id",
   verifyTokenAndAdmin,
+  adminController.bannerSingleView
+);
 
+
+//Banner Update/Edit
+router.put(
+  "/admindashboard/banner/:id",
+  verifyTokenAndAdmin,
   adminController.BannerUpdate
 );
 
