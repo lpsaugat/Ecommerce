@@ -523,8 +523,8 @@ controller.bannerDelete = async (req, res) => {
   const roles = ["super-admin", "admin"];
   try {
     const getBanner = await Banner.findOne({
-      id: req.params.id,
-    });
+      _id: req.params.id,
+    });console.log(getBanner)
     if (!getBanner) {
       return res
         .status(404)
@@ -532,7 +532,7 @@ controller.bannerDelete = async (req, res) => {
     }
     if (roles.includes(req.user.user_type)) {
       const deletedBanner = await Banner.findOneAndDelete({
-        id: req.params.id,
+        _id: req.params.id,
       });
       console.log(deletedBanner);
 

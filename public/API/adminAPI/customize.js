@@ -201,7 +201,7 @@ function adminDeleteBanner(BannerID) {
     })
     .then(
       (response) =>
-        (window.location.href = `http://${ipAddress}:3000/admindashboard/allcategories/`)
+        (window.location.href = `http://${ipAddress}:3000/admindashboard/banner/`)
     )
     .catch((error) => {
       console.error(error);
