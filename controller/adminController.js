@@ -428,11 +428,21 @@ controller.AdUpdate = async (req, res) => {
   }
 };
 
+
 //banner Page
 controller.bannerView = async (req, res) => {
   try {
     const banner = await Banner.find().sort("-createdAt");
     res.render("admindashboard/banner", { banner, bannerdata: banner });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Banner Add Page
+controller.bannerAdd = async (req, res) => {
+  try {
+    res.render("admindashboard/banneradd");
   } catch (err) {
     console.log(err);
   }

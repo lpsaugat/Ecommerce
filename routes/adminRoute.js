@@ -92,7 +92,7 @@ router.put(
 
 //banner View
 router.get(
-  "/admindashboard/banner/:id",
+  "/admindashboard/banner",
   verifyTokenAndAdmin,
 
   adminController.bannerView
@@ -103,6 +103,13 @@ router.post(
   "/admindashboard/banner",
   verifyTokenAndAdmin,
   adminController.BannerWriting
+);
+
+//Banner Add Page
+router.get(
+  "/admindashboard/banneradd",
+  verifyTokenAndAdmin,
+  adminController.bannerAdd
 );
 
 //banner Edit/ Single Page
