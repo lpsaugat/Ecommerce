@@ -77,11 +77,12 @@
                 Update Banner
               </button>
               <button
-                type="button"
-                class="text-[17px] mt-3 font-medium p-3 bg-gradient-to-r from-[#3baf3d] to-[#5DC234] text-white rounded-md"
-              >
-                Delete Banner
-              </button>
+            class="text-[17px] mt-3 font-medium p-3 bg-[#DC0D0D] text-white rounded-md"
+            onclick="deletefBanner()"
+            type="button"
+         >
+            Delete Banner
+          </button>
               <div></div>
             </div>
           </form>
@@ -89,7 +90,11 @@
       </div>
     </div>
   </div>
-
+  <div class="flex">
+    <div id="deleteBanner" style="display: none">
+      <%- include ("./deleteBanner") %>
+    </div>
+  </div>
   <div id="customAlert" class="alert-modal">
     <div class="alert-content">
       <h2 id="alertTitle">alertTitle</h2>

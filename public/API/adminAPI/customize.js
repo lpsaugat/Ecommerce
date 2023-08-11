@@ -172,7 +172,41 @@ if (updateBanner) {
   });
 }
 
+var deleteBanner = document.getElementById("deleteBanner");
 
+function deletefBanner() {
+  deleteBanner.style.display = "block";
+  document.body.style.overflow = "hidden";
+}
+
+function cancelfDeleteBanner() {
+  deleteBanner.style.display = "none";
+  document.body.style.overflow = "auto";
+}
+
+function adminDeleteBanner(BannerID) {
+  fetch(`http://${ipAddress}:3000/admindashboard/Banner/${BannerID}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((data) => {
+      {
+        showAlert(
+          "Banner Deleted",
+          "The Banner has been deleted successfully."
+        );
+      }
+    })
+    .then(
+      (response) =>
+        (window.location.href = `http://${ipAddress}:3000/admindashboard/allcategories/`)
+    )
+    .catch((error) => {
+      console.error(error);
+    });
+}
 
 if (updateSubscription) {
   updateSubscription.addEventListener("submit", (event) => {

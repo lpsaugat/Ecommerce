@@ -485,7 +485,7 @@ controller.BannerWriting = async (req, res) => {
 };
 
 //Banner Writings Update and Change
-controller.BannerUpdate = async (req, res) => {
+controller.bannerUpdate = async (req, res) => {
   const filter = { name: req.body.name };
   console.log(filter);
   const folder = "Banner";
@@ -512,6 +512,34 @@ controller.BannerUpdate = async (req, res) => {
     console.log(updatedBanner);
 
     res.status(200).json(updatedBanner);
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+};
+
+//Delete a banner
+controller.bannerDelete = async (req, res) => {
+  const roles = ["super-admin", "admin"];
+  try {
+    const getBanner = await Banner.findOne({
+      id: req.params.id,
+    });
+    if (!getBanner) {
+      return res
+        .status(404)
+        .json({ message: `No Banner found for ${req.params.id}` });
+    }
+    if (roles.includes(req.user.user_type)) {
+      const deletedBanner = await Banner.findOneAndDelete({
+        id: req.params.id,
+      });
+      console.log(deletedBanner);
+
+      res.status(200).json(deletedBanner);
+    } else {
+      res.status(403).json(`User is not allowed to delete the Category`);
+    }
   } catch (err) {
     res.status(500).json(err);
     console.log(err);

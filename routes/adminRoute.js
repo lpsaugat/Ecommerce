@@ -124,7 +124,14 @@ router.get(
 router.put(
   "/admindashboard/banner/:id",
   verifyTokenAndAdmin,
-  adminController.BannerUpdate
+  adminController.bannerUpdate
+);
+
+//Banner Update/Edit
+router.delete(
+  "/admindashboard/banner/:id",
+  verifyTokenAndAdmin,
+  adminController.bannerDelete
 );
 
 //Add offers
