@@ -1,5 +1,7 @@
 const updateCarousel = document.querySelector("#updateCarousel");
 const updateSubscription = document.querySelector("#updateSubscription");
+const updateBanner = document.querySelector("#updateBanner");
+const addBanner = document.querySelector("#addBanner");
 
 if (updateCarousel) {
   updateCarousel.addEventListener("submit", (event) => {
@@ -48,6 +50,119 @@ if (updateCarousel) {
           showAlert(
             "Carousel Updated",
             "The Carousel has been updated successfully."
+          );
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
+}
+
+if (addBanner) {
+  addBanner.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const url = window.location.href;
+    const BannerID = url.split("/").pop();
+    console.log(BannerID);
+    const formData = new FormData(addBanner);
+
+    const name = formData.get("name");
+
+    const primaryImage = formData.get("primaryImage");
+
+    const title = tinymce
+      .get("descriptionTextArea")
+      .getContent({ format: "html" });
+    const text = tinymce
+      .get("longDescriptionTextArea")
+      .getContent({ format: "html" });
+    const categories = formData.get("category");
+    const requestBody = new FormData();
+    requestBody.append("name", name);
+
+    requestBody.append("title", title);
+    requestBody.append("text", text);
+
+    if (primaryImage.size !== 0) {
+      requestBody.append("image", primaryImage);
+    }
+
+    const formDataArray = Array.from(requestBody.entries());
+
+    var sendRequest = formDataArray.filter(([name, value]) => value !== "");
+    const convertedFormData = new FormData();
+    sendRequest.forEach(([name, value]) => {
+      convertedFormData.append(name, value);
+    });
+
+    fetch(`http://${ipAddress}:3000/admindashboard/Banner`, {
+      method: "POST",
+      headers: {},
+      body: convertedFormData,
+    })
+      .then((data) => {
+        {
+          showAlert(
+            "Banner Added",
+            "The Banner has been added successfully."
+          );
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
+}
+
+
+if (updateBanner) {
+  updateBanner.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const url = window.location.href;
+    const BannerID = url.split("/").pop();
+    console.log(BannerID);
+    const formData = new FormData(updateBanner);
+
+    const name = formData.get("name");
+
+    const primaryImage = formData.get("primaryImage");
+
+    const title = tinymce
+      .get("descriptionTextArea")
+      .getContent({ format: "html" });
+    const text = tinymce
+      .get("longDescriptionTextArea")
+      .getContent({ format: "html" });
+    const categories = formData.get("category");
+    const requestBody = new FormData();
+    requestBody.append("name", name);
+
+    requestBody.append("title", title);
+    requestBody.append("text", text);
+
+    if (primaryImage.size !== 0) {
+      requestBody.append("image", primaryImage);
+    }
+
+    const formDataArray = Array.from(requestBody.entries());
+
+    var sendRequest = formDataArray.filter(([name, value]) => value !== "");
+    const convertedFormData = new FormData();
+    sendRequest.forEach(([name, value]) => {
+      convertedFormData.append(name, value);
+    });
+
+    fetch(`http://${ipAddress}:3000/admindashboard/Banner/${BannerID}`, {
+      method: "PUT",
+      headers: {},
+      body: convertedFormData,
+    })
+      .then((data) => {
+        {
+          showAlert(
+            "Banner Updated",
+            "The Banner has been updated successfully."
           );
         }
       })
