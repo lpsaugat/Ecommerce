@@ -19,7 +19,13 @@ function toggleSort(criteria) {
         `sort=-${criteria}`,
         `sort=${criteria}`
       );
-    } else {
+
+    } 
+    else if (currentUrl.includes("&sort")){
+      var splitUrl = currentUrl.split("&sort")[0];
+      var modifiedUrl = splitUrl + `&sort=${criteria}`
+    }
+    else {
       var modifiedUrl =
         window.location.origin + window.location.pathname + `?sort=${criteria}`;
     }
