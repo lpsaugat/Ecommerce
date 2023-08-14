@@ -155,10 +155,10 @@ controller.orderdelete = async (req, res, next) => {
     }
     if (
       roles.includes(req.user.user_type) ||
-      getorder.createdBy.toString() === req.user.id ||
-      getorder.user.toString() === req.user.id
+      getorder.createdBy.toString() === req.user._id ||
+      getorder.user.toString() === req.user._id
     ) {
-      const deleteProduct = await Order.findOneAndDelete(filter);
+      const deleteProduct = await Order.findOneAndDelete({_id:filter});
       res.json(deleteProduct);
     } else {
       res.status(403).json(`User is not allowed to delete the order`);
