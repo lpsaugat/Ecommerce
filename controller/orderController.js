@@ -320,7 +320,7 @@ controller.viewShipping = async (req, res) => {
       req.user.user_type === "super-admin" ||
       req.user.user_type === "admin"
     ) {
-      shipping = await Shipping.find().limit(5).sort("-createdAt");
+      shipping = await Shipping.find().limit(5).sort("-createdAt").populate("user");
       shippingConfirmed = await Shipping.find({
         deliveryStatus: "confirmed",
       }).countDocuments();
@@ -357,7 +357,7 @@ controller.viewAllShipping = async (req, res) => {
       req.user.user_type === "super-admin" ||
       req.user.user_type === "admin"
     ) {
-      shipping = await Shipping.find().sort("-createdAt");
+      shipping = await Shipping.find().sort("-createdAt").populate("user");
 
       res.render("admindashboard/allshipping", {
         shipping,

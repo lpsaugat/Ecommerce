@@ -1,14 +1,14 @@
 <div
-  class="rounded-md w-full col-span-2 text-[17px] text-[#000123] bg-white mt-2"
+  class=" w-full col-span-2 text-[17px] text-[#000123] bg-white border-b-[1px]"
 >
   <div
-    class="justify-between items-center flex py-[14px] md:py-[12px] lg:pt-[15px] px-[10px] md:px-[11px] lg:px-[17px] rounded-[3px] mt-6 lg:mt-[15px] lg:shadow-none shadow-[0px_0px_2px_rgba(0,0,0,0.25)]"
+    class="justify-between items-center flex py-[14px] md:py-[12px] lg:pt-[15px] px-[10px] md:px-[11px] lg:px-[17px] rounded-[3px] lg:shadow-none shadow-[0px_0px_2px_rgba(0,0,0,0.25)]"
   >
     <div class="flex w-full md:h-[86px]">
       <div
         class="md:w-[86px] w-[69px] justify-center flex items-center ml-[10px]"
       >
-        <%= shipping[i].deliveryStatus %>
+        <%= shipping[i].user.name %>
       </div>
       <div
         class="pl-[10px] md:pl-[10px] flex flex-col lg:font-medium text-ellipsis truncate lg:overflow-visible lg:flex-row w-full lg:grid grid-cols-12 lg:items-center"
@@ -16,7 +16,7 @@
         <div
           class="text-[12px] md:text-sm lg:text-[16px] col-span-4 lg:pl-[40px] items-center flex"
         >
-          <%= shipping[i].user %>
+          <%= shipping[i].user.id %>
         </div>
 
         <div
