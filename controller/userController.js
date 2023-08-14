@@ -303,6 +303,7 @@ controller.userPage = async (req, res) => {
 
 //Get all Users
 controller.getAllUsers = async (req, res) => {
+  try{
   cartdata = [];
   orderdata = [];
   query = {};
@@ -320,10 +321,8 @@ controller.getAllUsers = async (req, res) => {
   const sort = req.query.sort;
   if (!sort) {
     users = await User.find(query).sort("-createdAt").skip(skip).limit(limit);
-  } else if (sort === "oldest") {
-    users = await User.find(query).sort("-createdAt").skip(skip).limit(limit);
-  } else if (sort === "newest") {
-    users = await User.find(query).sort("createdAt").skip(skip).limit(limit);
+  } else {
+    users = await User.find(query).sort(sort).skip(skip).limit(limit);
   }
   const dataPagination = {
     count,
@@ -337,7 +336,10 @@ controller.getAllUsers = async (req, res) => {
   res.render("admindashboard/allUsers", {
     users: dataPagination.users,
     dataPagination,
-  });
+  });}
+  catch(err){
+    console.log(err)
+  }
 };
 
 // Get All Vendors

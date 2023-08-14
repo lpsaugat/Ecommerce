@@ -5,19 +5,19 @@ function toggleSort(criteria) {
     currentUrl = currentUrl.split("?")[0];
   }
   // Check if the URL already contains a sort parameter
-  if (currentUrl.includes("?sort=")) {
+  if (currentUrl.includes("sort=")) {
     // Check if it's ascending order (default case)
-    if (currentUrl.includes(`?sort=${criteria}`)) {
+    if (currentUrl.includes(`sort=${criteria}`)) {
       // Replace with descending order URL
       var modifiedUrl = currentUrl.replace(
-        `?sort=${criteria}`,
-        `?sort=-${criteria}`
+        `sort=${criteria}`,
+        `sort=-${criteria}`
       );
-    } else if (currentUrl.includes(`?sort=-${criteria}`)) {
+    } else if (currentUrl.includes(`sort=-${criteria}`)) {
       // Replace with ascending order URL
       var modifiedUrl = currentUrl.replace(
-        `?sort=-${criteria}`,
-        `?sort=${criteria}`
+        `sort=-${criteria}`,
+        `sort=${criteria}`
       );
     } else {
       var modifiedUrl =
@@ -25,7 +25,9 @@ function toggleSort(criteria) {
     }
   } else {
     // If no sort parameter exists, add ascending order URL
-    var modifiedUrl = currentUrl + `?sort=${criteria}`;
+    if (currentUrl.includes("?")) {
+      var modifiedUrl = currentUrl + `&sort=${criteria}`;
+    } else var modifiedUrl = currentUrl + `?sort=${criteria}`;
   }
 
   // Redirect to the modified URL
