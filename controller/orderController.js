@@ -172,9 +172,9 @@ controller.orderdelete = async (req, res, next) => {
 //Cart
 controller.cart = async (req, res, next) => {
   try {
-    const cart = await Cart.findOne({ user: req.user.id, status: true });
+    const cart = await Cart.findOne({ user: req.user.id, status: true,orderStatus:"placed" });
 
-    var order = await Order.find({ user: req.user.id });
+    var order = await Order.find({ user: req.user.id,orderStatus:"placed" });
 
     let totalPrice = 0;
 
@@ -187,6 +187,7 @@ controller.cart = async (req, res, next) => {
       const newCart = await Cart.create({
         user: req.user.id,
         orders: order,
+        orderStatus:"placed"
       });
     } else {
       const updatedCart = await Cart.findOneAndUpdate(
@@ -226,9 +227,9 @@ controller.billing = async (req, res) => {
 //Create Shipping of Cart when delivery is ready
 controller.shipping = async (req, res) => {
   try {
-    const cart = await Cart.findOne({ user: req.user.id, status: true });
+    const cart = await Cart.findOne({ user: req.user.id, status: true,orderStatus:"placed" });
     const order = await Order.updateMany(
-      { user: req.user.id, status: true },
+      { user: req.user.id, status: true,orderStatus:"placed" },
       { $set: { orderStatus: "confirmed" } }
     );
     const updateCart = await Cart.findOneAndUpdate(
@@ -236,7 +237,7 @@ controller.shipping = async (req, res) => {
         user: req.user.id,
         status: true,
       },
-      { $set: { cartStatus: "confirmed" } },
+      { $set: { orderStatus: "confirmed" } },
       { new: true }
     );
 
@@ -283,7 +284,7 @@ controller.shippingUpdate = async (req, res) => {
           user: req.user.id,
           status: true,
         },
-        { $set: { cartStatus: req.body.status } },
+        { $set: { orderStatus: req.body.status } },
         { new: true }
       );
       console.log(updatedShipping);

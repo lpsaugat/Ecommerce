@@ -43,9 +43,9 @@ async function getData(req, res) {
     try {
       orderdata = await Order.find({
         user: req.user.id,
-        status: true,
+        status: true,orderStatus:"placed"
       }).populate("productID");
-      cartdata = await Cart.find({ user: req.user.id, status: true });
+      cartdata = await Cart.find({ user: req.user.id, status: true,orderStatus:"placed" });
     } catch (err) {
       orderdata = false;
       cartdata = false;
