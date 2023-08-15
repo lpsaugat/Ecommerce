@@ -125,8 +125,7 @@ controller.productdelete = async (req, res) => {
 
 //Product View
 controller.productview = async (req, res) => {
-  cartdata = [];
-  orderdata = [];
+  
   const category = await Category.find().sort("-createdAt");
 
   if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
@@ -147,8 +146,7 @@ controller.productview = async (req, res) => {
 
 //Get a specific product
 controller.productviewone = async (req, res) => {
-  cartdata = [];
-  orderdata = [];
+  
   let totalOrders;
   let totalAmount;
   try {
@@ -215,8 +213,7 @@ controller.productviewone = async (req, res) => {
 
 //Update Product page
 controller.productEdit = async (req, res) => {
-  cartdata = [];
-  orderdata = [];
+  
   const category = await Category.find().sort("-createdAt");
 
   try {
@@ -249,8 +246,7 @@ controller.productEdit = async (req, res) => {
 
 //Get all Products
 controller.getAllProducts = async (req, res) => {
-  cartdata = [];
-  orderdata = [];
+  
   query = {};
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 9;

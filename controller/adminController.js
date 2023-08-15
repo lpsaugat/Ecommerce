@@ -303,8 +303,7 @@ controller.categoryDelete = async (req, res) => {
 
 //Update category page
 controller.categoryEdit = async (req, res) => {
-  cartdata = [];
-  orderdata = [];
+  
   const category = await Category.find().sort("-createdAt");
 
   try {
@@ -973,8 +972,7 @@ controller.sortDelete = async (req, res) => {
 
 //Admin Homepage
 controller.adminHomepage = async (req, res) => {
-  cartdata = [];
-  orderdata = [];
+ 
   let productAmount;
   let users;
   const { ordersCount, totalQuantity, totalAmount } = await total();

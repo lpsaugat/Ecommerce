@@ -313,8 +313,7 @@ controller.viewCart = async (req, res) => {
 
 //Admin view shipping
 controller.viewShipping = async (req, res) => {
-  cartdata = [];
-  orderdata = [];
+  
   let shipping;
   try {
     if (
@@ -350,8 +349,7 @@ controller.viewShipping = async (req, res) => {
 
 //Admin View all Shipping
 controller.viewAllShipping = async (req, res) => {
-  cartdata = [];
-  orderdata = [];
+  
   let shipping;
   query = {};
   const page = Number(req.query.page) || 1;
@@ -393,8 +391,7 @@ controller.viewAllShipping = async (req, res) => {
 
 //Admin View single Shipping
 controller.viewSingleShipping = async (req, res) => {
-  cartdata = [];
-  orderdata = [];
+  
   let shipping;
   let orders = [];
   let products = [];

@@ -272,8 +272,7 @@ controller.addUserPage = async (req, res) => {
 
 // User Page
 controller.userPage = async (req, res) => {
-  cartdata = [];
-  orderdata = [];
+  
   try {
     const users = await User.find().sort({ createdAt: -1 }).limit(5);
     const totalUsers = await User.countDocuments();
@@ -304,8 +303,7 @@ controller.userPage = async (req, res) => {
 //Get all Users
 controller.getAllUsers = async (req, res) => {
   try{
-  cartdata = [];
-  orderdata = [];
+  
   query = {};
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 9;
@@ -355,8 +353,7 @@ controller.getAllVendors = async (req, res) => {
 
 //Get customer page
 controller.getCustomer = async (req, res) => {
-  cartdata = [];
-  orderdata = [];
+  
   try {
     const user = await User.findOne({ _id: req.params.id });
     if (!user) {
@@ -373,8 +370,7 @@ controller.getCustomer = async (req, res) => {
 
 //Get vendor page
 controller.getVendor = async (req, res) => {
-  cartdata = [];
-  orderdata = [];
+  
   try {
     const user = await User.findOne({ _id: req.params.id });
     if (!user) {
@@ -409,8 +405,7 @@ controller.getVendor = async (req, res) => {
 
 //Get a specific user
 controller.getUser = async (req, res) => {
-  cartdata = [];
-  orderdata = [];
+ 
   try {
     const user = await User.findOne({ _id: req.params.id });
     if (!user) {
