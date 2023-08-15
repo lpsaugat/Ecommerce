@@ -125,7 +125,7 @@ controller.productdelete = async (req, res) => {
 
 //Product View
 controller.productview = async (req, res) => {
-  const category = await Category.find().sort("-createdAt");
+  const category = await Category.find().sort("name");
 
   if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
     const products = await Product.find()
@@ -211,7 +211,7 @@ controller.productviewone = async (req, res) => {
 
 //Update Product page
 controller.productEdit = async (req, res) => {
-  const category = await Category.find().sort("-createdAt");
+  const category = await Category.find().sort("name");
 
   try {
     if (

@@ -27,14 +27,15 @@
               >
               <div class="mt-4 pl-1 flex flex-col">
                
-              <select
+                <select
                 id="categoryDropdown"
                 multiple
                 size="3"
-                class="overflow-y-scroll w-full"
-              >
+                class="w-full border-[1px] rounded-md p-2 overflow-y-scroll"
+                style="overflow-y: scroll;"
+                >
               <% for (i = 0;i<category.length;i++){%>
-                <option value="<%=category[i].name%>"><%=category[i].name%></option>
+                <option value="<%=category[i].name%>" class="mb-[2px]"><%=category[i].name%></option>
                 <%}%>
               </select>
               <input
