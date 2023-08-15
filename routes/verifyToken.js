@@ -63,6 +63,11 @@ const verifyTokenAndAuthorization = (req, res, next) => {
       req.user.user_type === "vendor" ||
       req.user.user_type === "super-admin"
     ) {
+      if (req.user) {
+        res.locals.global_user_type = req.user.user_type;
+      } else {
+        res.locals.global_user_type = "guest"; // Default user type
+      }
       next();
     } else {
       res.status(403).json("You are not allowed");
@@ -74,6 +79,11 @@ const verifyTokenAndAdmin = (req, res, next) => {
   verifyToken(req, res, () => {
     const roles = ["super-admin", "admin"];
     if (roles.includes(req.user.user_type)) {
+      if (req.user && req.user.user_type) {
+        res.locals.global_user_type = req.user.user_type;
+      } else {
+        res.locals.global_user_type = "guest"; // Default user type
+      }
       next();
     } else {
       res.status(403).json("You are not allowed");
