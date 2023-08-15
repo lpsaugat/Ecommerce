@@ -34,7 +34,7 @@ router.get(
 //Delete a product
 router.delete(
   "/admindashboard/products/:id",
-  verifyTokenAndAdmin,
+  verifyTokenAndAuthorization,
   productController.productdelete
 );
 

@@ -125,7 +125,6 @@ controller.productdelete = async (req, res) => {
 
 //Product View
 controller.productview = async (req, res) => {
-  
   const category = await Category.find().sort("-createdAt");
 
   if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
@@ -146,7 +145,6 @@ controller.productview = async (req, res) => {
 
 //Get a specific product
 controller.productviewone = async (req, res) => {
-  
   let totalOrders;
   let totalAmount;
   try {
@@ -213,7 +211,6 @@ controller.productviewone = async (req, res) => {
 
 //Update Product page
 controller.productEdit = async (req, res) => {
-  
   const category = await Category.find().sort("-createdAt");
 
   try {
@@ -246,7 +243,6 @@ controller.productEdit = async (req, res) => {
 
 //Get all Products
 controller.getAllProducts = async (req, res) => {
-  
   query = {};
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 9;
@@ -269,14 +265,13 @@ controller.getAllProducts = async (req, res) => {
   } else if (req.user.user_type === "vendor") {
     products = await Product.find({
       createdBy: req.user.id,
-      query,
     })
       .sort(sort)
       .skip(skip)
-      .limit(limit);
+      .limit(limit)
+      .populate("createdBy");
     count = await Product.countDocuments({
       createdBy: req.user.id,
-      query,
     });
   }
   const totalPages = Math.ceil(count / limit);
