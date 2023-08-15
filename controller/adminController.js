@@ -25,20 +25,36 @@ const controller = {};
 cartdata = [];
 orderdata = [];
 
-async function total() {
+async function total(req, res) {
   try {
     let totalQuantity = 0;
     let totalAmount = 0;
-    var ordersCount = await Order.countDocuments({ orderStatus: "delivered" });
-    var totalOrders = await Order.find({ orderStatus: "delivered" });
-    var totalShipping = await Shipping.find({ deliveryStatus: "delivered" });
-    totalOrders.forEach((element) => {
-      totalQuantity = totalQuantity + parseFloat(element.quantity);
-    });
-    totalShipping.forEach((element) => {
-      totalAmount = totalAmount + parseFloat(element.netTotal);
-    });
-    console.log(ordersCount, totalQuantity, totalAmount);
+    var ordersCount, totalOrders, totalShipping;
+    if (
+      req.user.user_type === "super-admin" ||
+      req.user.user_type === "admin"
+    ) {
+      ordersCount = await Order.countDocuments({ orderStatus: "delivered" });
+      totalOrders = await Order.find({ orderStatus: "delivered" });
+      totalShipping = await Shipping.find({ deliveryStatus: "delivered" });
+
+      totalOrders.forEach((element) => {
+        totalQuantity = totalQuantity + parseFloat(element.quantity);
+      });
+      totalShipping.forEach((element) => {
+        totalAmount = totalAmount + parseFloat(element.netTotal);
+      });
+      console.log(ordersCount, totalQuantity, totalAmount);
+    } else if (req.user.user_type === "vendor") {
+      ordersCount = await Order.countDocuments({
+        orderStatus: "delivered",
+        vendor: req.user.id,
+      });
+      totalOrders = await Order.find({
+        orderStatus: "delivered",
+        vendor: req.user.id,
+      });
+    }
     return { totalQuantity, ordersCount, totalAmount };
   } catch (err) {
     console.log(err);
@@ -74,7 +90,6 @@ controller.carouselSingleView = async (req, res) => {
     console.log(err);
   }
 };
-
 
 //Writing in Carousel
 controller.carouselWriting = async (req, res) => {
@@ -143,7 +158,10 @@ controller.carouselUpdate = async (req, res) => {
 controller.subscriptionView = async (req, res) => {
   try {
     const subscription = await Subscription.find().sort("-createdAt");
-    res.render("admindashboard/subscription", { subscription, subscriptiondata: subscription });
+    res.render("admindashboard/subscription", {
+      subscription,
+      subscriptiondata: subscription,
+    });
   } catch (err) {
     console.log(err);
   }
@@ -303,7 +321,6 @@ controller.categoryDelete = async (req, res) => {
 
 //Update category page
 controller.categoryEdit = async (req, res) => {
-  
   const category = await Category.find().sort("-createdAt");
 
   try {
@@ -427,7 +444,6 @@ controller.AdUpdate = async (req, res) => {
   }
 };
 
-
 //banner Page
 controller.bannerView = async (req, res) => {
   try {
@@ -523,7 +539,8 @@ controller.bannerDelete = async (req, res) => {
   try {
     const getBanner = await Banner.findOne({
       _id: req.params.id,
-    });console.log(getBanner)
+    });
+    console.log(getBanner);
     if (!getBanner) {
       return res
         .status(404)
@@ -972,10 +989,9 @@ controller.sortDelete = async (req, res) => {
 
 //Admin Homepage
 controller.adminHomepage = async (req, res) => {
- 
   let productAmount;
   let users;
-  const { ordersCount, totalQuantity, totalAmount } = await total();
+  const { ordersCount, totalQuantity, totalAmount } = await total(req, res);
   if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
     productAmount = await Product.countDocuments();
     users = await User.countDocuments({ user_type: "customer" });

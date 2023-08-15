@@ -266,7 +266,7 @@ router.delete(
 //View Homepage
 router.get(
   "/admindashboard/homepage",
-  verifyTokenAndAdmin,
+  verifyTokenAndAuthorization,
   // adminController.soldQuantity,
   // adminController.categoryNumber,
   adminController.adminHomepage
