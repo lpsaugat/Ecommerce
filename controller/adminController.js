@@ -54,6 +54,12 @@ async function total(req, res) {
         orderStatus: "delivered",
         vendor: req.user.id,
       });
+      totalOrders.forEach((element) => {
+        totalQuantity = totalQuantity + parseFloat(element.quantity);
+        totalAmount =
+          totalAmount +
+          parseFloat(element.price) * parseFloat(element.quantity);
+      });
     }
     return { totalQuantity, ordersCount, totalAmount };
   } catch (err) {
@@ -991,13 +997,14 @@ controller.sortDelete = async (req, res) => {
 controller.adminHomepage = async (req, res) => {
   let productAmount;
   let users;
+  let vendors;
   const { ordersCount, totalQuantity, totalAmount } = await total(req, res);
   if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
     productAmount = await Product.countDocuments();
     users = await User.countDocuments({ user_type: "customer" });
     vendors = await User.countDocuments({ user_type: "vendor" });
   } else if (req.user.user_type === "vendor") {
-    productAmount = null;
+    productAmount = await Product.countDocuments({ createdBy: req.user.id });
   }
 
   try {

@@ -27,6 +27,11 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 
+const userTypeMiddleware = require("./middleware/userTypeMiddleware"); // Adjust the path as needed
+
+// Apply the middleware globally
+app.use(userTypeMiddleware);
+
 const customer_route = require("./routes/customer_route");
 const userRoute = require("./routes/userRoute");
 const productRoute = require("./routes/productRoute");

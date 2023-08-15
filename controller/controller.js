@@ -43,9 +43,14 @@ async function getData(req, res) {
     try {
       orderdata = await Order.find({
         user: req.user.id,
-        status: true,orderStatus:"placed"
+        status: true,
+        orderStatus: "placed",
       }).populate("productID");
-      cartdata = await Cart.find({ user: req.user.id, status: true,orderStatus:"placed" });
+      cartdata = await Cart.find({
+        user: req.user.id,
+        status: true,
+        orderStatus: "placed",
+      });
     } catch (err) {
       orderdata = false;
       cartdata = false;
@@ -89,7 +94,6 @@ controller.home = async (req, res) => {
       ...otherdata
     } = await getData(req, res);
 
-    console.log(req.user);
     res.render("Homepage", {
       productdata,
       carouseldata,
@@ -474,7 +478,7 @@ controller.orderconfirmation = async (req, res) => {
   const data = await getData(req, res);
   const sitedata = data.sitedata;
   var orderdata = data.orderdata;
-var cartdata = data.cartdata;
+  var cartdata = data.cartdata;
   // }
   var subtotal = 0;
   orderdata.forEach((i) => {
