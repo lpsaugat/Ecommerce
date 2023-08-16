@@ -262,10 +262,10 @@ controller.category = async (req, res) => {
   }
   try {
     const newCategory = await Category.create(create);
-    res.json(newCategory);
+    res.status(200).json("Category added");
   } catch (err) {
     console.log(err);
-    res.json(err);
+    res.status(400).json(err);
   }
 };
 
@@ -293,7 +293,7 @@ controller.categoryUpdate = async (req, res) => {
     res.json(newCategory);
   } catch (err) {
     console.log(err);
-    res.json(err);
+    res.status(400).json(err);
   }
 };
 
@@ -412,7 +412,7 @@ controller.AdWriting = async (req, res) => {
     res.json(newAd);
   } catch (err) {
     console.log(err);
-    res.json(err);
+    res.status(400).json(err);
   }
 };
 
@@ -501,7 +501,7 @@ controller.BannerWriting = async (req, res) => {
     res.json(newBanner);
   } catch (err) {
     console.log(err);
-    res.json(err);
+    res.status(400).json(err);
   }
 };
 

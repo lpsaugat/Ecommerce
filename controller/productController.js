@@ -41,10 +41,10 @@ controller.productdetails = async (req, res) => {
       image: images,
       createdBy: req.user.id,
     });
-    res.json(newProduct);
+    res.status(201).json(newProduct);
   } catch (err) {
     console.log(err);
-    res.json(err);
+    res.status(500).json("Product wasn't added");
   }
 };
 
