@@ -87,9 +87,11 @@ if (updateUser) {
       headers: {},
       body: convertedFormData,
     })
-      .then((data) => {
-        {
+      .then((response) => {
+        if (response.ok) {
           showAlert("User Updated", "The user has been updated successfully.");
+        } else {
+          showAlert("Something Went Wrong", "User wasn't updated");
         }
       })
       .catch((error) => {
@@ -171,9 +173,11 @@ function adminDeleteUser(UserID) {
       "Content-Type": "application/json",
     },
   })
-    .then((data) => {
-      {
-        showAlert("User Deleted", "The user has been deleted successfully.");
+    .then((response) => {
+      if (response.ok) {
+        showAlert("User Delted", "The user has been delted successfully.");
+      } else {
+        showAlert("Something Went Wrong", "User wasn't deleted");
       }
     })
     .then(

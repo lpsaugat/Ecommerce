@@ -31,11 +31,15 @@ if (addCategory) {
       headers: {},
       body: convertedFormData,
     })
-      .then((data) => {
-        showAlert(
-          "Category Added",
-          "The Category has been added successfully."
-        );
+      .then((response) => {
+        if (response.ok) {
+          showAlert(
+            "Category Added",
+            "The category has been added successfully."
+          );
+        } else {
+          showAlert("Something Went Wrong", "Category wasn't added");
+        }
       })
       .catch((error) => {
         showAlert("Error");
@@ -74,11 +78,15 @@ if (updateCategory) {
       headers: {},
       body: convertedFormData,
     })
-      .then((data) => {
-        showAlert(
-          "Category Updated",
-          "The Category has been updated successfully."
-        );
+      .then((response) => {
+        if (response.ok) {
+          showAlert(
+            "Category Updated",
+            "The category has been updated successfully."
+          );
+        } else {
+          showAlert("Something Went Wrong", "Category wasn't updated");
+        }
       })
       .catch((error) => {
         showAlert("Error");

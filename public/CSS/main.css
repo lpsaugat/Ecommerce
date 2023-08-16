@@ -780,6 +780,10 @@ video {
   margin-bottom: 210px;
 }
 
+.mb-\[2px\] {
+  margin-bottom: 2px;
+}
+
 .mb-\[30px\] {
   margin-bottom: 30px;
 }
@@ -894,18 +898,6 @@ video {
 
 .mt-\[67px\] {
   margin-top: 67px;
-}
-
-.mb-1 {
-  margin-bottom: 0.25rem;
-}
-
-.mb-\[1px\] {
-  margin-bottom: 1px;
-}
-
-.mb-\[2px\] {
-  margin-bottom: 2px;
 }
 
 .block {
@@ -1544,10 +1536,6 @@ video {
   cursor: pointer;
 }
 
-.scroll-m-1 {
-  scroll-margin: 0.25rem;
-}
-
 .list-disc {
   list-style-type: disc;
 }
@@ -2001,10 +1989,6 @@ video {
 
 .border-t-\[1px\] {
   border-top-width: 1px;
-}
-
-.border-b-\[2px\] {
-  border-bottom-width: 2px;
 }
 
 .border-solid {
@@ -3147,19 +3131,9 @@ video {
   border-bottom-left-radius: 0px;
 }
 
-.focus\:border-blue-400:focus {
-  --tw-border-opacity: 1;
-  border-color: rgb(96 165 250 / var(--tw-border-opacity));
-}
-
 .focus\:border-b-white:focus {
   --tw-border-opacity: 1;
   border-bottom-color: rgb(255 255 255 / var(--tw-border-opacity));
-}
-
-.focus\:outline-none:focus {
-  outline: 2px solid transparent;
-  outline-offset: 2px;
 }
 
 .group:hover .group-hover\:flex {
