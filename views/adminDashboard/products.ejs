@@ -79,7 +79,34 @@
                 />
               </div>
             </div>
+            <div class="flex flex-col mt-4">
+              <label
+                for="status"
+                class="text-[12px] md:text-[14px] font-medium"
+                >Status</label
+              >
 
+              <div class="mt-[14px] flex items-center space-x-4 h-[36px]">
+                <input
+                  type="radio"
+                  name="status"
+                  value="true"
+                  class="h-[18px] w-[18px]"
+                  required
+                  checked
+                />
+                <label for="true">Visible</label>
+
+                <input
+                  type="radio"
+                  name="status"
+                  value="false"
+                  class="h-[18px] w-[18px]"
+                  required
+                />
+                <label for="false">Non-Visible</label>
+              </div>
+            </div>
             <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
               <label
                 for="primaryImage"
