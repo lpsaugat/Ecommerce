@@ -272,7 +272,6 @@ controller.addUserPage = async (req, res) => {
 
 // User Page
 controller.userPage = async (req, res) => {
-  
   try {
     const users = await User.find().sort({ createdAt: -1 }).limit(5);
     const totalUsers = await User.countDocuments();
@@ -302,41 +301,40 @@ controller.userPage = async (req, res) => {
 
 //Get all Users
 controller.getAllUsers = async (req, res) => {
-  try{
-  
-  query = {};
-  const page = Number(req.query.page) || 1;
-  const limit = Number(req.query.limit) || 9;
-  const skip = (page - 1) * limit;
-  let count;
-  let users;
-  count = await User.countDocuments(query);
-  if (req.query.user_type) {
-    user_type = req.query.user_type;
-    query.user_type = { $in: [user_type] };
-  }
-  const totalPages = Math.ceil(count / limit);
-  const sort = req.query.sort;
-  if (!sort) {
-    users = await User.find(query).sort("-createdAt").skip(skip).limit(limit);
-  } else {
-    users = await User.find(query).sort(sort).skip(skip).limit(limit);
-  }
-  const dataPagination = {
-    count,
-    totalPages,
-    page,
-    prev: page === 1 ? 1 : page - 1,
-    next: page === totalPages ? totalPages : page + 1,
-    users,
-  };
+  try {
+    query = {};
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 9;
+    const skip = (page - 1) * limit;
+    let count;
+    let users;
+    count = await User.countDocuments(query);
+    if (req.query.user_type) {
+      user_type = req.query.user_type;
+      query.user_type = { $in: [user_type] };
+    }
+    const totalPages = Math.ceil(count / limit);
+    const sort = req.query.sort;
+    if (!sort) {
+      users = await User.find(query).sort("-createdAt").skip(skip).limit(limit);
+    } else {
+      users = await User.find(query).sort(sort).skip(skip).limit(limit);
+    }
+    const dataPagination = {
+      count,
+      totalPages,
+      page,
+      prev: page === 1 ? 1 : page - 1,
+      next: page === totalPages ? totalPages : page + 1,
+      users,
+    };
 
-  res.render("admindashboard/allUsers", {
-    users: dataPagination.users,
-    dataPagination,
-  });}
-  catch(err){
-    console.log(err)
+    res.render("admindashboard/allUsers", {
+      users: dataPagination.users,
+      dataPagination,
+    });
+  } catch (err) {
+    console.log(err);
   }
 };
 
@@ -353,7 +351,6 @@ controller.getAllVendors = async (req, res) => {
 
 //Get customer page
 controller.getCustomer = async (req, res) => {
-  
   try {
     const user = await User.findOne({ _id: req.params.id });
     if (!user) {
@@ -370,14 +367,15 @@ controller.getCustomer = async (req, res) => {
 
 //Get vendor page
 controller.getVendor = async (req, res) => {
-  
   try {
     const user = await User.findOne({ _id: req.params.id });
     if (!user) {
       // Return a 404 response if the user is not found
       return res.status(404).json({ message: "User not found" });
     } else {
-      const products = await Product.find({ createdBy: req.params.id });
+      const products = await Product.find({
+        createdBy: req.params.id,
+      }).populate("createdBy");
       const orders = await Order.find({
         vendor: req.params.id,
         orderStatus: "delivered",
@@ -405,7 +403,6 @@ controller.getVendor = async (req, res) => {
 
 //Get a specific user
 controller.getUser = async (req, res) => {
- 
   try {
     const user = await User.findOne({ _id: req.params.id });
     if (!user) {
