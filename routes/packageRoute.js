@@ -9,7 +9,7 @@ const {
 
 //Packages Add
 router.post(
-  "/dashboard/packages",
+  "/admindashboard/packages",
   verifyTokenAndAdmin,
 
   packagesController.packageDetails
@@ -17,28 +17,49 @@ router.post(
 
 //Packages Update
 router.put(
-  "/dashboard/packages/:id",
+  "/admindashboard/packages/:id",
   verifyTokenAndAdmin,
   packagesController.packageDetailsUpdate
 );
 
 //Packages Update
 router.delete(
-  "/dashboard/packages/:id",
+  "/admindashboard/packages/:id",
   verifyTokenAndAdmin,
   packagesController.packageDelete
 );
 
-//Get all Packages
+//Get Packages
 router.get(
-  "/dashboard/packages",
+  "/admindashboard/packages",
   verifyTokenAndAdmin,
   packagesController.packageView
 );
 
+//Get all Packages
+router.get(
+  "/admindashboard/allpackages",
+  verifyTokenAndAdmin,
+  packagesController.getAllPackages
+);
+
+//Get single Package
+router.get(
+  "/admindashboard/packages/:id",
+  verifyTokenAndAdmin,
+  packagesController.singlePackageView
+);
+
+//Edit Pakcage Page
+router.get(
+  "/admindashboard/packageEdit/:id",
+  verifyTokenAndAdmin,
+  packagesController.packageEdit
+);
+
 //PackageType Add
 router.post(
-  "/dashboard/packageType",
+  "/admindashboard/packageType",
   verifyTokenAndAdmin,
 
   packagesController.packageTypeDetails
@@ -46,21 +67,21 @@ router.post(
 
 //PackageType Update
 router.put(
-  "/dashboard/packageType/:id",
+  "/admindashboard/packageType/:id",
   verifyTokenAndAdmin,
   packagesController.packageTypeDetailsUpdate
 );
 
 //PackageType Update
 router.delete(
-  "/dashboard/packageType/:id",
+  "/admindashboard/packageType/:id",
   verifyTokenAndAdmin,
   packagesController.packageTypeDelete
 );
 
 //Get all PackageType
 router.get(
-  "/dashboard/packageType/:id",
+  "/admindashboard/packageType/:id",
   verifyTokenAndAdmin,
   packagesController.packageTypeView
 );
