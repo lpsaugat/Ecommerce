@@ -2978,6 +2978,11 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.text-\[\#38C102\] {
+  --tw-text-opacity: 1;
+  color: rgb(56 193 2 / var(--tw-text-opacity));
+}
+
 .text-opacity-80 {
   --tw-text-opacity: 0.8;
 }

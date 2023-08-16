@@ -25,7 +25,11 @@
           <div
             class="opacity-80 col-span-2 text-[10px] md:text-[12px] pt-[9px] md:pt-[10px] lg:pt-[16px] lg:text-[14px]"
           >
-            Full Quantity
+            <%if(products[i].status ===true){ %>
+            <div class="text-[#38C102]">In Stock</div>
+            <% } %> <% if(products[i].status ===false){ %>
+            <div class="text-[#DC0D0D]">Out of Stock</div>
+            <% } %>
           </div>
         </div>
 
