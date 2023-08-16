@@ -119,18 +119,40 @@ controller.packageDelete = async (req, res) => {
   }
 };
 
-//Get All Packages
-controller.packageView = async (req, res) => {
-  let packages;
-  if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
-    packages = await Packages.find().sort("-createdAt");
-    res.send(packages);
+//Package Add page
+controller.packageAdd = async (req, res) => {
+  try {
+    res.render("admindashboard/packageAdd");
+  } catch (err) {
+    console.log(err);
   }
-  res.send(packages);
+};
+
+//Package Edit page
+controller.packageEdit = async (req, res) => {
+  try {
+    const package = await Package.find({ _id: req.params.id });
+    res.render("admindashboard/packageEdit", { package });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Get All Packages
+controller.getAllPackages = async (req, res) => {
+  try {
+    let packages;
+    {
+      packages = await Packages.find().sort("-createdAt");
+      res.render("admindashboard/allpackages", { packages });
+    }
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 //Get a Specific Package
-controller.packageViewOne = async (req, res) => {
+controller.singlePackageView = async (req, res) => {
   const package = {};
   if (req.user.user_type === "admin" || req.user.user_type === "super-admin") {
     package = await Packages.findOne({ _id: req.params.id })
@@ -139,7 +161,7 @@ controller.packageViewOne = async (req, res) => {
     if (!package) {
       res.send(`No package found with id: ${req.params.id}`);
     }
-    res.send(package);
+    res.render("admindashboard/singlepackage", { package });
   }
   if (!package) {
     res.send(`No package found with id: ${req.params.id}`);

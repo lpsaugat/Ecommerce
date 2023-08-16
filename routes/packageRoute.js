@@ -29,11 +29,11 @@ router.delete(
   packagesController.packageDelete
 );
 
-//Get Packages
+//Add Package page
 router.get(
   "/admindashboard/packages",
   verifyTokenAndAdmin,
-  packagesController.packageView
+  packagesController.packageAdd
 );
 
 //Get all Packages
@@ -50,7 +50,7 @@ router.get(
   packagesController.singlePackageView
 );
 
-//Edit Pakcage Page
+//Edit Package Page
 router.get(
   "/admindashboard/packageEdit/:id",
   verifyTokenAndAdmin,
