@@ -149,39 +149,67 @@
         Add Users
       </button>
     </div>
-    <!-- Customize -->
-    <div>
+  </div>
+  <!-- Customize -->
+  <div>
+    <button
+      class="sidebar justify-start items-center flex w-full text-base pl-4 h-12 text-[#12ADF1] hover:bg-[#91e271] hover:text-white"
+      onclick="toggleSubSidebar('subSidebarCustomize','buttonCustomize')"
+      id="buttonCustomize"
+    >
+      Customize
+    </button>
+    <div
+      class="bg-[#a9df94] text-white"
+      id="subSidebarCustomize"
+      style="display: none"
+    >
       <button
-        class="sidebar justify-start items-center flex w-full text-base pl-4 h-12 text-[#12ADF1] hover:bg-[#91e271] hover:text-white"
-        onclick="toggleSubSidebar('subSidebarCustomize','buttonCustomize')"
-        id="buttonCustomize"
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
+        onclick="window.location.href='/admindashboard/carousel'"
       >
-        Customize
+        Carousel
       </button>
-      <div
-        class="bg-[#a9df94] text-white"
-        id="subSidebarCustomize"
-        style="display: none"
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
+        onclick="window.location.href='/admindashboard/subscription'"
       >
-        <button
-          class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
-          onclick="window.location.href='/admindashboard/carousel'"
-        >
-          Carousel
-        </button>
-        <button
-          class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
-          onclick="window.location.href='/admindashboard/subscription'"
-        >
-          Subscription
-        </button>
-        <button
-          class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
-          onclick="window.location.href='/admindashboard/banner'"
-        >
-          Banner
-        </button>
-      </div>
+        Subscription
+      </button>
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
+        onclick="window.location.href='/admindashboard/banner'"
+      >
+        Banner
+      </button>
+    </div>
+  </div>
+  <!-- Packages -->
+  <div>
+    <button
+      class="sidebar justify-start items-center flex w-full text-base pl-4 h-12 text-[#12ADF1] hover:bg-[#91e271] hover:text-white"
+      onclick="toggleSubSidebar('subSidebarPackages','buttonPackages')"
+      id="buttonPackages"
+    >
+      Packages
+    </button>
+    <div
+      class="bg-[#a9df94] text-white"
+      id="subSidebarPackages"
+      style="display: none"
+    >
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
+        onclick="window.location.href='/admindashboard/allPackages'"
+      >
+        All Packages
+      </button>
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
+        onclick="window.location.href='/admindashboard/Packages'"
+      >
+        Add Packages
+      </button>
     </div>
   </div>
   <%}%>
@@ -231,6 +259,12 @@
       urlContainsWord("banner"): {
       sidebar[6].style.backgroundColor = "#38C102";
       sidebar[6].style.color = "white";
+
+      break;
+    }
+    case urlContainsWord("package"): {
+      sidebar[7].style.backgroundColor = "#38C102";
+      sidebar[7].style.color = "white";
 
       break;
     }
@@ -288,6 +322,12 @@
         urlContainsWord("banner"): {
         sidebar[6].style.backgroundColor = "#38C102";
         sidebar[6].style.color = "white";
+
+        break;
+      }
+      case urlContainsWord("package"): {
+        sidebar[7].style.backgroundColor = "#38C102";
+        sidebar[7].style.color = "white";
 
         break;
       }
