@@ -64,13 +64,13 @@ if (addPackage) {
   });
 }
 
-if (updatepackage) {
-  updatepackage.addEventListener("submit", (event) => {
+if (updatePackage) {
+  updatePackage.addEventListener("submit", (event) => {
     event.preventDefault();
     const url = window.location.href;
     const packageID = url.split("/").pop();
     console.log(packageID);
-    const formData = new FormData(updatepackage);
+    const formData = new FormData(updatePackage);
     const name = formData.get("name");
     const price = formData.get("price");
     const status = formData.get("status");
@@ -141,4 +141,42 @@ if (updatepackage) {
         console.error(error);
       });
   });
+}
+
+var deletePackage = document.getElementById("deletePackage");
+
+function deletefPackage() {
+  deletePackage.style.display = "block";
+  document.body.style.overflow = "hidden";
+}
+
+function cancelfDeletePackage() {
+  deletePackage.style.display = "none";
+  document.body.style.overflow = "auto";
+}
+
+function adminDeletePackage(PackageID) {
+  fetch(`http://${ipAddress}:3000/admindashboard/Packages/${PackageID}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        showAlert(
+          "Package Deleted",
+          "The Package has been deleted successfully."
+        );
+      } else {
+        showAlert("Something Went Wrong", "Package wasn't deleted");
+      }
+    })
+    .then(
+      (response) =>
+        (window.location.href = `http://${ipAddress}:3000/admindashboard/allpackages/`)
+    )
+    .catch((error) => {
+      console.error(error);
+    });
 }

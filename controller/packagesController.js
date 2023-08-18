@@ -74,7 +74,7 @@ controller.packageDetailsUpdate = async (req, res) => {
     }
     if (roles.includes(req.user.user_type)) {
       const updatedPackage = await Packages.findOneAndUpdate(
-        filter,
+        { _id: filter },
         update,
 
         { new: true, runValidators: true }
@@ -108,7 +108,7 @@ controller.packageDelete = async (req, res) => {
       roles.includes(req.user.user_type) ||
       getPackage.createdBy.toString() === req.user.id
     ) {
-      const deletedPackage = await Packages.findOneAndDelete(filter);
+      const deletedPackage = await Packages.findOneAndDelete({ _id: filter });
       console.log(deletedPackage);
 
       res.status(200).json(deletedPackage);
