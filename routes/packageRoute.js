@@ -22,7 +22,7 @@ router.put(
   packagesController.packageDetailsUpdate
 );
 
-//Packages Update
+//Packages Delete
 router.delete(
   "/admindashboard/packages/:id",
   verifyTokenAndAdmin,

@@ -17,7 +17,7 @@ const Packages = new mongoose.Schema(
     quantity: mongoose.Types.Decimal128,
     image: [String],
     longDescription: String,
-    discount: Number,
+    discountedFrom: mongoose.Types.Decimal128,
     offer: { type: mongoose.Types.ObjectId },
     category: {
       type: [String],

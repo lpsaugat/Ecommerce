@@ -3,6 +3,8 @@ const fs = require("fs");
 const User = require("../models/User");
 const Carousel = require("../models/Carousel");
 const Product = require("../models/Products");
+const Package = require("../models/Packages");
+
 const Offer = require("../models/Offer");
 
 const Order = require("../models/Order");
@@ -132,8 +134,10 @@ controller.packageAdd = async (req, res) => {
 //Package Edit page
 controller.packageEdit = async (req, res) => {
   try {
-    const package = await Package.find({ _id: req.params.id });
-    res.render("admindashboard/packageEdit", { package });
+    const package = await Package.findOne({ _id: req.params.id });
+    const product = await Product.find();
+
+    res.render("admindashboard/packageEdit", { package, product });
   } catch (err) {
     console.log(err);
   }
@@ -142,10 +146,10 @@ controller.packageEdit = async (req, res) => {
 //Get All Packages
 controller.getAllPackages = async (req, res) => {
   try {
-    let packages;
+    let package;
     {
-      packages = await Packages.find().sort("-createdAt");
-      res.render("admindashboard/allpackages", { packages });
+      package = await Packages.find().sort("-createdAt");
+      res.render("admindashboard/allpackages", { package });
     }
   } catch (err) {
     console.log(err);
