@@ -38,7 +38,7 @@ if (addCategory) {
             "The category has been added successfully."
           );
         } else {
-          showAlert("Something Went Wrong", "Category wasn't added");
+          showAlert("Something Went Wrong", "Category wasn't added", true);
         }
       })
       .catch((error) => {

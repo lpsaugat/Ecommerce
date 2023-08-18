@@ -1,8 +1,15 @@
-function showAlert(title, message) {
+function showAlert(title, message, isError = false) {
   const alertModal = document.getElementById("customAlert");
   const alertTitle = document.getElementById("alertTitle");
   const alertMessage = document.getElementById("alertMessage");
   const okButton = document.getElementById("okButton");
+  const alertContent = document.querySelector(".alert-content");
+
+  if (isError) {
+    alertContent.style.backgroundColor = "#DC0D0D";
+  } else {
+    alertContent.style.backgroundColor = "#38C102";
+  }
 
   alertTitle.textContent = title;
   alertMessage.textContent = message;
