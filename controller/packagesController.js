@@ -145,15 +145,37 @@ controller.packageEdit = async (req, res) => {
 
 //Get All Packages
 controller.getAllPackages = async (req, res) => {
-  try {
-    let package;
-    {
-      package = await Packages.find().sort("-createdAt");
-      res.render("admindashboard/allpackages", { package });
-    }
-  } catch (err) {
-    console.log(err);
+  query = {};
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 9;
+  const skip = (page - 1) * limit;
+  let count;
+  let packages;
+  let sort;
+  if (!req.query.sort) {
+    sort = "-createdAt";
+  } else {
+    sort = req.query.sort;
   }
+  if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
+    packages = await Packages.find(query).sort(sort).skip(skip).limit(limit);
+    count = await Packages.countDocuments(query);
+  }
+  const totalPages = Math.ceil(count / limit);
+
+  const dataPagination = {
+    count,
+    totalPages,
+    page,
+    prev: page === 1 ? 1 : page - 1,
+    next: page === totalPages ? totalPages : page + 1,
+    packages,
+  };
+
+  res.render("admindashboard/allpackages", {
+    packages: dataPagination.packages,
+    dataPagination,
+  });
 };
 
 //Get a Specific Package
