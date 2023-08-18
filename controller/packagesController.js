@@ -122,7 +122,8 @@ controller.packageDelete = async (req, res) => {
 //Package Add page
 controller.packageAdd = async (req, res) => {
   try {
-    res.render("admindashboard/packageAdd");
+    const product = await Product.find({ isActive: true }).sort("name");
+    res.render("admindashboard/packageAdd", { product });
   } catch (err) {
     console.log(err);
   }
