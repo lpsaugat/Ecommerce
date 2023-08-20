@@ -44,7 +44,13 @@
         }else{ %> In Stock <%}; %>
       </div>
       <div class="pt-4 font-semibold text-base">
-        Rs. <%= singlepackage.price %>
+        <div class="font-medium text-base">
+          <div class="pt-4">Bundle Price: Rs. <%= total %></div>
+          <div class="pt-4">
+            Our Price:
+            <span class="text-[#237700]"> Rs. <%= singlepackage.price %> </span>
+          </div>
+        </div>
       </div>
       <div class="pt-4 text-xs md:text-sm lg:max-w-[348px] text-justify">
         <%= singlepackage.description %>
@@ -114,8 +120,11 @@
         </div>
       </div>
       <div class="font-medium text-base">
-        Bundle Price: Rs. <%= total %>
-        <span class="text-[#237700]"> <%= singlepackage.price %> </span>
+        <div class="pt-4">Bundle Price: Rs. <%= total %></div>
+        <div class="pt-4">
+          Our Price:
+          <span class="text-[#237700]"> Rs. <%= singlepackage.price %> </span>
+        </div>
       </div>
     </div>
   </div>
@@ -571,14 +580,16 @@
 <div
   class="h-[149px] w-full z-40 fixed bottom-0 bg-white px-5 pt-5 border-t-[1px] block lg:hidden"
 >
-  <div class="font-medium md:text-base">Bundle Price</div>
+  <div class="font-medium md:text-base">Bundle Price : Rs. <%=total%></div>
   <div class="justify-between flex">
     <div
       class="pt-[10px] opacity-80 max-w-[161px] md:max-w-none text-[10px] md:text-xs"
     >
       Taxes and shipping calculated at checkout
     </div>
-    <div class="font-medium md:font-[16px]">Rs.<%= total %></div>
+    <div class="font-medium md:font-[16px]">
+      Our Price: Rs.<%= singlepackage.price %>
+    </div>
   </div>
   <div class="justify-end flex pt-[16px] gap-x-[10px]">
     <button
