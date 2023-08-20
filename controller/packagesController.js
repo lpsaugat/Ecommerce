@@ -4,6 +4,7 @@ const User = require("../models/User");
 const Carousel = require("../models/Carousel");
 const Product = require("../models/Products");
 const Package = require("../models/Packages");
+const Review = require("../models/Review");
 
 const Offer = require("../models/Offer");
 
@@ -180,20 +181,40 @@ controller.getAllPackages = async (req, res) => {
 
 //Get a Specific Package
 controller.singlePackageView = async (req, res) => {
-  const package = {};
-  if (req.user.user_type === "admin" || req.user.user_type === "super-admin") {
-    package = await Packages.findOne({ _id: req.params.id })
-      .sort("-createdAt")
-      .populate("createdBy");
+  var package = {};
+  try {
+    if (
+      req.user.user_type === "admin" ||
+      req.user.user_type === "super-admin"
+    ) {
+      package = await Packages.findOne({ _id: req.params.id }).sort(
+        "-createdAt"
+      );
+      if (!package) {
+        res.send(`No package found with id: ${req.params.id}`);
+      }
+      const reviews = await Review.find({ packageID: req.params.id });
+      const products = await Product.find({
+        _id: { $in: package.products },
+      });
+      let total = 0;
+
+      for (let i = 0; i < products.length; i++) {
+        total += parseFloat(products[i].price.toString());
+      }
+      res.render("admindashboard/singlepackage", {
+        package,
+        reviews,
+        products,
+        total,
+      });
+    }
     if (!package) {
       res.send(`No package found with id: ${req.params.id}`);
     }
-    res.render("admindashboard/singlepackage", { package });
+  } catch (err) {
+    console.log(err);
   }
-  if (!package) {
-    res.send(`No package found with id: ${req.params.id}`);
-  }
-  res.send(package);
 };
 
 //PackageType Details
