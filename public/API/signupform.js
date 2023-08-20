@@ -71,11 +71,12 @@ if (signinForm) {
             },
           })
             .then((response) => (window.location.href = response.url))
-            .then((data) => {})
             .catch((error) => {
               console.log();
               console.log(error);
             });
+        } else {
+          showAlert("Wrong Credentials", "", true);
         }
       })
       .then((data) => {

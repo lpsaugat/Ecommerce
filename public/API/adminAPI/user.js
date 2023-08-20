@@ -35,6 +35,8 @@ if (adminSignIn) {
               console.log();
               console.log(error);
             });
+        } else {
+          showAlert("Wrong Credentials", "", true);
         }
       })
       .then((data) => {
