@@ -11,14 +11,8 @@ const delivery = new mongoose.Schema(
     type: {
       type: String,
     },
-    productID: {
-      type: [mongoose.Types.ObjectId],
-      ref: "Product",
-    },
-    packageID: {
-      type: [mongoose.Types.ObjectId],
-      ref: "Package",
-    },
+    cost: mongoose.Types.Decimal128,
+    location: String,
     status: Boolean,
     isActive: {
       type: Boolean,
