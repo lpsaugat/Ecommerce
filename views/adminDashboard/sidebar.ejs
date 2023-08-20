@@ -212,6 +212,34 @@
       </button>
     </div>
   </div>
+  <!-- Delivery -->
+  <div>
+    <button
+      class="sidebar justify-start items-center flex w-full text-base pl-4 h-12 text-[#12ADF1] hover:bg-[#91e271] hover:text-white"
+      onclick="toggleSubSidebar('subSidebarDelivery','buttonDelivery')"
+      id="buttonDelivery"
+    >
+      Delivery
+    </button>
+    <div
+      class="bg-[#a9df94] text-white"
+      id="subSidebarDelivery"
+      style="display: none"
+    >
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
+        onclick="window.location.href='/admindashboard/allDelivery'"
+      >
+        All Delivery
+      </button>
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
+        onclick="window.location.href='/admindashboard/Delivery'"
+      >
+        Add Delivery
+      </button>
+    </div>
+  </div>
   <%}%>
 </div>
 
@@ -265,6 +293,12 @@
     case urlContainsWord("package"): {
       sidebar[7].style.backgroundColor = "#38C102";
       sidebar[7].style.color = "white";
+
+      break;
+    }
+    case urlContainsWord("delivery"): {
+      sidebar[8].style.backgroundColor = "#38C102";
+      sidebar[8].style.color = "white";
 
       break;
     }
@@ -328,6 +362,12 @@
       case urlContainsWord("package"): {
         sidebar[7].style.backgroundColor = "#38C102";
         sidebar[7].style.color = "white";
+
+        break;
+      }
+      case urlContainsWord("delivery"): {
+        sidebar[8].style.backgroundColor = "#38C102";
+        sidebar[8].style.color = "white";
 
         break;
       }
