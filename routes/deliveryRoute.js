@@ -8,7 +8,7 @@ const {
 
 //Delivery View all Page
 router.get(
-  "/admindashboard/delivery",
+  "/admindashboard/allDelivery",
   verifyTokenAndAdmin,
   deliveryController.deliveryView
 );
@@ -47,3 +47,5 @@ router.delete(
   verifyTokenAndAdmin,
   deliveryController.deliveryDelete
 );
+
+module.exports = router;

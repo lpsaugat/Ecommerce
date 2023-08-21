@@ -33,6 +33,8 @@ const productRoute = require("./routes/productRoute");
 const adminRoute = require("./routes/adminRoute");
 const packageRoute = require("./routes/packageRoute");
 const orderRoute = require("./routes/orderRoute");
+const deliveryRoute = require("./routes/deliveryRoute");
+
 const errorHandlerMiddleware = require("./middleware/error-handler");
 const notFoundMiddleware = require("./middleware/error-handler");
 
@@ -52,6 +54,7 @@ app.use("/", productRoute);
 app.use("/", adminRoute);
 app.use("/", packageRoute);
 app.use("/", orderRoute);
+app.use("/", deliveryRoute);
 
 // app.set('port', process.env.PORT || 3000,);
 app.set("views", path.join(__dirname, "views"));

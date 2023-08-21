@@ -83,7 +83,7 @@ controller.deliveryEditPage = async (req, res) => {
 controller.deliveryView = async (req, res) => {
   try {
     var delivery = Delivery.find();
-    res.render("admindashboard/delivery", { delivery });
+    res.render("admindashboard/alldelivery", { delivery });
   } catch (err) {
     res.status(404).json(err);
   }
