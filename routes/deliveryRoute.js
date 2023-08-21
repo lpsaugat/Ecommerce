@@ -28,7 +28,7 @@ router.get(
 );
 
 //Delivery Edit
-router.patch(
+router.put(
   "/admindashboard/delivery/:id",
   verifyTokenAndAdmin,
   deliveryController.deliveryEdit

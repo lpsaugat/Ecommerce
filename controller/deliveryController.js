@@ -17,18 +17,16 @@ controller.deliveryAdd = async (req, res) => {
 
 //Update and Edit Delivery
 controller.deliveryEdit = async (req, res) => {
-  const delivery = req.params.id;
   try {
-    const getDelivery = await Delivery.findOne({ _id: Delivery });
+    const getDelivery = await Delivery.findOne({ _id: req.params.id });
     if (!getDelivery) {
       return res
         .status(404)
-        .json({ message: `No Delivery found with id ${Delivery}` });
+        .json({ message: `No Delivery found with id ${req.params.id}` });
     }
-
     const updatedDelivery = await Delivery.findOneAndUpdate(
-      { _id: delivery },
-      update,
+      { _id: req.params.id },
+      { ...req.body },
 
       { new: true, runValidators: true }
     );
@@ -42,16 +40,17 @@ controller.deliveryEdit = async (req, res) => {
 
 //Delete Delivery
 controller.deliveryDelete = async (req, res) => {
-  const delivery = req.params.id;
   try {
-    const getDelivery = await Delivery.findOne({ _id: Delivery });
+    const getDelivery = await Delivery.findOne({ _id: req.params.id });
     if (!getDelivery) {
       return res
         .status(404)
-        .json({ message: `No Delivery found with id ${delivery}` });
+        .json({ message: `No Delivery found with id ${req.params.id}` });
     }
 
-    const deletedDelivery = await Delivery.findOneAndDelete({ _id: delivery });
+    const deletedDelivery = await Delivery.findOneAndDelete({
+      _id: req.params.id,
+    });
     console.log(deletedDelivery);
     res.status(200).json(deletedDelivery);
   } catch (err) {
@@ -72,7 +71,7 @@ controller.deliveryAddPage = async (req, res) => {
 //Delivery Update and Edit page
 controller.deliveryEditPage = async (req, res) => {
   try {
-    var delivery = Delivery.findOne({ _id: req.params.id });
+    var delivery = await Delivery.findOne({ _id: req.params.id });
     res.render("admindashboard/deliveryEdit", { delivery });
   } catch (err) {
     res.status(404).json(err);
@@ -82,7 +81,7 @@ controller.deliveryEditPage = async (req, res) => {
 //View all Delivery
 controller.deliveryView = async (req, res) => {
   try {
-    var delivery = Delivery.find();
+    var delivery = await Delivery.find({ isActive: true }).sort("-createdAt");
     res.render("admindashboard/alldelivery", { delivery });
   } catch (err) {
     res.status(404).json(err);

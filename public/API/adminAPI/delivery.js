@@ -55,7 +55,7 @@ if (updateDelivery) {
     const location = formData.get("location");
     const description = formData.get("description");
     const requestBody = new FormData();
-
+    const deliveryID = formData.get("deliveryID");
     requestBody.append("name", name);
     requestBody.append("price", price);
     requestBody.append("location", location);
@@ -69,7 +69,7 @@ if (updateDelivery) {
     sendRequest.forEach(([name, value]) => {
       convertedFormData.append(name, value);
     });
-    fetch(`http://${ipAddress}:3000/admindashboard/delivery/:id`, {
+    fetch(`http://${ipAddress}:3000/admindashboard/delivery/${deliveryID}`, {
       method: "PUT",
       headers: {},
       body: convertedFormData,

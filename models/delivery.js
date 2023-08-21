@@ -11,7 +11,7 @@ const delivery = new mongoose.Schema(
     type: {
       type: String,
     },
-    cost: mongoose.Types.Decimal128,
+    price: mongoose.Types.Decimal128,
     location: String,
     status: Boolean,
     isActive: {

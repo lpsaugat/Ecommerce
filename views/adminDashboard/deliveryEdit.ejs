@@ -17,19 +17,19 @@
               <input
                 type="text"
                 name="name"
-                placeholder="<%delivery.name%>"
+                placeholder="<%-delivery.name%>"
                 class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
               />
             </div>
             <div class="mt-[21px] md:mt-[24px] lg:mt-[16px] w-1/2">
-              <label for="Charge" class="text-[12px] md:text-[14px] font-medium"
+              <label for="price" class="text-[12px] md:text-[14px] font-medium"
                 >Charge</label
               >
               <input
                 type="text"
                 name="price"
                 class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
-                placeholder="<%delivery.price%>"
+                placeholder="<%-delivery.price%>"
               />
             </div>
           </div>
@@ -43,7 +43,7 @@
               <input
                 type="text"
                 name="location"
-                placeholder="<%delivery.location%>"
+                placeholder="<%-delivery.location%>"
                 class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
               />
             </div>
@@ -57,7 +57,7 @@
               <input
                 type="text"
                 name="description"
-                placeholder="<%delivery.description%>"
+                placeholder="<%-delivery.description%>"
                 class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
               />
             </div>
@@ -78,13 +78,19 @@
               Delete Delivery
             </button>
           </div>
+          <input
+            type="text"
+            name="deliveryID"
+            class="hidden"
+            value="<%=delivery.id%>"
+          />
         </form>
       </div>
     </div>
   </div>
   <div class="flex">
-    <div id="deleteCategory" style="display: none">
-      <%- include ("./deleteCategory") %>
+    <div id="deleteDelivery" style="display: none">
+      <%- include ("./deleteDelivery") %>
     </div>
   </div>
   <div id="customAlert" class="alert-modal">
