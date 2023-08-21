@@ -63,14 +63,28 @@
             </div>
           </div>
 
-          <button
-            type="submit"
-            class="text-[17px] mt-3 font-medium p-3 bg-gradient-to-r from-[#3baf3d] to-[#5DC234] text-white rounded-md"
-          >
-            Update Delivery
-          </button>
+          <div class="flex justify-between">
+            <button
+              type="submit"
+              class="text-[17px] mt-3 font-medium p-3 bg-gradient-to-r from-[#3baf3d] to-[#5DC234] text-white rounded-md"
+            >
+              Update Delivery
+            </button>
+            <button
+              class="text-[17px] mt-3 font-medium p-3 bg-[#DC0D0D] text-white rounded-md"
+              onclick="deletefDelivery()"
+              type="button"
+            >
+              Delete Delivery
+            </button>
+          </div>
         </form>
       </div>
+    </div>
+  </div>
+  <div class="flex">
+    <div id="deleteCategory" style="display: none">
+      <%- include ("./deleteCategory") %>
     </div>
   </div>
   <div id="customAlert" class="alert-modal">

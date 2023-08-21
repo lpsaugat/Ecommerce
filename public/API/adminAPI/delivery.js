@@ -90,3 +90,39 @@ if (updateDelivery) {
       });
   });
 }
+
+var deleteDelivery = document.getElementById("deleteDelivery");
+
+function deletefDelivery() {
+  deleteDelivery.style.display = "block";
+  document.body.style.overflow = "hidden";
+}
+
+function cancelfDeleteDelivery() {
+  deleteDelivery.style.display = "none";
+  document.body.style.overflow = "auto";
+}
+
+function adminDeleteDelivery(deliveryID) {
+  fetch(`http://${ipAddress}:3000/admindashboard/Delivery/${deliveryID}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((data) => {
+      {
+        showAlert(
+          "Delivery Deleted",
+          "The delivery has been deleted successfully."
+        );
+      }
+    })
+    .then(
+      (response) =>
+        (window.location.href = `http://${ipAddress}:3000/admindashboard/alldelivery/`)
+    )
+    .catch((error) => {
+      console.error(error);
+    });
+}
