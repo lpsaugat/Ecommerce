@@ -49,6 +49,10 @@ var Product = new mongoose.Schema(
       required: false,
       ref: "Categories",
     },
+    delivery: {
+      type: mongoose.Types.ObjectId,
+      ref: "delivery",
+    },
 
     slug: {
       type: String,

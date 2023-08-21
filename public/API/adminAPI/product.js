@@ -26,11 +26,13 @@ if (addProduct) {
     const quantity = formData.get("quantity");
     const measure = formData.get("measure");
     const status = formData.get("status");
+    const delivery = formData.get("delivery");
 
     const requestBody = new FormData();
     requestBody.append("name", name);
     requestBody.append("price", price);
     requestBody.append("status", status);
+    requestBody.append("delivery", delivery);
 
     requestBody.append("discountedFrom", discountedFrom);
 
@@ -81,6 +83,7 @@ if (updateProduct) {
     const name = formData.get("name");
     const price = formData.get("price");
     const status = formData.get("status");
+    const delivery = formData.get("delivery");
 
     var discountedFrom = formData.get("discountedFrom");
     console.log(discountedFrom);
@@ -106,6 +109,7 @@ if (updateProduct) {
     requestBody.append("quantity", quantity);
     requestBody.append("measure", measure);
     requestBody.append("status", status);
+    requestBody.append("delivery", delivery);
 
     requestBody.append("price", price);
     requestBody.append("discountedFrom", discountedFrom);
