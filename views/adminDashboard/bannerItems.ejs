@@ -1,6 +1,45 @@
 <div
   class="rounded-md w-full col-span-2 text-[17px] text-[#000123] bg-white mt-2"
 >
+  <div class="max-w-[1200px] lg:px-10 mx-auto hidden md:block">
+    <div class="lg:mt-[80px] mt-[30px]">
+      <div class="font-prox relative overflow-hidden">
+        <img
+          src="../public/Images/homepage/AdbgB.png"
+          class="w-full lg:h-[340px]"
+        />
+        <div
+          class="absolute pl-[21px] lg:pl-[90px] md:pl-[60px] lg:top-[63px] md:top-[57px] top-[63px] uppercase"
+        >
+          <div class="font-[250] lg:text-[20px] md:text-[13px] text-[22px]">
+            <%- banner[i].title %>
+          </div>
+          <div
+            class="font-[600] lg:text-[36px] md:text-[24px] text-[22px] lg:mt-[20px] text-black"
+          >
+            <%- banner[i].text %>
+          </div>
+          <button
+            class="mt-[22px] md:mt-[32px] lg:mt-[34px] font-semibold lg:text-[14px] md:text-[9.3px] text-[9px] flex items-center justify-center lg:w-[143px] md:w-[96px] md:h-[28px] lg:h-[42px] border-[#110631] md:border-[1px] lg:border-[1.5px] md:rounded-[5.3px] lg:rounded-[8px]"
+            onclick="location.href='/package'"
+          >
+            Get Started &nbsp;
+            <img
+              src="../public/Images/arrblack.svg"
+              class="w-[9px] h-[9px] lg:w-[13.4px] lg:h-[13.4px]"
+            />
+          </button>
+        </div>
+        <div class="absolute bottom-0 right-0 overflow-hidden h-full">
+          <img
+            src="            <% banner[i].image[0] %>
+"
+            class="h-full"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
   <div
     class="justify-between items-center flex py-[14px] md:py-[12px] lg:pt-[15px] px-[10px] md:px-[11px] lg:px-[17px] rounded-[3px] mt-6 lg:mt-[15px] lg:shadow-none shadow-[0px_0px_2px_rgba(0,0,0,0.25)]"
   >
