@@ -81,7 +81,7 @@ controller.deliveryEditPage = async (req, res) => {
 //View all Delivery
 controller.deliveryView = async (req, res) => {
   try {
-    var delivery = await Delivery.find({ isActive: true }).sort("-createdAt");
+    var delivery = await Delivery.find({ isActive: true }).sort(req.query.sort);
     res.render("admindashboard/alldelivery", { delivery });
   } catch (err) {
     res.status(404).json(err);
