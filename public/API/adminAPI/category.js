@@ -80,14 +80,16 @@ if (updateCategory) {
       headers: {},
       body: convertedFormData,
     })
-      .then((response) => {
+      .then(async (response) => {
         if (response.ok) {
           showAlert(
             "Category Updated",
             "The category has been updated successfully."
           );
         } else {
-          showAlert("Something Went Wrong", "Category wasn't updated");
+          const errorData = await response.json();
+          console.log(errorData);
+          showAlert(`${errorData}`, "Category wasn't added", true);
         }
       })
       .catch((error) => {

@@ -290,6 +290,10 @@ controller.categoryUpdate = async (req, res) => {
       update,
       { new: true, runValidators: true }
     );
+    if (!newCategory) {
+      res.status(400).json(`Category ${req.body.name} already exists`);
+      return;
+    }
     res.json(newCategory);
   } catch (err) {
     console.log(err);

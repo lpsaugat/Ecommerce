@@ -57,14 +57,17 @@ if (addProduct) {
       method: "POST",
       body: requestBody,
     })
-      .then((response) => {
+      .then(async (response) => {
         if (response.ok) {
           showAlert(
             "Product Added",
             "The product has been added successfully."
           );
-        } else {
-          showAlert("Something Went Wrong", "Product wasn't added");
+        }
+        {
+          const errorData = await response.json();
+          console.log(errorData);
+          showAlert(`${errorData}`, "Product wasn't updated", true);
         }
       })
       .catch((error) => {
@@ -163,14 +166,17 @@ if (updateProduct) {
       headers: {},
       body: convertedFormData,
     })
-      .then((response) => {
+      .then(async (response) => {
         if (response.ok) {
           showAlert(
             "Product Updated",
             "The product has been updated successfully."
           );
-        } else {
-          showAlert("Something Went Wrong", "Product wasn't updated");
+        }
+        {
+          const errorData = await response.json();
+          console.log(errorData);
+          showAlert(`${errorData}`, "Product wasn't updated", true);
         }
       })
       .catch((error) => {
