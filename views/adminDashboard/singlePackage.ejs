@@ -84,16 +84,7 @@
               <div class="font-semibold text-lg flex">Products</div>
               <div
                 class="border-[1px] rounded-[3px] w-full md:w-[330px] h-[36px] md:h-[32px] items-center flex pl-[6px] md:pl-[8.5px] md:mt-[0px] mt-[24px]"
-              >
-                <button>
-                  <img src="../../public/Images/search.svg" />
-                </button>
-                <input
-                  class="opacity-50 ml-4 w-full border-none font-[12px]"
-                  type="text"
-                  placeholder="Add your own product"
-                />
-              </div>
+              ></div>
             </div>
             <!-- Items -->
             <div class="lg:border-[0.5px] rounded-[5px] lg:mt-[30px]">
@@ -124,23 +115,11 @@
                   </div>
                 </div>
               </div>
-              <%- include ("../partials/items")%>
+              <%- include ("./singlePackageProducts")%>
               <div
                 class="pt-6 pb-6 px-[33px] lg:flex justify-between hidden items-center"
               >
-                <div class="flex flex-row items-center">
-                  <div class="font-semibold text-lg">Add Your Own Product</div>
-                  <div
-                    class="border-[0.5px] rounded-[5px] ml-[42px] px-[14px] h-[42px] w-[293px] text-center flex items-center justify-between"
-                  >
-                    <input
-                      type="text"
-                      class="text-[12px]"
-                      placeholder="Search product"
-                    />
-                    <div><img src="../../public/Images/search.svg" /></div>
-                  </div>
-                </div>
+                <div class="flex flex-row items-center"></div>
                 <div class="font-medium text-base">
                   <div>Bundle Price: Rs. <%= total %></div>
                   <div>
