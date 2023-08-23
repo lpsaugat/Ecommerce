@@ -21,7 +21,7 @@ if (adminSignIn) {
         password,
       }),
     })
-      .then((response) => {
+      .then(async (response) => {
         if (response.ok) {
           return fetch(`http://${ipAddress}:3000/admindashboard/homepage`, {
             method: "GET",
@@ -36,7 +36,9 @@ if (adminSignIn) {
               console.log(error);
             });
         } else {
-          showAlert("Wrong Credentials", "", true);
+          const errorData = await response.json();
+          console.log(errorData);
+          showAlert(`${errorData.message}`, "", true);
         }
       })
       .then((data) => {

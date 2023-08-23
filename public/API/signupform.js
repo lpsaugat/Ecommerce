@@ -29,7 +29,15 @@ if (signupForm) {
           Familysize,
         }),
       })
-        .then((response) => response.json())
+        .then(async (response) => {
+          if (response.ok) {
+            console.log(response.json);
+          } else {
+            const errorData = await response.json();
+            console.log(errorData);
+            showAlert(`${errorData.message}`, "", true);
+          }
+        })
         .then((data) => {
           console.log(data);
           // Do something with the response data
@@ -38,7 +46,8 @@ if (signupForm) {
           console.error(error);
         });
     } else {
-      alert("Password not as same as Confirm Password");
+      const errorData = "Passwords do not match ";
+      showAlert(`${errorData}`, "", true);
     }
   });
 }
@@ -62,7 +71,7 @@ if (signinForm) {
         password,
       }),
     })
-      .then((response) => {
+      .then(async (response) => {
         if (response.ok) {
           return fetch(`http://${ipAddress}:3000/`, {
             method: "GET",
@@ -76,7 +85,9 @@ if (signinForm) {
               console.log(error);
             });
         } else {
-          showAlert("Wrong Credentials", "", true);
+          const errorData = await response.json();
+          console.log(errorData);
+          showAlert(`${errorData.message}`, "", true);
         }
       })
       .then((data) => {

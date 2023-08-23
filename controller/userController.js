@@ -103,7 +103,7 @@ controller.checkUser = async (req, res) => {
   const user = await User.findOne({ email });
   if (!user) {
     // if no user is found, return an error response
-    return res.status(404).send({ message: "Invalid email or password" });
+    return res.status(404).send({ message: "User doesn't exist" });
   }
   if (user.status === false) {
     return res

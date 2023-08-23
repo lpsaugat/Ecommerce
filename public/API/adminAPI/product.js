@@ -63,11 +63,10 @@ if (addProduct) {
             "Product Added",
             "The product has been added successfully."
           );
-        }
-        {
+        } else {
           const errorData = await response.json();
           console.log(errorData);
-          showAlert(`${errorData}`, "Product wasn't updated", true);
+          showAlert(`${errorData}`, "Product wasn't added", true);
         }
       })
       .catch((error) => {
