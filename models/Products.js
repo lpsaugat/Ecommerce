@@ -33,6 +33,13 @@ var Product = new mongoose.Schema(
       type: mongoose.Types.Decimal128,
       required: true,
       default: 1,
+
+      validate: {
+        validator: function (value) {
+          return value > -1;
+        },
+        message: "Quantity must be greater than -1.",
+      },
     },
 
     image: {
