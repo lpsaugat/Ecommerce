@@ -1,6 +1,6 @@
 const dotenv = require("dotenv");
 dotenv.config();
-
+require("express-async-errors");
 const express = require("express");
 myConnection = require("express-myconnection");
 const fileUpload = require("express-fileupload");
@@ -40,10 +40,6 @@ const notFoundMiddleware = require("./middleware/error-handler");
 
 app.use(cookieparser());
 
-//Middlewares
-app.use(notFoundMiddleware);
-app.use(errorHandlerMiddleware);
-
 app.use("/public", express.static("public"));
 app.use("/CSS", express.static("public/CSS"));
 app.use("/JS", express.static("public/JS"));
@@ -62,6 +58,10 @@ app.set("admindashboard", path.join(__dirname, "views", "admindashboard"));
 
 app.set("view engine", "ejs");
 
+//Middlewares
+app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
+
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => console.log("DBconnection Successful"))
@@ -76,5 +76,3 @@ app.listen(3000, ip.address(), () =>
     `The server is running on port ${process.env.PORT} with ip ${ip.address()}`
   )
 );
-
-// app.listen(3000);
