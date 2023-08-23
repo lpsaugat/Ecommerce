@@ -28,15 +28,12 @@
               <label
                 for="primaryImage"
                 class="text-[12px] md:text-[14px] font-medium"
-
                 >Background Image * :</label
               >
               <input type="file" name="primaryImage" required />
             </div>
             <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
-              <label
-                for="title"
-                class="text-[12px] md:text-[14px] font-medium"
+              <label for="title" class="text-[12px] md:text-[14px] font-medium"
                 >First title: </label
               ><br />
               <textarea
@@ -57,7 +54,7 @@
                 placeholder="Update Text Here"
               ></textarea>
             </div>
-           
+
             <div class="flex justify-between">
               <button
                 type="submit"
@@ -72,13 +69,7 @@
       </div>
     </div>
   </div>
+  <%- include ("./alert") %>
 
-  <div id="customAlert" class="alert-modal">
-    <div class="alert-content">
-      <h2 id="alertTitle">alertTitle</h2>
-      <p id="alertMessage">alertMessage</p>
-      <button id="okButton">OK</button>
-    </div>
-  </div>
   <div class="hidden"><%- include ("../partials/footer") %></div>
 </div>
