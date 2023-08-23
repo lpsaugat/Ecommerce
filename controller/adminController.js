@@ -260,13 +260,13 @@ controller.category = async (req, res) => {
   } catch (err) {
     console.log(err);
   }
-  try {
-    const newCategory = await Category.create(create);
-    res.status(200).json("Category added");
-  } catch (err) {
-    console.log(err);
-    res.status(400).json(err);
+  const findCategory = await Category.findOne({ name: req.body.name });
+  if (findCategory) {
+    res.status(400).json(`Category ${req.body.name} already exists`);
+    return;
   }
+  const newCategory = await Category.create(create);
+  res.status(200).json("Category added");
 };
 
 //Update Category

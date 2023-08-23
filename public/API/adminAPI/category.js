@@ -31,14 +31,16 @@ if (addCategory) {
       headers: {},
       body: convertedFormData,
     })
-      .then((response) => {
+      .then(async (response) => {
         if (response.ok) {
           showAlert(
             "Category Added",
             "The category has been added successfully."
           );
         } else {
-          showAlert("Something Went Wrong", "Category wasn't added", true);
+          const errorData = await response.json();
+          console.log(errorData);
+          showAlert(`${errorData}`, "Category wasn't added", true);
         }
       })
       .catch((error) => {
