@@ -22,7 +22,7 @@ function showAlert(title, message, isError = false) {
 
   setTimeout(function () {
     hideModal(alertModal); // Start the fade-out effect after a certain timeout
-  }, 2000);
+  }, 5000);
 }
 
 function hideModal(modal) {
