@@ -1080,4 +1080,14 @@ controller.categoryNumber = async (req, res, next) => {
   }
 };
 
+controller.getParentCategories = async (req, res, next) => {
+  products = await Product.find();
+  categories = await Category.find();
+
+  const parentCategories = categories.filter((category) =>
+    categories.filter((category) => category.parentCategory.length < 1)
+  );
+  console.log(parentCategories);
+};
+
 module.exports = controller;

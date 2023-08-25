@@ -54,7 +54,6 @@ controller.productupdate = async (req, res) => {
   const folder = "products";
   let update = {};
   let images = [];
-
   try {
     if (req.files) {
       images = await imageUploader(req, res, req.files.image, folder);
@@ -255,6 +254,7 @@ controller.getAllProducts = async (req, res) => {
   } else {
     sort = req.query.sort;
   }
+
   if (req.user.user_type === "super-admin" || req.user.user_type === "admin") {
     products = await Product.find(query)
       .sort(sort)

@@ -42,7 +42,6 @@ router.put(
   adminController.carouselUpdate
 );
 
-
 //Subscription View
 router.get(
   "/admindashboard/subscription",
@@ -73,7 +72,6 @@ router.put(
 
   adminController.SubscriptionUpdate
 );
-
 
 //Ads
 router.post(
@@ -118,7 +116,6 @@ router.get(
   verifyTokenAndAdmin,
   adminController.bannerSingleView
 );
-
 
 //Banner Update/Edit
 router.put(
@@ -195,6 +192,13 @@ router.get(
   "/admindashboard/allcategories",
   verifyTokenAndAdmin,
   adminController.allCategoryView
+);
+
+//Get only parent categories
+router.get(
+  "/admindashboard/parentCategories",
+  verifyTokenAndAdmin,
+  adminController.getParentCategories
 );
 
 //Site settings
