@@ -368,8 +368,11 @@ controller.allCategoryView = async (req, res) => {
     } else {
       sort = req.query.sort;
     }
-
-    const category = await Category.find()
+    if (req.query.parentCategory) {
+      parentCategory = req.query.parentCategory;
+      query.parentCategory = { $size: 0 };
+    }
+    const category = await Category.find(query)
       .sort("-createdAt")
       .sort(sort)
       .skip(skip)
@@ -1081,11 +1084,10 @@ controller.categoryNumber = async (req, res, next) => {
 };
 
 controller.getParentCategories = async (req, res, next) => {
-  products = await Product.find();
-  categories = await Category.find();
+  categories = await Category.find({ isActive: true });
 
-  const parentCategories = categories.filter((category) =>
-    categories.filter((category) => category.parentCategory.length < 1)
+  const parentCategories = categories.filter(
+    (category) => category.parentCategory.length < 1
   );
   console.log(parentCategories);
 };
