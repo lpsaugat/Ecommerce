@@ -34,67 +34,8 @@
       <div
         class="grid md:grid-cols-4 grid-cols-2 gap-x-[19.58px] gap-y-[20px] md:overflow-x-auto md:flex lg:grid scrollbar"
       >
-        <div
-          class="p-[4.96px] lg:p-[8.25px] md:p-[5.74px] justify-center rounded border-[1px] sm:flex-shrink-0 lg:w-full"
-        >
-          <a href="singlepackage">
-            <img
-              src="../public/Images/homepage/box1.png"
-              class="h-[100.87px] md:h-[116.66px] lg:h-[167.99px] w-full"
-            />
-            <div
-              class="font-medium text-xs md:text-sm lg:text-lg text-center py-[12px] md:py-[17.85] lg:py-[16.52]"
-            >
-              GIH Well Pacakages
-            </div></a
-          >
-        </div>
-        <div
-          class="p-[4.96px] lg:p-[8.25px] md:p-[5.74px] justify-center rounded border-[1px] sm:flex-shrink-0 lg:w-full"
-        >
-          <a href="singlepackage">
-            <img
-              src="../public/Images/homepage/box4.png"
-              class="h-[100.87px] md:h-[116.66px] lg:h-[167.99px] w-full"
-            />
-            <div
-              class="font-medium text-xs md:text-sm lg:text-lg text-center py-[12px] md:py-[17.85] lg:py-[16.52]"
-            >
-              Cage Fitness
-            </div>
-          </a>
-        </div>
-        <div
-          class="p-[4.96px] lg:p-[8.25px] md:p-[5.74px] justify-center rounded border-[1px] sm:flex-shrink-0 lg:w-full"
-        >
-          <a href="singlepackage">
-            <img
-              src="../public/Images/homepage/box3.png"
-              class="h-[100.87px] md:h-[116.66px] lg:h-[167.99px] w-full"
-            />
-            <div
-              class="font-medium text-xs md:text-sm lg:text-lg text-center py-[12px] md:py-[17.85] lg:py-[16.52]"
-            >
-              Best From Fresh Farm
-            </div>
-          </a>
-        </div>
-
-        <div
-          class="p-[4.96px] lg:p-[8.25px] md:p-[5.74px] justify-center rounded border-[1px] sm:flex-shrink-0 lg:w-full"
-        >
-          <a href="singlepackage">
-            <img
-              src="../public/Images/homepage/box2.png"
-              class="h-[100.87px] md:h-[116.66px] lg:h-[167.99px] w-full"
-            />
-            <div
-              class="font-medium text-xs md:text-sm lg:text-lg text-center py-[12px] md:py-[17.85] lg:py-[16.52]"
-            >
-              Rage Packages
-            </div>
-          </a>
-        </div>
+        <% for (var i = 0; i < 4; i++ ) { %> <%-
+        include('partials/allPackageTypes'); %> <% } %>
       </div>
     </div>
     <div class="justify-between flex items-center md:pr-5 lg:pr-0">
@@ -111,10 +52,9 @@
       <div
         class="grid grid-cols-2 md:hidden gap-x-[19px] sm:gap-x-[23px] md:gap-x-[19px] gap-y-5"
       >
-        <div class="swiper-slide"><%- include('partials/card'); %></div>
-        <div class="swiper-slide"><%- include('partials/card2'); %></div>
-        <div class="swiper-slide"><%- include('partials/card3'); %></div>
-        <div class="swiper-slide"><%- include('partials/card4'); %></div>
+        <% for (var i =0; i <4; i++ ) { %> <% if
+        (_.includes(productdata[i].category, 'Best')){ %> <%-
+        include('partials/allCards'); %> <% }} %>
       </div>
     </div>
 
@@ -123,15 +63,9 @@
     >
       <div class="cards">
         <div class="card-wrapper swiper-wrapper">
-          <div class="swiper-slide"><%- include('partials/card'); %></div>
-          <div class="swiper-slide"><%- include('partials/card2'); %></div>
-          <div class="swiper-slide"><%- include('partials/card3'); %></div>
-          <div class="swiper-slide"><%- include('partials/card4'); %></div>
-          <div class="swiper-slide"><%- include('partials/card'); %></div>
-          <div class="swiper-slide"><%- include('partials/card2'); %></div>
-          <div class="swiper-slide"><%- include('partials/card3'); %></div>
-          <div class="swiper-slide"><%- include('partials/card4'); %></div>
-          <div class="swiper-slide"><%- include('partials/card'); %></div>
+          <% for (var i =0; i <productdata.length; i++ ) { if
+          (_.includes(productdata[i].category, 'Best')) { %> <%-
+          include('partials/allCards'); %> <% }} %>
         </div>
       </div>
 
@@ -155,8 +89,8 @@
       <div
         class="md:grid hidden md:grid-cols-2 md:gap-x-4 lg:gap-x-7 w-full md:pr-5 lg:pr-0"
       >
-        <%- include ("./partials/adsmall") %> <%- include ("./partials/adsmall")
-        %>
+        <% for (var i =0; i <=1; i++ ) { %> <%- include ("./partials/adsmall")
+        %> <% } %>
       </div>
     </div>
   </div>
@@ -165,13 +99,9 @@
   <div class="Adswipe">
     <div class="md:hidden block swiper mySwiper mt-7">
       <div class="swiper-wrapper">
+        <% for (var i =0; i <2; i++ ) { %>
         <div class="swiper-slide"><%- include ("./partials/adsmall") %></div>
-        <div class="swiper-slide w-full">
-          <%- include ("./partials/adsmall") %>
-        </div>
-        <div class="swiper-slide w-full">
-          <%- include ("./partials/adsmall") %>
-        </div>
+        <% } %>
       </div>
       <div
         class="swiper-pagination clickableClass flex justify-start absolute pl-[20px]"
@@ -197,10 +127,9 @@
       <div
         class="grid grid-cols-2 md:hidden gap-x-[19px] sm:gap-x-[23px] md:gap-x-[19px] gap-y-5"
       >
-        <div class="swiper-slide"><%- include('partials/card'); %></div>
-        <div class="swiper-slide"><%- include('partials/card2'); %></div>
-        <div class="swiper-slide"><%- include('partials/card3'); %></div>
-        <div class="swiper-slide"><%- include('partials/card4'); %></div>
+        <% for (var i =0; i <4; i++ ) { %> <% if
+        (_.includes(productdata[i].category, 'Featured')){ %> <%-
+        include('partials/allCards'); %> <% }} %>
       </div>
     </div>
 
@@ -209,15 +138,9 @@
     >
       <div class="cards1">
         <div class="card-wrapper swiper-wrapper">
-          <div class="swiper-slide"><%- include('partials/card'); %></div>
-          <div class="swiper-slide"><%- include('partials/card2'); %></div>
-          <div class="swiper-slide"><%- include('partials/card3'); %></div>
-          <div class="swiper-slide"><%- include('partials/card4'); %></div>
-          <div class="swiper-slide"><%- include('partials/card'); %></div>
-          <div class="swiper-slide"><%- include('partials/card2'); %></div>
-          <div class="swiper-slide"><%- include('partials/card3'); %></div>
-          <div class="swiper-slide"><%- include('partials/card4'); %></div>
-          <div class="swiper-slide"><%- include('partials/card'); %></div>
+          <% for (var i =0; i <productdata.length; i++ ) { if
+          (_.includes(productdata[i].category, 'Featured')) { %> <%-
+          include('partials/allCards'); %> <% }} %>
         </div>
       </div>
 
@@ -242,21 +165,24 @@
   <div class="max-w-[1200px] lg:px-10 mx-auto hidden md:block">
     <div class="lg:mt-[80px] mt-[30px]">
       <div class="font-prox relative overflow-hidden">
-        <img src="../public/Images/homepage/AdbgB.png" class="w-full" />
+        <img
+          src="../public/Images/homepage/AdbgB.png"
+          class="w-full lg:h-[340px]"
+        />
         <div
           class="absolute pl-[21px] lg:pl-[90px] md:pl-[60px] lg:top-[63px] md:top-[57px] top-[63px] uppercase"
         >
           <div class="font-[250] lg:text-[20px] md:text-[13px] text-[22px]">
-            Offer of the day
+            <%- bannerdata[0].title %>
           </div>
           <div
             class="font-[600] lg:text-[36px] md:text-[24px] text-[22px] lg:mt-[20px] text-black"
           >
-            Get Veg-subscription <br />
-            only on Rs.20000
+            <%- bannerdata[0].text %>
           </div>
           <button
-            class="mt-[22px] md:mt-[32px] lg:mt-[34px] font-semibold lg:text-[14px] md:text-[9.3px] text-[9px] flex items-center justify-center lg:border-[1.3px] lg:w-[143px] md:w-[96px] md:border-[0.6px] md:h-[28px] lg:h-[42px] border-black md:rounded-[5.3px] lg:rounded-[8px]"
+            class="mt-[22px] md:mt-[32px] lg:mt-[34px] font-semibold lg:text-[14px] md:text-[9.3px] text-[9px] flex items-center justify-center lg:w-[143px] md:w-[96px] md:h-[28px] lg:h-[42px] border-[#110631] md:border-[1px] lg:border-[1.5px] md:rounded-[5.3px] lg:rounded-[8px]"
+            onclick="location.href='/package'"
           >
             Get Started &nbsp;
             <img
@@ -266,13 +192,20 @@
           </button>
         </div>
         <div class="absolute bottom-0 right-0 overflow-hidden h-full">
-          <img src="../public/Images/homepage/image 23.png" class="h-full" />
+          <img
+            src="            <% bannerdata[0].image[0] %>
+"
+            class="h-full"
+          />
         </div>
       </div>
     </div>
   </div>
 
-  <div class="block md:hidden mt-7"><%- include ("./partials/adsmall") %></div>
+  <div class="block md:hidden mt-7">
+    <% for (var i =0; i <1; i++ ) { %> <%- include ("./partials/adsmall") %> <%
+    } %>
+  </div>
 
   <!-- Just For You -->
   <div
@@ -292,10 +225,11 @@
       <div
         class="grid grid-cols-2 md:hidden gap-x-[19px] sm:gap-x-[23px] md:gap-x-[19px] gap-y-5"
       >
-        <div class="swiper-slide"><%- include('partials/card'); %></div>
-        <div class="swiper-slide"><%- include('partials/card2'); %></div>
-        <div class="swiper-slide"><%- include('partials/card3'); %></div>
-        <div class="swiper-slide"><%- include('partials/card4'); %></div>
+        <div class="card-wrapper swiper-wrapper">
+          <% for (var i =0; i <productdata.length; i++ ) { if
+          (_.includes(productdata[i].category, 'ForYodu')) { %> <%-
+          include('partials/allCards'); %> <% }} %>
+        </div>
       </div>
     </div>
 
@@ -304,15 +238,11 @@
     >
       <div class="cards2">
         <div class="card-wrapper swiper-wrapper">
-          <div class="swiper-slide"><%- include('partials/card'); %></div>
-          <div class="swiper-slide"><%- include('partials/card2'); %></div>
-          <div class="swiper-slide"><%- include('partials/card3'); %></div>
-          <div class="swiper-slide"><%- include('partials/card4'); %></div>
-          <div class="swiper-slide"><%- include('partials/card'); %></div>
-          <div class="swiper-slide"><%- include('partials/card2'); %></div>
-          <div class="swiper-slide"><%- include('partials/card3'); %></div>
-          <div class="swiper-slide"><%- include('partials/card4'); %></div>
-          <div class="swiper-slide"><%- include('partials/card'); %></div>
+          <div class="card-wrapper swiper-wrapper">
+            <% for (var i =0; i <productdata.length; i++ ) { if
+            (_.includes(productdata[i].category, 'ForYodu')) { %> <%-
+            include('partials/allCards'); %> <% }} %>
+          </div>
         </div>
       </div>
 
@@ -337,21 +267,24 @@
   <div class="max-w-[1200px] lg:px-10 mx-auto hidden lg:block">
     <div class="lg:mt-[80px] mt-[30px]">
       <div class="font-prox relative overflow-hidden">
-        <img src="../public/Images/homepage/AdbgB.png" class="w-full" />
+        <img
+          src="../public/Images/homepage/AdbgB.png"
+          class="w-full lg:h-[340px]"
+        />
         <div
           class="absolute pl-[300px] lg:pl-[475px] md:pl-[400px] lg:top-[63px] md:top-[57px] top-[63px] uppercase"
         >
           <div class="font-[250] lg:text-[20px] md:text-[13px] text-[22px]">
-            Offer of the day
+            <% bannerdata[1].title %>
           </div>
           <div
             class="font-[600] lg:text-[36px] md:text-[24px] text-[22px] lg:mt-[20px] text-black"
           >
-            Get Veg-subscription <br class="mb-0" />
-            only on Rs.20000
+            <% bannerdata[1].text %>
           </div>
           <button
-            class="mt-[22px] md:mt-[32px] lg:mt-[34px] font-semibold lg:text-[14px] md:text-[9.3px] text-[9px] flex items-center justify-center lg:border-[1.3px] lg:w-[143px] md:w-[96px] md:border-[0.6px] md:h-[28px] lg:h-[42px] border-black md:rounded-[5.3px] lg:rounded-[8px]"
+            class="mt-[22px] md:mt-[32px] lg:mt-[34px] font-semibold lg:text-[14px] md:text-[9.3px] text-[9px] flex items-center justify-center lg:border-[1.5px] lg:w-[143px] md:w-[96px] md:border-[0.6px] md:h-[28px] lg:h-[42px] border-black md:rounded-[5.3px] lg:rounded-[8px]"
+            onclick="location.href='/package'"
           >
             Get Started &nbsp;
             <img
@@ -362,7 +295,8 @@
         </div>
         <div class="absolute top-0 -left-8 h-full overflow-hidden">
           <img
-            src="../public/Images/homepage/image 23.png"
+            src="            <%- bannerdata[1].image[0] %>
+"
             class="h-full rotate-180"
           />
         </div>
@@ -375,19 +309,19 @@
       <div class="font-prox relative overflow-hidden">
         <img src="../public/Images/homepage/AdbgB.png" class="w-full" />
         <div
-          class="absolute pl-[21px] lg:pl-[90px] md:pl-[60px] lg:top-[63px] md:top-[57px] top-[63px] z-50 uppercase"
+          class="absolute pl-[21px] lg:pl-[90px] md:pl-[60px] lg:top-[63px] md:top-[57px] top-[63px] uppercase"
         >
           <div class="font-[250] lg:text-[20px] md:text-[13px] text-[22px]">
-            Offer of the day
+            <%- bannerdata[1].title %>
           </div>
           <div
             class="font-[600] lg:text-[36px] md:text-[24px] text-[22px] lg:mt-[20px]"
           >
-            Get Veg-subscription <br />
-            only on Rs.20000
+            <%- bannerdata[1].text %>
           </div>
           <button
-            class="mt-[22px] md:mt-[32px] lg:mt-[34px] font-[600] lg:text-[14px] md:text-[9.3px] text-[9px] flex items-center justify-center lg:border-[1.3px] w-[143px] md:w-[96px] md:border-[0.6px] md:h-[28px] lg:h-[42px] border-black md:rounded-[5.3px] lg:rounded-[8px]"
+            class="mt-[22px] md:mt-[32px] lg:mt-[34px] font-[600] lg:text-[14px] md:text-[9.3px] text-[9px] flex items-center justify-center lg:border-[1.5px] w-[143px] md:w-[96px] md:border-[0.6px] md:h-[28px] lg:h-[42px] border-black md:rounded-[5.3px] lg:rounded-[8px]"
+            onclick="location.href='/package'"
           >
             Get Started &nbsp;
             <img
@@ -397,13 +331,20 @@
           </button>
         </div>
         <div class="absolute bottom-0 right-0 overflow-hidden h-full">
-          <img src="../public/Images/homepage/Adobj2.png" class="h-full" />
+          <img
+            src="            <%- bannerdata[1].image[0] %>
+"
+            class="h-full"
+          />
         </div>
       </div>
     </div>
   </div>
 
-  <div class="block md:hidden mt-7"><%- include ("./partials/adsmall") %></div>
+  <div class="block md:hidden mt-7">
+    <% for (var i =0; i <1; i++ ) { %> <%- include ("./partials/adsmall") %> <%
+    } %>
+  </div>
   <!-- Popular Pre-made Packages -->
   <div
     class="max-w-[1200px] mx-auto px-5 lg:px-10 cardcss relative lg:mt-[80px] mt-7"
@@ -422,10 +363,8 @@
       <div
         class="grid grid-cols-2 md:hidden gap-x-[19px] sm:gap-x-[23px] md:gap-x-[19px] gap-y-5"
       >
-        <div class="swiper-slide"><%- include('partials/card'); %></div>
-        <div class="swiper-slide"><%- include('partials/card2'); %></div>
-        <div class="swiper-slide"><%- include('partials/card3'); %></div>
-        <div class="swiper-slide"><%- include('partials/card4'); %></div>
+        <% for (var i =0; i <0; i++ ) { if (_.includes(packagedata[i].category,
+        'Popular')) { %> <%- include('partials/allPackages'); %> <% }} %>
       </div>
     </div>
 
@@ -434,15 +373,9 @@
     >
       <div class="cards3">
         <div class="card-wrapper swiper-wrapper">
-          <div class="swiper-slide"><%- include('partials/card'); %></div>
-          <div class="swiper-slide"><%- include('partials/card2'); %></div>
-          <div class="swiper-slide"><%- include('partials/card3'); %></div>
-          <div class="swiper-slide"><%- include('partials/card4'); %></div>
-          <div class="swiper-slide"><%- include('partials/card'); %></div>
-          <div class="swiper-slide"><%- include('partials/card2'); %></div>
-          <div class="swiper-slide"><%- include('partials/card3'); %></div>
-          <div class="swiper-slide"><%- include('partials/card4'); %></div>
-          <div class="swiper-slide"><%- include('partials/card'); %></div>
+          <% for (var i =0; i <packagedata.length; i++ ) { if
+          (_.includes(packagedata[i].category, 'Popular')) { %> <%-
+          include('partials/allPackages'); %> <% }} %>
         </div>
       </div>
 
@@ -471,7 +404,7 @@
       <div class="font-prox relative">
         <img
           src="../public/Images/homepage/Adbg2.jpg"
-          class="w-full hidden lg:block"
+          class="w-full hidden lg:block h-[285px]"
         />
         <img
           src="../public/Images/homepage/Adbg.png"
@@ -479,19 +412,19 @@
         />
 
         <div
-          class="absolute lg:pl-[356px] md:pl-[250px] pl-[134px] lg:top-[50px] md:top-[39px] top-[20px] z-50 overflow-hidden"
+          class="absolute lg:pl-[356px] md:pl-[250px] pl-[134px] lg:top-[50px] md:top-[39px] top-[20px] overflow-hidden"
         >
           <div class="font-[250] lg:text-[20px] md:text-[13px] text-[14px]">
-            COOK WITH HOUSEHOLD
+            <%- bannerdata[0].title %>
           </div>
           <div
             class="font-[600] lg:text-[36px] md:text-[35px] text-[18px] md:pt-[17px] font-prox lg:pt-[0px]"
           >
-            Get amazing food recipe <br class="m-[0px]" />
-            by the experts
+            <%- bannerdata[0].text %>
           </div>
           <button
-            class="hidden mt-[22px] md:mt-[32px] lg:mt-[34px] font-semibold lg:text-[14px] md:text-[9.3px] text-[9px] lg:flex items-center justify-center lg:border-[1.3px] lg:w-[143px] md:w-[96px] md:border-[0.6px] md:h-[28px] lg:h-[42px] border-black md:rounded-[5.3px] lg:rounded-[8px]"
+            class="hidden mt-[22px] md:mt-[32px] lg:mt-[34px] font-semibold lg:text-[14px] md:text-[9.3px] text-[9px] lg:flex items-center justify-center lg:border-[1.5px] lg:w-[143px] md:w-[96px] md:border-[0.6px] md:h-[28px] lg:h-[42px] border-black md:rounded-[5.3px] lg:rounded-[8px]"
+            onclick="location.href='/package'"
           >
             Get Started &nbsp;
             <img
@@ -499,14 +432,14 @@
               class="w-[9px] h-[9px] lg:w-[13.4px] lg:h-[13.4px]"
             />
           </button>
-          <a class="md:hidden"
+          <a class="md:hidden" href="/package"
             ><div
               class="font-[600] lg:text-[14px] md:text-[8px] text-[9px] underline pt-[9px] md:pt-[26px] lg:pt-[47px]"
             >
               GET NOW
             </div></a
           >
-          <a class="md:block hidden lg:hidden"
+          <a class="md:block hidden lg:hidden" href="/package"
             ><div
               class="font-[600] lg:text-[14px] md:text-[19px] text-[9px] underline-offset-4 pt-[9px] md:pt-[10px] lg:pt-[47px] md:block hidden lg:hidden underline"
             >

@@ -18,7 +18,7 @@
         >
           <span class="rounded-md shadow-sm"
             ><button
-              class="flex lg:w-[172px] w-[129px] justify-between items-center lg:px-4 px-[10px] py-2 text-xs lg:text-sm font-medium text-[#182B3C] transition border-[#182B3C] duration-150 ease-in-out border-[1px] rounded-lg focus:rounded-b-none focus:border-b-white"
+              class="flex lg:w-[172px] w-[129px] justify-between items-center lg:px-4 px-[10px] py-2 text-xs lg:text-sm font-medium text-[#182B3C] transition border-[#182B3C] border-[1px] rounded-lg focus:rounded-b-none focus:border-b-white"
               type="button"
               aria-haspopup="true"
               aria-expanded="true"
@@ -41,20 +41,20 @@
             >
               <div class="z-40">
                 <a
-                  href=""
+                  href="/products?sort=low"
                   tabindex="0"
                   class="text-[#182B3C] flex w-full font-medium items-center lg:px-4 px-[10px] py-2 text-xs lg:text-sm leading-5 text-left hover:bg-[#c4c4c4] hover:z-20"
                   role="menuitem"
-                  >Most Viewed</a
+                  >Low to High</a
                 >
               </div>
               <div class="z-40">
                 <a
-                  href=""
+                  href="/products?sort=high"
                   tabindex="0"
                   class="text-[#182B3C] flex w-full items-center font-medium lg:px-4 px-[10px] py-2 text-xs lg:text-sm leading-5 text-left hover:bg-[#c4c4c4] hover:z-20"
                   role="menuitem"
-                  >Most Bought</a
+                  >High to Low</a
                 >
               </div>
             </div>
@@ -93,21 +93,27 @@
 
         <hr />
         <div class="px-[20px]"><%- include ("./partials/filter") %></div>
+        <div class="flex">
+          <button
+            class="bg-gradient-to-r from-[#3baf3d] to-[#5DC234] w-1/2 h-[40px] rounded-lg rounded-t-none rounded-r-none text-white"
+            onclick="resetFilters()"
+          >
+            Reset
+          </button>
+          <button
+            class="bg-gradient-to-r from-[#3baf3d] to-[#5DC234] w-1/2 h-[40px] rounded-lg rounded-t-none rounded-l-none text-white"
+            onclick="filterAdd()"
+          >
+            Done
+          </button>
+        </div>
       </div>
     </div>
 
     <div
       class="col-span-3 grid md:grid-cols-3 grid-cols-2 gap-x-[20px] md:gap-x-[23.3px] lg:gap-x-[30px] gap-y-[20px] md:gap-y-[30px]"
     >
-      <div><%- include ("./partials/card") %></div>
-      <div><%- include ("./partials/card") %></div>
-      <div><%- include ("./partials/card") %></div>
-      <div><%- include ("./partials/card") %></div>
-      <div><%- include ("./partials/card") %></div>
-      <div><%- include ("./partials/card") %></div>
-      <div><%- include ("./partials/card") %></div>
-      <div><%- include ("./partials/card") %></div>
-      <div class="hidden md:block"><%- include ("./partials/card") %></div>
+      <%- include ("./partials/productItems") %>
     </div>
   </div>
 
@@ -115,50 +121,31 @@
     class="flex lg:justify-end justify-center gap-x-[9px] md:gap-x-[12px] lg:gap-x-[9px] pt-[20px] md:pt-[30px] lg:pt-[60px] font-normal"
   >
     <button
+      onclick="location.href = '/products?page=<%=dataPagination.prev%>'"
       class="lg:w-[42px] lg:h-[42px] w-[36px] h-[36px] items-center flex justify-center border-[1px] rounded-[3px]"
     >
       <img src="../public/Images/accordion-active.svg" class="-rotate-90" />
     </button>
+    <% for (var i =1; i<=dataPagination.totalPages; i++ ) { %>
+
     <button
-      class="lg:w-[42px] lg:h-[42px] w-[36px] h-[36px] items-center flex justify-center rounded-[3px] bg-[#00A6EF] text-white"
+      onclick="pageProduct('<%=i%>')"
+      class="lg:w-[42px] lg:h-[42px] hidden md:flex w-[36px] h-[36px] items-center justify-center rounded-[3px] <%= i===dataPagination.page?'text-white bg-[#00A6EF] border-[0px]':'border-[1px]'%>"
     >
-      1
+      <%=i%>
     </button>
-    <button
-      class="lg:w-[42px] lg:h-[42px] w-[36px] h-[36px] items-center flex justify-center border-[1px] rounded-[3px]"
-    >
-      2</button
-    ><button
-      class="lg:w-[42px] lg:h-[42px] w-[36px] h-[36px] items-center flex justify-center border-[1px] rounded-[3px]"
-    >
-      3</button
-    ><button
-      class="lg:w-[42px] lg:h-[42px] w-[36px] h-[36px] items-center flex justify-center border-[1px] rounded-[3px]"
-    >
-      4</button
-    ><button
-      class="lg:w-[42px] lg:h-[42px] hidden md:flex w-[36px] h-[36px] items-center justify-center border-[1px] rounded-[3px]"
-    >
-      5
-    </button>
-    <button
-      class="lg:w-[42px] lg:h-[42px] hidden md:flex w-[36px] h-[36px] items-center justify-center border-[1px] rounded-[3px]"
-    >
-      6</button
-    ><button
-      class="lg:w-[42px] lg:h-[42px] w-[36px] h-[36px] items-center hidden md:flex justify-center border-[1px] rounded-[3px]"
-    >
-      7
-    </button>
+    <% } %>
+
     <button class="w-[23px] h-[42px] items-center flex justify-center">
       <img src="../public/Images/page.png" />
     </button>
     <button
       class="lg:w-[42px] lg:h-[42px] w-[36px] h-[36px] items-center flex justify-center border-[1px] rounded-[3px]"
     >
-      50
+      <%=dataPagination.totalPages%>
     </button>
     <button
+      onclick="location.href = '/products?page=<%=dataPagination.next%>'"
       class="lg:w-[42px] lg:h-[42px] w-[36px] h-[36px] items-center flex justify-center border-[1px] rounded-[3px]"
     >
       <img src="../public/Images/accordion-active.svg" class="rotate-90" />

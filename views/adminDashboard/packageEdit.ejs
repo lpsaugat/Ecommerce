@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<div class="bg-[#f8f8f8] pr-5">
+  <div class="hidden"><%- include ("../partials/header") %></div>
+
+  <div class="flex max-w-1200 mx-auto">
+    <div class="grid gap-x-3 grid-cols-4 w-full rounded-sm">
+      <%- include ("./sidebar") %>
+      <div class="grid col-span-3 grid-cols-3 gap-x-1">
+        <div
+          class="rounded-md col-span-3 w-full text-[17px] p-4 text-[#000123] font-medium bg-white mt-2"
+        >
+          Update Package:
+
+          <form class="rounded-lg p-1" id="updatePackage">
+            <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
+              <label for="Name" class="text-[12px] md:text-[14px] font-medium"
+                >Name *</label
+              >
+              <input
+                type="text"
+                name="name"
+                placeholder="<%=package.name%>"
+                class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
+              />
+            </div>
+            <div class="mt-[21px] md:mt-[24px] lg:mt-[16px] flex gap-x-1">
+              <div class="flex flex-col">
+                <label
+                  for="price"
+                  class="text-[12px] md:text-[14px] font-medium"
+                  >Price (Rs.) *</label
+                >
+                <input
+                  type="text"
+                  name="price"
+                  placeholder="<%=package.price%>"
+                  class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
+                />
+              </div>
+              <div class="flex flex-col">
+                <label
+                  for="discountedFrom"
+                  class="text-[12px] md:text-[14px] font-medium"
+                  >Discounted From (Rs.)
+                </label>
+                <input
+                  type="text"
+                  name="discountedFrom"
+                  placeholder="<%=package.discountedFrom%>"
+                  class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
+                />
+              </div>
+              <div class="flex flex-col">
+                <label
+                  for="quantity"
+                  class="text-[12px] md:text-[14px] font-medium"
+                  >Quantity *</label
+                >
+                <input
+                  type="text"
+                  name="quantity"
+                  placeholder="<%=package.quantity%>"
+                  class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
+                />
+              </div>
+              <div class="flex flex-col">
+                <label
+                  for="measure"
+                  class="text-[12px] md:text-[14px] font-medium"
+                  >Measure</label
+                >
+                <input
+                  type="text"
+                  name="measure"
+                  placeholder="<%=package.measure%>"
+                  class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
+                />
+              </div>
+            </div>
+            <div class="flex flex-col mt-4">
+              <label
+                for="status"
+                class="text-[12px] md:text-[14px] font-medium"
+                >Status</label
+              >
+
+              <div class="mt-[14px] flex items-center space-x-4 h-[36px]">
+                <input
+                  type="radio"
+                  name="status"
+                  value="true"
+                  class="h-[18px] w-[18px]"
+                  required <%if(package.status===true){%>checked<%}%>
+                />
+                <label for="true">In Stock</label>
+
+                <input
+                  type="radio"
+                  name="status"
+                  value="false"
+                  class="h-[18px] w-[18px]"
+                  required
+                  <%if(package.status===false){%>checked<%}%>
+                />
+                <label for="false">Out of Stock</label>
+              </div>
+            </div>
+            <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
+              <label
+                for="primaryImage"
+                class="text-[12px] md:text-[14px] font-medium"
+                >Display Image * :</label
+              >
+              <input type="file" name="primaryImage" />
+             
+            </div>
+            <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
+              <label
+                for="description"
+                class="text-[12px] md:text-[14px] font-medium"
+                >Description:</label
+              ><%-package.description%><br />
+              <textarea
+                name="description"
+                class="w-full mt-[14px] md:mt-[12px] border-[0.5px] rounded-[5px] p-2"
+                id="descriptionTextArea"
+                placeholder="Description"
+              ></textarea>
+            </div>
+            <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
+              <label
+                for="longDescription"
+                class="text-[12px] md:text-[14px] font-medium"
+                >Long Description</label
+              ><%-package.longDescription%><br />
+              <textarea
+                name="longDescription"
+                class="w-full mt-[14px] md:mt-[12px] border-[0.5px] rounded-[5px] p-2"
+                id="longDescriptionTextArea"
+                placeholder="Long Description"
+              ></textarea>
+            </div>
+            
+
+            <div class="mt-[21px] md:mt-[24px] lg:mt-[16px] flex-col flex">
+              <label
+                for="product"
+                class="text-[12px] md:text-[14px] font-medium"
+                >Products</label
+              >
+              <select
+                id="categoryDropdown"
+                multiple
+                size="3"
+                class="w-1/2 border-[1px] rounded-md p-2 overflow-y-scroll"
+                style="overflow-y: scroll;"
+                >
+              <% for (i = 0;i<product.length;i++){%>
+                <option value="<%=product[i].name%>" class="mb-[2px]"><%=product[i].name%></option>
+                <%}%>
+              </select>
+              <input
+                type="text"
+                id="selectedOptionsField"
+                readonly
+                name="product"
+                placeholder="<%-package.category%>"
+              />
+            </div>
+            <div class="flex justify-between">
+              <button
+                type="submit"
+                class="text-[17px] mt-3 font-medium p-3 bg-gradient-to-r from-[#3baf3d] to-[#5DC234] text-white rounded-md"
+              >
+                Update Package
+              </button>
+              <div>
+              <button
+                class="text-[17px] mt-3 font-medium p-3 bg-[#DC0D0D] text-white rounded-md"
+           type="button"     onclick="deletefPackage()"
+             >
+                Delete Package
+              </button>
+            </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex">
+    <div id="deletePackage" style="display: none">
+      <%- include ("./deletePackage") %>
+    </div>
+  </div>
+  <%- include ("./alert") %>
+
+  <div class="hidden"><%- include ("../partials/footer") %></div>
+</div>

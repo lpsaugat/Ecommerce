@@ -1,0 +1,28 @@
+<div
+  class="h-screen z-50 bg-black fixed bg-opacity-50 top-0 left-0 items-center justify-center w-full flex"
+>
+  <div
+    class="w-full md:w-[377px] lg:w-[457px] h-[150px] lg:h-[175px] border-[1px] absolute bg-white pl-[20px] pt-[19px] pb-[20px] rounded-[5px]"
+  >
+    <div class="font-semibold text-[20px]">Delete?</div>
+    <div class="pt-[14px] lg:pt-[19px] lg:text-base text-xs">
+      Are you sure you want to Delete?
+    </div>
+    <div
+      class="pt-[22px] md:pt-[20px] lg:pt-[26px] justify-end flex lg:gap-x-[20px] gap-x-[15px] md:gap-x-[13px] pr-[20px]"
+    >
+      <button
+        class="rounded-[8px] w-[92px] md:w-[99px] lg:w-[110px] h-[32px] md:h-[36px] lg:h-[42px] items-center flex justify-center bg-[#DC0D0D] font-500 lg:text-sm text-xs text-white"
+        onclick="adminDeleteProduct('<%=product._id%>')"
+      >
+        Delete
+      </button>
+      <button
+        class="rounded-[8px] w-[92px] md:w-[99px] lg:w-[110px] h-[32px] md:h-[36px] lg:h-[42px] items-center flex justify-center border-[1px] border-[#DC0D0D] font-500 lg:text-sm text-xs text-[#DC0D0D]"
+        onclick="cancelfDeleteProduct()"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>

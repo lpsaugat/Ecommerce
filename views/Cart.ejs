@@ -12,7 +12,7 @@
     class="flex justify-between pt-[28px] md:-pt-[29px] lg:pt-[55px] font-medium text-center"
   >
     <div class="text-lg md:text-[18px] lg:text-[24px]">My Cart</div>
-    <div class="text-xs md:text-base lg:hidden">Delete</div>
+    <a class="text-xs md:text-base lg:hidden" onclick="deletef()">Delete</a>
   </div>
   <div class="mt-[27px] md:mt-[29px] lg:mt-[23px]">
     <%- include ("./partials/cartitems") %>
@@ -22,7 +22,10 @@
     <div class="pt-[30px] text-[18px] font-medium">Subtotal</div>
     <div class="justify-between flex">
       <div class="pt-[16px]">Taxes and shipping calculated at checkout</div>
-      <div class="text-[24px] font-medium">Rs.45000</div>
+      <div class="text-[24px] font-medium flex">
+        Rs.
+        <div id="subTotal1"><%= subtotal %></div>
+      </div>
     </div>
     <button
       class="w-full h-[42px] mt-[30px] rounded-[8px] text-[14px] items-center flex justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
@@ -52,7 +55,10 @@
     >
       Taxes and shipping calculated at checkout
     </div>
-    <div class="font-medium md:font-[16px]">Rs.45000</div>
+    <div class="font-medium md:font-[16px] flex">
+      Rs.
+      <div id="subTotal2"><%= subtotal %></div>
+    </div>
   </div>
   <div class="justify-between flex pt-[16px] gap-x-[10px]">
     <div
@@ -74,5 +80,5 @@
     </button>
   </div>
 </div>
-
+<br />
 <div class="hidden lg:block"><%- include ("./partials/footer") %></div>

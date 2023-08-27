@@ -85,11 +85,63 @@
     </button>
   </div>
   <div id="" class="pt-[16px] flex gap-x-1 dropdown5">
-    <img src="../public/Images/Vector.png" class="w-[17px] h-[17px]" />
-    <img src="../public/Images/Vector.png" class="w-[17px] h-[17px]" />
-    <img src="../public/Images/Vector.png" class="w-[17px] h-[17px]" />
-    <img src="../public/Images/Vector.png" class="w-[17px] h-[17px]" />
-    <img src="../public/Images/Vector.png" class="w-[17px] h-[17px]" />
+    <div>
+      <button onclick="ratingFetch(0, this)" class="ratingbutton">
+        <img
+          src="../public/Images/Vector.png"
+          class="w-[14.5px] h-[14.5px] star"
+        />
+        <img
+          src="../public/Images/Star-shade.svg"
+          class="w-[14.5px] h-[14.5px] star-shade"
+          style="display: none"
+        />
+      </button>
+      <button onclick="ratingFetch(1, this)" class="ratingbutton">
+        <img
+          src="../public/Images/Vector.png"
+          class="w-[14.5px] h-[14.5px] star"
+        />
+        <img
+          src="../public/Images/Star-shade.svg"
+          class="w-[14.5px] h-[14.5px] star-shade"
+          style="display: none"
+        />
+      </button>
+      <button onclick="ratingFetch(2, this)" class="ratingbutton">
+        <img
+          src="../public/Images/Vector.png"
+          class="w-[14.5px] h-[14.5px] star"
+        />
+        <img
+          src="../public/Images/Star-shade.svg"
+          class="w-[14.5px] h-[14.5px] star-shade"
+          style="display: none"
+        />
+      </button>
+      <button onclick="ratingFetch(3, this)" class="ratingbutton">
+        <img
+          src="../public/Images/Vector.png"
+          class="w-[14.5px] h-[14.5px] star"
+        />
+        <img
+          src="../public/Images/Star-shade.svg"
+          class="w-[14.5px] h-[14.5px] star-shade"
+          style="display: none"
+        />
+      </button>
+      <button onclick="ratingFetch(4, this)" class="ratingbutton">
+        <img
+          src="../public/Images/Vector.png"
+          class="w-[14.5px] h-[14.5px] star"
+        />
+        <img
+          src="../public/Images/Star-shade.svg"
+          class="w-[14.5px] h-[14.5px] star-shade"
+          style="display: none"
+        />
+      </button>
+    </div>
   </div>
   <div class="justify-between flex pt-[20px] items-center">
     <button
@@ -105,7 +157,27 @@
       />
     </button>
   </div>
-  <div class="flex flex-col dropdown2" id=""></div>
+  <div class="flex flex-col dropdown2" id="">
+    <% for (var i = 1;i<10;i++){%>
+    <div class="pt-[16px]">
+      <button
+        class="flex items-center active::bg-green-600"
+        onclick="checkf('<%=i+3%>')"
+      >
+        <div class="w-[14px] h-[14px] border-[1px] rounded-[2px]">
+          <span
+            id=""
+            class="h-full w-full items-center check<%=i+3%>"
+            style="display: none"
+            >&check;</span
+          >
+        </div>
+        &nbsp;&nbsp;&nbsp;
+        <div>Family of <%=i%></div>
+      </button>
+    </div>
+    <%}%>
+  </div>
   <div class="justify-between flex pt-[20px] items-center">
     <button
       class="flex items-center justify-between w-full"

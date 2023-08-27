@@ -1,5 +1,5 @@
 <div class="grid place-items-center fixed w-full h-screen top-0 bottom-0 z-40">
-  <a href="javascript:popupf();">
+  <a href="javascript:popupf();" onmouseover="popupf(0)">
     <div
       class="z-40 top-0 left-0 absolute bg-black bg-opacity-10 h-full w-full"
     ></div
@@ -10,19 +10,23 @@
     <div
       class="rounded-[3px] border-[1px] w-[460px] h-[378px] items-center flex justify-center"
     >
-      <img src="../public/Images/homepage/PopupImage.png" class="h-full" />
+      <img
+        id="popUpImage"
+        src="../public/Images/homepage/PopupImage.png"
+        class="h-full"
+      />
     </div>
     <div class="pl-[27px]">
       <div class="pl-[15px]">
-        <div class="text-[24px] font-medium">Dinner Package</div>
-        <div class="pt-[24px] text-[18px] max-w-[344px]">
-          Dinner Package is a healthy package is a healthy package and is full
-          of nutritions.
+        <div class="text-[24px] font-medium" id="popUpName">NAME</div>
+        <div class="pt-[24px] text-[18px] max-w-[344px]" id="popUpDescription">
+          DESCRIPTION
         </div>
         <div class="text-[#32aa00] text-base flex items-center pt-[24px]">
-          Rs.<span class="text-lg font-bold text-[#32aa00]"
-            >&nbsp;20,000.00</span
-          >
+          Rs.&nbsp;
+          <div id="popUpPrice" class="text-lg font-bold text-[#32aa00]">
+            PRICE
+          </div>
         </div>
         <div class="flex items-center left-0 w-auto gap-x-[24px] pt-[24px]">
           <div class="text-[16px]">Quantity</div>
@@ -50,23 +54,23 @@
         </div>
         <div class="flex gap-x-[20px] pt-[40px]">
           <button
-            class="w-[200px] h-[42px] rounded-[8px] items-center flex justify-center border-[1px] border-[#3baf3d] text-[#3baf3d] font-medium"
-            onclick="addedtocart(this)"
+            class="w-[200px] h-[46px] rounded-[8px] items-center flex justify-center border-[1px] border-[#3baf3d] text-[#3baf3d] font-medium"
+            id="popUpAddedToCart"
           >
             <div class="my-auto text-[#3baf3d] flex">
               Add
               <div class="text-[#3baf3d] added" style="display: none">
                 ed&nbsp;
               </div>
-              to Cart
+              to Cart &nbsp; <img src="../../public/Images/shopping-cart.svg" />
             </div>
           </button>
-          <button
-            class="w-[200px] h-[42px] rounded-[8px] items-center flex justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
-            onclick="location.href= 'cart'"
+          <a
+            class="cursor-pointer w-[200px] h-[46px] rounded-[8px] items-center flex justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
+            id="popUpViewDetail"
           >
-            Buy Now &nbsp; <img src="../public/Images/arrow.svg" />
-          </button>
+            View Detail &nbsp; <img src="../public/Images/arrow.svg" />
+          </a>
         </div>
       </div>
     </div>

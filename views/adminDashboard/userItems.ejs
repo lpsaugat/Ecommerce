@@ -1,0 +1,76 @@
+<div
+  class=" w-full border-b-[1px] col-span-2 text-[17px] text-[#000123] bg-white"
+>
+  <div
+    class=" justify-between items-center flex py-[14px] md:py-[12px] lg:pt-[15px] px-[10px] md:px-[11px] lg:px-[17px] rounded-[3px] lg:shadow-none shadow-[0px_0px_2px_rgba(0,0,0,0.25)]"
+  >
+    <div class="flex w-full">
+      <div
+        class="border-[0.5px] md:h-[86px] md:w-[86px] h-[69px] w-[69px] justify-center rounded-[3px] lg:rounded-[5px] flex items-center ml-[10px] lg:ml-0 md:ml-[15px]"
+      >
+        <img
+          src="   <%= users[i].image %>
+"
+          class="flex items-center justify-center"
+        />
+      </div>
+      <div
+        class="pl-[10px] md:pl-[10px] flex flex-col lg:font-medium text-ellipsis truncate lg:overflow-visible lg:flex-row w-full lg:grid grid-cols-12 lg:items-center"
+      >
+        <div
+          class="text-[12px] md:text-sm lg:text-[16px] col-span-4 lg:pl-[40px]"
+        >
+          <%= users[i].name %>
+
+          <div
+            class="opacity-80 col-span-2 text-[10px] md:text-[12px] pt-[9px] md:pt-[10px] lg:pt-[16px] lg:text-[14px]"
+          >
+            <%= users[i].user_type %>
+          </div>
+        </div>
+
+        <div
+          class="text-[12px] col-span-4 w-auto md:text-[16px] lg:pt-0 font-medium pt-[14px] md:pt-[17px] justify-between items-center grid-cols-1 flex"
+        >
+          <%= users[i].email%>
+        </div>
+        <div class="lg:flex font-roboto flex items-center left-0 w-auto">
+          <div class="flex items-center">
+            <div class="flex justify-center">
+              <button onclick="location.href='/admindashboard/userEdit/<%=users[i]._id%>'">
+                <img src="../../public/Images/Dashboard/edit.svg" class="w-6" />
+              </button>
+              <button
+                class="pl-2"
+                <% if (users[i].user_type=="customer"){%>
+                  onclick="location.href='/admindashboard/userCustomer/<%=users[i]._id%>'"
+
+                <%}else if (users[i].user_type=="vendor"){%>
+                onclick="location.href='/admindashboard/userVendor/<%=users[i]._id%>'"<%}%>
+
+
+              >
+                <img
+                  src="../../public/Images/eye-password-show.svg"
+                  class="w-6"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="text-[12px] justify-between col-span-3 w-auto md:text-[16px] lg:pt-0 font-medium pt-[14px] md:pt-[17px] items-center grid-cols-2 flex"
+        >
+          <div class="pl-1 flex flex-col items-center">
+            <div class="text-[14px]">
+              <%- new Intl.DateTimeFormat('en-US', { month: 'short', day:
+              'numeric', year: 'numeric' }).format(new Date(users[i].createdAt))
+              %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

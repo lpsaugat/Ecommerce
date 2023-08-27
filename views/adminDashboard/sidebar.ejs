@@ -1,0 +1,384 @@
+<div class="h-full w-3/4 min-h-screen bg-[white]">
+  <div class="m-4">
+    <a href="/" class="">
+      <img src="../../public/Images/logo.svg" />
+    </a>
+  </div>
+  <!-- Dashboard -->
+  <div>
+    <button
+      class="sidebar justify-start items-center flex w-full text-base pl-4 h-12 text-[#12ADF1] hover:bg-[#91e271] hover:text-white"
+      onclick="window.location.href='/admindashboard/homepage'"
+    >
+      Dashboard
+    </button>
+  </div>
+  <!-- Products -->
+  <div>
+    <button
+      class="sidebar justify-start items-center flex w-full text-base pl-4 h-12 text-[#12ADF1] hover:bg-[#91e271] hover:text-white"
+      onclick="toggleSubSidebar('subSidebarProducts','buttonProducts')"
+      id="buttonProducts"
+    >
+      Products
+    </button>
+    <div
+      class="bg-[#a9df94] text-white"
+      id="subSidebarProducts"
+      style="display: none"
+    >
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
+        onclick="window.location.href='/admindashboard/allproducts'"
+      >
+        All Products
+      </button>
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
+        onclick="window.location.href='/admindashboard/products'"
+      >
+        Add Products
+      </button>
+    </div>
+  </div>
+  <% if(global_user_type!="vendor"){%>
+  <!-- Category -->
+  <div>
+    <button
+      class="sidebar justify-start items-center flex w-full text-base pl-4 h-12 text-[#12ADF1] hover:bg-[#91e271] hover:text-white"
+      onclick="toggleSubSidebar('subSidebarCategory','buttonCategory')"
+      id="buttonCategory"
+    >
+      Category
+    </button>
+    <div
+      class="bg-[#a9df94] text-white"
+      id="subSidebarCategory"
+      style="display: none"
+    >
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
+        onclick="window.location.href='/admindashboard/allcategories'"
+      >
+        All Categories
+      </button>
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
+        onclick="window.location.href='/admindashboard/category'"
+      >
+        Add Category
+      </button>
+    </div>
+  </div>
+  <!-- Orders -->
+  <div>
+    <button
+      class="sidebar justify-start items-center flex w-full text-base pl-4 h-12 text-[#12ADF1] hover:bg-[#91e271] hover:text-white"
+      onclick="toggleSubSidebar('subSidebarOrders','buttonOrders')"
+      id="buttonOrders"
+    >
+      Orders
+    </button>
+  </div>
+  <!-- Shipping -->
+  <div>
+    <button
+      class="sidebar justify-start items-center flex w-full text-base pl-4 h-12 text-[#12ADF1] hover:bg-[#91e271] hover:text-white"
+      onclick="toggleSubSidebar('subSidebarShipping','buttonShipping')"
+      id="buttonShipping"
+    >
+      Shipping
+    </button>
+    <div
+      class="bg-[#a9df94] text-white"
+      id="subSidebarShipping"
+      style="display: none"
+    >
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
+        onclick="window.location.href='/admindashboard/shipping'"
+      >
+        Shipping Info
+      </button>
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
+        onclick="window.location.href='/admindashboard/allshipping'"
+      >
+        All Shipping
+      </button>
+    </div>
+  </div>
+  <!-- Users -->
+  <div>
+    <button
+      class="sidebar justify-start items-center flex w-full text-base pl-4 h-12 text-[#12ADF1] hover:bg-[#91e271] hover:text-white"
+      onclick="toggleSubSidebar('subSidebarUsers','buttonUsers')"
+      id="buttonUsers"
+    >
+      Users
+    </button>
+    <div
+      class="bg-[#a9df94] text-white"
+      id="subSidebarUsers"
+      style="display: none"
+    >
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12 text-white"
+        onclick="window.location.href='/admindashboard/allusers'"
+      >
+        All Users
+      </button>
+      <div class="ml-2">
+        <button
+          class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12 text-white"
+          onclick="window.location.href='/admindashboard/allusers?user_type=customer'"
+        >
+          Customers
+        </button>
+        <button
+          class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12 text-white"
+          onclick="window.location.href='/admindashboard/allusers?user_type=vendor'"
+        >
+          Vendors
+        </button>
+      </div>
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12 text-white"
+        onclick="window.location.href='/admindashboard/addUser'"
+      >
+        Add Users
+      </button>
+    </div>
+  </div>
+  <!-- Customize -->
+  <div>
+    <button
+      class="sidebar justify-start items-center flex w-full text-base pl-4 h-12 text-[#12ADF1] hover:bg-[#91e271] hover:text-white"
+      onclick="toggleSubSidebar('subSidebarCustomize','buttonCustomize')"
+      id="buttonCustomize"
+    >
+      Customize
+    </button>
+    <div
+      class="bg-[#a9df94] text-white"
+      id="subSidebarCustomize"
+      style="display: none"
+    >
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
+        onclick="window.location.href='/admindashboard/carousel'"
+      >
+        Carousel
+      </button>
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
+        onclick="window.location.href='/admindashboard/subscription'"
+      >
+        Subscription
+      </button>
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
+        onclick="window.location.href='/admindashboard/banner'"
+      >
+        Banner
+      </button>
+    </div>
+  </div>
+  <!-- Packages -->
+  <div>
+    <button
+      class="sidebar justify-start items-center flex w-full text-base pl-4 h-12 text-[#12ADF1] hover:bg-[#91e271] hover:text-white"
+      onclick="toggleSubSidebar('subSidebarPackages','buttonPackages')"
+      id="buttonPackages"
+    >
+      Packages
+    </button>
+    <div
+      class="bg-[#a9df94] text-white"
+      id="subSidebarPackages"
+      style="display: none"
+    >
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
+        onclick="window.location.href='/admindashboard/allPackages'"
+      >
+        All Packages
+      </button>
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
+        onclick="window.location.href='/admindashboard/Packages'"
+      >
+        Add Packages
+      </button>
+    </div>
+  </div>
+  <!-- Delivery -->
+  <div>
+    <button
+      class="sidebar justify-start items-center flex w-full text-base pl-4 h-12 text-[#12ADF1] hover:bg-[#91e271] hover:text-white"
+      onclick="toggleSubSidebar('subSidebarDelivery','buttonDelivery')"
+      id="buttonDelivery"
+    >
+      Delivery
+    </button>
+    <div
+      class="bg-[#a9df94] text-white"
+      id="subSidebarDelivery"
+      style="display: none"
+    >
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
+        onclick="window.location.href='/admindashboard/allDelivery'"
+      >
+        All Delivery
+      </button>
+      <button
+        class="ml-3 w-full justify-start items-center flex text-base pl-4 h-12"
+        onclick="window.location.href='/admindashboard/Deliveryadd'"
+      >
+        Add Delivery
+      </button>
+    </div>
+  </div>
+  <%}%>
+</div>
+
+<script>
+  var sidebar = document.getElementsByClassName("sidebar");
+  switch (true) {
+    case urlContainsWord("homepage"): {
+      sidebar[0].style.backgroundColor = "#38C102";
+      sidebar[0].style.color = "white";
+
+      break;
+    }
+    case urlContainsWord("product"): {
+      sidebar[1].style.backgroundColor = "#38C102";
+      sidebar[1].style.color = "white";
+      break;
+    }
+    case urlContainsWord("categor"): {
+      sidebar[2].style.backgroundColor = "#38C102";
+      sidebar[2].style.color = "white";
+
+      break;
+    }
+    case urlContainsWord("order"): {
+      sidebar[3].style.backgroundColor = "#38C102";
+      sidebar[3].style.color = "white";
+
+      break;
+    }
+    case urlContainsWord("shipping"): {
+      sidebar[4].style.backgroundColor = "#38C102";
+      sidebar[4].style.color = "white";
+
+      break;
+    }
+
+    case urlContainsWord("user"): {
+      sidebar[5].style.backgroundColor = "#38C102";
+      sidebar[5].style.color = "white";
+
+      break;
+    }
+    case urlContainsWord("carousel") ||
+      urlContainsWord("subscription") ||
+      urlContainsWord("banner"): {
+      sidebar[6].style.backgroundColor = "#38C102";
+      sidebar[6].style.color = "white";
+
+      break;
+    }
+    case urlContainsWord("package"): {
+      sidebar[7].style.backgroundColor = "#38C102";
+      sidebar[7].style.color = "white";
+
+      break;
+    }
+    case urlContainsWord("delivery"): {
+      sidebar[8].style.backgroundColor = "#38C102";
+      sidebar[8].style.color = "white";
+
+      break;
+    }
+  }
+
+  function toggleSubSidebar(element, button) {
+    const subSidebar = document.getElementById(element);
+    const buttonColor = document.getElementById(button);
+    if (subSidebar.style.display === "none") {
+      subSidebar.style.display = "block";
+      buttonColor.style.color = "white";
+      buttonColor.style.backgroundColor = "#91e271";
+    } else {
+      subSidebar.style.display = "none";
+    }
+    switch (true) {
+      case urlContainsWord("homepage"): {
+        sidebar[0].style.backgroundColor = "#38C102";
+        sidebar[0].style.color = "white";
+
+        break;
+      }
+      case urlContainsWord("product"): {
+        sidebar[1].style.backgroundColor = "#38C102";
+        sidebar[1].style.color = "white";
+        break;
+      }
+      case urlContainsWord("categor"): {
+        sidebar[2].style.backgroundColor = "#38C102";
+        sidebar[2].style.color = "white";
+
+        break;
+      }
+      case urlContainsWord("order"): {
+        sidebar[3].style.backgroundColor = "#38C102";
+        sidebar[3].style.color = "white";
+
+        break;
+      }
+      case urlContainsWord("shipping"): {
+        sidebar[4].style.backgroundColor = "#38C102";
+        sidebar[4].style.color = "white";
+
+        break;
+      }
+
+      case urlContainsWord("user"): {
+        sidebar[5].style.backgroundColor = "#38C102";
+        sidebar[5].style.color = "white";
+
+        break;
+      }
+      case urlContainsWord("carousel") ||
+        urlContainsWord("subscription") ||
+        urlContainsWord("banner"): {
+        sidebar[6].style.backgroundColor = "#38C102";
+        sidebar[6].style.color = "white";
+
+        break;
+      }
+      case urlContainsWord("package"): {
+        sidebar[7].style.backgroundColor = "#38C102";
+        sidebar[7].style.color = "white";
+
+        break;
+      }
+      case urlContainsWord("delivery"): {
+        sidebar[8].style.backgroundColor = "#38C102";
+        sidebar[8].style.color = "white";
+
+        break;
+      }
+    }
+  }
+
+  function urlContainsWord(word) {
+    var url = window.location.href;
+    var lowercaseUrl = url.toLowerCase();
+    var lowercaseWord = word.toLowerCase();
+
+    return lowercaseUrl.indexOf(lowercaseWord) !== -1;
+  }
+</script>

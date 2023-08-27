@@ -1,0 +1,105 @@
+<!doctype html>
+
+<div class="bg-[#f8f8f8] pr-5">
+  <div class="hidden"><%- include ("../partials/header") %></div>
+
+  <div class="flex max-w-1200 mx-auto">
+    <div class="grid gap-x-3 grid-cols-4 w-full rounded-sm">
+      <%- include ("./sidebar") %>
+
+      <div class="grid col-span-3 grid-cols-3 gap-x-1 py-3 rounded-lg">
+        <div
+          class="rounded-md w-full col-span-3 font-medium text-[17px] p-4 text-[#000123] bg-white mt-2"
+        >
+          <!-- Subscription Page -->
+          <div
+  class="grid lg:grid-cols-3 grid-cols-1 gap-y-5 lg:overflow-clip lg:bg-black"
+  style="max-height: calc(100vh - 103px); min-height: calc(100vh - 103px);"
+>
+  <div class="h-[378px] md:h-[429px] lg:h-full w-full relative group">
+    <img
+      src="<%= subscriptiondata[0].backgroundImage[0] %>"
+      class="h-[378px] md:h-[429px] lg:h-full w-full object-cover lg:opacity-85 group-hover:lg:opacity-50"
+    />
+    <button
+      class="absolute bg-subscription justify-start flex font-semibold pb-[30px] pl-[20px] w-full pt-[27px] md:pl-[42px] md:pb-[34px] md:pt-[33px] bottom-0 text text-[22px] md:text-[24px] text-white lg:hidden"
+      onclick="location.href ='/singlepackage'"
+    >
+      <%= subscriptiondata[0].subscriptionText %>
+    </button>
+    <div
+      class="hidden lg:flex absolute h-auto bottom-0 flex-col items-center pb-[56px] text-center w-full font-semibold text-[36px] text-white bg-gradient-to-t from-black group-hover:pb-[65%] transition-all duration-500"
+    >
+      <div class="pb-[56px] group-hover:pb-0 text-white pt-[50px]">
+        <%= subscriptiondata[0].subscriptionText %>
+      </div>
+      <button
+        class="w-[316px] h-[42px] bg-[#00A6EF] items-center justify-center text-[14px] font-medium rounded-[8px] mt-[30px] hidden group-hover:flex transition transform"
+      >
+        Select Subscription &nbsp;<img src="../public/Images/arrow.svg" />
+      </button>
+    </div>
+  </div>
+  <div class="h-[378px] md:h-[429px] lg:h-full w-full relative group">
+    <img
+      src="<%= subscriptiondata[1].backgroundImage[0] %>"
+      class="h-[378px] md:h-[429px] lg:h-full w-full object-cover lg:opacity-85 group-hover:lg:opacity-50"
+    />
+    <button
+      class="absolute bg-subscription justify-start flex font-semibold pb-[30px] pl-[20px] w-full pt-[27px] md:pl-[42px] md:pb-[34px] md:pt-[33px] bottom-0 text text-[22px] md:text-[24px] text-white lg:hidden"
+    >
+      <%= subscriptiondata[1].subscriptionText %>
+    </button>
+    <div
+      class="hidden lg:flex absolute h-auto bottom-0 flex-col items-center pb-[56px] text-center w-full font-semibold text-[36px] text-white bg-gradient-to-t from-black group-hover:pb-[65%] transition-all duration-500"
+    >
+      <div class="pb-[56px] group-hover:pb-0 text-white pt-[50px]">
+        <%= subscriptiondata[1].subscriptionText %>
+      </div>
+      <button
+        class="w-[316px] h-[42px] bg-[#00A6EF] items-center justify-center text-[14px] font-medium rounded-[8px] mt-[30px] hidden group-hover:flex transition transform"
+      >
+        Select Subscription &nbsp;<img src="../public/Images/arrow.svg" />
+      </button>
+    </div>
+  </div>
+  <div
+    class="h-[378px] md:h-[429px] lg:h-full w-full relative group transition transform"
+  >
+    <img
+      src="<%= subscriptiondata[2].backgroundImage[0] %>"
+      class="h-[378px] md:h-[429px] lg:h-full w-full object-cover lg:opacity-85 group-hover:lg:opacity-50"
+    />
+    <button
+      class="absolute bg-subscription justify-start flex font-semibold pb-[30px] pl-[20px] w-full pt-[27px] md:pl-[42px] md:pb-[34px] md:pt-[33px] bottom-0 text text-[22px] md:text-[24px] text-white lg:hidden"
+      onclick="location.href ='singlepackage'"
+    >
+      <%= subscriptiondata[2].subscriptionText %>
+    </button>
+    <div
+      class="hidden lg:flex absolute h-auto bottom-0 flex-col items-center pb-[56px] text-center w-full font-semibold text-[36px] text-white bg-gradient-to-t from-black group-hover:pb-[65%] transition-all duration-500"
+    >
+      <div class="pb-[56px] group-hover:pb-0 text-white pt-[50px]">
+        <%= subscriptiondata[2].subscriptionText %>
+      </div>
+      <button
+        class="w-[316px] h-[42px] bg-[#00A6EF] items-center justify-center text-[14px] font-medium rounded-[8px] mt-[30px] hidden group-hover:flex transition transform"
+        onclick="location.href ='singlepackage'"
+      >
+        Select Subscription &nbsp;<img src="../public/Images/arrow.svg" />
+      </button>
+    </div>
+  </div>
+            </div>
+          <div class="grid col-span-3 grid-cols-3 gap-x-1">
+            <div class="col-span-3">
+                <% for(i=0;i<subscription.length;i++) {%>
+                  <%- include("./subscriptionItems")%> <%}%>
+              </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="hidden"><%- include ("../partials/footer") %></div>

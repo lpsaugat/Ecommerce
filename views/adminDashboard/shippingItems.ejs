@@ -1,0 +1,77 @@
+<div class="w-full col-span-2 text-[17px] text-[#000123] bg-white">
+  <div
+    class="justify-between items-center flex py-[14px] md:py-[12px] lg:pt-[15px] px-[10px] md:px-[11px] lg:px-[17px] rounded-[3px] lg:shadow-none shadow-[0px_0px_2px_rgba(0,0,0,0.25)]"
+  >
+    <div class="flex w-full md:h-[86px]">
+      <div
+        class="md:w-[86px] w-[69px] justify-center flex items-center ml-[10px]"
+      >
+        <%= shipping[i].user.name %>
+      </div>
+      <div
+        class="pl-[10px] md:pl-[10px] flex flex-col lg:font-medium text-ellipsis truncate lg:overflow-visible lg:flex-row w-full lg:grid grid-cols-12 lg:items-center"
+      >
+        <div
+          class="text-[12px] md:text-sm lg:text-[16px] col-span-4 lg:pl-[40px] items-center flex"
+        >
+          <%= shipping[i].user.id %>
+        </div>
+
+        <div
+          class="text-[12px] col-span-2 w-auto md:text-[16px] lg:pt-0 font-medium pt-[14px] md:pt-[17px] justify-between items-center grid-cols-1 flex"
+        >
+          Rs. <%= shipping[i].netTotal%>
+        </div>
+        <form
+          class="col-span-2 justify-between items-center flex text-[16px] pt-[17px] deliveryStatus"
+        >
+          <input
+            class="hidden"
+            name="shippingID"
+            value="<%=shipping[i].id%>"
+            readonly
+          />
+          <select name="status">
+            <option disabled selected><%= shipping[i].deliveryStatus%></option>
+            <option value="confirmed">confirmed</option>
+            <option value="ontheway">ontheway</option>
+            <option value="delivered">delivered</option>
+            <option value="cancelled">cancelled</option>
+          </select>
+        </form>
+        <div class="lg:flex font-roboto flex items-center left-0 w-auto">
+          <div class="flex items-center">
+            <div class="flex justify-center">
+              <button
+                class="pl-2"
+                onclick="location.href='shipping/<%=shipping[i]._id%>'"
+              >
+                <img
+                  src="../../public/Images/eye-password-show.svg"
+                  class="w-6"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="text-[12px] justify-between col-span-3 w-auto md:text-[16px] lg:pt-0 font-medium pt-[14px] md:pt-[17px] items-center grid-cols-2 flex"
+        >
+          <div class="pl-1 flex flex-col items-center">
+            <div class="text-[14px]">
+              <%- new Intl.DateTimeFormat('en-US', { month: 'short', day:
+              'numeric', year: 'numeric' }).format(new
+              Date(shipping[i].createdAt)) %>
+            </div>
+          </div>
+          <div class="pl-1 flex flex-col items-center">
+            <div class="text-[14px]">
+              <%- new Intl.DateTimeFormat('en-US', { month: 'short', day:
+              'numeric', year: 'numeric' }).format(new Date()) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

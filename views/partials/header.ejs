@@ -16,17 +16,22 @@
     ></script>
 
     <script src="https://cdn.jsdelivr.net/npm/js-image-zoom/js-image-zoom.min.js"></script>
-    <link rel="stylesheet" href="../../public/header.css" />
-    <link rel="stylesheet" href="../public/main.css" />
-    <link rel="stylesheet" href="../../public/range.css" />
-    <link rel="stylesheet" href="../../public/Quantitydropdown.css" />
+    <link rel="stylesheet" href="../../public/CSS/header.css" />
+    <link rel="stylesheet" href="../public/CSS/main.css" />
+    <link rel="stylesheet" href="../../public/CSS/main.css" />
+
+    <link rel="stylesheet" href="../../public/CSS/range.css" />
+    <link rel="stylesheet" href="../../public/CSS/Quantitydropdown.css" />
+    <link rel="stylesheet" href="../../public/CSS/test.css" />
   </head>
 
   <body class="">
-    <div class="lg:shadow-[0_2px_2px_rgba(0,0,0,0.25)]">
-      <div class="max-w-[1200px] mx-auto lg:px-10 px-5">
+    <div class="lg:shadow-[0_2px_2px_rgba(0,0,0,0.25)] relative">
+      <div
+        class="fixed min-w-full -[103px] justify-center block z-50 items-center lg:shadow-[0_2px_2px_rgba(0,0,0,0.25)] bg-white"
+      >
         <div
-          class="mx-auto justify-between flex flex-row items-center md:pb-[30px] pt-[30px] pb-[20px]"
+          class="mx-auto max-w-[1200px] px-5 lg:px-10 justify-between w-auto flex flex-row items-center lg:z-50 h-[103px] md:pb-[30px] pt-[30px] pb-[20px]"
         >
           <div class="lg:block hidden">
             <a href="/"><img src="../../public/Images/logo.svg" /></a>
@@ -46,13 +51,13 @@
                 <a href="/">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="aboutus">About Us</a>
+                <a class="nav-link" href="/aboutus">About Us</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="subscription">Subscription Basket</a>
+                <a class="nav-link" href="/subscription">Subscription Basket</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="products">Shop</a>
+                <a class="nav-link" href="/products">Shop</a>
               </li>
             </ul>
           </div>
@@ -60,17 +65,44 @@
           <div class="lg:block hidden">
             <ul class="list-none flex flex-row gap-[30px]">
               <li>
-                <a href=""><img src="../../public/Images/search.svg" /></a>
+                <a href="javascript:searchQuery()" id="searchbutton"
+                  ><img src="../../public/Images/search.svg" />
+                </a>
+                <form id="search" class="gap-x-2 flex">
+                  <input
+                    class="w-[200px] border-[1px] rounded-[5px] h-[24px] pl-5"
+                    type="text"
+                    id="searchheader"
+                    name="query"
+                    placeholder="Search"
+                    style="display: none"
+                  />
+                  <!-- <submit style="display: none" id="searchText" :
+                    ><img src="../../public/Images/search.svg" />
+                  </submit> -->
+                </form>
               </li>
               <li>
-                <a href="Sign_In"
+                <a href="/dashboard"
                   ><img
                     src="../../public/Images/user.svg"
                     style="width: 24px; height: 20px"
                 /></a>
               </li>
               <li>
-                <a href="Cart"><img src="../../public/Images/cart.svg" /> </a>
+                <a href="/Cart">
+                  <div class="flex flex-row relative overflow-visible">
+                    <img src="../../public/Images/cart.svg" />
+                    <% if (cartdata!=false || cartdata == {}){ %>
+                    <div
+                      id="cartCount"
+                      class="absolute rounded-full bg-red-600 text-white w-5 h-5 -top-[10px] -right-[10px] text-center"
+                    >
+                      <%= orderdata.length%>
+                    </div>
+                    <%}%>
+                  </div>
+                </a>
               </li>
             </ul>
           </div>
@@ -90,38 +122,69 @@
       </div>
       <div
         id="menu1"
-        class="bg-opacity-50 w-[100%] h-screen absolute -z-10"
+        class="bg-opacity-50 w-[100%] h-screen fixed -z-10"
         onclick="openMenu2()"
       ></div>
 
       <div
         id="nav"
-        class="absolute right-0 h-full bg-white overflow-scroll w-[276px] md:w-[363px] font-medium justify-between -z-10 border-t-0"
+        class="fixed right-0 top-[103px] h-full bg-white overflow-scroll w-[276px] md:w-[363px] font-medium justify-between -z-10 border-t-0"
       >
         <asdie
           id="menu"
           class="hidden flex-col relative duration-700 w-full justify-between"
         >
-          <div class="flex flex-col px-5 py-4 text-sm gap-y-9 pb-[200px]">
+          <div class="flex flex-col px-5 py-4 text-sm gap-y-9 pb-[300px]">
             <a href="/">Home</a>
-            <a href="aboutus">About Us</a>
-            <a href="subscription">Subscription Package</a>
-            <a href="products">Shop</a>
-            <a href="sign_in">My Profile</a>
-            <a href="cart">My Cart</a>
+            <a href="/aboutus">About Us</a>
+            <a href="/subscription">Subscription Package</a>
+            <a href="/products">Shop</a>
+            <a href="/dashboard" class="hidden md:block">My Profile</a>
+            <div class="md:hidden">
+              <a
+                href="javascript:mobmenudisplay()"
+                class="justify-between flex md:hidden items-center"
+              >
+                <div>My Profile</div>
+                <div>
+                  <img
+                    src="../../public/Images/accordion-active.svg"
+                    style="transform: rotate(180deg)"
+                    id="mobmenuaccordion"
+                  />
+                </div>
+              </a>
+              <div style="display: none" id="mob-menu" class="md:hidden">
+                <div class="flex flex-col">
+                  <a href="/dashboard" class="pl-[4px] pt-[20px]">My Details</a>
+                  <a href="/mobilepassword" class="pl-[4px] pt-[20px]"
+                    >Password</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div>
+              <a href="/cart">My Cart</a>
+            </div>
+
+            <a
+              onclick="logoutf()"
+              class="md:hidden flex gap-x-1 items-center h-[16px]"
+              ><img src="../../public/Images/Dashboard/logout.svg" />Logout</a
+            >
           </div>
           <div
             class="flex flex-row fixed px-5 justify-between space-x-5 w-[276px] md:w-[363px] bg-white border-gray-100 pb-5 bottom-0 border-t-2 pt-5 text-xs font-medium"
           >
             <button
               class="text-[#3BAF3D] border-[#3BAF3D] border-solid border-[1px] rounded-lg w-[113px] h-[32px]"
-              onclick="location.href = 'Sign_Up'"
+              onclick="location.href = '/Sign_Up'"
             >
               Sign Up
             </button>
             <button
               class="bg-[#3BAF3D] border-none text-[#FCFCFC] rounded-lg w-[113px] h-[32px]"
-              onclick="location.href = 'Sign_In'"
+              onclick="location.href = '/Sign_In'"
             >
               Login
             </button>
@@ -130,38 +193,53 @@
       </div>
       <div
         id="filterbg"
-        class="bg-opacity-50 w-[100%] h-[1000px] absolute -z-10"
+        class="bg-opacity-50 w-[100%] top-0 absolute h-[1000px] -z-10"
         onclick="filterbgb()"
       ></div>
       <div
         id="filtersideid"
-        class="absolute right-0 w-[276px] h-screen md:w-[363px] bg-white font-medium justify-between -z-10 border-t-0"
+        class="fixed right-0 top-0 w-[276px] h-screen md:w-[363px] bg-white font-medium justify-between -z-10 border-t-0"
       >
         <div
           id="filtersidebarid"
-          class="hidden flex-col justify-between duration-700 w-full"
+          class="hidden flex-col absolute top-0 justify-between duration-700 w-full"
         >
-          <div class="px-[20px] pt-[20px] overflow-auto pb-[150px]">
-            <div class="justify-between flex">
+          <div class="pt-[20px] border-b-[1px]">
+            <div class="justify-between flex px-[20px] pb-[15px]">
               <div class="text-xs font-medium">Filters</div>
               <button class="" onclick="filtersidebarf()">
                 <img src="../public/Images/Cross.svg" />
               </button>
             </div>
+          </div>
+          <div class="px-[20px] pb-[150px] overflow-auto">
             <%- include ("./filter") %>
           </div>
           <div
             class="flex lg:hidden h-[44px] fixed w-[276px] md:w-[376px] text-[#FFFFFF] bottom-0"
           >
-            <button class="bg-gradient-to-r from-[#3baf3d] to-[#5DC234] w-1/2">
+            <button
+              class="bg-gradient-to-r from-[#3baf3d] to-[#5DC234] w-1/2"
+              onclick="resetFilters()"
+            >
               Reset
             </button>
-            <button class="bg-gradient-to-r from-[#3baf3d] to-[#5DC234] w-1/2">
+            <button
+              class="bg-gradient-to-r from-[#3baf3d] to-[#5DC234] w-1/2"
+              onclick="filterAdd()"
+            >
               Done
             </button>
           </div>
         </div>
       </div>
     </div>
+    <div class="h-[103px]"></div>
   </body>
+  <div class="flex">
+    <div id="logout" style="display: none"><%- include ("./logout") %></div>
+  </div>
+  <div class="flex">
+    <div id="deleteitem" style="display: none"><%- include ("./delete") %></div>
+  </div>
 </html>

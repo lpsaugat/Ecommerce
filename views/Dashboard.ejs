@@ -1,0 +1,372 @@
+<%- include ("./partials/header") %>
+<div class="px-5 lg:px-10 max-w-[1200px] mx-auto lg:pt-[50px] ga">
+  <div class="lg:hidden">
+    <div
+      class="flex md:justify-center justify-left lg:hidden text-[18px] font-medium dheading"
+    >
+      My Details
+    </div>
+    <div
+      class="flex md:justify-center justify-left lg:hidden text-[18px] font-medium dheading"
+      style="display: none"
+    >
+      Password
+    </div>
+    <div
+      class="flex md:justify-center justify-left lg:hidden text-[18px] font-medium dheading"
+      style="display: none"
+    >
+      <div class="flex justify-between w-full pl-[89px]">
+        <div>My Cart</div>
+        <a href="javascript:deletef()">Delete</a>
+      </div>
+    </div>
+  </div>
+  <div class="flex gap-x-[40px]">
+    <div
+      class="hidden md:flex flex-col w-[51px] lg:w-[255px] border-[1px] rounded-[10px] h-[253px] overflow-hidden"
+    >
+      <a href="javascript:dashboardshow(0)">
+        <div
+          class="h-[61px] flex items-center md:justify-center lg:justify-start gap-x-[24px] menubg lg:pl-[24px] bg-[#d9d9d9]"
+        >
+          <img src="../public/Images/user.svg" class="w-[16px] h-[16px]" />
+          <div class="hidden lg:flex font-medium text-[16px] text-opacity-80">
+            My Details
+          </div>
+        </div>
+      </a>
+      <a href="javascript:dashboardshow(1)">
+        <div
+          class="h-[61px] flex items-center md:justify-center lg:justify-start gap-x-[24px] menubg lg:pl-[24px]"
+        >
+          <img
+            src="../public/Images/Dashboard/password.svg"
+            class="w-[16px] h-[16px]"
+          />
+          <div class="hidden lg:flex font-medium text-[16px]">Password</div>
+        </div>
+      </a>
+      <a onclick="dashboardshow(2); carttoggle()" class="cursor-pointer">
+        <div
+          class="h-[61px] flex items-center md:justify-center lg:justify-start gap-x-[24px] menubg lg:pl-[24px]"
+        >
+          <img src="../public/Images/cart.svg" class="w-[16px] h-[16px]" />
+          <div class="hidden lg:flex font-medium text-[16px]">My Cart</div>
+        </div>
+      </a>
+      <a href="javascript:logoutf()">
+        <div
+          class="h-[61px] flex items-center md:justify-center lg:justify-start gap-x-[24px] lg:pl-[24px]"
+        >
+          <img
+            src="../public/Images/Dashboard/logout.svg"
+            class="w-[16px] h-[16px]"
+          />
+          <div class="hidden lg:flex font-medium text-[16px]">Logout</div>
+        </div>
+      </a>
+    </div>
+    <!-- Details -->
+    <div
+      class="lg:border-[1px] rounded-[10px] w-full lg:pl-[40px] lg:pt-[26px] dashboardmenu"
+      style="display: block"
+    >
+      <div class="hidden lg:block">
+        <div class="font-semibold text-[18px]">My Details</div>
+        <div class="font-medium text-[14px] pt-[15px]">
+          Update your Profile Details here
+        </div>
+      </div>
+      <div
+        class="w-[79px] h-[79px] lg:h-[117px] lg:w-[117px] mt-[20px] md:mt-[30px] lg:mt-[23px] relative object-cover"
+      >
+        <img
+          src="../public/Images/Dashboard/unsplash_rDEOVtE7vOs.png"
+          id="profile-image"
+          class="w-full h-full rounded-full"
+        />
+        <input
+          type="file"
+          id="image-input"
+          style="display: none"
+          onchange="uploadImage()"
+        />
+        <label for="image-input" id="image-label" style="display: none"></label>
+
+        <a
+          onclick="document.getElementById('image-label').click() "
+          class="absolute items-center flex justify-center right-0 bottom-[5px] lg:bottom-[8px] border-[1.5px] border-[white] bg-[#ececec] rounded-full w-[20px] h-[20px] lg:w-[29px] lg:h-[29px]"
+          ><img
+            src="../public/Images/Dashboard/edit.svg"
+            class="h-[11px] w-[11px] lg:h-[16px] lg:w-[16px]"
+        /></a>
+      </div>
+      <form>
+        <div
+          class="pt-[20px] md:pt-[24px] lg:pt-[20px] font-medium text-[12px] md:text-[14px]"
+        >
+          Full Name : <%= userdata.name %>
+        </div>
+        <input
+          class="w-full md:max-w-[490px] lg:max-w-[600px] pl-[9px] md:pl-[10px] lg:pl-[12px] flex items-center text-[12px] md:text-[14px] h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px]"
+          type="text"
+          placeholder="Enter your Full Name"
+          required
+        />
+        <div
+          class="pt-[16px] md:pt-[24px] lg:pt-[20px] font-medium text-[12px] md:text-[14px]"
+        >
+          Email Address : <%= userdata.email %>
+        </div>
+        <input
+          class="w-full md:max-w-[490px] lg:max-w-[600px] pl-[9px] md:pl-[10px] lg:pl-[12px] flex items-center text-[12px] md:text-[14px] h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px]"
+          type="email"
+          placeholder="Enter your Email"
+          required
+        />
+        <div
+          class="pt-[16px] md:pt-[24px] lg:pt-[20px] font-medium text-[12px] md:text-[14px]"
+        >
+          Contact Number : <%= userdata.phone %>
+        </div>
+        <input
+          class="w-full md:max-w-[490px] lg:max-w-[600px] pl-[9px] md:pl-[10px] lg:pl-[12px] flex items-center text-[12px] md:text-[14px] h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px]"
+          type="number"
+          placeholder="Enter your contact number"
+          required
+        />
+
+        <div
+          class="pt-[16px] md:pt-[24px] lg:pt-[20px] font-medium text-[12px] md:text-[14px]"
+        >
+          Gender : <%= userdata.Gender %>
+        </div>
+        <input
+          class="w-full md:max-w-[490px] lg:max-w-[600px] pl-[9px] md:pl-[10px] lg:pl-[12px] flex items-center text-[12px] md:text-[14px] h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px]"
+          type="dropdown"
+          placeholder="Choose your gender"
+        />
+        <div
+          class="pt-[16px] md:pt-[24px] lg:pt-[26px] font-medium text-[12px] md:text-[14px]"
+        >
+          Address : <%= userdata.address %>
+        </div>
+        <input
+          class="w-full md:max-w-[490px] lg:max-w-[600px] pl-[9px] md:pl-[10px] lg:pl-[12px] flex items-center text-[12px] md:text-[14px] h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px]"
+          type="dropdown"
+          placeholder="Enter your Address"
+        />
+        <div
+          class="flex justify-end md:justify-start gap-x-[16px] md:gap-x-[21px] lg:gap-x-[17px] mt-[30px] mb-[30px]"
+        >
+          <button
+            type="button"
+            class="w-[101px] md:w-[135px] lg:w-[110px] h-[32px] md:h-[36px] lg:h-[42px] font-medium text-[12px] lg:text-[14px] rounded-[8px] border-[1px] border-[#182B3C]"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            class="w-[101px] md:w-[135px] lg:w-[110px] h-[32px] md:h-[36px] lg:h-[42px] font-medium text-[12px] lg:text-[14px] rounded-[8px] bg-[#182B3C] text-white"
+          >
+            Save
+          </button>
+          <button></button>
+        </div>
+      </form>
+    </div>
+    <!-- Password -->
+    <div
+      class="lg:border-[1px] rounded-[10px] w-full lg:pl-[40px] lg:pt-[26px] dashboardmenu"
+      style="display: none"
+    >
+      <div class="hidden lg:block">
+        <div class="font-semibold text-[18px]">Password</div>
+        <div class="font-medium text-[14px] pt-[15px] text-opacity-80">
+          Update your Password here
+        </div>
+      </div>
+
+      <form>
+        <div
+          class="pt-[20px] md:pt-[24px] lg:pt-[20px] font-medium text-[12px] md:text-[14px] lg:font-normal"
+        >
+          Current password
+        </div>
+        <div class="flex items-center">
+          <input
+            class="passwordtoggle w-full md:max-w-[490px] lg:max-w-[600px] pl-[9px] md:pl-[10px] lg:pl-[12px] flex items-center text-[12px] md:text-[14px] h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px]"
+            type="password"
+            placeholder="Enter your current password here"
+            required
+          />
+          <button type="button">
+            <img
+              src="../public/images/eye-password-show.svg"
+              class="h-[28px] w-[28px] pt-[12px] passshow"
+              style="display: none"
+              onclick="passwordhide(0)"
+            />
+          </button>
+          <button type="button">
+            <img
+              src="../public/images/eye-password-hide.svg"
+              class="h-[28px] w-[28px] pt-[12px] passhide"
+              style="display: block"
+              onclick="passwordshow(0)"
+            />
+          </button>
+        </div>
+        <div
+          class="pt-[16px] md:pt-[24px] lg:pt-[20px] font-medium text-[12px] md:text-[14px] lg:font-normal"
+        >
+          New Password
+        </div>
+        <div class="flex items-center">
+          <input
+            class="passwordtoggle w-full md:max-w-[490px] lg:max-w-[600px] pl-[9px] md:pl-[10px] lg:pl-[12px] flex items-center text-[12px] md:text-[14px] h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px]"
+            type="password"
+            placeholder="Enter your new password"
+            required
+          />
+          <button type="button">
+            <img
+              src="../public/images/eye-password-show.svg"
+              class="h-[28px] w-[28px] pt-[12px] passshow"
+              style="display: none"
+              onclick="passwordhide(1)"
+            />
+          </button>
+          <button type="button">
+            <img
+              src="../public/images/eye-password-hide.svg"
+              class="h-[28px] w-[28px] pt-[12px] passhide"
+              style="display: block"
+              onclick="passwordshow(1)"
+            />
+          </button>
+        </div>
+        <div
+          class="pt-[16px] md:pt-[24px] lg:pt-[20px] font-medium text-[12px] md:text-[14px] lg:font-normal"
+        >
+          Confirm New Password
+        </div>
+        <div class="flex items-center">
+          <input
+            class="passwordtoggle w-full md:max-w-[490px] lg:max-w-[600px] pl-[9px] md:pl-[10px] lg:pl-[12px] flex items-center text-[12px] md:text-[14px] h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px]"
+            type="password"
+            placeholder="Confirm your new password"
+            required
+          />
+          <button type="button">
+            <img
+              src="../public/images/eye-password-show.svg"
+              class="h-[28px] w-[28px] pt-[12px] passshow"
+              style="display: none"
+              onclick="passwordhide(2)"
+            />
+          </button>
+          <button type="button">
+            <img
+              src="../public/images/eye-password-hide.svg"
+              class="h-[28px] w-[28px] pt-[12px] passhide"
+              style="display: block"
+              onclick="passwordshow(2)"
+            />
+          </button>
+        </div>
+
+        <div
+          class="flex justify-end md:justify-start gap-x-[16px] md:gap-x-[21px] lg:gap-x-[17px] mt-[30px] mb-[30px]"
+        >
+          <button
+            type="button"
+            class="w-[101px] md:w-[135px] lg:w-[110px] h-[32px] md:h-[36px] lg:h-[42px] font-medium text-[12px] lg:text-[14px] rounded-[8px] border-[1px] border-[#182B3C]"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            class="w-[101px] md:w-[135px] lg:w-[110px] h-[32px] md:h-[36px] lg:h-[42px] font-medium text-[12px] lg:text-[14px] rounded-[8px] bg-[#182B3C] text-white"
+          >
+            Save
+          </button>
+          <button></button>
+        </div>
+      </form>
+    </div>
+    <!-- Cart -->
+    <div
+      class="lg:border-[1px] rounded-[10px] w-full lg:px-[30px] lg:pt-[26px] dashboardmenu"
+      style="display: none"
+    >
+      <div class="hidden lg:block">
+        <div class="font-semibold text-[18px] mb-[33px]">My Cart</div>
+      </div>
+      <%- include ("./partials/cartitems") %>
+      <div class="hidden lg:block">
+        <div class="border-b-[1px] pt-[30px]"></div>
+        <div class="pt-[30px] text-[18px] font-medium">Subtotal</div>
+        <div class="justify-between flex">
+          <div class="pt-[16px]">Taxes and shipping calculated at checkout</div>
+          <div class="text-[24px] font-medium">Rs.45000</div>
+        </div>
+        <button
+          class="w-full h-[42px] mt-[30px] rounded-[8px] text-[14px] items-center flex justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234] mb-[30px]"
+          onclick="location.href = 'Billing'"
+        >
+          Check out&nbsp;<img
+            src="../public/Images/arrow.svg"
+            class="w-[13.41px] h-[13.41px]"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="lg:hidden">
+  <div
+    class="h-[149px] w-full fixed bottom-0 bg-white px-5 pt-5 border-t-[1px] block lg:hidden"
+    style="display: none"
+    id="mdcart"
+  >
+    <div class="font-medium md:text-base">Subtotal</div>
+    <div class="justify-between flex">
+      <div
+        class="pt-[10px] opacity-80 max-w-[161px] md:max-w-none text-[10px] md:text-xs"
+      >
+        Taxes and shipping calculated at checkout
+      </div>
+      <div class="font-medium md:font-[16px]">Rs.45000</div>
+    </div>
+    <div class="justify-between flex pt-[16px] gap-x-[10px]">
+      <div
+        class="font-medium text-[#00a6ef] flex text-[10px] md:text-[12px] items-center"
+      ></div>
+      <button
+        class="md:w-[122px] w-[113px] h-[32px] rounded-[8px] text-[12px] items-center flex justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
+        onclick="location.href = 'Billing'"
+      >
+        Checkout &nbsp;
+        <img src="../public/Images/arrow.svg" class="w-[12.3px] h-[12.3px]" />
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="hidden lg:block"><%- include("./partials/footer") %></div>
+
+<script>
+  function uploadImage() {
+    var input = document.getElementById("image-input");
+    var file = input.files[0];
+
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      var profileImage = document.getElementById("profile-image");
+      profileImage.src = reader.result;
+    };
+  }
+</script>

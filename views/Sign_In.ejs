@@ -2,8 +2,10 @@
 
 <div class="max-w-1200 mx-auto lg:pt-[80px] px-5">
   <div class="font-medium text-center lg:text-[36px] text-[18px]">Sign In</div>
-  <div
+  <form
     class="lg:max-w-[600px] md:max-w-[490px] mx-auto lg:mt-[30px] md:mt-[28px] mt-[24px]"
+    id="signin-form"
+    method="POST"
   >
     <div>
       <label for="Email" class="text-[12px] md:text-[14px] font-medium"
@@ -11,8 +13,10 @@
       >
       <input
         type="email"
+        name="email"
         class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
         id="Email"
+        required
       />
     </div>
     <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
@@ -21,8 +25,10 @@
       >
       <input
         type="password"
+        name="password"
         class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
         id="password"
+        required
       />
     </div>
     <div class="mt-[20px] lg:mt-[16px]">
@@ -72,6 +78,13 @@
         </div>
       </button>
     </div>
+  </form>
+</div>
+<div id="customAlert" class="alert-modal">
+  <div class="alert-content text-white">
+    <h2 id="alertTitle" class="text-white">alertTitle</h2>
+    <p id="alertMessage" class="text-white hidden">alertMessage</p>
+    <button id="okButton" class="hidden">OK</button>
   </div>
 </div>
-<%- include ("./partials/footer") %>
+<%- include ("./partials/footer") %> <%- include ("./partials/alert") %>

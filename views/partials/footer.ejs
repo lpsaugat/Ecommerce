@@ -123,21 +123,86 @@
       clickable: true,
     },
     autoplay: {
-      delay: 1500,
+      delay: 5000,
     },
   });
 </script>
 
-<script src="../../public/familypackageselection.js"></script>
-<script src="../../public/range.js"></script>
-<script src="../public/script.js"></script>
-<script src="../../public/popup.js"></script>
-<script src="../../public/vendor.js"></script>
-<script src="../../public/product_detail.js"></script>
+<script src="../../public/JS/familypackageselection.js"></script>
 
-<script src="../../public/js-image-zoom.js"></script>
-<script src="../../public/Quantitydropdown.js"></script>
+<script src="../../public/JS/range.js"></script>
+<script src="../public/JS/script.js"></script>
+<script src="../../public/JS/popup.js"></script>
+<script src="../../public/JS/vendor.js"></script>
+<script src="../../public/JS/product_detail.js"></script>
 
-<script src="../../public/slider.js"></script>
-<script src="../../public/productfilter.js"></script>
-<script src="../../public/quantity.js"></script>
+<script src="../../public/JS/js-image-zoom.js"></script>
+<script src="../../public/JS/Quantitydropdown.js"></script>
+
+<script src="../../public/JS/slider.js"></script>
+<script src="../../public/JS/changeImage.js"></script>
+
+<!-- filters -->
+<script src="../../public/JS/productfilter.js"></script>
+<script src="../../public/JS/quantity.js"></script>
+<script src="../../public/JS/Payments.js"></script>
+<script src="../../public/JS/rating.js"></script>
+
+<script src="../../public/JS/test.js"></script>
+
+<!-- Dashboard -->
+<script src="../../public/JS/Dashboard.js"></script>
+
+<!-- SignUp Form -->
+<script src="../../public/API/signupform.js"></script>
+
+<!-- Search -->
+<script src="../../public/API/search.js"></script>
+
+<!-- Order product from Customer -->
+<script src="../../public/API/productpost.js"></script>
+
+<!-- Whole package add to cart -->
+<script src="../../public/API/packageCart.js"></script>
+
+<script src="../../public/API/addFilters.js"></script>
+<script src="../../public/API/addReview.js"></script>
+
+<script src="../../public/API/cartCount.js"></script>
+<script src="../../public/API/popUpFetch.js"></script>
+
+<!-- Admin APIs, Product and Package -->
+<script src="../../public/API/adminAPI/product.js"></script>
+<script src="../../public/API/adminAPI/package.js"></script>
+
+<!-- Shipping Status Change -->
+<script src="../../public/API/adminAPI/shipping.js"></script>
+<!-- Category -->
+<script src="../../public/API/adminAPI/category.js"></script>
+<!-- Delivery -->
+<script src="../../public/API/adminAPI/delivery.js"></script>
+<!-- Alerts -->
+<script src="../../public/API/adminAPI/alert.js"></script>
+<!-- Sorting -->
+<script src="../../public/API/adminAPI/sorting.js"></script>
+
+<!-- User -->
+<script src="../../public/API/adminAPI/user.js"></script>
+
+<!-- Customize: Carousel, Subscription, Banners -->
+<script src="../../public/API/adminAPI/customize.js"></script>
+
+<!-- Rich Text Editor -->
+<script src="https://cdn.tiny.cloud/1/6zhrdymtpt3wuna4o2pajdmwhumsair48r84uufxlnl14sjz/tinymce/5/tinymce.min.js"></script>
+
+<script>
+  tinymce.init({
+    selector: "#descriptionTextArea , #longDescriptionTextArea",
+    height: 200, // Set the height of the editor
+    plugins:
+      "advlist autolink lists link image charmap print preview anchor textcolor",
+    toolbar:
+      "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | forecolor backcolor",
+    mode: "exact", // Use "exact" for Standards Mode (default)
+  });
+</script>

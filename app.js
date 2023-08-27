@@ -1,58 +1,78 @@
-const express = require('express')
-const mysql = require('mysql')
-myConnection = require('express-myconnection');
-path = require('path')
-morgan = require('morgan');
-const mongo = require('mongoose');
-const dotenv = require('dotenv');
-
+const dotenv = require("dotenv");
 dotenv.config();
+require("express-async-errors");
+const express = require("express");
+myConnection = require("express-myconnection");
+const fileUpload = require("express-fileupload");
+path = require("path");
+morgan = require("morgan");
+const mongoose = require("mongoose");
+const fs = require("fs");
+const bodyParser = require("body-parser");
+const cookieparser = require("cookie-parser");
+const _ = require("lodash");
 
-mongo 
-.connect(process.env.MONGO_URL)
-.then(()=>console.log("DBconnection Successful") ).catch((err)=>{
-    console.log(err);
+const cloudinary = require("cloudinary").v2;
+
+cloudinary.config({
+  cloud_name: "dv0poigfl",
+  api_key: "429572556739323",
+  api_secret: "GK4nxkk850713C1knFAiYO0abuk",
 });
 
-app = express() 
+const app = express();
+app.use(express.json());
+app.use(fileUpload({ useTempFiles: true, createParentPath: true }));
+app.use(express.urlencoded({ extended: true }));
 
+app.use(bodyParser.json());
 
+const customer_route = require("./routes/customer_route");
+const userRoute = require("./routes/userRoute");
+const productRoute = require("./routes/productRoute");
+const adminRoute = require("./routes/adminRoute");
+const packageRoute = require("./routes/packageRoute");
+const orderRoute = require("./routes/orderRoute");
+const deliveryRoute = require("./routes/deliveryRoute");
 
-const customer_route = require('./routes/customer_route');
-const { resourceUsage } = require('process');
+const errorHandlerMiddleware = require("./middleware/error-handler");
+const notFoundMiddleware = require("./middleware/error-handler");
 
-// app.use(morgan('dev'));
-// app.use(myConnection(mysql, {
-//     host: 'localhost',
-//     user: 'root',
-//     password: '',
-//     port: 3306,
-//     database: 'household'
-// },'single'));
-// // app.use(express.urlencoded({extended: false}));
+app.use(cookieparser());
 
-app.use('/public', express.static('public'));
+app.use("/public", express.static("public"));
+app.use("/CSS", express.static("public/CSS"));
+app.use("/JS", express.static("public/JS"));
 
-app.use('/', customer_route);
+app.use("/", customer_route);
+app.use("/", userRoute);
+app.use("/", productRoute);
+app.use("/", adminRoute);
+app.use("/", packageRoute);
+app.use("/", orderRoute);
+app.use("/", deliveryRoute);
 
-// app.use(morgan('dev'));
-// app.use(myConnection(mysql, {
-//     host: 'localhost',
-//     user: 'root',
-//     password: '',
-//     port: 3306,
-//     database: 'household'
-// },'single'));
-// app.use(express.urlencoded({extended: false}));
+// app.set('port', process.env.PORT || 3000,);
+app.set("views", path.join(__dirname, "views"));
+app.set("admindashboard", path.join(__dirname, "views", "admindashboard"));
 
+app.set("view engine", "ejs");
 
-app.set('port', process.env.PORT || 3000,);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+//Middlewares
+app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
 
+mongoose
+  .connect(process.env.MONGO_URL)
+  .then(() => console.log("DBconnection Successful"))
+  .catch((err) => {
+    console.log(err);
+  });
 
+const ip = require("ip");
 
-
-app.listen(app.get('port')
-// , '192.168.101.14' 
+app.listen(3000, ip.address(), () =>
+  console.log(
+    `The server is running on port ${process.env.PORT} with ip ${ip.address()}`
+  )
 );

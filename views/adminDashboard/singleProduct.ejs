@@ -1,0 +1,278 @@
+<div class="bg-[#f8f8f8] pr-5">
+  <div class="hidden"><%- include ("../partials/header") %></div>
+  
+  <div class="flex max-w-1200 mx-auto">
+    <div class="grid gap-x-3 grid-cols-4 w-full rounded-sm">
+      <%- include ("./sidebar") %>
+
+      <div class="grid col-span-3 grid-cols-3 gap-x-1">
+        <div
+          class="rounded-md w-full col-span-3 text-[26px] p-4 bg-white text-[#FFFFFA] border-2 mt-2"
+        >
+          <div class="max-w-[1200px] mx-auto lg:pt-[60px]">
+            <!-- Single Product -->
+            <div class="grid lg:grid-cols-9 lg:gap-x-[30px] gap-y-[27px]">
+              <!-- Product Image -->
+
+              <div class="gap-y-[20px] lg:block space-y-[20px]">
+                <button
+                  class="imageBorder border-[1.5px] rounded-[5px] py-[17px] px-[10] flex justify-center items-center h-[105px] w-[105px]"
+                  style="border-color: #182b3c"
+                  onclick="imageChange(0)"
+                >
+                  <img src="<%= product.image[0]%>" class="h-full w-full" />
+                </button>
+                <%for (var i=1;i<product.image.length;i++){%>
+                  <button
+                  class="imageBorder border-[1.5px] rounded-[5px] py-[17px] px-[10] flex justify-center items-center h-[105px] w-[105px]"
+                  onclick="imageChange('<%=i%>')"
+                >
+                  <img src="<%= product.image[i]%>" class="h-full w-full" />
+                </button>
+               <% }%>
+                
+                
+              </div>
+
+              <div
+                id="image-container"
+                class="image-container lg:rounded-[5px] lg:h-auto relative rounded-[3px] border-[1px] h-[237.4px] md:h-[335px] lg:min-h-[450px] col-span-5 items-center justify-center flex"
+              >
+                <img
+                  src="<%= product.image[0]%>"
+                  class="absolute product-image h-full w-full p-2"
+                  id="product-image"
+                  style="display: flex"
+                />
+                <%for (var i=1;i<product.image.length;i++){%>
+                  <img
+                  src="<%= product.image[i]%>"
+                  class="absolute product-image h-full w-full p-2"
+                  style="display: none"
+                />
+               <% }%>
+               
+
+                <div
+                  class="top-[14px] right-[14px] md:top-[16px] lg:top-[20px] lg:right-[20px] absolute"
+                >
+                  <button>
+                    <img
+                      src="../public/Images/Zoom.svg"
+                      class="w-[18px] lg:w-[15.75px]"
+                    />
+                  </button>
+                </div>
+                <div id="mouse-overlay"></div>
+                <div id="overlay"></div>
+              </div>
+              <!-- Writing of Product -->
+              <div class="lg:col-span-3 w-full">
+                <div class="font-medium text-[18px] lg:text-[24px]">
+                  <%= product.name%>
+                </div>
+                <div
+                  class="justify-left flex items-center font-normal text-xs pt-[16px]"
+                >
+                  <div class="flex gap-x-[4px]">
+                    <% for (var i = 0; i < product.averageRatingNumber; i++ ) {
+                    %> <%- include ("./partials/oneStar") %> <%}%>&nbsp;
+                  </div>
+                  <div class="font-medium text-sm">
+                    <%= reviews.length%> reviews
+                  </div>
+                </div>
+                <div class="font-medium text-sm pt-1">
+                  (<%=product.averageRatingNumber%> /5)
+                </div>
+                <div class="pt-4 lg:block font-medium text-sm">
+                  Categories: <% product.category.forEach((value) => { %> <%=
+                  value %>, <% }); %>
+                </div>
+                <div class="pt-4 lg:block font-medium text-sm">
+                  Availability: <% if(product.quantity<=0) { %> Out of Stock, <%
+                  }else{ %> In Stock <%}; %>
+                </div>
+                <div class="pt-4 font-semibold text-base">
+                  Discounted From Rs. <%= product.discountedFrom %>
+                </div>
+                <div class="pt-4 font-semibold text-base">
+                  Rs. <%= product.price %>
+                </div>
+
+                <div
+                  class="pt-4 text-xs md:text-sm lg:max-w-[348px] text-justify overflow-hidden h-30"
+                >
+                  <p class="line-clamp-2"><%-product.description %></p>
+
+                  <div class="lg:flex pt-[16px] items-center">
+                    <div class="font-medium text-[16px]">Quantity</div>
+                    <div class="pl-[23px]">
+                      <div class="flex items-center">
+                        <input
+                          type="text"
+                          name="quantity"
+                          value="<%=product.quantity%>"
+                          readonly
+                          class="text-center items-center text-[14px] quantity w-[22.4px] h-[22.4px] lg:w-[42px] lg:h-[42px] lg:border-[1px] border-[0.6px] rounded-[3px]"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="lg:flex pt-[16px] items-center">
+                    <div class="font-medium text-[16px]">Total Orders</div>
+                    <div class="pl-[23px]">
+                      <div class="flex items-center">
+                        <input
+                          type="text"
+                          value="<%=totalOrders%>"
+                          readonly
+                          class="text-center items-center text-[14px] quantity w-[22.4px] h-[22.4px] lg:w-[42px] lg:h-[42px] lg:border-[1px] border-[0.6px] rounded-[3px]"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="lg:flex pt-[16px] items-center">
+                    <div class="font-medium text-[16px]">Amount Sold</div>
+                    <div class="pl-[23px]">
+                      <div class="flex items-center">
+                        <input
+                          type="text"
+                          value="<%=totalAmount%>"
+                          readonly
+                          class="text-center items-center text-[14px] quantity w-[22.4px] h-[22.4px] lg:w-[42px] lg:h-[42px] lg:border-[1px] border-[0.6px] rounded-[3px]"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div></div>
+                </div>
+              </div>
+            </div>
+            <div class="lg:block mt-[60px]">
+              <div
+                class="border-[1px] rounded-t-[5px] font-medium text-[16px] px-10 py-[25px] justify-between flex underline-offset-8"
+              >
+                <div>
+                  <button
+                    class="d_underline uppercase"
+                    style="text-decoration: underline"
+                    onclick="detailshow(0)"
+                  >
+                    DESCRIPTION
+                  </button>
+                </div>
+                <div>
+                  <button class="d_underline uppercase" onclick="detailshow(1)">
+                    Categories
+                  </button>
+                </div>
+                <div>
+                  <button class="d_underline uppercase" onclick="detailshow(2)">
+                    Shipping Info
+                  </button>
+                </div>
+                <div>
+                  <button class="d_underline uppercase" onclick="detailshow(3)">
+                    Reviews
+                  </button>
+                </div>
+              </div>
+              <div class="border-[1px] border-t-0 rounded-b-[5px] py-[40px]">
+                <div style="display: block" class="details px-[40px]"><%-product.longDescription%></div>
+                <div style="display: none" class="details px-[40px]">
+                  <% product.category.forEach((value) => { %> <%= value %> , <%
+                  }); %>
+                </div>
+                <div style="display: none" class="details px-[40px]">
+                  <div class="">
+                    <div
+                      class="font-semibold text-[12px] lg:text-[16px] pt-[18px] flex items-center"
+                    >
+                      <img src="../public/Images/product/Delivery.svg" />
+                      &nbsp; Delivery Info
+                    </div>
+                    <div class="pt-4 text-xs md:text-sm text-justify">
+                      <ol class="list-disc ml-4 space-y-[15px]">
+                        <li>
+                          The product will be delivered within 2 days from the
+                          order date.
+                        </li>
+                        <li>
+                          Shipping charge may vary depending on your location.
+                        </li>
+                        <li>
+                          The best been working hard with the local & regional
+                          farms to provide you with the freshest product
+                          available.
+                        </li>
+                      </ol>
+                    </div>
+                    <div
+                      class="font-semibold text-[12px] lg:text-[16px] pt-[18px] lg:pt-[39px] flex items-center"
+                    >
+                      <img src="../public/Images/product/Return.svg" />
+                      &nbsp; Returns
+                    </div>
+                    <div class="pt-4 text-xs md:text-sm text-justify">
+                      <ol class="list-disc ml-4 space-y-[15px]">
+                        <li>The orders can be returned within 7 days.</li>
+                        <li>
+                          For items that are damaged, defective or not what you
+                          ordered, please contact us so we can best serve you
+                          with return instructions. Items that are made-to-order
+                          cannot be returnes.
+                        </li>
+                      </ol>
+                    </div>
+                  </div>
+                </div>
+                <div style="display: none" class="details">
+                  <div class="rounded-[5px]">
+                    <div
+                      class="lg:flex flex-col font-medium text-base px-[40px]"
+                    >
+                      <div class="text-base font-semibold">
+                        Ratings and Reviews of the Product
+                      </div>
+                      <div class="flex pt-[32px]">
+                        <div class="flex flex-col">
+                          <div class="text-[40px] font-medium leading-[49px]">
+                            <%= product.averageRatingNumber%> &nbsp;<text
+                              class="text-[26px]"
+                              >/5</text
+                            >
+                          </div>
+                          <div class="opacity-50">
+                            Based on <%= reviews.length%> reviews
+                          </div>
+                          <div class="pt-[16px] flex gap-x-[9.4px]">
+                            <% for (var i = 1; i <= product.averageRatingNumber;
+                            i++ ) { %>
+                            <img
+                              src="../public/Images/Star.svg"
+                              class="w-[40px]"
+                            />
+                            <%}%>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="lg:border-b-[1px] text-[12px] md:text-[18px] lg:pl-[40px] pt-[27.35px] md:pt-[50px] pb-[20px] md:pb-[30px] font-medium lg:font-medium md:font-semibold text-base lg:pt-[20px] lg:pb-[20px]"
+                    >
+                      Product Reviews
+                    </div>
+                    <%- include ("../partials/comments") %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hidden"><%- include ("../partials/footer") %></div>
+</div>

@@ -1,0 +1,59 @@
+<% for (var i =0; i<dataPagination.products.length; i++ ) { %>
+  <div>
+    <div class="relative">
+      <a href="/product/<%= dataPagination.products[i]._id%>">
+        <div
+          class="rounded-[7.4px] sm:rounded-[9.6px] md:rounded-[12px] z-50 rounded-b-none sm:rounded-b-none md:rounded-b-none border-b-0 border-[1px] pb-[14px] md:pb-[17.57px] lg:pb-[24px] pt-[20px] lg:pt-[7px]"
+          onmouseover="popupf()"
+        >
+          <img
+            src="<%= dataPagination.products[i].image %>"
+            class="lg:pt-[17px] md:pt-[12px] pt-[1ipx] mx-auto md:h-[15ipx] lg:h-[196px] h-[113px]"
+          />
+
+          <div
+            class="pl-[9px] md:pl-[11.71px] lg:pl-[13.74px] pt-[9px] md:pt-[11px] lg:pt-[17px]"
+          >
+            <p class="font-medium text-xs md:text-base lg:text-lg truncate">
+              <%= dataPagination.products[i].name %>
+            </p>
+            <p
+              class="font-normal text-[10px] md:text-sm lg:text-xs text-[#182B3C] opacity-[0.36] lg:pt-[3px]"
+            >
+              Rs.<%= dataPagination.products[i].measure %>
+            </p>
+            <p
+              class="font-normal text-[10px] md:text-sm lg:text-xs text-[#32AA00]"
+            >
+              Rs.<span
+                class="font-bold text-xs md:text-base lg:text-lg text-[#32AA00]"
+                ><%= dataPagination.products[i].price %>
+              </span>
+            </p>
+            <p
+              class="absolute bg-[#F1FFCF] px-[3.2px] lg:px-[4.8px] top-[10px] right-[10px] md:top-3 md:right-3 lg:top-5 lg:right-7 font-bold text-[10px] md:text-[13px] text-[#32AA00]"
+            >
+              15% OFF
+            </p>
+          </div>
+        </div>
+      </a>
+      <button
+        class="addtocart counterforadd w-full bg-gradient-to-r from-[#3baf3d] to-[#5DC234] rounded-b-[7.4px] ml-0 sm:rounded-b-[9.6px] md:rounded-b-[12px] font-medium text-[10px] sm:text-sm text-white flex flex-row justify-center h-[29px] md:h-[39px] lg:h-[47px] my-auto py-auto items-center"
+        onclick="addedtocart(this,'<%= dataPagination.products[i]._id %>','1', '<%= dataPagination.products[i].price %>')"
+      >
+        <img
+          src="../public/Images/cart2.svg"
+          class="h-[14px] md:h-[19.26px] lg:h-[24px]"
+        />
+        &nbsp;&nbsp;
+        <div class="my-auto text-white flex">
+          Add
+          <div class="text-white added" style="display: none">ed&nbsp;</div>
+          to Cart
+        </div>
+      </button>
+    </div>
+  </div>
+  <% } %>
+</dataPagination.products.length;>

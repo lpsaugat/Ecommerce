@@ -1,0 +1,91 @@
+<!doctype html>
+
+<div class="bg-[#f8f8f8] pr-5">
+  <div class="hidden"><%- include ("../partials/header") %></div>
+
+  <div class="flex max-w-1200 mx-auto">
+    <div class="grid gap-x-3 grid-cols-4 w-full rounded-sm">
+      <%- include ("./sidebar") %>
+      <div class="grid col-span-3 grid-cols-3 gap-x-1">
+        <div
+          class="rounded-md col-span-3 w-full text-[17px] p-4 text-[#000123] font-medium bg-white mt-2"
+        >
+          Update Banner:
+
+          <form class="rounded-lg p-1" id="updateBanner">
+            <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
+              <label for="Name" class="text-[12px] md:text-[14px] font-medium"
+                >Name</label
+              >
+              <input
+                type="text"
+                name="name"
+                readonly
+                value="<%=banner.name%>"
+                class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
+              />
+            </div>
+
+            <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
+              <label
+                for="primaryImage"
+                class="text-[12px] md:text-[14px] font-medium"
+                >Background Image * :</label
+              >
+              <input type="file" name="primaryImage" />
+            </div>
+            <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
+              <label for="title" class="text-[12px] md:text-[14px] font-medium"
+                >First title: </label
+              ><%-banner.title%><br />
+              <textarea
+                name="title"
+                class="w-full mt-[14px] md:mt-[12px] border-[0.5px] rounded-[5px] p-2"
+                id="descriptionTextArea"
+                placeholder="Update title Here"
+              ></textarea>
+            </div>
+            <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
+              <label for="text" class="text-[12px] md:text-[14px] font-medium"
+                >Text: </label
+              ><%-banner.text%><br />
+              <textarea
+                name="text"
+                class="w-full mt-[14px] md:mt-[12px] border-[0.5px] rounded-[5px] p-2"
+                id="longDescriptionTextArea"
+                placeholder="Update Text Here"
+              ></textarea>
+            </div>
+            <div class="mt-[21px] md:mt-[24px] lg:mt-[16px]">
+              <label for="offer" class="text-[12px] md:text-[14px] font-medium"
+                >Offer</label
+              >
+              <input
+                type="text"
+                offer="offer"
+                placeholder="<%=banner.offer%>"
+                class="w-full h-[32px] md:h-[36px] lg:h-[42px] border-[0.5px] rounded-[5px] mt-[14px] md:mt-[12px] pl-2"
+              />
+            </div>
+            <div class="flex justify-between w-full">
+              <button
+                type="submit"
+                class="text-[17px] mt-3 font-medium p-3 bg-gradient-to-r from-[#3baf3d] to-[#5DC234] text-white rounded-md"
+              >
+                Update Banner
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex">
+    <div id="deleteBanner" style="display: none">
+      <%- include ("./deleteBanner") %>
+    </div>
+  </div>
+  <%- include ("./alert") %>
+
+  <div class="hidden"><%- include ("../partials/footer") %></div>
+</div>

@@ -1,0 +1,536 @@
+<div class="bg-[#f8f8f8] pr-5">
+  <div class="hidden"><%- include ("../partials/header") %></div>
+
+  <div class="flex max-w-1200 mx-auto">
+    <div class="grid gap-x-3 grid-cols-4 w-full rounded-sm">
+      <%- include ("./sidebar") %>
+
+      <div class="grid col-span-3 grid-cols-3 gap-x-1">
+        <div
+          class="rounded-md w-full col-span-3 text-[26px] p-4 bg-white text-[#FFFFFA] border-2 mt-2"
+        >
+          <div class="px-5 lg:px-10 max-w-[1200px] mx-auto lg:pt-[60px]">
+            <!-- Single Product -->
+            <div class="grid lg:grid-cols-5 lg:gap-x-[30px] gap-y-[27px]">
+              <!-- Product Image -->
+              <div
+                class="lg:rounded-[5px] mt-[3px] relative overflow-hidden rounded-[3px] shadow-[0_0px_4px_rgba(0,0,0,0.25)] h-[237.4px] md:h-[335px] lg:min-h-[450px] lg:h-auto col-span-3 items-center justify-center flex"
+              >
+                <img
+                  src="<%= package.image[0]%>"
+                  class="lg:h-auto md:h-[294px] h-[226.32px] absolute magnified"
+                  onmouseover="magnify(this)"
+                  onmouseout="magnifyout(this)"
+                />
+                <div
+                  class="top-[14px] right-[14px] md:top-[16px] lg:top-[20px] lg:right-[20px] absolute"
+                >
+                  <button>
+                    <img
+                      src="../../public/Images/Zoom.svg"
+                      class="w-[18px] lg:w-[15.75px]"
+                    />
+                  </button>
+                </div>
+              </div>
+              <!-- Writing of Product -->
+              <div class="lg:col-span-2 w-full">
+                <div class="font-medium text-[18px] lg:text-[24px]">
+                  <%= package.name %>
+                </div>
+                <div
+                  class="justify-left flex items-center font-normal text-xs pt-[16px]"
+                >
+                  <div class="flex gap-x-[4px]">
+                    <% for (var i = 0; i < package.averageRating; i++ ) { %> <%-
+                    include ("../partials/oneStar") %> <%}%>&nbsp;
+                  </div>
+                  <div class="font-medium text-sm">
+                    <%= reviews.length%> reviews
+                  </div>
+                </div>
+                <div class="font-medium text-sm pt-1">
+                  (<%=package.averageRating%> /5)
+                </div>
+                <div class="pt-4 hidden lg:block font-medium text-sm">
+                  Categories: <%= package.category %>
+                </div>
+                <div class="pt-4 hidden lg:block font-medium text-sm">
+                  Avalability: <% if(package.quantity<=0) { %> Out of Stock, <%
+                  }else{ %> In Stock <%}; %>
+                </div>
+                <div class="font-medium text-base">
+                  <div class="pt-4">Bundle Price: Rs. <%= total %></div>
+                  <div class="pt-4">
+                    Our Price:
+                    <span class="text-[#237700]">
+                      Rs. <%= package.price %>
+                    </span>
+                  </div>
+                </div>
+                <div
+                  class="pt-4 text-xs md:text-sm lg:max-w-[348px] text-justify"
+                >
+                  <%= package.description %>
+
+                  <br /><br />
+                  <div></div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="justify-between flex flex-col md:flex-row lg:hidden pt-4 md:items-center"
+            >
+              <div class="font-semibold text-lg flex">Products</div>
+              <div
+                class="border-[1px] rounded-[3px] w-full md:w-[330px] h-[36px] md:h-[32px] items-center flex pl-[6px] md:pl-[8.5px] md:mt-[0px] mt-[24px]"
+              ></div>
+            </div>
+            <!-- Items -->
+            <div class="lg:border-[0.5px] rounded-[5px] lg:mt-[30px]">
+              <div
+                class="hidden font-medium text-[18px] lg:flex border-[1px] justify-between items-center lg:py-[30px] lg:px-[17px] lg:border-0 lg:border-b-[1px] rounded-[3px]"
+              >
+                <div class="lg:flex w-full hidden">
+                  <div
+                    class="justify-start rounded-[3px] w-[86px] lg:rounded-[5px] flex items-center ml-[10px] lg:ml-0 md:ml-[15px]"
+                  >
+                    Item
+                  </div>
+                  <div
+                    class="flex flex-col lg:font-medium lg:flex-row w-full lg:grid grid-cols-12 lg:items-center"
+                  >
+                    <div class="col-span-5 lg:pl-[40px]"></div>
+                    <div class="col-span-2">Price</div>
+                    <div
+                      class="col-span-3 w-auto lg:pt-0 font-medium pt-[14px] md:pt-[17px] justify-between items-center grid-cols-2 flex"
+                    >
+                      <div
+                        class="justify-end md:hidden lg:flex font-roboto flex items-center left-0 w-auto"
+                      >
+                        <div class="flex items-center">Quantity</div>
+                      </div>
+                    </div>
+                    <div class="hidden lg:block">Total</div>
+                  </div>
+                </div>
+              </div>
+              <%- include ("./singlePackageProducts")%>
+              <div
+                class="pt-6 pb-6 px-[33px] lg:flex justify-between hidden items-center"
+              >
+                <div class="flex flex-row items-center"></div>
+                <div class="font-medium text-base">
+                  <div>Bundle Price: Rs. <%= total %></div>
+                  <div>
+                    Our Price:
+                    <span class="text-[#237700]">
+                      Rs. <%= package.price %>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Ratings -->
+            <div>
+              <div class="lg:hidden font-semibold text-lg mt-[40px]">
+                Review and Ratings
+                <div class="justify-between flex items-center">
+                  <div class="flex flex-col">
+                    <div class="font-semibold text-lg pt-[18px] md:pt-[30px]">
+                      <%= package.averageRating%>
+                      <text class="text-base">/5</text>
+                    </div>
+                    <div
+                      class="text-[#182B3C ] opacity-50 font-normal text-[14px] pt-[3px]"
+                    >
+                      Based on <%= reviews.length%> reviews
+                    </div>
+                  </div>
+                  <div class="flex gap-x-[6px]">
+                    <img
+                      src="../../public/Images/star.svg"
+                      class="md:w-[26px] w-[19.52px]"
+                    />
+                    <img
+                      src="../../public/Images/star.svg"
+                      class="md:w-[26px] w-[19.52px]"
+                    />
+                    <img
+                      src="../../public/Images/star.svg"
+                      class="md:w-[26px] w-[19.52px]"
+                    />
+                    <img
+                      src="../../public/Images/star.svg"
+                      class="md:w-[26px] w-[19.52px]"
+                    />
+                    <img
+                      src="../../public/Images/star.svg"
+                      class="md:w-[26px] w-[19.52px]"
+                    />
+                  </div>
+                </div>
+                <div class="justify-between flex items-center pt-[20px]">
+                  <div class="gap-y-[17.31px] flex flex-col w-full">
+                    <div class="flex justify-between w-full items-center">
+                      <div class="flex gap-x-[9.3px]">
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="md:w-[19.6px] w-[15.65px]"
+                        />
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="md:w-[19.6px] w-[15.65px]"
+                        />
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="md:w-[19.6px] w-[15.65px]"
+                        />
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="md:w-[19.6px] w-[15.65px]"
+                        />
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="md:w-[19.6px] w-[15.65px]"
+                        />
+                      </div>
+                      <div
+                        class="w-[202px] md:w-[377px] h-[7px] rounded-[11.13px] bg-[#D9D9D9] grid-cols-5 grid"
+                      >
+                        <div
+                          class="rounded-[11.13px] h-full bg-[#FFCE31] col-span-5"
+                        ></div>
+                      </div>
+                    </div>
+                    <div class="flex justify-between w-full items-center">
+                      <div class="flex gap-x-[9.3px]">
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="md:w-[19.6px] w-[15.65px]"
+                        />
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="md:w-[19.6px] w-[15.65px]"
+                        />
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="md:w-[19.6px] w-[15.65px]"
+                        />
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="md:w-[19.6px] w-[15.65px]"
+                        />
+                        <img
+                          src="../../public/Images/Star-shade.svg"
+                          class="md:w-[19.6px] w-[15.65px]"
+                        />
+                      </div>
+                      <div
+                        class="w-[202px] md:w-[377px] h-[7px] rounded-[11.13px] bg-[#D9D9D9] grid-cols-5 grid"
+                      >
+                        <div
+                          class="rounded-[11.13px] h-full bg-[#FFCE31] col-span-4"
+                        ></div>
+                      </div>
+                    </div>
+                    <div class="flex justify-between w-full items-center">
+                      <div class="flex gap-x-[9.3px]">
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="md:w-[19.6px] w-[15.65px]"
+                        />
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="md:w-[19.6px] w-[15.65px]"
+                        />
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="md:w-[19.6px] w-[15.65px]"
+                        />
+                        <img
+                          src="../../public/Images/Star-shade.svg"
+                          class="md:w-[19.6px] w-[15.65px]"
+                        />
+                        <img
+                          src="../../public/Images/Star-shade.svg"
+                          class="md:w-[19.6px] w-[15.65px]"
+                        />
+                      </div>
+                      <div
+                        class="w-[202px] md:w-[377px] h-[7px] rounded-[11.13px] bg-[#D9D9D9] grid-cols-5 grid"
+                      >
+                        <div
+                          class="rounded-[11.13px] h-full bg-[#FFCE31] col-span-3"
+                        ></div>
+                      </div>
+                    </div>
+                    <div class="flex justify-between w-full items-center">
+                      <div class="flex gap-x-[9.3px]">
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="md:w-[19.6px] w-[15.65px]"
+                        />
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="md:w-[19.6px] w-[15.65px]"
+                        />
+                        <img
+                          src="../../public/Images/Star-shade.svg"
+                          class="md:w-[19.6px] w-[15.65px]"
+                        />
+                        <img
+                          src="../../public/Images/Star-shade.svg"
+                          class="md:w-[19.6px] w-[15.65px]"
+                        />
+                        <img
+                          src="../../public/Images/Star-shade.svg"
+                          class="md:w-[19.6px] w-[15.65px]"
+                        />
+                      </div>
+                      <div
+                        class="w-[202px] md:w-[377px] h-[7px] rounded-[11.13px] bg-[#D9D9D9] grid-cols-5 grid"
+                      >
+                        <div
+                          class="rounded-[11.13px] h-full bg-[#FFCE31] col-span-2"
+                        ></div>
+                      </div>
+                    </div>
+                    <div class="flex justify-between w-full items-center">
+                      <div class="flex gap-x-[9.3px]">
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="md:w-[19.6px] w-[15.65px]"
+                        />
+                        <img
+                          src="../../public/Images/Star-shade.svg"
+                          class="md:w-[19.6px] w-[15.65px]"
+                        />
+                        <img
+                          src="../../public/Images/Star-shade.svg"
+                          class="md:w-[19.6px] w-[15.65px]"
+                        />
+                        <img
+                          src="../../public/Images/Star-shade.svg"
+                          class="md:w-[19.6px] w-[15.65px]"
+                        />
+                        <img
+                          src="../../public/Images/Star-shade.svg"
+                          class="md:w-[19.6px] w-[15.65px]"
+                        />
+                      </div>
+                      <div
+                        class="w-[202px] md:w-[377px] h-[7px] rounded-[11.13px] bg-[#D9D9D9] grid-cols-5 grid"
+                      >
+                        <div
+                          class="rounded-[11.13px] h-full bg-[#FFCE31] col-span-1"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div></div>
+                </div>
+              </div>
+            </div>
+            <!-- Reviews -->
+            <div class="lg:border-[0.5px] rounded-[5px] lg:mt-[30px]">
+              <div
+                class="hidden lg:flex flex-col border-b-[1px] pl-[40px] font-medium text-base py-[40px]"
+              >
+                <div class="text-base font-semibold">
+                  Ratings and Reviews of the Product
+                </div>
+                <div class="flex pt-[32px]">
+                  <div class="flex flex-col">
+                    <div class="text-[40px] font-medium leading-[49px]">
+                      <%= package.averageRating%> &nbsp;<text
+                        class="text-[26px]"
+                        >/5</text
+                      >
+                    </div>
+                    <div class="opacity-50">
+                      Based on <%= reviews.length%> reviews
+                    </div>
+                    <div class="pt-[16px] flex gap-x-[9.4px]">
+                      <% for (var i = 1; i <= package.average; i++ ) { %>
+                      <img
+                        src="../../public/Images/Star.svg"
+                        class="w-[40px]"
+                      />
+                      <%}%>
+                    </div>
+                  </div>
+                  <div class="pl-[62px] space-y-[16px]">
+                    <div class="flex justify-between w-full items-center">
+                      <div class="flex gap-x-[9.3px]">
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="w-[17px]"
+                        />
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="w-[17px]"
+                        />
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="w-[17px]"
+                        />
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="w-[17px]"
+                        />
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="w-[17px]"
+                        />
+                      </div>
+                      <div
+                        class="w-[272px] h-[15px] rounded-[5px] bg-[#D9D9D9] grid-cols-5 grid ml-[16px]"
+                      >
+                        <div
+                          class="rounded-[5px] h-[15px] bg-[#FFCE31] col-span-5"
+                        ></div>
+                      </div>
+                    </div>
+                    <div class="flex justify-between w-full items-center">
+                      <div class="flex gap-x-[9.3px]">
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="w-[17px]"
+                        />
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="w-[17px]"
+                        />
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="w-[17px]"
+                        />
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="w-[17px]"
+                        />
+                        <img
+                          src="../../public/Images/Star-shade.svg"
+                          class="w-[17px]"
+                        />
+                      </div>
+                      <div
+                        class="w-[272px] h-[15px] rounded-[5px] bg-[#D9D9D9] grid-cols-5 grid ml-[16px]"
+                      >
+                        <div
+                          class="rounded-[5px] h-[15px] bg-[#FFCE31] col-span-4"
+                        ></div>
+                      </div>
+                    </div>
+                    <div class="flex justify-between w-full items-center">
+                      <div class="flex gap-x-[9.3px]">
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="w-[17px]"
+                        />
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="w-[17px]"
+                        />
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="w-[17px]"
+                        />
+                        <img
+                          src="../../public/Images/Star-shade.svg"
+                          class="w-[17px]"
+                        />
+                        <img
+                          src="../../public/Images/Star-shade.svg"
+                          class="w-[17px]"
+                        />
+                      </div>
+                      <div
+                        class="w-[272px] h-[15px] rounded-[5px] bg-[#D9D9D9] grid-cols-5 grid ml-[16px]"
+                      >
+                        <div
+                          class="rounded-[5px] h-[15px] bg-[#FFCE31] col-span-3"
+                        ></div>
+                      </div>
+                    </div>
+                    <div class="flex justify-between w-full items-center">
+                      <div class="flex gap-x-[9.3px]">
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="w-[17px]"
+                        />
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="w-[17px]"
+                        />
+                        <img
+                          src="../../public/Images/Star-shade.svg"
+                          class="w-[17px]"
+                        />
+                        <img
+                          src="../../public/Images/Star-shade.svg"
+                          class="w-[17px]"
+                        />
+                        <img
+                          src="../../public/Images/Star-shade.svg"
+                          class="w-[17px]"
+                        />
+                      </div>
+                      <div
+                        class="w-[272px] h-[15px] rounded-[5px] bg-[#D9D9D9] grid-cols-5 grid ml-[16px]"
+                      >
+                        <div
+                          class="rounded-[5px] h-[15px] bg-[#FFCE31] col-span-2"
+                        ></div>
+                      </div>
+                    </div>
+                    <div class="flex justify-between w-full items-center">
+                      <div class="flex gap-x-[9.3px]">
+                        <img
+                          src="../../public/Images/Star.svg"
+                          class="w-[17px]"
+                        />
+                        <img
+                          src="../../public/Images/Star-shade.svg"
+                          class="w-[17px]"
+                        />
+                        <img
+                          src="../../public/Images/Star-shade.svg"
+                          class="w-[17px]"
+                        />
+                        <img
+                          src="../../public/Images/Star-shade.svg"
+                          class="w-[17px]"
+                        />
+                        <img
+                          src="../../public/Images/Star-shade.svg"
+                          class="w-[17px]"
+                        />
+                      </div>
+                      <div
+                        class="w-[272px] h-[15px] rounded-[5px] bg-[#D9D9D9] grid-cols-5 grid ml-[16px]"
+                      >
+                        <div
+                          class="rounded-[5px] h-[15px] bg-[#FFCE31] col-span-1"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="lg:border-b-[1px] text-[12px] md:text-[18px] lg:pl-[40px] pt-[27.35px] md:pt-[50px] pb-[20px] md:pb-[30px] font-medium lg:font-medium md:font-semibold text-base lg:pt-[20px] lg:pb-[20px]"
+              >
+                Product Reviews
+              </div>
+              <%- include ("../partials/comments") %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hidden"><%- include ("../partials/footer") %></div>
+  </div>
+</div>

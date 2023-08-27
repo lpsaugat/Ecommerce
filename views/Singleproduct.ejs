@@ -1,32 +1,53 @@
 <%- include ("./partials/header") %>
+<link rel="stylesheet" href="../public/zoom.css" />
+
 <div class="px-5 lg:px-10 max-w-[1200px] mx-auto lg:pt-[60px]">
   <!-- Single Product -->
   <div class="grid lg:grid-cols-9 lg:gap-x-[30px] gap-y-[27px]">
     <!-- Product Image -->
+
     <div class="gap-y-[20px] hidden lg:block space-y-[20px]">
-      <div
-        class="border-[1.5px] border-[#182B3C] rounded-[5px] py-[17px] px-[10] flex justify-center items-center h-[105px] w-[105px]"
+      <button
+        class="imageBorder border-[1.5px] rounded-[5px] py-[17px] px-[10] flex justify-center items-center h-[105px] w-[105px]"
+        style="border-color: #182b3c"
+        onclick="imageChange(0)"
       >
-        <img src="../public/Images/SingleProduct/1.png" />
-      </div>
-      <div
-        class="border-[1.5px] rounded-[5px] py-[17px] px-[10] flex justify-center items-center h-[105px] w-[105px]"
+        <img src="<%= singleproduct.image[0]%>" />
+      </button>
+      <button
+        class="imageBorder border-[1.5px] rounded-[5px] py-[17px] px-[10] flex justify-center items-center h-[105px] w-[105px]"
+        onclick="imageChange(1)"
       >
-        <img src="../public/Images/SingleProduct/2.png" />
-      </div>
-      <div
-        class="border-[1.5px] rounded-[5px] py-[17px] px-[10] flex justify-center items-center h-[105px] w-[105px]"
+        <img src="<%= singleproduct.image[1]%>" />
+      </button>
+      <button
+        class="imageBorder border-[1.5px] rounded-[5px] py-[17px] px-[10] flex justify-center items-center h-[105px] w-[105px]"
+        onclick="imageChange(2)"
       >
-        <img src="../public/Images/SingleProduct/3.png" />
-      </div>
+        <img src="<%= singleproduct.image[2]%>" />
+      </button>
     </div>
+
     <div
-      class="lg:rounded-[5px] lg:h-auto relative rounded-[3px] border-[1px] h-[237.4px] md:h-[335px] lg:min-h-[450px] col-span-5 items-center justify-center flex"
+      id="image-container"
+      class="image-container lg:rounded-[5px] lg:h-auto relative rounded-[3px] border-[1px] h-[237.4px] md:h-[335px] lg:min-h-[450px] col-span-5 items-center justify-center flex"
     >
       <img
-        src="../public/Images/SingleProduct/product.png"
-        class="lg:h-auto md:h-[294px] h-[226.32px] absolute"
+        src="<%= singleproduct.image[0]%>"
+        class="lg:h-auto md:h-[294px] h-[226.32px] absolute product-image"
+        id="product-image"
+        style="display: flex"
       />
+      <img
+        src="<%= singleproduct.image[1]%>"
+        class="lg:h-auto md:h-[294px] h-[226.32px] absolute product-image"
+        style="display: none"
+      /><img
+        src="<%= singleproduct.image[2]%>"
+        class="lg:h-auto md:h-[294px] h-[226.32px] absolute product-image"
+        style="display: none"
+      />
+
       <div
         class="top-[14px] right-[14px] md:top-[16px] lg:top-[20px] lg:right-[20px] absolute"
       >
@@ -37,37 +58,38 @@
           />
         </button>
       </div>
+      <div id="mouse-overlay"></div>
+      <div id="overlay"></div>
     </div>
     <!-- Writing of Product -->
     <div class="lg:col-span-3 w-full">
       <div class="font-medium text-[18px] lg:text-[24px]">
-        Kellogg-s Chocos (250g)
+        <%= singleproduct.name%>
       </div>
       <div class="justify-left flex items-center font-normal text-xs pt-[16px]">
         <div class="flex gap-x-[4px]">
-          <%-include ("./partials/star") %>&nbsp;
+          <% for (var i = 0; i < averageRatingStar; i++ ) { %> <%- include
+          ("./partials/oneStar") %> <%}%>&nbsp;
         </div>
-        <div class="font-medium text-sm">4 reviews</div>
+        <div class="font-medium text-sm"><%= reviews.length%> reviews</div>
+      </div>
+      <div class="font-medium text-sm pt-1">(<%=averageRatingNumber%> /5)</div>
+      <div class="pt-4 hidden lg:block font-medium text-sm">
+        Categories: <% singleproduct.category.forEach((value) => { %> <%= value
+        %>, <% }); %>
       </div>
       <div class="pt-4 hidden lg:block font-medium text-sm">
-        Categories: Family, Rice, Pulse, Oil
+        Availability: <% if(singleproduct.quantity<=0) { %> Out of Stock, <%
+        }else{ %> In Stock <%}; %>
       </div>
-      <div class="pt-4 hidden lg:block font-medium text-sm">
-        Avalability: In Stock
+      <div class="pt-4 font-semibold text-base">
+        Rs. <%= singleproduct.price %>
       </div>
-      <div class="pt-4 font-semibold text-base">Rs. 35000.00</div>
       <div class="pt-4 text-xs md:text-sm lg:max-w-[348px] text-justify">
-        Platinum package provides you with healthy nutritions and make your life
-        healtier and happier. We have been working hard with the local &
-        regional farms to provide you with the freshest produce available.
+        <%= singleproduct.description %>
         <br /><br />
         <div>
-          <ol class="list-disc ml-4">
-            <li>Healthy</li>
-            <li>Beneficial</li>
-            <li>High Nutritions</li>
-            <li>Excellent</li>
-          </ol>
+          <ol class="list-disc ml-4"></ol>
         </div>
         <div class="lg:flex pt-[16px] hidden items-center">
           <div class="font-medium text-[16px]">Quantity</div>
@@ -98,7 +120,7 @@
         <div class="hidden lg:block">
           <button
             class="w-full h-[42px] rounded-[8px] mt-[24px] items-center flex justify-center border-[1px] border-[#3baf3d] text-[#3baf3d] font-medium"
-            onclick="addedtocart(this)"
+            onclick="addedtocartSingle(this,'<%= singleproduct.id %>', '<%= singleproduct.price %>')"
           >
             <div class="my-auto text-[#3baf3d] flex">
               Add
@@ -112,7 +134,7 @@
         <div class="hidden lg:block">
           <button
             class="w-full lg:h-[42px] md:h-[36px] h-[32px] mt-[20px] mb-[30px] flex rounded-[8px] text-[12px] lg:text-[14px] items-center justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
-            onclick="location.href = 'cart'"
+            onclick="location.href = '/cart'"
           >
             Buy Now &nbsp;
             <img
@@ -125,11 +147,13 @@
           <div class="font-semibold text-[18px] lg:text-[24px pt-[30px]">
             Description
           </div>
+          <% if(false) {%>
           <div
             class="font-semibold text-[12px] lg:text-[16px] pt-[18px] lg:pt-[39px]"
           >
             Details
           </div>
+
           <div class="pt-4 text-xs md:text-sm lg:max-w-[348px] text-justify">
             <ol class="list-disc ml-4 space-y-[15px]">
               <li>
@@ -155,6 +179,7 @@
               <li>We plan to make our products and services affordable.</li>
             </ol>
           </div>
+          <% }%> <% singleproduct.longDescription %>
         </div>
         <div class="lg:hidden">
           <div class="font-semibold text-[18px] lg:text-[24px pt-[30px]">
@@ -163,7 +188,7 @@
           <div
             class="font-semibold text-[12px] lg:text-[16px] pt-[18px] lg:pt-[39px] flex items-center"
           >
-            <img src="../public/Images/Single Product/Delivery.svg" /> &nbsp;
+            <img src="../public/Images/SingleProduct/Delivery.svg" /> &nbsp;
             Delivery Info
           </div>
           <div class="pt-4 text-xs md:text-sm lg:max-w-[348px] text-justify">
@@ -181,7 +206,7 @@
           <div
             class="font-semibold text-[12px] lg:text-[16px] pt-[18px] lg:pt-[39px] flex items-center"
           >
-            <img src="../public/Images/Single Product/Return.svg" /> &nbsp;
+            <img src="../public/Images/SingleProduct/Return.svg" /> &nbsp;
             Returns
           </div>
           <div class="pt-4 text-xs md:text-sm lg:max-w-[348px] text-justify">
@@ -201,12 +226,12 @@
             <div class="justify-between flex items-center">
               <div class="flex flex-col">
                 <div class="font-semibold text-lg pt-[18px] md:pt-[30px]">
-                  4.0 <text class="text-base">/5</text>
+                  <%= averageRatingNumber%> <text class="text-base">/5</text>
                 </div>
                 <div
                   class="text-[#182B3C ] opacity-50 font-normal text-[14px] pt-[3px]"
                 >
-                  Based on 4 reviews
+                  Based on <%= reviews.length%> reviews
                 </div>
               </div>
               <div class="flex gap-x-[6px]">
@@ -396,6 +421,7 @@
         </div>
         <!-- Reviews -->
         <div class="lg:border-[0.5px] lg:hidden rounded-[5px] lg:mt-[30px]">
+          <!-- Ratings -->
           <div
             class="hidden lg:flex flex-col border-b-[1px] pl-[40px] font-medium text-base py-[40px]"
           >
@@ -405,15 +431,17 @@
             <div class="flex pt-[32px]">
               <div class="flex flex-col">
                 <div class="text-[40px] font-medium leading-[49px]">
-                  5.0 &nbsp;<text class="text-[26px]">/5</text>
+                  <%= averageRatingNumber%> &nbsp;<text class="text-[26px]"
+                    >/5</text
+                  >
                 </div>
-                <div class="opacity-50">Based on 4 reviews</div>
+                <div class="opacity-50">
+                  Based on <%= reviews.length%> reviews
+                </div>
                 <div class="pt-[16px] flex gap-x-[9.4px]">
+                  <% for (var i = 1; i <= averageRatingStar; i++ ) { %>
                   <img src="../public/Images/Star.svg" class="w-[40px]" />
-                  <img src="../public/Images/Star.svg" class="w-[40px]" />
-                  <img src="../public/Images/Star.svg" class="w-[40px]" />
-                  <img src="../public/Images/Star.svg" class="w-[40px]" />
-                  <img src="../public/Images/Star.svg" class="w-[40px]" />
+                  <%}%>
                 </div>
               </div>
               <div class="pl-[62px] space-y-[16px]">
@@ -535,7 +563,7 @@
           >
             Product Reviews
           </div>
-          <%- include ("./partials/comments") %>
+          <%- include ("./partials/comments") %> <% if(false) {%>
           <div
             class="border-[0.5px] lg:border-0 pb-[15px] md:pb-[17.95px] lg:pb-[25px] lg:border-b-[1px] lg:rounded-none rounded-[5px] mt-[20px] lg:mt-0 pl-[14px] lg:pl-[40px] pt-[16px] lg:pt-[30px] lg:pr-[40px] pr-[20px] shadow-[0px_0px_2px_rgba(0,0,0,0.25)] lg:shadow-none"
           >
@@ -568,7 +596,7 @@
               </div>
             </div>
             <div
-              class="bg-[#f2f2f2] pb-[15px] md:pb-[17.95px] lg:pb-[25px] lg:border-b-[1px] lg:rounded-none rounded-[5px] mt-[20px] lg:mt-5 pl-[14px] lg:pl-[40px] pt-[16px] lg:pt-[30px] lg:pr-[40px] pr-[20px]"
+              class="bg-[#dcd3d3] pb-[15px] md:pb-[17.95px] lg:pb-[25px] lg:border-b-[1px] lg:rounded-none rounded-[5px] mt-[20px] lg:mt-5 pl-[14px] lg:pl-[40px] pt-[16px] lg:pt-[30px] lg:pr-[40px] pr-[20px]"
             >
               <div class="justify-between flex flex-col">
                 <div class="flex w-full">
@@ -588,13 +616,40 @@
               </div>
             </div>
           </div>
+          <% } %>
+          <div
+            class="border-[0.5px] lg:mt-[38px] w-full pb-[15px] md:pb-[17.95px] lg:pb-[25px] lg:border-b-[1px] rounded-[5px] mt-[20px] pl-[14px] lg:pl-[23px] pt-[16px] lg:pt-[30px] lg:pr-[40px] pr-[20px] shadow-[0px_0px_2px_rgba(0,0,0,0.25)] lg:shadow-none"
+          >
+            <div class="flex w-full">
+              <div class="flex">
+                <div class="rounded-full overflow-hidden h-[41px] w-[41px]">
+                  <img src="../public/Images/AboutUs/1.svg" />
+                </div>
+              </div>
+              <div class="lg:pl-[27px] pl-[16px] w-full">
+                <textarea
+                  type="text"
+                  class="w-[100%] h-[122px] border-[1px] rounded-[5px] pl-[16px] lg:pl-[20px] pt-[11px]"
+                  rows="5"
+                  placeholder="Type to Comment"
+                ></textarea>
+              </div>
+            </div>
+            <div class="flex justify-end w-full pt-[16px] lg:pt-[30px]">
+              <button
+                class="flex items-center lg:text-[14px] text-xs text-white justify-center bg-gradient-to-r w-[97px] lg:w-[108px] from-[#fd3232] to-[#f84c4c] rounded-[8px] h-[32px] md:h-[37px]"
+              >
+                Publish
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
   <div class="hidden lg:block mt-[60px]">
     <div
-      class="border-[1px] rounded-t-[5px] font-medium text-[16px] px-[40px] py-[25px] gap-x-[198px] flex underline-offset-8"
+      class="border-[1px] rounded-t-[5px] font-medium text-[16px] px-[40px] py-[25px] gap-x-[140px] xl:gap-x-[198px] flex underline-offset-8"
     >
       <div>
         <button
@@ -624,6 +679,7 @@
     <div class="border-[1px] border-t-0 rounded-b-[5px] py-[40px]">
       <div style="display: block" class="details px-[40px]">
         <div class="hidden lg:block">
+          <% if(false) {%>
           <div class="font-semibold text-[12px] lg:text-[16px] pt-[18px]">
             Details
           </div>
@@ -652,15 +708,19 @@
               <li>We plan to make our products and services affordable.</li>
             </ol>
           </div>
+          <%}%>
         </div>
       </div>
-      <div style="display: none" class="details px-[40px]">Category</div>
+      <div style="display: none" class="details px-[40px]">
+        <% singleproduct.category.forEach((value) => { %> <%= value %> , <% });
+        %>
+      </div>
       <div style="display: none" class="details px-[40px]">
         <div class="">
           <div
             class="font-semibold text-[12px] lg:text-[16px] pt-[18px] flex items-center"
           >
-            <img src="../public/Images/Single Product/Delivery.svg" /> &nbsp;
+            <img src="../public/Images/SingleProduct/Delivery.svg" /> &nbsp;
             Delivery Info
           </div>
           <div class="pt-4 text-xs md:text-sm text-justify">
@@ -678,7 +738,7 @@
           <div
             class="font-semibold text-[12px] lg:text-[16px] pt-[18px] lg:pt-[39px] flex items-center"
           >
-            <img src="../public/Images/Single Product/Return.svg" /> &nbsp;
+            <img src="../public/Images/SingleProduct/Return.svg" /> &nbsp;
             Returns
           </div>
           <div class="pt-4 text-xs md:text-sm text-justify">
@@ -702,15 +762,17 @@
             <div class="flex pt-[32px]">
               <div class="flex flex-col">
                 <div class="text-[40px] font-medium leading-[49px]">
-                  5.0 &nbsp;<text class="text-[26px]">/5</text>
+                  <%= averageRatingNumber%> &nbsp;<text class="text-[26px]"
+                    >/5</text
+                  >
                 </div>
-                <div class="opacity-50">Based on 4 reviews</div>
+                <div class="opacity-50">
+                  Based on <%= reviews.length%> reviews
+                </div>
                 <div class="pt-[16px] flex gap-x-[9.4px]">
+                  <% for (var i = 1; i <= averageRatingStar; i++ ) { %>
                   <img src="../public/Images/Star.svg" class="w-[40px]" />
-                  <img src="../public/Images/Star.svg" class="w-[40px]" />
-                  <img src="../public/Images/Star.svg" class="w-[40px]" />
-                  <img src="../public/Images/Star.svg" class="w-[40px]" />
-                  <img src="../public/Images/Star.svg" class="w-[40px]" />
+                  <%}%>
                 </div>
               </div>
               <div class="pl-[62px] space-y-[16px]">
@@ -832,7 +894,7 @@
           >
             Product Reviews
           </div>
-          <%- include ("./partials/comments") %>
+          <%- include ("./partials/comments") %> <% if(false) {%>
           <div
             class="border-[0.5px] lg:border-0 pb-[15px] md:pb-[17.95px] lg:pb-[25px] lg:rounded-none rounded-[5px] mt-[20px] lg:mt-0 pl-[14px] lg:pl-[40px] pt-[16px] lg:pt-[30px] lg:pr-[40px] pr-[20px] shadow-[0px_0px_2px_rgba(0,0,0,0.25)] lg:shadow-none"
           >
@@ -865,7 +927,7 @@
               </div>
             </div>
             <div
-              class="bg-[#f2f2f2] pb-[15px] md:pb-[17.95px] lg:pb-[25px] lg:border-b-[1px] lg:rounded-none rounded-[5px] mt-[20px] lg:mt-5 pl-[14px] lg:pl-[40px] pt-[16px] lg:pt-[30px] lg:pr-[40px] pr-[20px]"
+              class="bg-[#f2f2f2] pb-[15px] md:pb-[17.95px] lg:pb-[25px] lg:rounded-none rounded-[5px] mt-[20px] lg:mt-5 pl-[14px] lg:pl-[40px] pt-[16px] lg:pt-[30px] lg:pr-[40px] pr-[20px]"
             >
               <div class="justify-between flex flex-col">
                 <div class="flex w-full">
@@ -885,7 +947,108 @@
               </div>
             </div>
           </div>
+          <% }%>
         </div>
+      </div>
+    </div>
+    <div
+      class="singleproductcomment border-[0.5px] lg:mt-[38px] w-full pb-[15px] md:pb-[17.95px] lg:pb-[25px] lg:border-b-[1px] rounded-[5px] mt-[20px] pl-[14px] lg:pl-[23px] pt-[16px] lg:pt-[30px] lg:pr-[40px] pr-[20px] shadow-[0px_0px_2px_rgba(0,0,0,0.25)] lg:shadow-none"
+      style="display: none"
+    >
+      <div class="flex w-full">
+        <div class="flex">
+          <div class="rounded-full overflow-hidden h-[41px] w-[41px]">
+            <img src="../public/Images/AboutUs/1.svg" />
+          </div>
+        </div>
+        <div class="lg:pl-[27px] pl-[16px] w-full">
+          <div class="font-semibold text-sm w-full items-center flex">
+            <div>Your Rating:</div>
+            <div id="" class="flex gap-x-1 pl-2 lg:pl-4 items-center">
+              <div class="flex items-center gap-x-1">
+                <button onclick="rating(0, this)" class="ratingbutton">
+                  <img
+                    src="../public/Images/Star.svg"
+                    class="w-[19.5px] h-[19.5px] star"
+                  />
+                  <img
+                    src="../public/Images/Star-shade.svg"
+                    class="w-[19.5px] h-[19.5px] star-shade"
+                    style="display: none"
+                  />
+                </button>
+                <button onclick="rating(1, this)" class="ratingbutton">
+                  <img
+                    src="../public/Images/Star.svg"
+                    class="w-[19.5px] h-[19.5px] star"
+                  />
+                  <img
+                    src="../public/Images/Star-shade.svg"
+                    class="w-[19.5px] h-[19.5px] star-shade"
+                    style="display: none"
+                  />
+                </button>
+                <button onclick="rating(2, this)" class="ratingbutton">
+                  <img
+                    src="../public/Images/Star.svg"
+                    class="w-[19.5px] h-[19.5px] star"
+                  />
+                  <img
+                    src="../public/Images/Star-shade.svg"
+                    class="w-[19.5px] h-[19.5px] star-shade"
+                    style="display: none"
+                  />
+                </button>
+                <button onclick="rating(3, this)" class="ratingbutton">
+                  <img
+                    src="../public/Images/Star.svg"
+                    class="w-[19.5px] h-[19.5px] star"
+                  />
+                  <img
+                    src="../public/Images/Star-shade.svg"
+                    class="w-[19.5px] h-[19.5px] star-shade"
+                    style="display: none"
+                  />
+                </button>
+                <button onclick="rating(4, this)" class="ratingbutton">
+                  <img
+                    src="../public/Images/Star.svg"
+                    class="w-[19.5px] h-[19.5px] star"
+                  />
+                  <img
+                    src="../public/Images/Star-shade.svg"
+                    class="w-[19.5px] h-[19.5px] star-shade"
+                    style="display: none"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+          <form id="productReview">
+            <textarea
+              type="text"
+              name="comment"
+              class="w-[100%] h-[122px] border-[1px] rounded-[5px] pl-[16px] lg:pl-[20px] pt-[11px] lg:mt-[19px] mt-2"
+              rows="5"
+              placeholder="Type to Comment"
+            ></textarea>
+            <input
+              type="hidden"
+              name="productID"
+              value="<%=singleproduct._id %>"
+            />
+            <input type="hidden" id="ratingID" value="" name="rating" />
+          </form>
+        </div>
+      </div>
+      <div class="flex justify-end w-full pt-[16px] lg:pt-[30px]">
+        <button
+          form="productReview"
+          type="submit"
+          class="flex items-center lg:text-[14px] text-xs text-white justify-center bg-gradient-to-r w-[97px] lg:w-[108px] from-[#fd3232] to-[#f84c4c] rounded-[8px] h-[32px] md:h-[37px]"
+        >
+          Publish
+        </button>
       </div>
     </div>
   </div>
@@ -897,7 +1060,7 @@
     <div class="font-prox text-lg font-bold lg:text-3xl text-[18px]">
       Related Products
     </div>
-    <a href="products">
+    <a href="/products">
       <div class="font-poppins font-normal text-xs md:text-base lg:flex hidden">
         View All &nbsp;<img src="../public/Images/next.svg" /></div
     ></a>
@@ -920,7 +1083,7 @@
   </div>
 </div>
 <div
-  class="h-[149px] w-full fixed bottom-0 bg-white px-5 pt-5 border-t-[1px] block lg:hidden"
+  class="h-[149px] w-full z-30 fixed bottom-0 bg-white px-5 pt-5 border-t-[1px] block lg:hidden"
 >
   <div class="font-medium md:text-base">Bundle Price</div>
   <div class="justify-between flex">
@@ -929,21 +1092,29 @@
     >
       Taxes and shipping calculated at checkout
     </div>
-    <div class="font-medium md:font-[16px]">Rs.45000</div>
+    <div class="font-medium md:font-[16px]">Rs.<%= singleproduct.price %></div>
   </div>
   <div class="justify-end flex pt-[16px] gap-x-[10px]">
     <button
       class="md:w-[122px] w-[113px] h-[32px] rounded-[8px] text-[12px] items-center flex justify-center border-[1px] border-[#3baf3d] text-[#3baf3d] font-medium"
+      onclick="addedtocartSingle(this,'<%= singleproduct.id %>', '<%= singleproduct.price %>')"
     >
-      Add to Cart
+      <div class="my-auto text-[#3baf3d] flex">
+        Add
+        <div class="text-[#3baf3d] added" style="display: none">ed&nbsp;</div>
+        to Cart
+      </div>
     </button>
     <button
       class="md:w-[122px] w-[113px] h-[32px] rounded-[8px] text-[12px] items-center flex justify-center text-[#ffffff] font-medium bg-gradient-to-r from-[#3baf3d] to-[#5DC234]"
+      onclick="location.href='/cart'"
     >
       Buy Now
     </button>
   </div>
 </div>
+
+<script src="../public/zoom.js"></script>
 
 <%- include ("./partials/footer") %>
 <div class="h-[149px] lg:h-0"></div>

@@ -1,85 +1,86 @@
-<% for (var i =0; i <=12; i=i+2 ) { %>
-
-<div
-  class="border-[1px] justify-between items-center flex py-[14px] md:py-[12px] lg:pt-[15px] px-[10px] md:px-[11px] lg:px-[17px] lg:border-0 lg:border-b-[1px] rounded-[3px] lg:rounded-none mt-6 lg:mt-0 lg:shadow-none shadow-[0px_0px_2px_rgba(0,0,0,0.25)]"
->
-  <div class="flex w-full">
-    <input type="checkbox" class="lg:hidden" />
-    <div
-      class="border-[0.5px] md:h-[86px] md:w-[86px] h-[69px] w-[69px] justify-center rounded-[3px] lg:rounded-[5px] flex items-center ml-[10px] lg:ml-0 md:ml-[15px]"
-    >
-      <img
-        src="../public/Images/singlepackage/<%= i%>.png"
-        class="flex items-center justify-center"
-      />
-    </div>
-    <div
-      class="pl-[10px] md:pl-[10px] flex flex-col lg:font-medium text-ellipsis truncate lg:flex-row w-full lg:grid grid-cols-12 lg:items-center"
-    >
+<% for (var i =0; i
+<products.length; i++ ) { %>
+  <div
+    class="border-[1px] justify-between items-center flex py-[14px] md:py-[12px] lg:pt-[15px] px-[10px] md:px-[11px] lg:px-[17px] lg:border-0 lg:border-b-[1px] rounded-[3px] lg:rounded-none mt-6 lg:mt-0 lg:shadow-none shadow-[0px_0px_2px_rgba(0,0,0,0.25)]"
+  >
+    <div class="flex w-full">
+      <input type="checkbox" class="lg:hidden" />
       <div
-        class="text-[12px] md:text-sm lg:text-[16px] col-span-5 lg:pl-[40px]"
+        class="border-[0.5px] md:h-[86px] md:w-[86px] h-[69px] w-[69px] justify-center rounded-[3px] lg:rounded-[5px] flex items-center ml-[10px] lg:ml-0 md:ml-[15px]"
       >
-        Aarati Rice
+        <img
+          src="        <%= products[i].image[0] %>
+        "
+          class="flex items-center justify-center"
+        />
       </div>
       <div
-        class="opacity-80 col-span-2 lg:opacity-100 text-[10px] md:text-[12px] pt-[9px] md:pt-[10px] lg:pt-0 lg:text-[16px]"
+        class="pl-[10px] md:pl-[10px] flex flex-col lg:font-medium text-ellipsis truncate lg:flex-row w-full lg:grid grid-cols-12 lg:items-center"
       >
-        Rs.100/kg
-      </div>
-      <div
-        class="text-[12px] col-span-3 w-auto md:text-[16px] lg:pt-0 font-medium pt-[14px] md:pt-[17px] justify-between items-center grid-cols-2 flex"
-      >
-        <div class="lg:hidden">Rs.4500</div>
         <div
-          class="justify-end md:hidden lg:flex font-roboto flex items-center left-0 w-auto"
+          class="text-[12px] md:text-sm lg:text-[16px] col-span-5 lg:pl-[40px]"
         >
-          <div class="flex items-center">
-            <button onclick="decrease(<%= i%>)" class="h-[10px]">
-              <img src="../../public/Images/substract.svg" />
-            </button>
-            &nbsp; &nbsp;
+          <%= products[i].name %>
+        </div>
+        <div
+          class="opacity-80 col-span-2 lg:opacity-100 text-[10px] md:text-[12px] pt-[9px] md:pt-[10px] lg:pt-0 lg:text-[16px]"
+        >
+          Rs. <%= products[i].measure %>
+        </div>
+        <div
+          class="text-[12px] col-span-3 w-auto md:text-[16px] lg:pt-0 font-medium pt-[14px] md:pt-[17px] justify-between items-center grid-cols-2 flex"
+        >
+          <div class="lg:hidden">Rs. <%= products[i].price %></div>
+          <div
+            class="justify-end md:hidden lg:flex font-roboto flex items-center left-0 w-auto"
+          >
+            <div class="flex items-center">
+              <button onclick="decrease( '<%= i%>')" class="h-[10px]">
+                <img src="../../public/Images/substract.svg" />
+              </button>
+              &nbsp; &nbsp;
+              <input
+                type="text"
+                name="quantity"
+                value="1"
+                maxlength="2"
+                max="10"
+                size="1"
+                class="text-center items-center text-[14px] quantity w-[22.4px] h-[22.4px] lg:w-[42px] lg:h-[42px] lg:border-[1px] border-[0.6px] rounded-[3px]"
+              />
+              &nbsp; &nbsp;
 
-            <input
-              type="text"
-              name="quantity"
-              value="1"
-              maxlength="2"
-              max="10"
-              size="1"
-              class="text-center items-center text-[14px] quantity w-[22.4px] h-[22.4px] lg:w-[42px] lg:h-[42px] lg:border-[1px] border-[0.6px] rounded-[3px]"
-            />
-            &nbsp; &nbsp;
-
-            <button onclick="increase(<%= i%>)" class="w-[10px]">
-              <img src="../../public/Images/add.svg" />
-            </button>
+              <button onclick="increase('<%= i%>')" class="w-[10px]">
+                <img src="../../public/Images/add.svg" />
+              </button>
+            </div>
           </div>
         </div>
+        <div class="hidden lg:block">Rs. <%= products[i].price %></div>
       </div>
-      <div class="hidden lg:block">Rs.4500</div>
+    </div>
+    <div class="md:flex hidden lg:hidden items-center">
+      <button onclick="decrease('<%= i +1%>')" class="h-[10px]">
+        <img src="../../public/Images/substract.svg" />
+      </button>
+      &nbsp; &nbsp;
+
+      <input
+        type="text"
+        name="quantity"
+        value="1"
+        maxlength="2"
+        max="10"
+        size="1"
+        class="text-center quantity md:border-[1px] rounded-[3px] font-roboto"
+      />
+      &nbsp; &nbsp;
+
+      <button onclick="increase('<%= i%>')" class="h-[10px]">
+        <img src="../../public/Images/add.svg" />
+      </button>
     </div>
   </div>
-  <div class="md:flex hidden lg:hidden items-center">
-    <button onclick="decrease(<%= i +1%>)" class="h-[10px]">
-      <img src="../../public/Images/substract.svg" />
-    </button>
-    &nbsp; &nbsp;
 
-    <input
-      type="text"
-      name="quantity"
-      value="1"
-      maxlength="2"
-      max="10"
-      size="1"
-      class="text-center quantity md:border-[1px] rounded-[3px] font-roboto"
-    />
-    &nbsp; &nbsp;
-
-    <button onclick="increase(<%= i +1%>)" class="h-[10px]">
-      <img src="../../public/Images/add.svg" />
-    </button>
-  </div>
-</div>
-
-<% } %>
+  <% } %>
+</products.length;>
